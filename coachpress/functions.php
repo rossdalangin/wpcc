@@ -233,7 +233,7 @@ function coachpress_dynamic_css() {
     ?>
     <style type="text/css">
         body {
-            color: <?php echo esc_html( get_theme_mod( 'coachpress_text_color', '#384047' ) ); ?>;
+            color: <?php echo esc_html( get_theme_mod( 'coachpress_text_color', '#333333' ) ); ?>;
             font-family: '<?php echo esc_html( get_theme_mod( 'coachpress_body_font', 'Lato' ) ); ?>', sans-serif;
             font-weight: <?php echo esc_html( get_theme_mod( 'coachpress_body_font_weight', '400' ) ); ?>;
             line-height: <?php echo esc_html( get_theme_mod( 'coachpress_body_line_height', '1.6' ) ); ?>;
@@ -246,31 +246,50 @@ function coachpress_dynamic_css() {
         }
 
         a {
-            color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
+            color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#0D2F4F' ) ); ?>;
         }
 
         .main-navigation ul li a:hover {
-            border-bottom-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
+            border-bottom-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#0D2F4F' ) ); ?>;
         }
 
         blockquote {
-            border-left-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
+            border-left-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#0D2F4F' ) ); ?>;
         }
 
         .button,
         input[type="submit"] {
-            background-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
+            background-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#0D2F4F' ) ); ?>;
             color: #fff;
         }
 
         .button:hover,
         input[type="submit"]:hover {
-            background-color: <?php echo esc_html( get_theme_mod( 'coachpress_accent_color', '#c7a174' ) ); ?>;
+            background-color: <?php echo esc_html( get_theme_mod( 'coachpress_accent_color', '#FFC107' ) ); ?>;
         }
 
         .site-header {
-            background-color: <?php echo esc_html( get_theme_mod( 'coachpress_secondary_color', '#e7e0cd' ) ); ?>;
+            background-color: <?php echo esc_html( get_theme_mod( 'coachpress_secondary_color', '#F5F5F5' ) ); ?>;
         }
+
+        <?php
+        $sections = coachpress_get_section_choices();
+        foreach ( $sections as $section_id => $section_name ) {
+            $bg_color = get_theme_mod( "coachpress_{$section_id}_bg_color" );
+            $heading_color = get_theme_mod( "coachpress_{$section_id}_heading_color" );
+            $text_color = get_theme_mod( "coachpress_{$section_id}_text_color" );
+
+            if ( ! empty( $bg_color ) ) {
+                echo "#{$section_id} { background-color: " . esc_html( $bg_color ) . "; }";
+            }
+            if ( ! empty( $heading_color ) ) {
+                echo "#{$section_id} h2 { color: " . esc_html( $heading_color ) . "; }";
+            }
+            if ( ! empty( $text_color ) ) {
+                echo "#{$section_id}, #{$section_id} p { color: " . esc_html( $text_color ) . "; }";
+            }
+        }
+        ?>
     </style>
     <?php
 }

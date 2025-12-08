@@ -39,7 +39,7 @@ function coachpress_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'coachpress_primary_color', array(
-		'default'   => '#001d5c',
+		'default'   => '#0D2F4F',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
@@ -51,7 +51,7 @@ function coachpress_customize_register( $wp_customize ) {
 	) ) );
 
 	$wp_customize->add_setting( 'coachpress_secondary_color', array(
-		'default'   => '#e7e0cd',
+		'default'   => '#F5F5F5',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
@@ -63,7 +63,7 @@ function coachpress_customize_register( $wp_customize ) {
 	) ) );
 
     $wp_customize->add_setting( 'coachpress_accent_color', array(
-        'default'   => '#c7a174',
+        'default'   => '#FFC107',
         'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_hex_color',
     ) );
@@ -75,7 +75,7 @@ function coachpress_customize_register( $wp_customize ) {
     ) ) );
 
 	$wp_customize->add_setting( 'coachpress_text_color', array(
-		'default'   => '#384047',
+		'default'   => '#333333',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
@@ -85,6 +85,69 @@ function coachpress_customize_register( $wp_customize ) {
 		'section'  => 'coachpress_global_colors',
 		'settings' => 'coachpress_text_color',
 	) ) );
+
+    $wp_customize->add_setting( 'coachpress_dark_bg_color', array(
+        'default'   => '#1A1A1A',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_dark_bg_color', array(
+        'label'    => __( 'Dark Background Color', 'coachpress' ),
+        'section'  => 'coachpress_global_colors',
+        'settings' => 'coachpress_dark_bg_color',
+    ) ) );
+
+	// Per-Section Colors
+	$wp_customize->add_panel( 'coachpress_section_colors_panel', array(
+		'title'    => __( 'Section Colors', 'coachpress' ),
+		'priority' => 36,
+	) );
+
+	$sections = coachpress_get_section_choices();
+
+	foreach ( $sections as $section_id => $section_name ) {
+		$wp_customize->add_section( "coachpress_{$section_id}_colors", array(
+			'title'    => $section_name,
+			'panel'    => 'coachpress_section_colors_panel',
+		) );
+
+		$wp_customize->add_setting( "coachpress_{$section_id}_bg_color", array(
+			'default'   => '',
+			'transport' => 'refresh',
+			'sanitize_callback' => 'sanitize_hex_color',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_color", array(
+			'label'    => __( 'Background Color', 'coachpress' ),
+			'section'  => "coachpress_{$section_id}_colors",
+			'settings' => "coachpress_{$section_id}_bg_color",
+		) ) );
+
+		$wp_customize->add_setting( "coachpress_{$section_id}_heading_color", array(
+			'default'   => '',
+			'transport' => 'refresh',
+			'sanitize_callback' => 'sanitize_hex_color',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_heading_color", array(
+			'label'    => __( 'Heading Color', 'coachpress' ),
+			'section'  => "coachpress_{$section_id}_colors",
+			'settings' => "coachpress_{$section_id}_heading_color",
+		) ) );
+
+		$wp_customize->add_setting( "coachpress_{$section_id}_text_color", array(
+			'default'   => '',
+			'transport' => 'refresh',
+			'sanitize_callback' => 'sanitize_hex_color',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_text_color", array(
+			'label'    => __( 'Text Color', 'coachpress' ),
+			'section'  => "coachpress_{$section_id}_colors",
+			'settings' => "coachpress_{$section_id}_text_color",
+		) ) );
+	}
 
 	// Global Typography
 	$wp_customize->add_section( 'coachpress_global_typography', array(
