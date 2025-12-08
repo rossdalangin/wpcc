@@ -22,11 +22,11 @@ body {
 .container {
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
 section {
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 section:nth-of-type(even) {
@@ -36,21 +36,22 @@ section:nth-of-type(even) {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    line-height: 1.3;
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; text-align: center; margin-bottom: 60px; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 40px; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1.1rem; }
 h6 { font-size: 1rem; }
 
 .button,
 input[type="submit"] {
     display: inline-block;
-    padding: 15px 35px;
-    border-radius: 50px;
+    padding: 12px 30px;
+    border-radius: 4px;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid transparent;
@@ -85,7 +86,7 @@ input[type="submit"] {
 # Header
 --------------------------------------------------------------*/
 .site-header {
-    padding: 20px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #eee;
     transition: all 0.3s ease;
     display: flex;
@@ -111,7 +112,7 @@ input[type="submit"] {
 }
 
 .main-navigation ul li {
-    margin-left: 30px;
+    margin-left: 25px;
     position: relative;
 }
 
@@ -141,11 +142,11 @@ input[type="submit"] {
 
 .main-navigation ul ul li {
     margin: 0;
-    width: 200px;
+    width: 180px;
 }
 
 .main-navigation ul ul li a {
-    padding: 10px 20px;
+    padding: 8px 15px;
     display: block;
     border-bottom: none;
 }
@@ -173,7 +174,7 @@ input[type="submit"] {
         width: 100%;
         background-color: #fff;
         position: absolute;
-        top: 80px;
+        top: 70px;
         left: 0;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
@@ -189,7 +190,7 @@ input[type="submit"] {
     }
 
     .main-navigation ul li a {
-        padding: 15px;
+        padding: 12px;
         display: block;
         border-bottom: 1px solid #eee;
     }
@@ -208,14 +209,14 @@ input[type="submit"] {
 
 
 .header-cta {
-    margin-left: 30px;
+    margin-left: 25px;
 }
 
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 .hero-section {
-    padding: 120px 0;
+    padding: 80px 0;
     text-align: center;
 }
 
@@ -232,7 +233,7 @@ input[type="submit"] {
 
 .hero-right {
     width: 100%;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 @media (min-width: 768px) {
@@ -263,12 +264,12 @@ input[type="submit"] {
 .case-studies-grid,
 .processes-grid {
     display: grid;
-    grid-gap: 40px;
+    grid-gap: 30px;
 }
 
 .faq-item {
     border-bottom: 1px solid #eee;
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
 .service-item,
@@ -276,9 +277,9 @@ input[type="submit"] {
 .case-study-item,
 .process-item {
     background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.08);
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.07);
     transition: all 0.3s ease;
     text-align: center;
 }
@@ -287,8 +288,8 @@ input[type="submit"] {
 .testimonial-item:hover,
 .case-study-item:hover,
 .process-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
 }
 
 @media (min-width: 768px) {
@@ -311,7 +312,7 @@ input[type="submit"] {
 }
 
 .entry-header {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .entry-title {
@@ -327,7 +328,7 @@ input[type="submit"] {
 .entry-content ul,
 .entry-content ol,
 .entry-content blockquote {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 blockquote {
@@ -336,20 +337,23 @@ blockquote {
     font-style: italic;
     color: #555;
     font-size: 1.1rem;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
 }
 
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
 .widget {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     background-color: #f8f9fa;
-    padding: 30px;
-    border-radius: 8px;
+    padding: 25px;
+    border-radius: 4px;
 }
 
 .widget-title {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -357,7 +361,7 @@ blockquote {
 --------------------------------------------------------------*/
 .site-footer {
     background-color: var(--wp--preset--color--dark-bg);
-    padding: 80px 0;
+    padding: 60px 0;
     text-align: center;
     color: #fff;
 }
@@ -382,7 +386,7 @@ blockquote {
     margin: 10% auto;
     padding: 30px;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     width: 80%;
     max-width: 600px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.2);
