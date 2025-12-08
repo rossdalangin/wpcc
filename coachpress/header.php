@@ -41,7 +41,7 @@
 			$coachpress_description = get_bloginfo( 'description', 'display' );
 			if ( $coachpress_description || is_customize_preview() ) :
 				?>
-				<p class="site-description"><?php echo $coachpress_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				<p class="site-description"><?php echo esc_html( $coachpress_description ); ?></p>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 

@@ -1,8 +1,8 @@
 /*
 Theme Name: CoachPress
-Theme URI: https://example.com/coachpress/
+Theme URI: https://github.com/jules-dot-dev/coachpress
 Author: Jules
-Author URI: https://example.com/
+Author URI: https://github.com/jules-dot-dev
 Description: A modern, conversion-focused WordPress theme for Consultants and Coaches.
 Version: 1.0.0
 License: GNU General Public License v2 or later
@@ -15,9 +15,8 @@ Text Domain: coachpress
 # General
 --------------------------------------------------------------*/
 body {
-    font-family: 'Lato', sans-serif;
-    line-height: 1.6;
-    color: #384047;
+    line-height: 1.7;
+    font-size: 16px;
 }
 
 .container {
@@ -27,22 +26,33 @@ body {
 }
 
 section {
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lora', serif;
     font-weight: 700;
     letter-spacing: 1px;
+    margin-bottom: 20px;
 }
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
 
 .button,
 input[type="submit"] {
     display: inline-block;
-    padding: 12px 24px;
-    border-radius: 4px;
+    padding: 15px 35px;
+    border-radius: 50px;
     text-decoration: none;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /*--------------------------------------------------------------
@@ -52,6 +62,13 @@ input[type="submit"] {
     padding: 20px 0;
     border-bottom: 1px solid #eee;
     transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-branding {
+    flex: 1;
 }
 
 .main-navigation {
@@ -60,15 +77,119 @@ input[type="submit"] {
     align-items: center;
 }
 
+.main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-navigation ul li {
+    margin-left: 30px;
+    position: relative;
+}
+
+.main-navigation ul li a {
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.main-navigation ul li a:hover {
+    border-bottom-color: var(--wp--preset--color--primary);
+}
+
+.main-navigation ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.main-navigation ul ul li {
+    margin: 0;
+    width: 200px;
+}
+
+.main-navigation ul ul li a {
+    padding: 10px 20px;
+    display: block;
+    border-bottom: none;
+}
+
+.main-navigation ul li:hover > ul {
+    display: block;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-navigation ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .main-navigation.toggled ul {
+        display: flex;
+    }
+
+    .main-navigation ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-navigation ul li a {
+        padding: 15px;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+
+    .main-navigation ul li a:hover {
+        border-bottom-color: #eee;
+    }
+
+    .main-navigation ul ul {
+        position: static;
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
+    }
+}
+
+
 .header-cta {
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 .hero-section {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .hero-container {
@@ -85,7 +206,7 @@ input[type="submit"] {
 
 .hero-right {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 @media (min-width: 768px) {
@@ -114,7 +235,7 @@ input[type="submit"] {
 .processes-grid,
 .faqs-grid {
     display: grid;
-    grid-gap: 30px;
+    grid-gap: 40px;
 }
 
 .service-item,
@@ -123,9 +244,9 @@ input[type="submit"] {
 .process-item,
 .faq-item {
     background-color: #fff;
-    padding: 30px;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
 }
 
@@ -134,8 +255,8 @@ input[type="submit"] {
 .case-study-item:hover,
 .process-item:hover,
 .faq-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
 }
 
 @media (min-width: 768px) {
@@ -148,6 +269,64 @@ input[type="submit"] {
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+.site-main {
+    padding: 60px 0;
+}
+
+.entry-header {
+    margin-bottom: 30px;
+}
+
+.entry-title {
+    margin-bottom: 10px;
+}
+
+.entry-meta {
+    color: #777;
+    font-size: 14px;
+}
+
+.entry-content p,
+.entry-content ul,
+.entry-content ol,
+.entry-content blockquote {
+    margin-bottom: 20px;
+}
+
+blockquote {
+    border-left: 3px solid var(--wp--preset--color--primary);
+    padding-left: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+/*--------------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+.widget {
+    margin-bottom: 40px;
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.widget-title {
+    margin-bottom: 20px;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.site-footer {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+    text-align: center;
+    color: #555;
 }
 
 /*--------------------------------------------------------------
@@ -168,10 +347,12 @@ input[type="submit"] {
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 30px;
+    border: none;
+    border-radius: 8px;
     width: 80%;
     max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
 
 .close {

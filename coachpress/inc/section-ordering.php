@@ -23,15 +23,7 @@ function coachpress_customize_register_section_ordering( $wp_customize ) {
         'settings' => 'coachpress_section_order',
     ) ) );
 
-    $sections = array(
-        'hero' => __( 'Hero', 'coachpress' ),
-        'services' => __( 'Services', 'coachpress' ),
-        'testimonials' => __( 'Testimonials', 'coachpress' ),
-        'case-studies' => __( 'Case Studies', 'coachpress' ),
-        'processes' => __( 'Processes', 'coachpress' ),
-        'faqs' => __( 'FAQs', 'coachpress' ),
-        'contact' => __( 'Contact', 'coachpress' ),
-    );
+    $sections = coachpress_get_section_choices();
 
     foreach ( $sections as $section_id => $section_name ) {
         $wp_customize->add_setting( "coachpress_section_visibility[$section_id]", array(

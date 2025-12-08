@@ -11,14 +11,7 @@ function coachpress_customize_register_section_titles( $wp_customize ) {
         'priority' => 35,
     ) );
 
-    $sections = array(
-        'services' => __( 'Services', 'coachpress' ),
-        'testimonials' => __( 'Testimonials', 'coachpress' ),
-        'case-studies' => __( 'Case Studies', 'coachpress' ),
-        'processes' => __( 'Processes', 'coachpress' ),
-        'faqs' => __( 'FAQs', 'coachpress' ),
-        'contact' => __( 'Contact', 'coachpress' ),
-    );
+    $sections = coachpress_get_section_choices();
 
     foreach ( $sections as $section_id => $section_name ) {
         $wp_customize->add_setting( "coachpress_{$section_id}_section_title", array(

@@ -25,7 +25,7 @@ class CoachPress_Section_Order_Control extends WP_Customize_Control {
             <ul class="section-order-list">
                 <?php
                 $order = explode( ',', $this->value() );
-                $sections = $this->get_sections();
+                $sections = coachpress_get_section_choices();
                 foreach ( $order as $section_id ) {
                     if ( isset( $sections[ $section_id ] ) ) {
                         echo '<li class="section-order-item" data-section-id="' . esc_attr( $section_id ) . '">' . esc_html( $sections[ $section_id ] ) . '</li>';
@@ -41,17 +41,5 @@ class CoachPress_Section_Order_Control extends WP_Customize_Control {
             <input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
         </label>
         <?php
-    }
-
-    private function get_sections() {
-        return array(
-            'hero' => __( 'Hero', 'coachpress' ),
-            'services' => __( 'Services', 'coachpress' ),
-            'testimonials' => __( 'Testimonials', 'coachpress' ),
-            'case-studies' => __( 'Case Studies', 'coachpress' ),
-            'processes' => __( 'Processes', 'coachpress' ),
-            'faqs' => __( 'FAQs', 'coachpress' ),
-            'contact' => __( 'Contact', 'coachpress' ),
-        );
     }
 }

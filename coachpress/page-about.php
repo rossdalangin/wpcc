@@ -11,10 +11,14 @@ get_header();
 	<main id="primary" class="site-main">
 
 		<?php
-        $sections = coachpress_get_sections();
-        foreach ( $sections as $section ) {
-            get_template_part( 'template-parts/section', $section );
-        }
+        while ( have_posts() ) :
+            the_post();
+
+            get_template_part( 'template-parts/content', 'page' );
+
+        endwhile; // End of the loop.
+
+        get_template_part( 'template-parts/section-testimonials' );
 		?>
 
 	</main><!-- #main -->

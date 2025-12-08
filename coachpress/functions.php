@@ -145,6 +145,8 @@ function coachpress_scripts() {
 
     wp_enqueue_style( 'coachpress-fonts', 'https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Lato:wght@400&display=swap', array(), null );
 
+	wp_enqueue_script( 'coachpress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), COACHPRESS_VERSION, true );
+
 	wp_enqueue_script( 'coachpress-modal', get_template_directory_uri() . '/js/modal.js', array(), COACHPRESS_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -215,6 +217,18 @@ require get_template_directory() . '/inc/section-order-control.php';
  */
 require get_template_directory() . '/inc/section-titles.php';
 
+function coachpress_get_section_choices() {
+    return array(
+        'hero' => __( 'Hero', 'coachpress' ),
+        'services' => __( 'Services', 'coachpress' ),
+        'testimonials' => __( 'Testimonials', 'coachpress' ),
+        'case-studies' => __( 'Case Studies', 'coachpress' ),
+        'processes' => __( 'Processes', 'coachpress' ),
+        'faqs' => __( 'FAQs', 'coachpress' ),
+        'contact' => __( 'Contact', 'coachpress' ),
+    );
+}
+
 function coachpress_dynamic_css() {
     ?>
     <style type="text/css">
@@ -233,6 +247,14 @@ function coachpress_dynamic_css() {
 
         a {
             color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
+        }
+
+        .main-navigation ul li a:hover {
+            border-bottom-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
+        }
+
+        blockquote {
+            border-left-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#001d5c' ) ); ?>;
         }
 
         .button,
