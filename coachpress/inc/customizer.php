@@ -39,7 +39,7 @@ function coachpress_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'coachpress_primary_color', array(
-		'default'   => '#0073aa',
+		'default'   => '#001d5c',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
@@ -51,7 +51,7 @@ function coachpress_customize_register( $wp_customize ) {
 	) ) );
 
 	$wp_customize->add_setting( 'coachpress_secondary_color', array(
-		'default'   => '#d9edf7',
+		'default'   => '#e7e0cd',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
@@ -62,6 +62,30 @@ function coachpress_customize_register( $wp_customize ) {
 		'settings' => 'coachpress_secondary_color',
 	) ) );
 
+    $wp_customize->add_setting( 'coachpress_accent_color', array(
+        'default'   => '#c7a174',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_accent_color', array(
+        'label'    => __( 'Accent Color', 'coachpress' ),
+        'section'  => 'coachpress_global_colors',
+        'settings' => 'coachpress_accent_color',
+    ) ) );
+
+	$wp_customize->add_setting( 'coachpress_text_color', array(
+		'default'   => '#384047',
+		'transport' => 'refresh',
+		'sanitize_callback' => 'sanitize_hex_color',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_text_color', array(
+		'label'    => __( 'Text Color', 'coachpress' ),
+		'section'  => 'coachpress_global_colors',
+		'settings' => 'coachpress_text_color',
+	) ) );
+
 	// Global Typography
 	$wp_customize->add_section( 'coachpress_global_typography', array(
 		'title'    => __( 'Global Typography', 'coachpress' ),
@@ -69,7 +93,7 @@ function coachpress_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'coachpress_body_font', array(
-		'default'   => 'sans-serif',
+		'default'   => 'Lato',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
@@ -81,8 +105,34 @@ function coachpress_customize_register( $wp_customize ) {
 		'type'     => 'text',
 	) );
 
+    $wp_customize->add_setting( 'coachpress_body_font_weight', array(
+        'default'   => '400',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_body_font_weight', array(
+        'label'    => __( 'Body Font Weight', 'coachpress' ),
+        'section'  => 'coachpress_global_typography',
+        'settings' => 'coachpress_body_font_weight',
+        'type'     => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_body_line_height', array(
+        'default'   => '1.6',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_body_line_height', array(
+        'label'    => __( 'Body Line Height', 'coachpress' ),
+        'section'  => 'coachpress_global_typography',
+        'settings' => 'coachpress_body_line_height',
+        'type'     => 'text',
+    ) );
+
 	$wp_customize->add_setting( 'coachpress_heading_font', array(
-		'default'   => 'sans-serif',
+		'default'   => 'Lora',
 		'transport' => 'refresh',
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
@@ -93,6 +143,32 @@ function coachpress_customize_register( $wp_customize ) {
 		'settings' => 'coachpress_heading_font',
 		'type'     => 'text',
 	) );
+
+    $wp_customize->add_setting( 'coachpress_heading_font_weight', array(
+        'default'   => '700',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_heading_font_weight', array(
+        'label'    => __( 'Heading Font Weight', 'coachpress' ),
+        'section'  => 'coachpress_global_typography',
+        'settings' => 'coachpress_heading_font_weight',
+        'type'     => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_heading_letter_spacing', array(
+        'default'   => '1px',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_heading_letter_spacing', array(
+        'label'    => __( 'Heading Letter Spacing', 'coachpress' ),
+        'section'  => 'coachpress_global_typography',
+        'settings' => 'coachpress_heading_letter_spacing',
+        'type'     => 'text',
+    ) );
 }
 add_action( 'customize_register', 'coachpress_customize_register' );
 

@@ -15,9 +15,9 @@ Text Domain: coachpress
 # General
 --------------------------------------------------------------*/
 body {
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: #384047;
 }
 
 .container {
@@ -26,12 +26,32 @@ body {
     padding: 0 20px;
 }
 
+section {
+    padding: 60px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.button,
+input[type="submit"] {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 .site-header {
     padding: 20px 0;
     border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
 }
 
 .main-navigation {
@@ -48,7 +68,7 @@ body {
 # Hero Section
 --------------------------------------------------------------*/
 .hero-section {
-    padding: 60px 0;
+    padding: 80px 0;
 }
 
 .hero-container {
@@ -95,6 +115,27 @@ body {
 .faqs-grid {
     display: grid;
     grid-gap: 30px;
+}
+
+.service-item,
+.testimonial-item,
+.case-study-item,
+.process-item,
+.faq-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.service-item:hover,
+.testimonial-item:hover,
+.case-study-item:hover,
+.process-item:hover,
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 @media (min-width: 768px) {
