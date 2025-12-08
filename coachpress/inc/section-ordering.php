@@ -12,7 +12,7 @@ function coachpress_customize_register_section_ordering( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'coachpress_section_order', array(
-        'default'   => 'hero,services,testimonials,case-studies,processes,faqs,contact',
+        'default'   => 'hero,services,testimonials,case-studies,processes,faqs,cta,contact',
         'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_text_field',
     ) );

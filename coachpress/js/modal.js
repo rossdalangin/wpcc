@@ -9,7 +9,7 @@
     var btn = document.getElementById("header-cta-button");
     var span = document.getElementsByClassName("close")[0];
 
-    if ( ! btn ) {
+    if ( ! btn || ! modal ) {
         return;
     }
 
@@ -17,8 +17,10 @@
         modal.style.display = "block";
     }
 
-    span.onclick = function() {
-        modal.style.display = "none";
+    if ( span ) {
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
     }
 
     window.onclick = function(event) {

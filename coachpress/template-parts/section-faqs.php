@@ -16,11 +16,11 @@ $query = new WP_Query( $args );
 
 <section id="faqs" class="faqs-section">
     <div class="container">
-        <h2><?php echo esc_html( get_theme_mod( 'coachpress_faqs_section_title', __( 'FAQs', 'coachpress' ) ) ); ?></h2>
+        <h2 data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_faqs_section_title', __( 'FAQs', 'coachpress' ) ) ); ?></h2>
         <div class="faqs-grid">
             <?php if ( $query->have_posts() ) : ?>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <div class="faq-item">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( $query->current_post * 100 ); ?>">
                         <div class="faq-content">
                             <h3><?php the_title(); ?></h3>
                             <?php the_content(); ?>

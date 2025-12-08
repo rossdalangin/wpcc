@@ -161,12 +161,11 @@ function coachpress_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 
-	$wp_customize->add_control( 'coachpress_body_font', array(
+	$wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, 'coachpress_body_font', array(
 		'label'    => __( 'Body Font', 'coachpress' ),
 		'section'  => 'coachpress_global_typography',
 		'settings' => 'coachpress_body_font',
-		'type'     => 'text',
-	) );
+	) ) );
 
     $wp_customize->add_setting( 'coachpress_body_font_weight', array(
         'default'   => '400',
@@ -200,12 +199,11 @@ function coachpress_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'sanitize_text_field',
 	) );
 
-	$wp_customize->add_control( 'coachpress_heading_font', array(
+	$wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, 'coachpress_heading_font', array(
 		'label'    => __( 'Heading Font', 'coachpress' ),
 		'section'  => 'coachpress_global_typography',
 		'settings' => 'coachpress_heading_font',
-		'type'     => 'text',
-	) );
+	) ) );
 
     $wp_customize->add_setting( 'coachpress_heading_font_weight', array(
         'default'   => '700',

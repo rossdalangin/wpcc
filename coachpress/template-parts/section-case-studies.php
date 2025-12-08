@@ -16,11 +16,11 @@ $query = new WP_Query( $args );
 
 <section id="case-studies" class="case-studies-section">
     <div class="container">
-        <h2><?php echo esc_html( get_theme_mod( 'coachpress_case-studies_section_title', __( 'Case Studies', 'coachpress' ) ) ); ?></h2>
+        <h2 data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_case-studies_section_title', __( 'Case Studies', 'coachpress' ) ) ); ?></h2>
         <div class="case-studies-grid">
             <?php if ( $query->have_posts() ) : ?>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                    <div class="case-study-item">
+                    <div class="case-study-item" data-aos="fade-up" data-aos-delay="<?php echo esc_attr( $query->current_post * 100 ); ?>">
                         <?php if ( has_post_thumbnail() ) : ?>
                             <div class="case-study-image">
                                 <?php the_post_thumbnail( 'medium' ); ?>

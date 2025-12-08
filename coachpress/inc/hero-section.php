@@ -11,6 +11,46 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
         'priority' => 30,
     ) );
 
+    // Background
+    $wp_customize->add_setting( 'coachpress_hero_bg_image', array(
+        'default'   => '',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'absint',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_hero_bg_image', array(
+        'label'    => __( 'Background Image', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'settings' => 'coachpress_hero_bg_image',
+        'mime_type' => 'image',
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_bg_video', array(
+        'default'   => '',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_hero_bg_video', array(
+        'label'    => __( 'Background Video URL', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'settings' => 'coachpress_hero_bg_video',
+        'type'     => 'url',
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_bg_overlay_color', array(
+        'default'   => 'rgba(0,0,0,0.5)',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_hero_bg_overlay_color', array(
+        'label'    => __( 'Background Overlay Color', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'settings' => 'coachpress_hero_bg_overlay_color',
+        'type'     => 'text',
+    ) );
+
     // Left Column
     $wp_customize->add_setting( 'coachpress_hero_left_heading', array(
         'default'   => __( 'Welcome to CoachPress', 'coachpress' ),
