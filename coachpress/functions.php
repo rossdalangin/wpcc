@@ -245,11 +245,6 @@ require get_template_directory() . '/inc/cta-section.php';
  */
 require get_template_directory() . '/inc/google-font-control.php';
 
-/**
- * Load Customizer Export/Import.
- */
-require get_template_directory() . '/inc/customizer-export-import/customizer-export-import.php';
-
 function coachpress_get_section_choices() {
     return array(
         'hero' => __( 'Hero', 'coachpress' ),
