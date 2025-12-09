@@ -30,4 +30,13 @@
         easing: 'ease-in-out',
         once: true,
     });
+
+    // FAQ Accordion
+    var faqItems = document.querySelectorAll('.faq-item h3');
+
+    faqItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+        });
+    });
 } )();

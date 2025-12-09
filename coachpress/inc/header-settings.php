@@ -74,6 +74,28 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
         'section'  => 'coachpress_header_colors',
     ) ) );
 
+    $wp_customize->add_setting( 'coachpress_mobile_menu_bg_color', array(
+        'default'   => '#FFFFFF',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_mobile_menu_bg_color', array(
+        'label'    => __( 'Mobile Menu Background Color', 'coachpress' ),
+        'section'  => 'coachpress_header_colors',
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_mobile_menu_hover_bg_color', array(
+        'default'   => '#F5F5F5',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_mobile_menu_hover_bg_color', array(
+        'label'    => __( 'Mobile Menu Hover Background Color', 'coachpress' ),
+        'section'  => 'coachpress_header_colors',
+    ) ) );
+
     // Header Spacing Section
     $wp_customize->add_section( 'coachpress_header_spacing', array(
         'title'    => __( 'Spacing', 'coachpress' ),

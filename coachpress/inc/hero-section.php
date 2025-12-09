@@ -87,6 +87,17 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
         'type'     => 'text',
     ) );
 
+    $wp_customize->add_setting( 'coachpress_hero_heading_color', array(
+        'default'   => '#FFFFFF',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_heading_color', array(
+        'label'    => __( 'Heading Color', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+    ) ) );
+
     $wp_customize->add_setting( 'coachpress_hero_left_subheading', array(
         'default'   => __( 'Your journey to success starts here.', 'coachpress' ),
         'transport' => 'refresh',

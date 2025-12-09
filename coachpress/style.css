@@ -190,7 +190,7 @@ a {
         display: none;
         flex-direction: column;
         width: 100%;
-        background-color: #fff;
+        background-color: var(--coachpress-mobile-menu-bg-color);
         position: absolute;
         top: 70px;
         left: 0;
@@ -216,6 +216,7 @@ a {
     .main-navigation ul li a:hover {
         border-bottom-color: #eee;
         color: var(--coachpress-header-link-hover-color);
+        background-color: var(--coachpress-mobile-menu-hover-bg-color);
     }
 
     .main-navigation ul ul {
@@ -241,6 +242,10 @@ a {
     background-size: cover;
     background-position: center;
     color: var(--coachpress-section-text-color, #f5f5f5);
+}
+
+.hero-section h1 {
+    color: var(--coachpress-hero-heading-color);
 }
 
 #hero-video {
@@ -312,9 +317,36 @@ a {
     grid-gap: 30px;
 }
 
-.faq-item {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
+.faq-item h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px;
+}
+
+.faq-item h3::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active h3::after {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-item .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding-top 0.3s ease;
+}
+
+.faq-item.active .faq-content {
+    max-height: 1000px; /* A large enough value to accommodate any content */
+    padding-top: 15px;
 }
 
 .service-item,
@@ -334,7 +366,7 @@ a {
 .case-study-item:hover,
 .process-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    box-shadow: var(--coachpress-card-hover-box-shadow);
 }
 
 img {
@@ -410,7 +442,11 @@ input[type="password"],
 input[type="search"],
 input[type="number"],
 input[type="tel"],
-textarea {
+textarea,
+select,
+.wpcf7-form-control.wpcf7-text,
+.wpcf7-form-control.wpcf7-textarea,
+.wpcf7-form-control.wpcf7-select {
     background-color: var(--coachpress-form-field-bg-color);
     color: var(--coachpress-form-field-text-color);
     border: 1px solid var(--coachpress-form-field-border-color);
@@ -447,14 +483,17 @@ textarea {
     margin-bottom: 20px;
 }
 
-.social-media-icons a {
+.site-footer a {
     color: var(--coachpress-footer-link-color);
+}
+
+.social-media-icons a {
     font-size: 24px;
     margin: 0 15px;
     transition: all 0.3s ease;
 }
 
-.social-media-icons a:hover {
+.site-footer a:hover {
     color: var(--coachpress-footer-link-hover-color);
 }
 

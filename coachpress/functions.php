@@ -305,6 +305,9 @@ function coachpress_dynamic_css() {
             --coachpress-header-hamburger-color: <?php echo esc_html( get_theme_mod( 'coachpress_header_hamburger_color', '#333333' ) ); ?>;
             --coachpress-header-padding-y: <?php echo esc_html( get_theme_mod( 'coachpress_header_padding_y', '15px' ) ); ?>;
 
+            --coachpress-mobile-menu-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_mobile_menu_bg_color', '#FFFFFF' ) ); ?>;
+            --coachpress-mobile-menu-hover-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_mobile_menu_hover_bg_color', '#F5F5F5' ) ); ?>;
+
             --coachpress-footer-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_bg_color', '#1A1A1A' ) ); ?>;
             --coachpress-footer-text-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_text_color', '#FFFFFF' ) ); ?>;
             --coachpress-footer-link-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_link_color', '#FFFFFF' ) ); ?>;
@@ -314,6 +317,7 @@ function coachpress_dynamic_css() {
             --coachpress-card-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_card_bg_color', '#FFFFFF' ) ); ?>;
             --coachpress-card-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_card_border_radius', '4px' ) ); ?>;
             --coachpress-card-box-shadow: <?php echo esc_html( get_theme_mod( 'coachpress_card_box_shadow', '0 0 25px rgba(0,0,0,0.07)' ) ); ?>;
+            --coachpress-card-hover-box-shadow: <?php echo esc_html( get_theme_mod( 'coachpress_card_hover_box_shadow', '0 12px 25px rgba(0,0,0,0.1)' ) ); ?>;
             --coachpress-section-padding-y: <?php echo esc_html( get_theme_mod( 'coachpress_section_padding_y', '60px' ) ); ?>;
 
             --coachpress-image-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_image_border_radius', '4px' ) ); ?>;
@@ -331,6 +335,8 @@ function coachpress_dynamic_css() {
             --coachpress-h4-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h4_font_size', '1.25rem' ) ); ?>;
             --coachpress-h5-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h5_font_size', '1.1rem' ) ); ?>;
             --coachpress-h6-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h6_font_size', '1rem' ) ); ?>;
+
+            --coachpress-hero-heading-color: <?php echo esc_html( get_theme_mod( 'coachpress_hero_heading_color', '#FFFFFF' ) ); ?>;
         }
 
         <?php

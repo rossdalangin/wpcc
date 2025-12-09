@@ -56,6 +56,19 @@ function coachpress_customize_register_component_styles( $wp_customize ) {
         'type'     => 'text',
     ) );
 
+    $wp_customize->add_setting( 'coachpress_card_hover_box_shadow', array(
+        'default'   => '0 12px 25px rgba(0,0,0,0.1)',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_card_hover_box_shadow', array(
+        'label'    => __( 'Hover Box Shadow', 'coachpress' ),
+        'description' => __( 'Enter a valid CSS box-shadow value for the hover effect.', 'coachpress' ),
+        'section'  => 'coachpress_cards',
+        'type'     => 'text',
+    ) );
+
     // Sections Section
     $wp_customize->add_section( 'coachpress_sections', array(
         'title'    => __( 'Sections', 'coachpress' ),
