@@ -245,6 +245,26 @@ require get_template_directory() . '/inc/cta-section.php';
  */
 require get_template_directory() . '/inc/google-font-control.php';
 
+/**
+ * Load Header Settings.
+ */
+require get_template_directory() . '/inc/header-settings.php';
+
+/**
+ * Load Footer Settings.
+ */
+require get_template_directory() . '/inc/footer-settings.php';
+
+/**
+ * Load Component Styles.
+ */
+require get_template_directory() . '/inc/component-styles.php';
+
+/**
+ * Load Form & Image Styles.
+ */
+require get_template_directory() . '/inc/form-image-styles.php';
+
 function coachpress_get_section_choices() {
     return array(
         'hero' => __( 'Hero', 'coachpress' ),
@@ -272,6 +292,30 @@ function coachpress_dynamic_css() {
             --coachpress-primary-color: <?php echo esc_html( get_theme_mod( 'coachpress_primary_color', '#0D2F4F' ) ); ?>;
             --coachpress-accent-color: <?php echo esc_html( get_theme_mod( 'coachpress_accent_color', '#FFC107' ) ); ?>;
             --coachpress-secondary-color: <?php echo esc_html( get_theme_mod( 'coachpress_secondary_color', '#F5F5F5' ) ); ?>;
+
+            --coachpress-header-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_header_bg_color', '#FFFFFF' ) ); ?>;
+            --coachpress-header-text-color: <?php echo esc_html( get_theme_mod( 'coachpress_header_text_color', '#333333' ) ); ?>;
+            --coachpress-header-link-color: <?php echo esc_html( get_theme_mod( 'coachpress_header_link_color', '#0D2F4F' ) ); ?>;
+            --coachpress-header-link-hover-color: <?php echo esc_html( get_theme_mod( 'coachpress_header_link_hover_color', '#FFC107' ) ); ?>;
+            --coachpress-header-hamburger-color: <?php echo esc_html( get_theme_mod( 'coachpress_header_hamburger_color', '#333333' ) ); ?>;
+            --coachpress-header-padding-y: <?php echo esc_html( get_theme_mod( 'coachpress_header_padding_y', '15px' ) ); ?>;
+
+            --coachpress-footer-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_bg_color', '#1A1A1A' ) ); ?>;
+            --coachpress-footer-text-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_text_color', '#FFFFFF' ) ); ?>;
+            --coachpress-footer-link-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_link_color', '#FFFFFF' ) ); ?>;
+            --coachpress-footer-link-hover-color: <?php echo esc_html( get_theme_mod( 'coachpress_footer_link_hover_color', '#FFC107' ) ); ?>;
+            --coachpress-footer-padding-y: <?php echo esc_html( get_theme_mod( 'coachpress_footer_padding_y', '60px' ) ); ?>;
+
+            --coachpress-card-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_card_bg_color', '#FFFFFF' ) ); ?>;
+            --coachpress-card-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_card_border_radius', '4px' ) ); ?>;
+            --coachpress-card-box-shadow: <?php echo esc_html( get_theme_mod( 'coachpress_card_box_shadow', '0 0 25px rgba(0,0,0,0.07)' ) ); ?>;
+            --coachpress-section-padding-y: <?php echo esc_html( get_theme_mod( 'coachpress_section_padding_y', '60px' ) ); ?>;
+
+            --coachpress-image-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_image_border_radius', '4px' ) ); ?>;
+            --coachpress-form-field-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_bg_color', '#FFFFFF' ) ); ?>;
+            --coachpress-form-field-text-color: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_text_color', '#333333' ) ); ?>;
+            --coachpress-form-field-border-color: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_border_color', '#CCCCCC' ) ); ?>;
+            --coachpress-form-field-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_border_radius', '4px' ) ); ?>;
         }
 
         <?php

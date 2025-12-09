@@ -29,7 +29,7 @@ body {
 }
 
 section {
-    padding: 60px 0;
+    padding: var(--coachpress-section-padding-y) 0;
     overflow: hidden;
     background-color: var(--coachpress-section-bg-color, transparent);
 }
@@ -99,13 +99,14 @@ a {
 # Header
 --------------------------------------------------------------*/
 .site-header {
-    padding: 15px 0;
+    padding: var(--coachpress-header-padding-y) 0;
     border-bottom: 1px solid #eee;
     transition: all 0.3s ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--coachpress-secondary-color);
+    background-color: var(--coachpress-header-bg-color);
+    color: var(--coachpress-header-text-color);
 }
 
 .site-branding {
@@ -136,10 +137,12 @@ a {
     transition: all 0.3s ease;
     padding: 5px 0;
     border-bottom: 2px solid transparent;
+    color: var(--coachpress-header-link-color);
 }
 
 .main-navigation ul li a:hover {
-    border-bottom-color: var(--coachpress-primary-color);
+    border-bottom-color: var(--coachpress-header-link-hover-color);
+    color: var(--coachpress-header-link-hover-color);
 }
 
 .main-navigation ul ul {
@@ -175,6 +178,7 @@ a {
     border: none;
     font-size: 24px;
     cursor: pointer;
+    color: var(--coachpress-header-hamburger-color);
 }
 
 @media (max-width: 768px) {
@@ -211,6 +215,7 @@ a {
 
     .main-navigation ul li a:hover {
         border-bottom-color: #eee;
+        color: var(--coachpress-header-link-hover-color);
     }
 
     .main-navigation ul ul {
@@ -230,7 +235,7 @@ a {
 # Hero Section
 --------------------------------------------------------------*/
 .hero-section {
-    padding: 80px 0;
+    padding: var(--coachpress-section-padding-y) 0;
     text-align: center;
     position: relative;
     background-size: cover;
@@ -316,10 +321,10 @@ a {
 .testimonial-item,
 .case-study-item,
 .process-item {
-    background-color: #fff;
+    background-color: var(--coachpress-card-bg-color);
     padding: 30px;
-    border-radius: 4px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.07);
+    border-radius: var(--coachpress-card-border-radius);
+    box-shadow: var(--coachpress-card-box-shadow);
     transition: all 0.3s ease;
     text-align: center;
 }
@@ -330,6 +335,19 @@ a {
 .process-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+img {
+    border-radius: var(--coachpress-image-border-radius);
+}
+
+.service-image img,
+.case-study-image img {
+    border-radius: var(--coachpress-image-border-radius);
+}
+
+.testimonial-image img {
+    border-radius: 50%;
 }
 
 @media (min-width: 768px) {
@@ -383,6 +401,25 @@ blockquote {
 }
 
 /*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+textarea {
+    background-color: var(--coachpress-form-field-bg-color);
+    color: var(--coachpress-form-field-text-color);
+    border: 1px solid var(--coachpress-form-field-border-color);
+    border-radius: var(--coachpress-form-field-border-radius);
+    padding: 10px 15px;
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
 .widget {
@@ -400,10 +437,10 @@ blockquote {
 # Footer
 --------------------------------------------------------------*/
 .site-footer {
-    background-color: var(--coachpress-primary-color);
-    padding: 60px 0;
+    background-color: var(--coachpress-footer-bg-color);
+    padding: var(--coachpress-footer-padding-y) 0;
     text-align: center;
-    color: #fff;
+    color: var(--coachpress-footer-text-color);
 }
 
 .social-media-icons {
@@ -411,14 +448,14 @@ blockquote {
 }
 
 .social-media-icons a {
-    color: #fff;
+    color: var(--coachpress-footer-link-color);
     font-size: 24px;
     margin: 0 15px;
     transition: all 0.3s ease;
 }
 
 .social-media-icons a:hover {
-    color: var(--coachpress-accent-color);
+    color: var(--coachpress-footer-link-hover-color);
 }
 
 /*--------------------------------------------------------------
