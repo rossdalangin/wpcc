@@ -153,7 +153,7 @@ function coachpress_scripts() {
 
     $body_font = get_theme_mod( 'coachpress_body_font', 'Lato' );
     $heading_font = get_theme_mod( 'coachpress_heading_font', 'Lora' );
-    $font_url = "https://fonts.googleapis.com/css2?family={$body_font}:wght@400&family={$heading_font}:wght@700&display=swap";
+    $font_url = "https://fonts.googleapis.com/css2?family={$body_font}:wght@300;400;700&family={$heading_font}:wght@400;700&display=swap";
     wp_enqueue_style( 'coachpress-fonts', $font_url, array(), null );
 
 	wp_enqueue_script( 'coachpress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), COACHPRESS_VERSION, true );
@@ -244,6 +244,11 @@ require get_template_directory() . '/inc/cta-section.php';
  * Load Google Font Control.
  */
 require get_template_directory() . '/inc/google-font-control.php';
+
+/**
+ * Load Customizer Export/Import.
+ */
+require get_template_directory() . '/inc/customizer-export-import/customizer-export-import.php';
 
 function coachpress_get_section_choices() {
     return array(

@@ -29,7 +29,24 @@ $query = new WP_Query( $args );
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
             <?php else : ?>
-                <p><?php esc_html_e( 'No FAQs found.', 'coachpress' ); ?></p>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="faq-content">
+                        <h3><?php esc_html_e( 'What is coaching?', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Coaching is a partnership between a coach and a client that helps the client to achieve their personal and professional goals.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-content">
+                        <h3><?php esc_html_e( 'Who is coaching for?', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Coaching is for anyone who wants to improve their life, whether that\'s in their career, relationships, or personal growth.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-content">
+                        <h3><?php esc_html_e( 'How long does coaching last?', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'The length of a coaching engagement varies depending on the client\'s goals and needs. We offer a range of packages to suit different budgets and timelines.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
     </div>

@@ -37,7 +37,30 @@ $query = new WP_Query( $args );
                     <?php endwhile; ?>
                     <?php wp_reset_postdata(); ?>
                 <?php else : ?>
-                    <p><?php esc_html_e( 'No testimonials found.', 'coachpress' ); ?></p>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <blockquote><?php esc_html_e( 'Working with this coach has been a game-changer for my business. Their insights and guidance have been invaluable.', 'coachpress' ); ?></blockquote>
+                                <cite><?php esc_html_e( 'John Doe, CEO', 'coachpress' ); ?></cite>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <blockquote><?php esc_html_e( 'I was feeling stuck in my career, but with their help, I was able to find a new path that I\'m passionate about.', 'coachpress' ); ?></blockquote>
+                                <cite><?php esc_html_e( 'Jane Smith, Marketing Manager', 'coachpress' ); ?></cite>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <div class="testimonial-content">
+                                <blockquote><?php esc_html_e( 'The best investment I\'ve made in myself. I\'ve seen a huge improvement in my confidence and overall well-being.', 'coachpress' ); ?></blockquote>
+                                <cite><?php esc_html_e( 'Peter Jones, Entrepreneur', 'coachpress' ); ?></cite>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif; ?>
             </div>
             <div class="swiper-pagination"></div>

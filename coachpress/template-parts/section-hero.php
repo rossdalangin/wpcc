@@ -14,7 +14,13 @@ $container_class = 'disabled' === $right_content_type ? 'hero-container-full' : 
 $bg_image_id = get_theme_mod( 'coachpress_hero_bg_image' );
 $bg_image = $bg_image_id ? wp_get_attachment_image_url( $bg_image_id, 'full' ) : '';
 $bg_video = get_theme_mod( 'coachpress_hero_bg_video' );
-$bg_overlay = get_theme_mod( 'coachpress_hero_bg_overlay_color', 'rgba(0,0,0,0.5)' );
+$bg_overlay_color = get_theme_mod( 'coachpress_hero_bg_overlay_color', '#000000' );
+$bg_overlay_opacity = get_theme_mod( 'coachpress_hero_bg_overlay_opacity', '0.5' );
+
+// Convert hex color to RGB
+list($r, $g, $b) = sscanf($bg_overlay_color, "#%02x%02x%02x");
+
+$bg_overlay_rgba = "rgba({$r}, {$g}, {$b}, {$bg_overlay_opacity})";
 
 ?>
 
@@ -24,7 +30,7 @@ $bg_overlay = get_theme_mod( 'coachpress_hero_bg_overlay_color', 'rgba(0,0,0,0.5
             <source src="<?php echo esc_url( $bg_video ); ?>" type="video/mp4">
         </video>
     <?php endif; ?>
-    <div class="hero-overlay" style="background-color: <?php echo esc_attr( $bg_overlay ); ?>"></div>
+    <div class="hero-overlay" style="background-color: <?php echo esc_attr( $bg_overlay_rgba ); ?>"></div>
 	<div class="<?php echo esc_attr( $container_class ); ?>">
 		<div class="hero-left" style="text-align: <?php echo esc_attr( $left_alignment ); ?>" data-aos="fade-right">
 			<h1><?php echo esc_html( get_theme_mod( 'coachpress_hero_left_heading', __( 'Welcome to CoachPress', 'coachpress' ) ) ); ?></h1>

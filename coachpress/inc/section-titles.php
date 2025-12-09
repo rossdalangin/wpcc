@@ -9,6 +9,7 @@ function coachpress_customize_register_section_titles( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_section_titles', array(
         'title'    => __( 'Section Titles', 'coachpress' ),
         'priority' => 35,
+        'description' => __( 'Customize the main H2 titles for each section of your homepage.', 'coachpress' ),
     ) );
 
     $sections = coachpress_get_section_choices();

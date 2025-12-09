@@ -9,6 +9,7 @@ function coachpress_customize_register_social_media( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_social_media', array(
         'title'    => __( 'Social Media', 'coachpress' ),
         'priority' => 120,
+        'description' => __( 'Enter the full URLs for your social media profiles. Icons will appear in the site footer for each URL you provide.', 'coachpress' ),
     ) );
 
     $social_networks = array(

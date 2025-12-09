@@ -9,6 +9,7 @@ function coachpress_customize_register_header_cta( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_header_cta', array(
         'title'    => __( 'Header CTA Button', 'coachpress' ),
         'priority' => 40,
+        'description' => __( 'Configure the main call-to-action button in the site header. This is a key conversion point.', 'coachpress' ),
     ) );
 
     $wp_customize->add_setting( 'coachpress_header_cta_text', array(
@@ -19,6 +20,7 @@ function coachpress_customize_register_header_cta( $wp_customize ) {
 
     $wp_customize->add_control( 'coachpress_header_cta_text', array(
         'label'    => __( 'Button Text', 'coachpress' ),
+        'description' => __( 'The text displayed on the button.', 'coachpress' ),
         'section'  => 'coachpress_header_cta',
         'settings' => 'coachpress_header_cta_text',
         'type'     => 'text',
@@ -32,6 +34,7 @@ function coachpress_customize_register_header_cta( $wp_customize ) {
 
     $wp_customize->add_control( 'coachpress_header_cta_type', array(
         'label'    => __( 'CTA Type', 'coachpress' ),
+        'description' => __( 'Select the button\'s action. "URL" links to a page. "HTML" or "Shortcode" opens a modal popup with the content.', 'coachpress' ),
         'section'  => 'coachpress_header_cta',
         'settings' => 'coachpress_header_cta_type',
         'type'     => 'select',
@@ -49,7 +52,8 @@ function coachpress_customize_register_header_cta( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( 'coachpress_header_cta_url', array(
-        'label'    => __( 'URL', 'coachpress' ),
+        'label'    => __( 'Button URL', 'coachpress' ),
+        'description' => __( 'Enter the full URL where the button should link.', 'coachpress' ),
         'section'  => 'coachpress_header_cta',
         'settings' => 'coachpress_header_cta_url',
         'type'     => 'url',
@@ -65,7 +69,8 @@ function coachpress_customize_register_header_cta( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( 'coachpress_header_cta_html', array(
-        'label'    => __( 'HTML', 'coachpress' ),
+        'label'    => __( 'Modal HTML Content', 'coachpress' ),
+        'description' => __( 'Enter the HTML to display in the popup modal. Can include form embed code.', 'coachpress' ),
         'section'  => 'coachpress_header_cta',
         'settings' => 'coachpress_header_cta_html',
         'type'     => 'textarea',
@@ -81,7 +86,8 @@ function coachpress_customize_register_header_cta( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( 'coachpress_header_cta_shortcode', array(
-        'label'    => __( 'Shortcode', 'coachpress' ),
+        'label'    => __( 'Modal Shortcode', 'coachpress' ),
+        'description' => __( 'Enter a shortcode (e.g., from a form plugin) to render in the popup modal.', 'coachpress' ),
         'section'  => 'coachpress_header_cta',
         'settings' => 'coachpress_header_cta_shortcode',
         'type'     => 'text',

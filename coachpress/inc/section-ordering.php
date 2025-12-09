@@ -7,8 +7,9 @@
 
 function coachpress_customize_register_section_ordering( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_section_ordering', array(
-        'title'    => __( 'Section Ordering', 'coachpress' ),
+        'title'    => __( 'Section Ordering & Visibility', 'coachpress' ),
         'priority' => 10,
+        'description' => __( 'Control the order and visibility of the sections on your homepage. Drag and drop to reorder, and use the checkboxes to show or hide sections.', 'coachpress' ),
     ) );
 
     $wp_customize->add_setting( 'coachpress_section_order', array(
@@ -18,7 +19,8 @@ function coachpress_customize_register_section_ordering( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( new CoachPress_Section_Order_Control( $wp_customize, 'coachpress_section_order', array(
-        'label'    => __( 'Drag and drop to reorder sections', 'coachpress' ),
+        'label'    => __( 'Homepage Section Order', 'coachpress' ),
+        'description' => __( 'Drag and drop the sections below to change their display order.', 'coachpress' ),
         'section'  => 'coachpress_section_ordering',
         'settings' => 'coachpress_section_order',
     ) ) );
@@ -33,7 +35,7 @@ function coachpress_customize_register_section_ordering( $wp_customize ) {
         ) );
 
         $wp_customize->add_control( "coachpress_section_visibility_$section_id", array(
-            'label'    => sprintf( __( 'Enable %s Section', 'coachpress' ), $section_name ),
+            'label'    => sprintf( __( 'Show %s Section', 'coachpress' ), $section_name ),
             'section'  => 'coachpress_section_ordering',
             'settings' => "coachpress_section_visibility[$section_id]",
             'type'     => 'checkbox',

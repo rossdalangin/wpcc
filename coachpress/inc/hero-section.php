@@ -9,6 +9,7 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_hero_section', array(
         'title'    => __( 'Hero Section', 'coachpress' ),
         'priority' => 30,
+        'description' => __( 'Configure the main hero section of your homepage. This is the first thing visitors see.', 'coachpress' ),
     ) );
 
     // Background
@@ -20,6 +21,7 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_hero_bg_image', array(
         'label'    => __( 'Background Image', 'coachpress' ),
+        'description' => __( 'Select a high-resolution image for the hero background. Overrides the background video if both are set.', 'coachpress' ),
         'section'  => 'coachpress_hero_section',
         'settings' => 'coachpress_hero_bg_image',
         'mime_type' => 'image',
@@ -33,22 +35,42 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
 
     $wp_customize->add_control( 'coachpress_hero_bg_video', array(
         'label'    => __( 'Background Video URL', 'coachpress' ),
+        'description' => __( 'Enter a URL to a video file (e.g., MP4). The video will loop and be muted.', 'coachpress' ),
         'section'  => 'coachpress_hero_section',
         'settings' => 'coachpress_hero_bg_video',
         'type'     => 'url',
     ) );
 
     $wp_customize->add_setting( 'coachpress_hero_bg_overlay_color', array(
-        'default'   => 'rgba(0,0,0,0.5)',
+        'default'   => '#000000',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_bg_overlay_color', array(
+        'label'    => __( 'Background Overlay Color', 'coachpress' ),
+        'description' => __( 'Select a color to lay over the background image or video. This helps with text readability.', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'settings' => 'coachpress_hero_bg_overlay_color',
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_bg_overlay_opacity', array(
+        'default'   => '0.5',
         'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
 
-    $wp_customize->add_control( 'coachpress_hero_bg_overlay_color', array(
-        'label'    => __( 'Background Overlay Color', 'coachpress' ),
+    $wp_customize->add_control( 'coachpress_hero_bg_overlay_opacity', array(
+        'label'    => __( 'Background Overlay Opacity', 'coachpress' ),
+        'description' => __( 'Set the transparency of the overlay color. Use a value between 0 (fully transparent) and 1 (fully opaque).', 'coachpress' ),
         'section'  => 'coachpress_hero_section',
-        'settings' => 'coachpress_hero_bg_overlay_color',
-        'type'     => 'text',
+        'settings' => 'coachpress_hero_bg_overlay_opacity',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 0,
+            'max' => 1,
+            'step' => 0.05,
+        ),
     ) );
 
     // Left Column
@@ -112,6 +134,7 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
 
     $wp_customize->add_control( 'coachpress_hero_left_alignment', array(
         'label'    => __( 'Content Alignment', 'coachpress' ),
+        'description' => __( 'Align the text and button within the left column.', 'coachpress' ),
         'section'  => 'coachpress_hero_section',
         'settings' => 'coachpress_hero_left_alignment',
         'type'     => 'select',
@@ -131,6 +154,7 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
 
     $wp_customize->add_control( 'coachpress_hero_right_content_type', array(
         'label'    => __( 'Right Column Content Type', 'coachpress' ),
+        'description' => __( 'Choose what to display in the right column. If "Disabled," the left column will expand to full width.', 'coachpress' ),
         'section'  => 'coachpress_hero_section',
         'settings' => 'coachpress_hero_right_content_type',
         'type'     => 'select',

@@ -9,6 +9,7 @@ function coachpress_customize_register_contact_page( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_contact_page', array(
         'title'    => __( 'Contact Page', 'coachpress' ),
         'priority' => 50,
+        'description' => __( 'Settings for the "Contact" page template. Use these options to embed a contact form from a plugin or add custom HTML.', 'coachpress' ),
     ) );
 
     $wp_customize->add_setting( 'coachpress_contact_form_type', array(
@@ -18,7 +19,8 @@ function coachpress_customize_register_contact_page( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( 'coachpress_contact_form_type', array(
-        'label'    => __( 'Form Type', 'coachpress' ),
+        'label'    => __( 'Content Type', 'coachpress' ),
+        'description' => __( 'Choose how to add content to your contact page. "Shortcode" is recommended for embedding forms from plugins like Gravity Forms or WPForms.', 'coachpress' ),
         'section'  => 'coachpress_contact_page',
         'settings' => 'coachpress_contact_form_type',
         'type'     => 'select',
@@ -35,7 +37,8 @@ function coachpress_customize_register_contact_page( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( 'coachpress_contact_form_html', array(
-        'label'    => __( 'HTML', 'coachpress' ),
+        'label'    => __( 'Custom HTML', 'coachpress' ),
+        'description' => __( 'Enter any custom HTML, such as a form embed code from a third-party service.', 'coachpress' ),
         'section'  => 'coachpress_contact_page',
         'settings' => 'coachpress_contact_form_html',
         'type'     => 'textarea',
@@ -51,7 +54,8 @@ function coachpress_customize_register_contact_page( $wp_customize ) {
     ) );
 
     $wp_customize->add_control( 'coachpress_contact_form_shortcode', array(
-        'label'    => __( 'Shortcode', 'coachpress' ),
+        'label'    => __( 'Form Shortcode', 'coachpress' ),
+        'description' => __( 'Enter the shortcode provided by your contact form plugin.', 'coachpress' ),
         'section'  => 'coachpress_contact_page',
         'settings' => 'coachpress_contact_form_shortcode',
         'type'     => 'text',

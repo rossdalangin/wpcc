@@ -9,10 +9,11 @@ function coachpress_customize_register_cta_section( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_cta_section', array(
         'title'    => __( 'CTA Section', 'coachpress' ),
         'priority' => 110,
+        'description' => __( 'Configure the dedicated Call-to-Action section. This can be placed anywhere on the homepage via the Section Ordering & Visibility panel.', 'coachpress' ),
     ) );
 
     $wp_customize->add_setting( 'coachpress_cta_heading', array(
-        'default'   => __( 'Ready to get started?', 'coachpress' ),
+        'default'   => __( 'Ready to Get Started?', 'coachpress' ),
         'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
@@ -25,7 +26,7 @@ function coachpress_customize_register_cta_section( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'coachpress_cta_subheading', array(
-        'default'   => __( 'Contact us today to get started on your journey to success.', 'coachpress' ),
+        'default'   => __( 'Take the first step towards achieving your goals. Contact us today for a free consultation.', 'coachpress' ),
         'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
@@ -38,7 +39,7 @@ function coachpress_customize_register_cta_section( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'coachpress_cta_button_text', array(
-        'default'   => __( 'Contact Us', 'coachpress' ),
+        'default'   => __( 'Book a Free Consultation', 'coachpress' ),
         'transport' => 'refresh',
         'sanitize_callback' => 'sanitize_text_field',
     ) );
@@ -51,13 +52,14 @@ function coachpress_customize_register_cta_section( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'coachpress_cta_button_url', array(
-        'default'   => '#',
+        'default'   => '#contact',
         'transport' => 'refresh',
         'sanitize_callback' => 'esc_url_raw',
     ) );
 
     $wp_customize->add_control( 'coachpress_cta_button_url', array(
         'label'    => __( 'Button URL', 'coachpress' ),
+        'description' => __( 'Enter the URL where the button should link. An anchor link like #contact is recommended.', 'coachpress' ),
         'section'  => 'coachpress_cta_section',
         'settings' => 'coachpress_cta_button_url',
         'type'     => 'url',

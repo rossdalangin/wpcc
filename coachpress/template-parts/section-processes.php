@@ -34,7 +34,24 @@ $query = new WP_Query( $args );
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
             <?php else : ?>
-                <p><?php esc_html_e( 'No processes found.', 'coachpress' ); ?></p>
+                <div class="process-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="process-content">
+                        <h3><?php esc_html_e( 'Step 1: Discovery Call', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'We start with a free discovery call to understand your goals and determine if we\'re a good fit.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="process-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-content">
+                        <h3><?php esc_html_e( 'Step 2: Strategy Session', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'We\'ll develop a customized coaching plan tailored to your specific needs and objectives.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="process-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-content">
+                        <h3><?php esc_html_e( 'Step 3: Ongoing Support', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'We provide ongoing support and accountability to help you stay on track and achieve your goals.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
     </div>

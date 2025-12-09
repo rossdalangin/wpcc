@@ -34,7 +34,24 @@ $query = new WP_Query( $args );
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
             <?php else : ?>
-                <p><?php esc_html_e( 'No services found.', 'coachpress' ); ?></p>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-content">
+                        <h3><?php esc_html_e( 'Business Coaching', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Unlock your business\'s full potential. We\'ll work with you to develop strategies for growth, improve leadership skills, and overcome challenges.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-content">
+                        <h3><?php esc_html_e( 'Life Coaching', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Find clarity and purpose in your personal life. We help you set meaningful goals, build confidence, and create a life you love.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-content">
+                        <h3><?php esc_html_e( 'Career Coaching', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Navigate your career path with confidence. We offer guidance on career transitions, resume building, and interview preparation.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
     </div>

@@ -34,7 +34,24 @@ $query = new WP_Query( $args );
                 <?php endwhile; ?>
                 <?php wp_reset_postdata(); ?>
             <?php else : ?>
-                <p><?php esc_html_e( 'No case studies found.', 'coachpress' ); ?></p>
+                <div class="case-study-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="case-study-content">
+                        <h3><?php esc_html_e( 'Case Study: 10x Growth for a Startup', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Learn how we helped a tech startup increase their revenue by 10x in just one year through strategic business coaching.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="case-study-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-content">
+                        <h3><?php esc_html_e( 'Case Study: Career Transition Success', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'Discover how we guided a client through a successful career change, resulting in a 20% salary increase and greater job satisfaction.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
+                <div class="case-study-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-content">
+                        <h3><?php esc_html_e( 'Case Study: From Burnout to Balance', 'coachpress' ); ?></h3>
+                        <p><?php esc_html_e( 'See how we helped a client overcome burnout and create a more balanced and fulfilling life through personalized life coaching.', 'coachpress' ); ?></p>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
     </div>
