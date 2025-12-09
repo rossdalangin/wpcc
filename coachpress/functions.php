@@ -265,6 +265,11 @@ require get_template_directory() . '/inc/component-styles.php';
  */
 require get_template_directory() . '/inc/form-image-styles.php';
 
+/**
+ * Load Layout Settings.
+ */
+require get_template_directory() . '/inc/layout-settings.php';
+
 function coachpress_get_section_choices() {
     return array(
         'hero' => __( 'Hero', 'coachpress' ),
@@ -316,6 +321,16 @@ function coachpress_dynamic_css() {
             --coachpress-form-field-text-color: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_text_color', '#333333' ) ); ?>;
             --coachpress-form-field-border-color: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_border_color', '#CCCCCC' ) ); ?>;
             --coachpress-form-field-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_border_radius', '4px' ) ); ?>;
+
+            --coachpress-container-width: <?php echo esc_html( get_theme_mod( 'coachpress_container_width', '1140px' ) ); ?>;
+
+            --coachpress-body-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_body_font_size', '16px' ) ); ?>;
+            --coachpress-h1-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h1_font_size', '2.8rem' ) ); ?>;
+            --coachpress-h2-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h2_font_size', '2.2rem' ) ); ?>;
+            --coachpress-h3-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h3_font_size', '1.5rem' ) ); ?>;
+            --coachpress-h4-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h4_font_size', '1.25rem' ) ); ?>;
+            --coachpress-h5-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h5_font_size', '1.1rem' ) ); ?>;
+            --coachpress-h6-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h6_font_size', '1rem' ) ); ?>;
         }
 
         <?php

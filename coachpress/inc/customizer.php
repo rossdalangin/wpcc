@@ -248,6 +248,33 @@ function coachpress_customize_register( $wp_customize ) {
         'settings' => 'coachpress_heading_letter_spacing',
         'type'     => 'text',
     ) );
+
+    // Font Sizes
+    $wp_customize->add_setting( 'coachpress_body_font_size', array(
+        'default'   => '16px',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_body_font_size', array(
+        'label'    => __( 'Body Font Size', 'coachpress' ),
+        'section'  => 'coachpress_global_typography',
+        'type'     => 'text',
+    ) );
+
+    for ( $i = 1; $i <= 6; $i++ ) {
+        $wp_customize->add_setting( "coachpress_h{$i}_font_size", array(
+            'default'   => '',
+            'transport' => 'refresh',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+
+        $wp_customize->add_control( "coachpress_h{$i}_font_size", array(
+            'label'    => sprintf( __( 'H%s Font Size', 'coachpress' ), $i ),
+            'section'  => 'coachpress_global_typography',
+            'type'     => 'text',
+        ) );
+    }
 }
 add_action( 'customize_register', 'coachpress_customize_register' );
 

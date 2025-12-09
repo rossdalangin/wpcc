@@ -19,11 +19,11 @@ body {
     font-family: var(--coachpress-body-font-family);
     font-weight: var(--coachpress-body-font-weight);
     line-height: var(--coachpress-body-line-height);
-    font-size: 16px;
+    font-size: var(--coachpress-body-font-size);
 }
 
 .container {
-    max-width: 1140px;
+    max-width: var(--coachpress-container-width);
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -51,12 +51,12 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
 }
 
-h1 { font-size: 2.8rem; }
-h2 { font-size: 2.2rem; text-align: center; margin-bottom: 40px; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.1rem; }
-h6 { font-size: 1rem; }
+h1 { font-size: var(--coachpress-h1-font-size); }
+h2 { font-size: var(--coachpress-h2-font-size); text-align: center; margin-bottom: 40px; }
+h3 { font-size: var(--coachpress-h3-font-size); }
+h4 { font-size: var(--coachpress-h4-font-size); }
+h5 { font-size: var(--coachpress-h5-font-size); }
+h6 { font-size: var(--coachpress-h6-font-size); }
 
 .button,
 input[type="submit"] {
