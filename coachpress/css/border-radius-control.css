@@ -1,0 +1,19 @@
+.customize-control-coachpress-border-radius .border-radius-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.customize-control-coachpress-border-radius .border-radius-inputs > div {
+    width: 22%;
+}
+
+.customize-control-coachpress-border-radius .border-radius-inputs label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.customize-control-coachpress-border-radius .border-radius-inputs input {
+    width: 100%;
+    text-align: center;
+}

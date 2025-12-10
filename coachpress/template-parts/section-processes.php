@@ -17,6 +17,12 @@ $query = new WP_Query( $args );
 <section id="processes" class="processes-section">
     <div class="container">
         <h2 data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_processes_section_title', __( 'Processes', 'coachpress' ) ) ); ?></h2>
+        <div class="section-description" data-aos="fade-up" data-aos-delay="100">
+            <?php
+            $content = get_theme_mod( 'coachpress_processes_section_description', '' );
+            echo wp_kses_post( wpautop( $content ) );
+            ?>
+        </div>
         <div class="processes-grid">
             <?php if ( $query->have_posts() ) : ?>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>

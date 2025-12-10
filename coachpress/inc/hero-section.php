@@ -137,6 +137,42 @@ function coachpress_customize_register_hero_section( $wp_customize ) {
         'type'     => 'url',
     ) );
 
+    $wp_customize->add_setting( 'coachpress_hero_left_button_2_text', array(
+        'default'   => __( 'Learn More', 'coachpress' ),
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_hero_left_button_2_text', array(
+        'label'    => __( 'Button 2 Text', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'type'     => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_left_button_2_url', array(
+        'default'   => '#',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'esc_url_raw',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_hero_left_button_2_url', array(
+        'label'    => __( 'Button 2 URL', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'type'     => 'url',
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_content', array(
+        'default'   => __( 'Calm. Focused. Results-driven. This is advisory support for professionals who value thinking clearly and acting deliberately.', 'coachpress' ),
+        'transport' => 'refresh',
+        'sanitize_callback' => 'wp_kses_post',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_hero_content', array(
+        'label'    => __( 'Content', 'coachpress' ),
+        'section'  => 'coachpress_hero_section',
+        'type'     => 'textarea',
+    ) );
+
     $wp_customize->add_setting( 'coachpress_hero_left_alignment', array(
         'default'   => 'left',
         'transport' => 'refresh',

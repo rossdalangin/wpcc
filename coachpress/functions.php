@@ -270,6 +270,11 @@ require get_template_directory() . '/inc/form-image-styles.php';
  */
 require get_template_directory() . '/inc/layout-settings.php';
 
+/**
+ * Load New Sections.
+ */
+require get_template_directory() . '/inc/new-sections.php';
+
 function coachpress_get_section_choices() {
     return array(
         'hero' => __( 'Hero', 'coachpress' ),
@@ -280,6 +285,9 @@ function coachpress_get_section_choices() {
         'faqs' => __( 'FAQs', 'coachpress' ),
         'contact' => __( 'Contact', 'coachpress' ),
         'cta' => __( 'CTA', 'coachpress' ),
+        'trust' => __( 'Trust', 'coachpress' ),
+        'problem' => __( 'Problem', 'coachpress' ),
+        'about-preview' => __( 'About Preview', 'coachpress' ),
     );
 }
 
@@ -318,7 +326,6 @@ function coachpress_dynamic_css() {
             --coachpress-card-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_card_border_radius', '4px' ) ); ?>;
             --coachpress-card-box-shadow: <?php echo esc_html( get_theme_mod( 'coachpress_card_box_shadow', '0 0 25px rgba(0,0,0,0.07)' ) ); ?>;
             --coachpress-card-hover-box-shadow: <?php echo esc_html( get_theme_mod( 'coachpress_card_hover_box_shadow', '0 12px 25px rgba(0,0,0,0.1)' ) ); ?>;
-            --coachpress-section-padding-y: <?php echo esc_html( get_theme_mod( 'coachpress_section_padding_y', '60px' ) ); ?>;
 
             --coachpress-image-border-radius: <?php echo esc_html( get_theme_mod( 'coachpress_image_border_radius', '4px' ) ); ?>;
             --coachpress-form-field-bg-color: <?php echo esc_html( get_theme_mod( 'coachpress_form_field_bg_color', '#FFFFFF' ) ); ?>;
@@ -336,31 +343,61 @@ function coachpress_dynamic_css() {
             --coachpress-h5-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h5_font_size', '1.1rem' ) ); ?>;
             --coachpress-h6-font-size: <?php echo esc_html( get_theme_mod( 'coachpress_h6_font_size', '1rem' ) ); ?>;
 
+            --coachpress-hero-bg: <?php echo esc_html( get_theme_mod( 'coachpress_hero_bg_color', '#F5F5F5' ) ); ?>;
             --coachpress-hero-heading-color: <?php echo esc_html( get_theme_mod( 'coachpress_hero_heading_color', '#FFFFFF' ) ); ?>;
+
+            --coachpress-form-width: <?php echo esc_html( get_theme_mod( 'coachpress_form_width', '100%' ) ); ?>;
+            --coachpress-image-width: <?php echo esc_html( get_theme_mod( 'coachpress_image_width', '100%' ) ); ?>;
         }
 
-        <?php
-        $sections = coachpress_get_section_choices();
-        foreach ( $sections as $section_id => $section_name ) {
-            $bg_color = get_theme_mod( "coachpress_{$section_id}_bg_color" );
-            $heading_color = get_theme_mod( "coachpress_{$section_id}_heading_color" );
-            $text_color = get_theme_mod( "coachpress_{$section_id}_text_color" );
-
-            if ( ! empty( $bg_color ) || ! empty( $heading_color ) || ! empty( $text_color ) ) {
-                echo "#{$section_id} {";
-                if ( ! empty( $bg_color ) ) {
-                    echo "--coachpress-section-bg-color: " . esc_html( $bg_color ) . ";";
-                }
-                if ( ! empty( $heading_color ) ) {
-                    echo "--coachpress-section-heading-color: " . esc_html( $heading_color ) . ";";
-                }
-                if ( ! empty( $text_color ) ) {
-                    echo "--coachpress-section-text-color: " . esc_html( $text_color ) . ";";
-                }
-                echo "}";
+    <?php
+    // Font Sizes
+    for ( $i = 1; $i <= 6; $i++ ) {
+        $font_size_json = get_theme_mod( "coachpress_h{$i}_font_size" );
+        if ( $font_size_json ) {
+            $font_sizes = json_decode( $font_size_json, true );
+            if ( isset( $font_sizes['desktop'] ) && ! empty( $font_sizes['desktop'] ) ) {
+                echo "h{$i} { font-size: " . esc_html( $font_sizes['desktop'] ) . "; }";
+            }
+            if ( isset( $font_sizes['tablet'] ) && ! empty( $font_sizes['tablet'] ) ) {
+                echo "@media (max-width: 768px) { h{$i} { font-size: " . esc_html( $font_sizes['tablet'] ) . "; } }";
+            }
+            if ( isset( $font_sizes['mobile'] ) && ! empty( $font_sizes['mobile'] ) ) {
+                echo "@media (max-width: 480px) { h{$i} { font-size: " . esc_html( $font_sizes['mobile'] ) . "; } }";
             }
         }
-        ?>
+    }
+
+    // Border Radius
+    $border_radius_json = get_theme_mod( 'coachpress_image_border_radius' );
+    if ( $border_radius_json ) {
+        $border_radii = json_decode( $border_radius_json, true );
+        echo "img, .wp-post-image {
+            border-top-left-radius: " . esc_html( $border_radii['top-left'] ) . ";
+            border-top-right-radius: " . esc_html( $border_radii['top-right'] ) . ";
+            border-bottom-right-radius: " . esc_html( $border_radii['bottom-right'] ) . ";
+            border-bottom-left-radius: " . esc_html( $border_radii['bottom-left'] ) . ";
+        }";
+    }
+
+    // Section Padding
+    $section_padding_json = get_theme_mod( 'coachpress_section_padding' );
+    if ( $section_padding_json ) {
+        $section_paddings = json_decode( $section_padding_json, true );
+        echo "section {
+            padding-top: " . esc_html( $section_paddings['top'] ) . ";
+            padding-right: " . esc_html( $section_paddings['right'] ) . ";
+            padding-bottom: " . esc_html( $section_paddings['bottom'] ) . ";
+            padding-left: " . esc_html( $section_paddings['left'] ) . ";
+        }";
+    }
+
+    // Container Width
+    $container_width = get_theme_mod( 'coachpress_container_width' );
+    if ( $container_width ) {
+        echo ".container { max-width: " . esc_html( $container_width ) . "; }";
+    }
+    ?>
     </style>
     <?php
 }

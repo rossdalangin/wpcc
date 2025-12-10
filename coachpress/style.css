@@ -23,13 +23,11 @@ body {
 }
 
 .container {
-    max-width: var(--coachpress-container-width);
     margin: 0 auto;
     padding: 0 15px;
 }
 
 section {
-    padding: var(--coachpress-section-padding-y) 0;
     overflow: hidden;
     background-color: var(--coachpress-section-bg-color, transparent);
 }
@@ -176,9 +174,32 @@ a {
     display: none;
     background: none;
     border: none;
-    font-size: 24px;
     cursor: pointer;
-    color: var(--coachpress-header-hamburger-color);
+    padding: 10px;
+    position: relative;
+    width: 44px;
+    height: 44px;
+}
+
+.icon-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--coachpress-header-hamburger-color);
+    margin: 5px auto;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.toggled .icon-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.toggled .icon-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.toggled .icon-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
@@ -239,6 +260,7 @@ a {
     padding: var(--coachpress-section-padding-y) 0;
     text-align: center;
     position: relative;
+    background: var(--coachpress-hero-bg);
     background-size: cover;
     background-position: center;
     color: var(--coachpress-section-text-color, #f5f5f5);
@@ -354,7 +376,8 @@ a {
 .case-study-item,
 .process-item {
     background-color: var(--coachpress-card-bg-color);
-    padding: 30px;
+    padding: var(--coachpress-card-padding, 30px);
+    margin: var(--coachpress-card-margin, 0 0 20px 0);
     border-radius: var(--coachpress-card-border-radius);
     box-shadow: var(--coachpress-card-box-shadow);
     transition: all 0.3s ease;
@@ -370,12 +393,8 @@ a {
 }
 
 img {
-    border-radius: var(--coachpress-image-border-radius);
-}
-
-.service-image img,
-.case-study-image img {
-    border-radius: var(--coachpress-image-border-radius);
+    max-width: var(--coachpress-image-width);
+    height: auto;
 }
 
 .testimonial-image img {
@@ -397,8 +416,12 @@ img {
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
+#primary {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .site-main {
-    padding: 60px 0;
 }
 
 .entry-header {
@@ -452,7 +475,7 @@ select,
     border: 1px solid var(--coachpress-form-field-border-color);
     border-radius: var(--coachpress-form-field-border-radius);
     padding: 10px 15px;
-    width: 100%;
+    width: var(--coachpress-form-width);
 }
 
 /*--------------------------------------------------------------

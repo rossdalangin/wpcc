@@ -24,8 +24,36 @@ function coachpress_customize_register_section_titles( $wp_customize ) {
         $wp_customize->add_control( "coachpress_{$section_id}_section_title", array(
             'label'    => sprintf( __( '%s Section Title', 'coachpress' ), $section_name ),
             'section'  => 'coachpress_section_titles',
-            'settings' => "coachpress_{$section_id}_section_title",
             'type'     => 'text',
+        ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_section_description", array(
+            'default'   => '',
+            'transport' => 'refresh',
+            'sanitize_callback' => 'wp_kses_post',
+        ) );
+
+        $wp_customize->add_control( "coachpress_{$section_id}_section_description", array(
+            'label'    => sprintf( __( '%s Section Description', 'coachpress' ), $section_name ),
+            'section'  => 'coachpress_section_titles',
+            'type'     => 'textarea',
+        ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_section_alignment", array(
+            'default'   => 'center',
+            'transport' => 'refresh',
+            'sanitize_callback' => 'sanitize_key',
+        ) );
+
+        $wp_customize->add_control( "coachpress_{$section_id}_section_alignment", array(
+            'label'    => sprintf( __( '%s Section Alignment', 'coachpress' ), $section_name ),
+            'section'  => 'coachpress_section_titles',
+            'type'     => 'select',
+            'choices'  => array(
+                'left'   => __( 'Left', 'coachpress' ),
+                'center' => __( 'Center', 'coachpress' ),
+                'right'  => __( 'Right', 'coachpress' ),
+            ),
         ) );
     }
 }

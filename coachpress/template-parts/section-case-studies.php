@@ -17,6 +17,12 @@ $query = new WP_Query( $args );
 <section id="case-studies" class="case-studies-section">
     <div class="container">
         <h2 data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_case-studies_section_title', __( 'Case Studies', 'coachpress' ) ) ); ?></h2>
+        <div class="section-description" data-aos="fade-up" data-aos-delay="100">
+            <?php
+            $content = get_theme_mod( 'coachpress_case-studies_section_description', '' );
+            echo wp_kses_post( wpautop( $content ) );
+            ?>
+        </div>
         <div class="case-studies-grid">
             <?php if ( $query->have_posts() ) : ?>
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>

@@ -36,6 +36,13 @@ $bg_overlay_rgba = "rgba({$r}, {$g}, {$b}, {$bg_overlay_opacity})";
 			<h1><?php echo esc_html( get_theme_mod( 'coachpress_hero_left_heading', __( 'Welcome to CoachPress', 'coachpress' ) ) ); ?></h1>
 			<p><?php echo esc_html( get_theme_mod( 'coachpress_hero_left_subheading', __( 'Your journey to success starts here.', 'coachpress' ) ) ); ?></p>
 			<a href="<?php echo esc_url( get_theme_mod( 'coachpress_hero_left_button_url', '#' ) ); ?>" class="button button-primary"><?php echo esc_html( get_theme_mod( 'coachpress_hero_left_button_text', __( 'Get Started', 'coachpress' ) ) ); ?></a>
+			<a href="<?php echo esc_url( get_theme_mod( 'coachpress_hero_left_button_2_url', '#' ) ); ?>" class="button button-ghost"><?php echo esc_html( get_theme_mod( 'coachpress_hero_left_button_2_text', __( 'Learn More', 'coachpress' ) ) ); ?></a>
+            <div class="hero-content">
+                <?php
+                $content = get_theme_mod( 'coachpress_hero_content', __( 'Calm. Focused. Results-driven. This is advisory support for professionals who value thinking clearly and acting deliberately.', 'coachpress' ) );
+                echo wp_kses_post( wpautop( $content ) );
+                ?>
+            </div>
 		</div>
 		<?php if ( 'disabled' !== $right_content_type ) : ?>
 			<div class="hero-right" data-aos="fade-left">

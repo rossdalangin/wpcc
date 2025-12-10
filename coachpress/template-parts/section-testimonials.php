@@ -17,6 +17,12 @@ $query = new WP_Query( $args );
 <section id="testimonials" class="testimonials-section">
     <div class="container" data-aos="fade-up">
         <h2><?php echo esc_html( get_theme_mod( 'coachpress_testimonials_section_title', __( 'Testimonials', 'coachpress' ) ) ); ?></h2>
+        <div class="section-description" data-aos="fade-up" data-aos-delay="100">
+            <?php
+            $content = get_theme_mod( 'coachpress_testimonials_section_description', '' );
+            echo wp_kses_post( wpautop( $content ) );
+            ?>
+        </div>
         <div class="swiper-container testimonial-slider">
             <div class="swiper-wrapper">
                 <?php if ( $query->have_posts() ) : ?>

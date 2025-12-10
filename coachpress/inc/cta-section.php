@@ -64,5 +64,22 @@ function coachpress_customize_register_cta_section( $wp_customize ) {
         'settings' => 'coachpress_cta_button_url',
         'type'     => 'url',
     ) );
+
+    $wp_customize->add_setting( 'coachpress_cta_alignment', array(
+        'default'   => 'center',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'sanitize_key',
+    ) );
+
+    $wp_customize->add_control( 'coachpress_cta_alignment', array(
+        'label'    => __( 'Alignment', 'coachpress' ),
+        'section'  => 'coachpress_cta_section',
+        'type'     => 'select',
+        'choices'  => array(
+            'left'   => __( 'Left', 'coachpress' ),
+            'center' => __( 'Center', 'coachpress' ),
+            'right'  => __( 'Right', 'coachpress' ),
+        ),
+    ) );
 }
 add_action( 'customize_register', 'coachpress_customize_register_cta_section' );
