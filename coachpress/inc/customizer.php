@@ -108,79 +108,6 @@ function coachpress_customize_register( $wp_customize ) {
         'settings' => 'coachpress_dark_bg_color',
     ) ) );
 
-	// Per-Section Colors
-	$wp_customize->add_panel( 'coachpress_section_colors_panel', array(
-		'title'    => __( 'Section Colors', 'coachpress' ),
-		'priority' => 36,
-        'description' => __( 'Override the global color settings for individual homepage sections.', 'coachpress' ),
-	) );
-
-	$sections = coachpress_get_section_choices();
-
-	foreach ( $sections as $section_id => $section_name ) {
-		$wp_customize->add_section( "coachpress_{$section_id}_colors", array(
-			'title'    => $section_name,
-			'panel'    => 'coachpress_section_colors_panel',
-            'description' => sprintf( __( 'Customize the colors for the %s section.', 'coachpress' ), $section_name ),
-		) );
-
-		if ( 'hero' === $section_id ) {
-			$wp_customize->add_setting( 'coachpress_hero_bg_color', array(
-				'default'   => '#F5F5F5',
-				'transport' => 'refresh',
-				'sanitize_callback' => 'coachpress_sanitize_background',
-			) );
-
-			$wp_customize->add_control( new CoachPress_Gradient_Control( $wp_customize, 'coachpress_hero_bg_color', array(
-				'label'    => __( 'Background', 'coachpress' ),
-				'section'  => 'coachpress_hero_colors',
-				'settings' => 'coachpress_hero_bg_color',
-			) ) );
-		} else {
-			$wp_customize->add_setting( "coachpress_{$section_id}_bg_color", array(
-				'default'   => '',
-				'transport' => 'refresh',
-				'sanitize_callback' => 'sanitize_hex_color',
-			) );
-
-			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_color", array(
-				'label'    => __( 'Background Color', 'coachpress' ),
-				'description' => __( 'Leave empty to inherit the default background color.', 'coachpress' ),
-				'section'  => "coachpress_{$section_id}_colors",
-				'settings' => "coachpress_{$section_id}_bg_color",
-			) ) );
-		}
-
-
-		if ( 'hero' !== $section_id ) {
-			$wp_customize->add_setting( "coachpress_{$section_id}_heading_color", array(
-				'default'   => '',
-				'transport' => 'refresh',
-				'sanitize_callback' => 'sanitize_hex_color',
-			) );
-
-			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_heading_color", array(
-				'label'    => __( 'Heading Color', 'coachpress' ),
-				'description' => __( 'Leave empty to inherit the global text color.', 'coachpress' ),
-				'section'  => "coachpress_{$section_id}_colors",
-				'settings' => "coachpress_{$section_id}_heading_color",
-			) ) );
-		}
-
-		$wp_customize->add_setting( "coachpress_{$section_id}_text_color", array(
-			'default'   => '',
-			'transport' => 'refresh',
-			'sanitize_callback' => 'sanitize_hex_color',
-		) );
-
-		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_text_color", array(
-			'label'    => __( 'Text Color', 'coachpress' ),
-            'description' => __( 'Leave empty to inherit the global text color.', 'coachpress' ),
-			'section'  => "coachpress_{$section_id}_colors",
-			'settings' => "coachpress_{$section_id}_text_color",
-		) ) );
-	}
-
 	// Global Typography
 	$wp_customize->add_section( 'coachpress_global_typography', array(
 		'title'    => __( 'Global Typography', 'coachpress' ),
@@ -269,6 +196,79 @@ function coachpress_customize_register( $wp_customize ) {
         'settings' => 'coachpress_heading_letter_spacing',
         'type'     => 'text',
     ) );
+
+	// Per-Section Colors
+	$wp_customize->add_panel( 'coachpress_section_colors_panel', array(
+		'title'    => __( 'Section Colors', 'coachpress' ),
+		'priority' => 36,
+        'description' => __( 'Override the global color settings for individual homepage sections.', 'coachpress' ),
+	) );
+
+	$sections = coachpress_get_section_choices();
+
+	foreach ( $sections as $section_id => $section_name ) {
+		$wp_customize->add_section( "coachpress_{$section_id}_colors", array(
+			'title'    => $section_name,
+			'panel'    => 'coachpress_section_colors_panel',
+            'description' => sprintf( __( 'Customize the colors for the %s section.', 'coachpress' ), $section_name ),
+		) );
+
+		if ( 'hero' === $section_id ) {
+			$wp_customize->add_setting( 'coachpress_hero_bg_color', array(
+				'default'   => '#F5F5F5',
+				'transport' => 'refresh',
+				'sanitize_callback' => 'coachpress_sanitize_background',
+			) );
+
+			$wp_customize->add_control( new CoachPress_Gradient_Control( $wp_customize, 'coachpress_hero_bg_color', array(
+				'label'    => __( 'Background', 'coachpress' ),
+				'section'  => 'coachpress_hero_colors',
+				'settings' => 'coachpress_hero_bg_color',
+			) ) );
+		} else {
+			$wp_customize->add_setting( "coachpress_{$section_id}_bg_color", array(
+				'default'   => '',
+				'transport' => 'refresh',
+				'sanitize_callback' => 'sanitize_hex_color',
+			) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_color", array(
+				'label'    => __( 'Background Color', 'coachpress' ),
+				'description' => __( 'Leave empty to inherit the default background color.', 'coachpress' ),
+				'section'  => "coachpress_{$section_id}_colors",
+				'settings' => "coachpress_{$section_id}_bg_color",
+			) ) );
+		}
+
+
+		if ( 'hero' !== $section_id ) {
+			$wp_customize->add_setting( "coachpress_{$section_id}_heading_color", array(
+				'default'   => '',
+				'transport' => 'refresh',
+				'sanitize_callback' => 'sanitize_hex_color',
+			) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_heading_color", array(
+				'label'    => __( 'Heading Color', 'coachpress' ),
+				'description' => __( 'Leave empty to inherit the global text color.', 'coachpress' ),
+				'section'  => "coachpress_{$section_id}_colors",
+				'settings' => "coachpress_{$section_id}_heading_color",
+			) ) );
+		}
+
+		$wp_customize->add_setting( "coachpress_{$section_id}_text_color", array(
+			'default'   => '',
+			'transport' => 'refresh',
+			'sanitize_callback' => 'sanitize_hex_color',
+		) );
+
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_text_color", array(
+			'label'    => __( 'Text Color', 'coachpress' ),
+            'description' => __( 'Leave empty to inherit the global text color.', 'coachpress' ),
+			'section'  => "coachpress_{$section_id}_colors",
+			'settings' => "coachpress_{$section_id}_text_color",
+		) ) );
+	}
 
     // Font Sizes
     $wp_customize->add_setting( 'coachpress_body_font_size', array(
