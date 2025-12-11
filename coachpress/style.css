@@ -23,11 +23,16 @@ body {
 }
 
 .container {
+    max-width: var(--coachpress-container-width);
     margin: 0 auto;
     padding: 0 15px;
 }
 
 section {
+    padding-top: var(--coachpress-section-padding-top, 60px);
+    padding-bottom: var(--coachpress-section-padding-bottom, 60px);
+    padding-left: var(--coachpress-section-padding-left, 0);
+    padding-right: var(--coachpress-section-padding-right, 0);
     overflow: hidden;
     background-color: var(--coachpress-section-bg-color, transparent);
 }
@@ -98,7 +103,7 @@ a {
 --------------------------------------------------------------*/
 .site-header {
     padding: var(--coachpress-header-padding-y) 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--coachpress-secondary-color);
     transition: all 0.3s ease;
     display: flex;
     justify-content: space-between;
@@ -231,11 +236,11 @@ a {
     .main-navigation ul li a {
         padding: 12px;
         display: block;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--coachpress-secondary-color);
     }
 
     .main-navigation ul li a:hover {
-        border-bottom-color: #eee;
+        border-bottom-color: var(--coachpress-secondary-color);
         color: var(--coachpress-header-link-hover-color);
         background-color: var(--coachpress-mobile-menu-hover-bg-color);
     }
@@ -257,13 +262,12 @@ a {
 # Hero Section
 --------------------------------------------------------------*/
 .hero-section {
-    padding: var(--coachpress-section-padding-y) 0;
     text-align: center;
     position: relative;
     background: var(--coachpress-hero-bg);
     background-size: cover;
     background-position: center;
-    color: var(--coachpress-section-text-color, #f5f5f5);
+    color: var(--coachpress-section-text-color, var(--coachpress-text-color));
 }
 
 .hero-section h1 {
@@ -376,8 +380,8 @@ a {
 .case-study-item,
 .process-item {
     background-color: var(--coachpress-card-bg-color);
-    padding: var(--coachpress-card-padding, 30px);
-    margin: var(--coachpress-card-margin, 0 0 20px 0);
+    padding: var(--coachpress-card-padding);
+    margin: var(--coachpress-card-margin);
     border-radius: var(--coachpress-card-border-radius);
     box-shadow: var(--coachpress-card-box-shadow);
     transition: all 0.3s ease;
@@ -395,6 +399,7 @@ a {
 img {
     max-width: var(--coachpress-image-width);
     height: auto;
+    border-radius: var(--coachpress-image-border-radius);
 }
 
 .testimonial-image img {
@@ -450,7 +455,7 @@ blockquote {
     font-style: italic;
     color: #555;
     font-size: 1.1rem;
-    background-color: #f8f9fa;
+    background-color: var(--coachpress-secondary-color);
     padding: 20px;
     border-radius: 4px;
 }
@@ -483,7 +488,7 @@ select,
 --------------------------------------------------------------*/
 .widget {
     margin-bottom: 30px;
-    background-color: #f8f9fa;
+    background-color: var(--coachpress-secondary-color);
     padding: 25px;
     border-radius: 4px;
 }
@@ -536,7 +541,7 @@ select,
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: 10% auto;
     padding: 30px;
     border: none;

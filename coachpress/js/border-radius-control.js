@@ -1,19 +1,18 @@
-( function( $ ) {
-    wp.customize.control.add( 'coachpress-border-radius', function( control ) {
-        control.container.on( 'ready', function() {
-            var container = control.container;
-            var inputs = container.find( 'input[type="text"]' );
-            var hiddenInput = container.find( 'input[type="hidden"]' );
+wp.customize.controlConstructor['coachpress-border-radius'] = wp.customize.Control.extend({
+    ready: function() {
+        'use strict';
 
-            inputs.on( 'change keyup', function() {
-                var value = {};
-                inputs.each( function() {
-                    var input = $( this );
-                    var corner = input.data( 'corner' );
-                    value[corner] = input.val();
-                } );
-                hiddenInput.val( JSON.stringify( value ) ).trigger( 'change' );
-            } );
-        } );
-    } );
-} )( jQuery );
+        var control = this;
+
+        control.container.on('change keyup paste', 'input[type="text"]', function() {
+            var value = {};
+            control.container.find('input[type="text"]').each(function() {
+                var corner = jQuery(this).data('corner');
+                if (corner) {
+                    value[corner] = jQuery(this).val();
+                }
+            });
+            control.setting.set(JSON.stringify(value));
+        });
+    }
+});

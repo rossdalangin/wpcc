@@ -1,35 +1,44 @@
-( function( $ ) {
-    wp.customize.control.add( 'coachpress-gradient', function( control ) {
-        control.container.on( 'ready', function() {
-            var container = control.container;
-            var tabs = container.find( '.gradient-tab' );
-            var contents = container.find( '.gradient-tab-content' );
-            var hiddenInput = container.find( 'input[type="hidden"]' );
+wp.customize.controlConstructor['coachpress-gradient'] = wp.customize.Control.extend({
+    ready: function() {
+        'use strict';
 
-            tabs.on( 'click', function() {
-                var tab = $( this );
-                var tabId = tab.data( 'tab' );
+        var control = this;
 
-                tabs.removeClass( 'active' );
-                tab.addClass( 'active' );
+        // Initialize color pickers
+        control.container.find('.color-picker-hex').wpColorPicker({
+            change: function() {
+                updateValue();
+            },
+            clear: function() {
+                updateValue();
+            }
+        });
 
-                contents.removeClass( 'active' );
-                container.find( '.' + tabId + '-content' ).addClass( 'active' );
-            } );
+        // Tab switching
+        control.container.on('click', '.gradient-tab', function(e) {
+            e.preventDefault();
+            var tab = jQuery(this).data('tab');
 
-            container.find( '.color-picker-hex' ).wpColorPicker( {
-                change: function() {
-                    var value = '';
-                    if ( container.find( '.solid-content' ).hasClass( 'active' ) ) {
-                        value = container.find( '.solid-content .color-picker-hex' ).val();
-                    } else {
-                        var color1 = container.find( '.gradient-color-1 .color-picker-hex' ).val();
-                        var color2 = container.find( '.gradient-color-2 .color-picker-hex' ).val();
-                        value = 'linear-gradient(to right, ' + color1 + ', ' + color2 + ')';
-                    }
-                    hiddenInput.val( value ).trigger( 'change' );
-                }
-            } );
-        } );
-    } );
-} )( jQuery );
+            jQuery(this).addClass('active').siblings().removeClass('active');
+            control.container.find('.gradient-tab-content').removeClass('active');
+            control.container.find('.' + tab + '-content').addClass('active');
+
+            updateValue();
+        });
+
+        function updateValue() {
+            var activeTab = control.container.find('.gradient-tab.active').data('tab');
+            var value;
+
+            if (activeTab === 'solid') {
+                value = control.container.find('.solid-content .color-picker-hex').val();
+            } else {
+                var color1 = control.container.find('.gradient-color-1 .color-picker-hex').val();
+                var color2 = control.container.find('.gradient-color-2 .color-picker-hex').val();
+                value = 'linear-gradient(90deg, ' + color1 + ', ' + color2 + ')';
+            }
+
+            control.setting.set(value);
+        }
+    }
+});

@@ -1,19 +1,18 @@
-( function( $ ) {
-    wp.customize.control.add( 'coachpress-responsive-font-size', function( control ) {
-        control.container.on( 'ready', function() {
-            var container = control.container;
-            var inputs = container.find( 'input[type="text"]' );
-            var hiddenInput = container.find( 'input[type="hidden"]' );
+wp.customize.controlConstructor['coachpress-responsive-font-size'] = wp.customize.Control.extend({
+    ready: function() {
+        'use strict';
 
-            inputs.on( 'change keyup', function() {
-                var value = {};
-                inputs.each( function() {
-                    var input = $( this );
-                    var device = input.data( 'device' );
-                    value[device] = input.val();
-                } );
-                hiddenInput.val( JSON.stringify( value ) ).trigger( 'change' );
-            } );
-        } );
-    } );
-} )( jQuery );
+        var control = this;
+
+        control.container.on('change keyup paste', 'input[type="text"]', function() {
+            var value = {};
+            control.container.find('input[type="text"]').each(function() {
+                var device = jQuery(this).data('device');
+                if (device) {
+                    value[device] = jQuery(this).val();
+                }
+            });
+            control.setting.set(JSON.stringify(value));
+        });
+    }
+});
