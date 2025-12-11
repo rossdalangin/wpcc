@@ -6,17 +6,10 @@
  */
 
 function coachpress_customize_register_component_styles( $wp_customize ) {
-    // Component Styles Panel
-    $wp_customize->add_panel( 'coachpress_component_styles_panel', array(
-        'title'    => __( 'Component Styles', 'coachpress' ),
-        'priority' => 32,
-        'description' => __( 'Customize the appearance of reusable components like cards and sections.', 'coachpress' ),
-    ) );
-
     // Cards Section
     $wp_customize->add_section( 'coachpress_cards', array(
         'title'    => __( 'Cards', 'coachpress' ),
-        'panel'    => 'coachpress_component_styles_panel',
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_card_bg_color', array(
@@ -72,7 +65,7 @@ function coachpress_customize_register_component_styles( $wp_customize ) {
     // Sections Section
     $wp_customize->add_section( 'coachpress_sections', array(
         'title'    => __( 'Sections', 'coachpress' ),
-        'panel'    => 'coachpress_component_styles_panel',
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_section_padding_y', array(

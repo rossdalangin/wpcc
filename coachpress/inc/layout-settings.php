@@ -8,7 +8,8 @@
 function coachpress_customize_register_layout_settings( $wp_customize ) {
     // Layout Settings Section
     $wp_customize->add_section( 'coachpress_layout_settings', array(
-        'title'    => __( 'Layout Settings', 'coachpress' ),
+        'title'    => __( 'Layout', 'coachpress' ),
+        'panel'    => 'coachpress_global_styles_panel',
         'priority' => 34,
         'description' => __( 'Customize the layout of your site, including container widths and spacing.', 'coachpress' ),
     ) );

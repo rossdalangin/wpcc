@@ -8,7 +8,8 @@
 function coachpress_customize_register_section_ordering( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_section_ordering', array(
         'title'    => __( 'Section Ordering & Visibility', 'coachpress' ),
-        'priority' => 10,
+        'panel'    => 'coachpress_homepage_sections_panel',
+        'priority' => 1,
         'description' => __( 'Control the order and visibility of the sections on your homepage. Drag and drop to reorder, and use the checkboxes to show or hide sections.', 'coachpress' ),
     ) );
 

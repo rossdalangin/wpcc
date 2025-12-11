@@ -6,17 +6,11 @@
  */
 
 function coachpress_customize_register_header_settings( $wp_customize ) {
-    // Header Settings Panel
-    $wp_customize->add_panel( 'coachpress_header_panel', array(
-        'title'    => __( 'Header Settings', 'coachpress' ),
+    // Header Settings Section
+    $wp_customize->add_section( 'coachpress_header_settings', array(
+        'title'    => __( 'Header', 'coachpress' ),
+        'panel'    => 'coachpress_theme_settings_panel',
         'priority' => 30,
-        'description' => __( 'Customize the appearance of your site header, including colors, spacing, and the mobile menu.', 'coachpress' ),
-    ) );
-
-    // Header Colors Section
-    $wp_customize->add_section( 'coachpress_header_colors', array(
-        'title'    => __( 'Colors', 'coachpress' ),
-        'panel'    => 'coachpress_header_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_header_bg_color', array(
@@ -27,7 +21,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_bg_color', array(
         'label'    => __( 'Background Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_header_text_color', array(
@@ -38,7 +32,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_text_color', array(
         'label'    => __( 'Text Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_header_link_color', array(
@@ -49,7 +43,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_link_color', array(
         'label'    => __( 'Link Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_header_link_hover_color', array(
@@ -60,7 +54,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_link_hover_color', array(
         'label'    => __( 'Link Hover Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_header_hamburger_color', array(
@@ -71,7 +65,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_hamburger_color', array(
         'label'    => __( 'Mobile Menu (Hamburger) Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_mobile_menu_bg_color', array(
@@ -82,7 +76,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_mobile_menu_bg_color', array(
         'label'    => __( 'Mobile Menu Background Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_mobile_menu_hover_bg_color', array(
@@ -93,14 +87,8 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
 
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_mobile_menu_hover_bg_color', array(
         'label'    => __( 'Mobile Menu Hover Background Color', 'coachpress' ),
-        'section'  => 'coachpress_header_colors',
+        'section'  => 'coachpress_header_settings',
     ) ) );
-
-    // Header Spacing Section
-    $wp_customize->add_section( 'coachpress_header_spacing', array(
-        'title'    => __( 'Spacing', 'coachpress' ),
-        'panel'    => 'coachpress_header_panel',
-    ) );
 
     $wp_customize->add_setting( 'coachpress_header_padding_y', array(
         'default'   => '15px',
@@ -111,7 +99,7 @@ function coachpress_customize_register_header_settings( $wp_customize ) {
     $wp_customize->add_control( 'coachpress_header_padding_y', array(
         'label'    => __( 'Padding (Top/Bottom)', 'coachpress' ),
         'description' => __( 'Enter a value with a CSS unit (e.g., 15px, 1rem).', 'coachpress' ),
-        'section'  => 'coachpress_header_spacing',
+        'section'  => 'coachpress_header_settings',
         'type'     => 'text',
     ) );
 }

@@ -7,7 +7,8 @@
 
 function coachpress_customize_register_cta_section( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_cta_section', array(
-        'title'    => __( 'CTA Section', 'coachpress' ),
+        'title'    => __( 'CTA', 'coachpress' ),
+        'panel'    => 'coachpress_homepage_sections_panel',
         'priority' => 110,
         'description' => __( 'Configure the dedicated Call-to-Action section. This can be placed anywhere on the homepage via the Section Ordering & Visibility panel.', 'coachpress' ),
     ) );

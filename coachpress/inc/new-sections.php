@@ -6,17 +6,10 @@
  */
 
 function coachpress_customize_register_new_sections( $wp_customize ) {
-    // New Sections Panel
-    $wp_customize->add_panel( 'coachpress_new_sections_panel', array(
-        'title'    => __( 'New Sections', 'coachpress' ),
-        'priority' => 37,
-        'description' => __( 'Customize the content of the new sections.', 'coachpress' ),
-    ) );
-
     // Trust Section
     $wp_customize->add_section( 'coachpress_trust_section', array(
-        'title'    => __( 'Trust Section', 'coachpress' ),
-        'panel'    => 'coachpress_new_sections_panel',
+        'title'    => __( 'Trust', 'coachpress' ),
+        'panel'    => 'coachpress_homepage_sections_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_trust_section_title', array(
@@ -45,8 +38,8 @@ function coachpress_customize_register_new_sections( $wp_customize ) {
 
     // Problem Section
     $wp_customize->add_section( 'coachpress_problem_section', array(
-        'title'    => __( 'Problem Section', 'coachpress' ),
-        'panel'    => 'coachpress_new_sections_panel',
+        'title'    => __( 'Problem', 'coachpress' ),
+        'panel'    => 'coachpress_homepage_sections_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_problem_section_title', array(
@@ -75,8 +68,8 @@ function coachpress_customize_register_new_sections( $wp_customize ) {
 
     // About Preview Section
     $wp_customize->add_section( 'coachpress_about_preview_section', array(
-        'title'    => __( 'About Preview Section', 'coachpress' ),
-        'panel'    => 'coachpress_new_sections_panel',
+        'title'    => __( 'About Preview', 'coachpress' ),
+        'panel'    => 'coachpress_homepage_sections_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_about_preview_section_title', array(

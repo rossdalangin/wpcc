@@ -6,17 +6,10 @@
  */
 
 function coachpress_customize_register_form_image_styles( $wp_customize ) {
-    // Form & Image Styles Panel
-    $wp_customize->add_panel( 'coachpress_form_image_styles_panel', array(
-        'title'    => __( 'Form & Image Styles', 'coachpress' ),
-        'priority' => 33,
-        'description' => __( 'Customize the appearance of images and form fields throughout your site.', 'coachpress' ),
-    ) );
-
     // Images Section
     $wp_customize->add_section( 'coachpress_images', array(
         'title'    => __( 'Images', 'coachpress' ),
-        'panel'    => 'coachpress_form_image_styles_panel',
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_image_border_radius', array(
@@ -35,7 +28,7 @@ function coachpress_customize_register_form_image_styles( $wp_customize ) {
     // Forms Section
     $wp_customize->add_section( 'coachpress_forms', array(
         'title'    => __( 'Form Fields', 'coachpress' ),
-        'panel'    => 'coachpress_form_image_styles_panel',
+        'panel'    => 'coachpress_global_styles_panel',
         'description' => __( 'These styles will apply to common form fields. Note: Some form plugins may require separate styling.', 'coachpress' ),
     ) );
 

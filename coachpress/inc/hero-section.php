@@ -7,8 +7,9 @@
 
 function coachpress_customize_register_hero_section( $wp_customize ) {
     $wp_customize->add_section( 'coachpress_hero_section', array(
-        'title'    => __( 'Hero Section', 'coachpress' ),
-        'priority' => 30,
+        'title'    => __( 'Hero', 'coachpress' ),
+        'panel'    => 'coachpress_homepage_sections_panel',
+        'priority' => 10,
         'description' => __( 'Configure the main hero section of your homepage. This is the first thing visitors see.', 'coachpress' ),
     ) );
 
