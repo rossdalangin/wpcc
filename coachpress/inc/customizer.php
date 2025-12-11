@@ -306,19 +306,14 @@ function coachpress_customize_register( $wp_customize ) {
         $wp_customize->add_control( new CoachPress_Responsive_Font_Size_Control( $wp_customize, "coachpress_h{$i}_font_size", array(
             'label'    => sprintf( __( 'H%s Font Size', 'coachpress' ), $i ),
             'section'  => 'coachpress_global_typography',
+            'description' => __( 'Enter a value with a CSS unit (e.g., 2.5rem, 48px).', 'coachpress' ),
         ) ) );
     }
 
     // Image Settings
-    $wp_customize->add_panel( 'coachpress_image_settings_panel', array(
-        'title'    => __( 'Image Settings', 'coachpress' ),
-        'priority' => 40,
-        'description' => __( 'Control the appearance of images across your site.', 'coachpress' ),
-    ) );
-
     $wp_customize->add_section( 'coachpress_image_border_radius', array(
-        'title'    => __( 'Border Radius', 'coachpress' ),
-        'panel'    => 'coachpress_image_settings_panel',
+        'title'    => __( 'Images', 'coachpress' ),
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_image_border_radius', array(
@@ -330,13 +325,14 @@ function coachpress_customize_register( $wp_customize ) {
     $wp_customize->add_control( new CoachPress_Border_Radius_Control( $wp_customize, 'coachpress_image_border_radius', array(
         'label'    => __( 'Image Border Radius', 'coachpress' ),
         'section'  => 'coachpress_image_border_radius',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 4px, 1rem) for each corner.', 'coachpress' ),
     ) ) );
 
     // Layout Settings
 
     $wp_customize->add_section( 'coachpress_card_layout', array(
-        'title'    => __( 'Card Layout', 'coachpress' ),
-        'panel'    => 'coachpress_layout_settings_panel',
+        'title'    => __( 'Cards', 'coachpress' ),
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_card_padding', array(
@@ -348,6 +344,7 @@ function coachpress_customize_register( $wp_customize ) {
     $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, 'coachpress_card_padding', array(
         'label'    => __( 'Card Padding', 'coachpress' ),
         'section'  => 'coachpress_card_layout',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 20px, 1.5rem) for each side.', 'coachpress' ),
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_card_margin', array(
@@ -359,11 +356,12 @@ function coachpress_customize_register( $wp_customize ) {
     $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, 'coachpress_card_margin', array(
         'label'    => __( 'Card Margin', 'coachpress' ),
         'section'  => 'coachpress_card_layout',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 20px, 1.5rem) for each side.', 'coachpress' ),
     ) ) );
 
     $wp_customize->add_section( 'coachpress_spacing_layout', array(
-        'title'    => __( 'Spacing', 'coachpress' ),
-        'panel'    => 'coachpress_layout_settings_panel',
+        'title'    => __( 'Layout', 'coachpress' ),
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_section_padding', array(
@@ -375,6 +373,7 @@ function coachpress_customize_register( $wp_customize ) {
     $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, 'coachpress_section_padding', array(
         'label'    => __( 'Section Padding', 'coachpress' ),
         'section'  => 'coachpress_spacing_layout',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 60px, 2rem) for each side.', 'coachpress' ),
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_container_width', array(
@@ -387,11 +386,12 @@ function coachpress_customize_register( $wp_customize ) {
         'label'    => __( 'Container Width', 'coachpress' ),
         'section'  => 'coachpress_spacing_layout',
         'type'     => 'text',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 1140px, 90%).', 'coachpress' ),
     ) );
 
     $wp_customize->add_section( 'coachpress_form_layout', array(
-        'title'    => __( 'Forms', 'coachpress' ),
-        'panel'    => 'coachpress_layout_settings_panel',
+        'title'    => __( 'Form Fields', 'coachpress' ),
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_form_width', array(
@@ -404,11 +404,12 @@ function coachpress_customize_register( $wp_customize ) {
         'label'    => __( 'Form Width', 'coachpress' ),
         'section'  => 'coachpress_form_layout',
         'type'     => 'text',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 100%, 500px).', 'coachpress' ),
     ) );
 
     $wp_customize->add_section( 'coachpress_image_layout', array(
-        'title'    => __( 'Image Layout', 'coachpress' ),
-        'panel'    => 'coachpress_image_settings_panel',
+        'title'    => __( 'Images', 'coachpress' ),
+        'panel'    => 'coachpress_global_styles_panel',
     ) );
 
     $wp_customize->add_setting( 'coachpress_image_width', array(
@@ -421,6 +422,7 @@ function coachpress_customize_register( $wp_customize ) {
         'label'    => __( 'Image Width', 'coachpress' ),
         'section'  => 'coachpress_image_layout',
         'type'     => 'text',
+        'description' => __( 'Enter a value with a CSS unit (e.g., 100%, 500px).', 'coachpress' ),
     ) );
 }
 add_action( 'customize_register', 'coachpress_customize_register' );
