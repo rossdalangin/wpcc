@@ -15,6 +15,7 @@ function coachpress_customize_register( $wp_customize ) {
     require_once get_template_directory() . '/inc/responsive-font-size-control.php';
     require_once get_template_directory() . '/inc/border-radius-control.php';
     require_once get_template_directory() . '/inc/dimensions-control.php';
+    require_once get_template_directory() . '/inc/google-font-control.php';
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
