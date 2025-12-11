@@ -7,10 +7,18 @@
  * @package CoachPress
  */
 
+$selected_case_studies = get_theme_mod( 'coachpress_case_studies_posts', array() );
+
 $args = array(
-    'post_type' => 'case-studies',
+    'post_type' => 'case-study',
     'posts_per_page' => -1,
 );
+
+if ( ! empty( $selected_case_studies ) ) {
+    $args['post__in'] = $selected_case_studies;
+    $args['orderby'] = 'post__in';
+}
+
 $query = new WP_Query( $args );
 ?>
 

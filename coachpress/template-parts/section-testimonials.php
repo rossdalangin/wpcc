@@ -7,10 +7,18 @@
  * @package CoachPress
  */
 
+$selected_testimonials = get_theme_mod( 'coachpress_testimonials_posts', array() );
+
 $args = array(
-    'post_type' => 'testimonials',
+    'post_type' => 'testimonial',
     'posts_per_page' => -1,
 );
+
+if ( ! empty( $selected_testimonials ) ) {
+    $args['post__in'] = $selected_testimonials;
+    $args['orderby'] = 'post__in';
+}
+
 $query = new WP_Query( $args );
 ?>
 
@@ -19,7 +27,7 @@ $query = new WP_Query( $args );
         <h2><?php echo esc_html( get_theme_mod( 'coachpress_testimonials_section_title', __( 'Testimonials', 'coachpress' ) ) ); ?></h2>
         <div class="section-description" data-aos="fade-up" data-aos-delay="100">
             <?php
-            $content = get_theme_mod( 'coachpress_testimonials_section_description', '' );
+            $content = get_theme_mod( 'coachpress_testimonials_section_description', 'What Our Clients Say' );
             echo wp_kses_post( wpautop( $content ) );
             ?>
         </div>

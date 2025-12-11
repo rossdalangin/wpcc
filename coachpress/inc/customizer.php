@@ -240,8 +240,8 @@ function coachpress_customize_register( $wp_customize ) {
     // -- Social Media --
     $social_networks = array( 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'pinterest' );
     foreach ( $social_networks as $network ) {
-        $wp_customize->add_setting( "coachpress_social_{$network}_url", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
-        $wp_customize->add_control( "coachpress_social_{$network}_url", array( 'label' => sprintf( __( '%s URL', 'coachpress' ), ucfirst( $network ) ), 'section' => 'coachpress_social_media', 'type' => 'url' ) );
+        $wp_customize->add_setting( "coachpress_social_{$network}", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+        $wp_customize->add_control( "coachpress_social_{$network}", array( 'label' => sprintf( __( '%s URL', 'coachpress' ), ucfirst( $network ) ), 'section' => 'coachpress_social_media', 'type' => 'url' ) );
     }
 
 
@@ -258,8 +258,7 @@ function coachpress_customize_register( $wp_customize ) {
         $wp_customize->add_control( "coachpress_section_visibility[{$section_id}]", array( 'label' => sprintf( __( 'Show %s Section', 'coachpress' ), $section_name ), 'section' => 'coachpress_section_ordering', 'type' => 'checkbox' ) );
     }
 
-    // -- Section Titles & Descriptions --
-    $wp_customize->add_section( 'coachpress_section_content', array( 'title' => __( 'Section Content', 'coachpress' ), 'panel' => 'coachpress_homepage_sections_panel', 'priority' => 3 ) );
+    // -- Content Controls moved into sections --
     $sections_with_content = array(
         'services' => ['title' => 'Our Services', 'description' => 'We offer a range of services to help you achieve your goals.'],
         'testimonials' => ['title' => 'What Our Clients Say', 'description' => ''],
@@ -272,17 +271,44 @@ function coachpress_customize_register( $wp_customize ) {
         'cta' => ['title' => 'Ready to Get Started?', 'description' => 'Take the first step towards a better you.']
     );
     foreach ( $sections_with_content as $section_id => $content ) {
+        $section_handle = "coachpress_{$section_id}_section";
         $wp_customize->add_setting( "coachpress_{$section_id}_section_title", array( 'default' => $content['title'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-        $wp_customize->add_control( "coachpress_{$section_id}_section_title", array( 'label' => sprintf( __( '%s Section Title', 'coachpress' ), ucfirst(str_replace('-', ' ', $section_id)) ), 'section' => 'coachpress_section_content', 'type' => 'text' ) );
+        $wp_customize->add_control( "coachpress_{$section_id}_section_title", array( 'label' => __( 'Section Title', 'coachpress' ), 'section' => $section_handle, 'type' => 'text', 'priority' => 1 ) );
         if (!empty($content['description'])) {
             $wp_customize->add_setting( "coachpress_{$section_id}_section_description", array( 'default' => $content['description'], 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
-            $wp_customize->add_control( "coachpress_{$section_id}_section_description", array( 'label' => sprintf( __( '%s Section Description', 'coachpress' ), ucfirst(str_replace('-', ' ', $section_id)) ), 'section' => 'coachpress_section_content', 'type' => 'textarea' ) );
+            $wp_customize->add_control( "coachpress_{$section_id}_section_description", array( 'label' => __( 'Section Description', 'coachpress' ), 'section' => $section_handle, 'type' => 'textarea', 'priority' => 2 ) );
         }
     }
 
-    // -- CTA Section Alignment --
     $wp_customize->add_setting( 'coachpress_cta_alignment', array( 'default' => 'center', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
-    $wp_customize->add_control( 'coachpress_cta_alignment', array( 'label' => __( 'CTA Alignment', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'select', 'choices' => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) ) ) );
+    $wp_customize->add_control( 'coachpress_cta_alignment', array( 'label' => __( 'Alignment', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'select', 'choices' => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) ), 'priority' => 3 ) );
+
+    // -- Services Section --
+    $services = get_posts( array( 'post_type' => 'services', 'numberposts' => -1 ) );
+    $service_choices = array();
+    foreach ( $services as $service ) {
+        $service_choices[ $service->ID ] = $service->post_title;
+    }
+    $wp_customize->add_setting( 'coachpress_services_posts', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_multi_select' ) );
+    $wp_customize->add_control( new CoachPress_Multi_Select_Control( $wp_customize, 'coachpress_services_posts', array( 'label' => __( 'Select Services', 'coachpress' ), 'section' => 'coachpress_services_section', 'choices' => $service_choices, 'priority' => 3 ) ) );
+
+    // -- Testimonials Section --
+    $testimonials = get_posts( array( 'post_type' => 'testimonials', 'numberposts' => -1 ) );
+    $testimonial_choices = array();
+    foreach ( $testimonials as $testimonial ) {
+        $testimonial_choices[ $testimonial->ID ] = $testimonial->post_title;
+    }
+    $wp_customize->add_setting( 'coachpress_testimonials_posts', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_multi_select' ) );
+    $wp_customize->add_control( new CoachPress_Multi_Select_Control( $wp_customize, 'coachpress_testimonials_posts', array( 'label' => __( 'Select Testimonials', 'coachpress' ), 'section' => 'coachpress_testimonials_section', 'choices' => $testimonial_choices, 'priority' => 3 ) ) );
+
+    // -- Case Studies Section --
+    $case_studies = get_posts( array( 'post_type' => 'case-studies', 'numberposts' => -1 ) );
+    $case_study_choices = array();
+    foreach ( $case_studies as $case_study ) {
+        $case_study_choices[ $case_study->ID ] = $case_study->post_title;
+    }
+    $wp_customize->add_setting( 'coachpress_case_studies_posts', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_multi_select' ) );
+    $wp_customize->add_control( new CoachPress_Multi_Select_Control( $wp_customize, 'coachpress_case_studies_posts', array( 'label' => __( 'Select Case Studies', 'coachpress' ), 'section' => 'coachpress_case-studies_section', 'choices' => $case_study_choices, 'priority' => 3 ) ) );
 
     // -- Hero Section --
     $wp_customize->add_setting( 'coachpress_hero_bg_color', array( 'default' => '#F5F5F5', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_background' ) );
@@ -297,8 +323,22 @@ function coachpress_customize_register( $wp_customize ) {
     $wp_customize->add_control( 'coachpress_hero_subheading', array( 'label' => __( 'Subheading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'textarea' ) );
     $wp_customize->add_setting( 'coachpress_hero_cta_text', array( 'default' => 'Book a Free Call', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_text', array( 'label' => __( 'CTA Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text' ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_left_button_2_text', array( 'default' => 'Learn More', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_hero_left_button_2_text', array( 'label' => __( 'Second Button Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text' ) );
+    $wp_customize->add_setting( 'coachpress_hero_left_button_2_url', array( 'default' => '#', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_hero_left_button_2_url', array( 'label' => __( 'Second Button URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url' ) );
+
     $wp_customize->add_setting( 'coachpress_hero_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_url', array( 'label' => __( 'CTA URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url' ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_cta_2_visibility', array( 'default' => false, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_2_visibility', array( 'label' => __( 'Show Second CTA Button', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'checkbox' ) );
+    $wp_customize->add_setting( 'coachpress_hero_cta_2_text', array( 'default' => 'Learn More', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_2_text', array( 'label' => __( 'Second CTA Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'active_callback' => function() use ($wp_customize) { return $wp_customize->get_setting('coachpress_hero_cta_2_visibility')->value(); } ) );
+    $wp_customize->add_setting( 'coachpress_hero_cta_2_url', array( 'default' => '#', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_2_url', array( 'label' => __( 'Second CTA URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url', 'active_callback' => function() use ($wp_customize) { return $wp_customize->get_setting('coachpress_hero_cta_2_visibility')->value(); } ) );
+
     $wp_customize->add_setting( 'coachpress_hero_left_col_align', array( 'default' => 'left', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
     $wp_customize->add_control( 'coachpress_hero_left_col_align', array( 'label' => __( 'Left Column Alignment', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'select', 'choices' => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) ) ) );
     $wp_customize->add_setting( 'coachpress_hero_right_col_type', array( 'default' => 'image', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
@@ -399,4 +439,33 @@ function coachpress_sanitize_border_radius( $value ) {
     if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
     foreach ( $value_decoded as $corner => $radius ) { $value_decoded[$corner] = sanitize_text_field( $radius ); }
     return json_encode( $value_decoded );
+}
+
+function coachpress_sanitize_multi_select( $value ) {
+    if ( ! is_array( $value ) ) {
+        return array();
+    }
+    return array_map( 'absint', $value );
+}
+
+if ( class_exists( 'WP_Customize_Control' ) ) {
+    class CoachPress_Multi_Select_Control extends WP_Customize_Control {
+        public $type = 'coachpress-multi-select';
+
+        public function render_content() {
+            ?>
+            <label>
+                <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+                <select multiple="multiple" <?php $this->link(); ?>>
+                    <?php
+                    foreach ( $this->choices as $value => $label ) {
+                        $selected = in_array( $value, (array) $this->value() ) ? 'selected="selected"' : '';
+                        echo '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>';
+                    }
+                    ?>
+                </select>
+            </label>
+            <?php
+        }
+    }
 }

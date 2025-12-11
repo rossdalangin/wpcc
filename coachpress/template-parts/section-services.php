@@ -7,10 +7,18 @@
  * @package CoachPress
  */
 
+$selected_services = get_theme_mod( 'coachpress_services_posts', array() );
+
 $args = array(
-    'post_type' => 'services',
+    'post_type' => 'service',
     'posts_per_page' => -1,
 );
+
+if ( ! empty( $selected_services ) ) {
+    $args['post__in'] = $selected_services;
+    $args['orderby'] = 'post__in';
+}
+
 $query = new WP_Query( $args );
 ?>
 
@@ -19,7 +27,7 @@ $query = new WP_Query( $args );
         <h2 data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_services_section_title', __( 'Services', 'coachpress' ) ) ); ?></h2>
         <div class="section-description" data-aos="fade-up" data-aos-delay="100">
             <?php
-            $content = get_theme_mod( 'coachpress_services_section_description', '' );
+            $content = get_theme_mod( 'coachpress_services_section_description', 'We offer a range of services to help you achieve your goals.' );
             echo wp_kses_post( wpautop( $content ) );
             ?>
         </div>
