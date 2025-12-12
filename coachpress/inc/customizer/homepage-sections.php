@@ -169,7 +169,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
 
             // BG Video
             $wp_customize->add_setting( "coachpress_{$section_id}_bg_video", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
-            $wp_customize->add_control( "coachpress_{$section_id}_bg_video", array( 'label' => __( 'Background Video URL', 'coachpress' ), 'section' => $section_handle, 'type' => 'url', 'active_callback' => function() use ($wp_customize, $section_id) { return 'video' === $wp_customize->get_setting("coachpress_{$section_id}_bg_type")->value(); }, 'priority' => 63 ) ) );
+            $wp_customize->add_control( "coachpress_{$section_id}_bg_video", array( 'label' => __( 'Background Video URL', 'coachpress' ), 'section' => $section_handle, 'type' => 'url', 'active_callback' => function() use ($wp_customize, $section_id) { return 'video' === $wp_customize->get_setting("coachpress_{$section_id}_bg_type")->value(); }, 'priority' => 63 ) );
 
             // BG Overlay
             $wp_customize->add_setting( "coachpress_{$section_id}_bg_overlay_color", array( 'default' => 'rgba(0,0,0,0.5)', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_rgba_color' ) );
