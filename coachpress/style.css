@@ -172,6 +172,10 @@ a:hover {
 
     .main-navigation ul {
         display: none;
+    }
+
+    .main-navigation.toggled > ul {
+        display: flex;
         flex-direction: column;
         width: 100%;
         background-color: var(--coachpress-mobile-menu-bg-color);
@@ -179,10 +183,6 @@ a:hover {
         top: 100%;
         left: 0;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .main-navigation.toggled ul {
-        display: flex;
     }
 
     .main-navigation ul li a {
@@ -312,27 +312,48 @@ a:hover {
     position: relative;
 }
 
+.faq-item {
+    border-bottom: 1px solid var(--coachpress-secondary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    position: relative;
+    padding-right: 30px; /* Space for the icon */
+}
+
 .faq-item h3::after {
     content: '+';
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    font-weight: 300;
 }
 
 .faq-item.active h3::after {
-    transform: translateY(-50%) rotate(45deg);
+    content: '-';
 }
 
-.faq-item .faq-content {
+.faq-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding-top 0.3s ease;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding-top: 0;
 }
 
 .faq-item.active .faq-content {
-    max-height: 1000px;
+    max-height: 1000px; /* Adjust as needed */
+    padding-top: 1rem;
 }
 
 .service-item,
@@ -360,8 +381,33 @@ img {
     height: auto;
 }
 
+.testimonial-item {
+    text-align: center;
+}
+
 .testimonial-image img {
     border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.testimonial-content {
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    font-weight: bold;
+    color: var(--coachpress-primary-color);
+}
+
+.testimonial-author span {
+    display: block;
+    font-weight: normal;
+    color: var(--coachpress-text-color);
+    font-size: 0.9em;
 }
 
 @media (min-width: 768px) {
