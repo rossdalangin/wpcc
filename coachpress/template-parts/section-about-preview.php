@@ -1,19 +1,32 @@
 <?php
 /**
- * Template part for displaying the About Preview section
+ * Template part for displaying the about-preview section
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package CoachPress
  */
+
+$bg_color = get_theme_mod( 'coachpress_about-preview_section_bg_color' );
+$bg_image_id = get_theme_mod( 'coachpress_about-preview_section_bg_image' );
+$bg_image = $bg_image_id ? wp_get_attachment_image_url( $bg_image_id, 'full' ) : '';
+$heading_color = get_theme_mod( 'coachpress_about-preview_section_heading_color' );
+$text_color = get_theme_mod( 'coachpress_about-preview_section_text_color' );
+$padding = get_theme_mod( 'coachpress_about-preview_section_padding', json_encode( [ 'top' => '60px', 'bottom' => '60px' ] ) );
+$padding_decoded = json_decode( $padding, true );
+$alignment = get_theme_mod('coachpress_about-preview_section_alignment', 'center');
+
 ?>
 
-<section id="about-preview" class="about-preview-section text-section">
+<section id="about-preview" class="about-preview-section" style="background-color: <?php echo esc_attr( $bg_color ); ?>; <?php if ( $bg_image ) : ?> background-image: url(<?php echo esc_url( $bg_image ); ?>); <?php endif; ?> padding-top: <?php echo esc_attr( $padding_decoded['top'] ); ?>; padding-bottom: <?php echo esc_attr( $padding_decoded['bottom'] ); ?>; text-align: <?php echo esc_attr($alignment); ?>;">
     <div class="container">
-        <h2 data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_about_preview_section_title', __( 'Practical experience. Calm guidance.', 'coachpress' ) ) ); ?></h2>
-        <div class="section-description" data-aos="fade-up" data-aos-delay="100">
+        <h2 style="color: <?php echo esc_attr( $heading_color ); ?>;" data-aos="fade-up"><?php echo esc_html( get_theme_mod( 'coachpress_about-preview_section_title', '' ) ); ?></h2>
+        <div class="section-description" style="color: <?php echo esc_attr( $text_color ); ?>;" data-aos="fade-up" data-aos-delay="100">
             <?php
-            $content = get_theme_mod( 'coachpress_about_preview_section_description', __( "My background spans consulting, advisory work, and leadership support across technology, professional services, and executive environments.\n\nClients work with me because I help them think clearly, decide confidently, and move forward with purpose.", 'coachpress' ) );
+            $content = get_theme_mod( 'coachpress_about-preview_section_description', '' );
             echo wp_kses_post( wpautop( $content ) );
             ?>
         </div>
+        <?php get_template_part('template-parts/content', 'about-preview'); ?>
     </div>
 </section>
