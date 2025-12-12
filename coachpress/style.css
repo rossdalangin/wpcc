@@ -39,6 +39,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--coachpress-heading-font-weight);
     letter-spacing: var(--coachpress-heading-letter-spacing);
     line-height: 1.3;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 h1 { font-size: var(--coachpress-h1-font-size-desktop); }
@@ -49,12 +51,15 @@ h5 { font-size: var(--coachpress-h5-font-size-desktop); }
 h6 { font-size: var(--coachpress-h6-font-size-desktop); }
 
 .button,
-input[type="submit"] {
+input[type="submit"],
+.btn {
     display: inline-block;
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid transparent;
     cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
 }
 
 a {
@@ -70,6 +75,7 @@ a:hover {
 # Header
 --------------------------------------------------------------*/
 .site-header {
+    padding: var(--coachpress-header-padding-y) 0;
     border-bottom: 1px solid var(--coachpress-secondary-color);
     transition: all 0.3s ease;
     display: flex;
@@ -94,6 +100,11 @@ a:hover {
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center;
+}
+
+.main-navigation ul li {
+    margin: 0 15px;
 }
 
 .main-navigation ul li a {
@@ -101,6 +112,7 @@ a:hover {
     transition: all 0.3s ease;
     border-bottom: 2px solid transparent;
     color: var(--coachpress-header-link-color);
+    padding: 5px 0;
 }
 
 .main-navigation ul li a:hover {
@@ -127,18 +139,30 @@ a:hover {
     display: block;
 }
 
+.header-cta .button {
+    background-color: var(--coachpress-header-cta-bg-color);
+    color: var(--coachpress-header-cta-text-color);
+    border-radius: var(--coachpress-header-cta-border-radius);
+}
+.header-cta .button:hover {
+    background-color: var(--coachpress-header-cta-hover-bg-color);
+    color: var(--coachpress-header-cta-hover-text-color);
+}
+
 .menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     position: relative;
+    padding: 10px;
 }
 
 .icon-bar {
     display: block;
     width: 24px;
     height: 2px;
+    margin: 5px 0;
     background-color: var(--coachpress-header-hamburger-color);
     transition: all 0.3s ease;
 }
@@ -146,11 +170,9 @@ a:hover {
 .menu-toggle.toggled .icon-bar:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
-
 .menu-toggle.toggled .icon-bar:nth-child(2) {
     opacity: 0;
 }
-
 .menu-toggle.toggled .icon-bar:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
@@ -169,11 +191,9 @@ a:hover {
     .menu-toggle {
         display: block;
     }
-
     .main-navigation ul {
         display: none;
     }
-
     .main-navigation.toggled > ul {
         display: flex;
         flex-direction: column;
@@ -183,19 +203,21 @@ a:hover {
         top: 100%;
         left: 0;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 10px 0;
     }
-
-    .main-navigation ul li a {
+    .main-navigation.toggled ul li {
+        margin: 0;
+    }
+    .main-navigation.toggled ul li a {
         display: block;
+        padding: 10px 20px;
         border-bottom: 1px solid var(--coachpress-secondary-color);
     }
-
     .main-navigation ul li a:hover {
-        border-bottom-color: var(--coachpress-secondary-color);
+        border-bottom-color: transparent;
         color: var(--coachpress-header-link-hover-color);
         background-color: var(--coachpress-mobile-menu-hover-bg-color);
     }
-
     .main-navigation ul ul {
         position: static;
         box-shadow: none;
@@ -219,12 +241,10 @@ a:hover {
     background-size: cover;
     background-position: center;
 }
-
 .section-inner {
     position: relative;
     z-index: 2;
 }
-
 .section-background-video {
     position: absolute;
     top: 0;
@@ -234,7 +254,6 @@ a:hover {
     object-fit: cover;
     z-index: 1;
 }
-
 .section-background-overlay {
     position: absolute;
     top: 0;
@@ -251,12 +270,10 @@ a:hover {
     align-items: center;
     gap: 2rem;
 }
-
 .problem-text-content,
 .about-preview-image-content {
     flex: 1 1 500px;
 }
-
 .problem-image-content,
 .about-preview-text-content {
     flex: 1 1 500px;
@@ -265,33 +282,18 @@ a:hover {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-#hero {
-    background: var(--coachpress-hero-bg-color);
-}
-#hero h1, #hero h2, #hero h3 {
-    color: var(--coachpress-hero-heading-color);
-}
-#hero p {
-    color: var(--coachpress-hero-text-color);
-}
-
+#hero h1, #hero h2, #hero h3 { color: var(--coachpress-hero-heading-color); }
+#hero p, #hero div { color: var(--coachpress-hero-text-color); }
 .hero-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
-
 @media (min-width: 768px) {
-    .hero-left {
-        width: 48%;
-    }
-
-    .hero-right {
-        width: 48%;
-    }
+    .hero-left { width: 48%; }
+    .hero-right { width: 48%; }
 }
-
 .hero-container-full .hero-left {
     width: 100%;
 }
@@ -307,28 +309,20 @@ a:hover {
     gap: 1.5rem;
 }
 
-.faq-item h3 {
-    cursor: pointer;
-    position: relative;
-}
-
 .faq-item {
     border-bottom: 1px solid var(--coachpress-secondary-color);
     padding-bottom: 1rem;
     margin-bottom: 1rem;
 }
-
 .faq-item:last-child {
     border-bottom: none;
     margin-bottom: 0;
 }
-
 .faq-item h3 {
     cursor: pointer;
     position: relative;
-    padding-right: 30px; /* Space for the icon */
+    padding-right: 30px;
 }
-
 .faq-item h3::after {
     content: '+';
     position: absolute;
@@ -339,20 +333,17 @@ a:hover {
     font-size: 1.5rem;
     font-weight: 300;
 }
-
 .faq-item.active h3::after {
     content: '-';
 }
-
 .faq-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
     padding-top: 0;
 }
-
 .faq-item.active .faq-content {
-    max-height: 1000px; /* Adjust as needed */
+    max-height: 1000px;
     padding-top: 1rem;
 }
 
@@ -367,7 +358,6 @@ a:hover {
     padding: var(--coachpress-card-padding-top) var(--coachpress-card-padding-right) var(--coachpress-card-padding-bottom) var(--coachpress-card-padding-left);
     margin: var(--coachpress-card-margin-top) var(--coachpress-card-margin-right) var(--coachpress-card-margin-bottom) var(--coachpress-card-margin-left);
 }
-
 .service-item:hover,
 .testimonial-item:hover,
 .case-study-item:hover,
@@ -375,16 +365,11 @@ a:hover {
     transform: translateY(-8px);
     box-shadow: var(--coachpress-card-hover-box-shadow);
 }
-
 img {
     max-width: 100%;
     height: auto;
 }
-
-.testimonial-item {
-    text-align: center;
-}
-
+.testimonial-item { text-align: center; }
 .testimonial-image img {
     border-radius: 50%;
     width: 80px;
@@ -392,17 +377,14 @@ img {
     object-fit: cover;
     margin-bottom: 1rem;
 }
-
 .testimonial-content {
     font-style: italic;
     margin-bottom: 1rem;
 }
-
 .testimonial-author {
     font-weight: bold;
     color: var(--coachpress-primary-color);
 }
-
 .testimonial-author span {
     display: block;
     font-weight: normal;
@@ -416,7 +398,6 @@ img {
     .processes-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -444,19 +425,12 @@ select {
     color: var(--coachpress-footer-text-color);
     padding: var(--coachpress-footer-padding-y) 0;
 }
-
-.site-footer a {
-    color: var(--coachpress-footer-link-color);
-}
-
+.site-footer a { color: var(--coachpress-footer-link-color); }
 .social-media-icons a {
     transition: all 0.3s ease;
     margin: 0 10px;
 }
-
-.site-footer a:hover {
-    color: var(--coachpress-footer-link-hover-color);
-}
+.site-footer a:hover { color: var(--coachpress-footer-link-hover-color); }
 
 /*--------------------------------------------------------------
 # Modal
@@ -472,7 +446,6 @@ select {
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
 }
-
 .modal-content {
     background-color: #fff;
     border: none;
@@ -482,7 +455,6 @@ select {
     padding: 20px;
     position: relative;
 }
-
 .close {
     position: absolute;
     top: 10px;
@@ -490,7 +462,6 @@ select {
     font-size: 28px;
     font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
     color: black;

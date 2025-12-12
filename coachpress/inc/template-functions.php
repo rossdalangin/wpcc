@@ -1,37 +1,50 @@
 <?php
 /**
- * Functions which enhance the theme by hooking into WordPress
+ * Template part for displaying a section
  *
  * @package CoachPress
  */
 
-/**
- * Adds custom classes to the array of body classes.
- *
- * @param array $classes Classes for the body element.
- * @return array
- */
-function coachpress_body_classes( $classes ) {
-	// Adds a class of hfeed to non-singular pages.
-	if ( ! is_singular() ) {
-		$classes[] = 'hfeed';
-	}
+function coachpress_display_section($section_id) {
+    $bg_type = get_theme_mod("coachpress_{$section_id}_bg_type", 'color');
+    $bg_image_id = get_theme_mod("coachpress_{$section_id}_bg_image");
+    $bg_image = $bg_image_id ? wp_get_attachment_image_url($bg_image_id, 'full') : '';
+    $bg_video = get_theme_mod("coachpress_{$section_id}_bg_video");
+    $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color");
 
-	// Adds a class of no-sidebar when there is no sidebar present.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'no-sidebar';
-	}
+    $section_style = '';
+    if ($bg_type === 'color' && !empty($bg_color)) {
+        $section_style = "background-color: {$bg_color};";
+    } elseif ($bg_type === 'image' && !empty($bg_image)) {
+        $section_style = "background-image: url({$bg_image});";
+    }
 
-	return $classes;
+    ?>
+    <section id="<?php echo esc_attr($section_id); ?>" class="homepage-section" style="<?php echo esc_attr($section_style); ?>">
+        <?php if ($bg_type === 'video' && !empty($bg_video)) : ?>
+            <video class="section-background-video" autoplay muted loop playsinline>
+                <source src="<?php echo esc_url($bg_video); ?>" type="video/mp4">
+            </video>
+        <?php endif; ?>
+        <?php if (($bg_type === 'image' || $bg_type === 'video')) : ?>
+            <div class="section-background-overlay"></div>
+        <?php endif; ?>
+
+        <div class="section-inner container">
+            <?php
+            $title = get_theme_mod("coachpress_{$section_id}_section_title");
+            if (!empty($title)) {
+                echo '<h2 class="section-title">' . esc_html($title) . '</h2>';
+            }
+
+            $description = get_theme_mod("coachpress_{$section_id}_section_description");
+            if (!empty($description)) {
+                echo '<div class="section-description">' . wp_kses_post($description) . '</div>';
+            }
+
+            get_template_part('template-parts/content', $section_id);
+            ?>
+        </div>
+    </section>
+    <?php
 }
-add_filter( 'body_class', 'coachpress_body_classes' );
-
-/**
- * Add a pingback url auto-discovery header for single posts, pages, or attachments.
- */
-function coachpress_pingback_header() {
-	if ( is_singular() && pings_open() ) {
-		printf( '<link rel="pingback" href="%s">', esc_url( get_bloginfo( 'pingback_url' ) ) );
-	}
-}
-add_action( 'wp_head', 'coachpress_pingback_header' );

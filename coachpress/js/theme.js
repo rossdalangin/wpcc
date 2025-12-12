@@ -4,10 +4,10 @@
  * Handles theme-specific JavaScript.
  */
 
-( function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Testimonial Carousel
     if ( document.querySelector('.testimonial-slider') ) {
-        var testimonialSlider = new Swiper('.testimonial-slider', {
+        new Swiper('.testimonial-slider', {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
@@ -25,18 +25,31 @@
     }
 
     // Animate on Scroll
-    AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-    });
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    }
 
     // FAQ Accordion
-    var faqItems = document.querySelectorAll('.faq-item h3');
-
-    faqItems.forEach(function(item) {
-        item.addEventListener('click', function() {
-            this.parentElement.classList.toggle('active');
+    const faqItems = document.querySelectorAll('.faq-item h3');
+    faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            parent.classList.toggle('active');
         });
     });
-} )();
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNavigation = document.getElementById('site-navigation');
+    if (menuToggle && siteNavigation) {
+        menuToggle.addEventListener('click', () => {
+            siteNavigation.classList.toggle('toggled');
+            const isExpanded = siteNavigation.classList.contains('toggled');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+    }
+});

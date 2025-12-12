@@ -13,7 +13,7 @@ get_header();
 		<?php
         $sections = coachpress_get_sections();
         foreach ( $sections as $section ) {
-            get_template_part( 'template-parts/section', $section );
+            coachpress_display_section( $section );
         }
 		?>
 

@@ -173,7 +173,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
 
             // BG Overlay
             $wp_customize->add_setting( "coachpress_{$section_id}_bg_overlay_color", array( 'default' => 'rgba(0,0,0,0.5)', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_rgba_color' ) );
-            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_overlay_color", array( 'label' => __( 'Image/Video Overlay Color', 'coachpress' ), 'description' => __('Set an overlay to make text more readable over images/videos.', 'coachpress'), 'section' => $section_handle, 'active_callback' => function() use ($wp_customize, $section_id) { return in_array($wp_customize->get_setting("coachpress_{$section_id}_bg_type")->value(), ['image', 'video']); }, 'priority' => 64 ) ) );
+            $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_overlay_color", array( 'label' => __( 'Image/Video Overlay Color', 'coachpress' ), 'description' => __('Set an overlay to make text more readable over images/videos.', 'coachpress'), 'section' => $section_handle, 'active_callback' => function($control) use ($section_id) { return in_array($control->manager->get_setting("coachpress_{$section_id}_bg_type")->value(), ['image', 'video']); }, 'priority' => 64 ) ) );
 
             // Heading Color
             $default_heading_color = ($section_id === 'cta') ? '#FFFFFF' : '';
