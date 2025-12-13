@@ -79,12 +79,26 @@ function coachpress_dynamic_css() {
         --coachpress-footer-link-hover-color: <?php echo esc_html( get_theme_mod('coachpress_footer_link_hover_color', '#FFC107') ); ?>;
         --coachpress-footer-padding-y: <?php echo esc_html( get_theme_mod('coachpress_footer_padding_y', '60px') ); ?>;
 
-        /* Buttons */
-        --btn-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_bg_color', '#0D2F4F') ); ?>;
-        --btn-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_text_color', '#FFFFFF') ); ?>;
-        --btn-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_hover_bg_color', '#FFC107') ); ?>;
-        --btn-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_hover_text_color', '#0D2F4F') ); ?>;
-        --btn-border-radius: <?php echo esc_html( get_theme_mod('coachpress_hero_button_border_radius', '4px') ); ?>;
+        /* Hero Button */
+        --coachpress-hero-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_bg_color', '#0D2F4F') ); ?>;
+        --coachpress-hero-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_text_color', '#FFFFFF') ); ?>;
+        --coachpress-hero-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_hover_bg_color', '#FFC107') ); ?>;
+        --coachpress-hero-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_hover_text_color', '#0D2F4F') ); ?>;
+        --coachpress-hero-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_hero_button_border_radius', '4px') ); ?>;
+
+        /* About Button */
+        --coachpress-about-preview-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_bg_color', '#0D2F4F') ); ?>;
+        --coachpress-about-preview-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_text_color', '#FFFFFF') ); ?>;
+        --coachpress-about-preview-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_hover_bg_color', '#FFC107') ); ?>;
+        --coachpress-about-preview-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_hover_text_color', '#0D2F4F') ); ?>;
+        --coachpress-about-preview-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_border_radius', '4px') ); ?>;
+
+        /* CTA Button */
+        --coachpress-cta-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_bg_color', '#FFFFFF') ); ?>;
+        --coachpress-cta-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_text_color', '#0D2F4F') ); ?>;
+        --coachpress-cta-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_hover_bg_color', '#FFC107') ); ?>;
+        --coachpress-cta-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_hover_text_color', '#0D2F4F') ); ?>;
+        --coachpress-cta-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_cta_button_border_radius', '4px') ); ?>;
     }
     <?php
     $css = ob_get_clean();

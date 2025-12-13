@@ -59,16 +59,36 @@ input[type="submit"],
     border: 2px solid transparent;
     cursor: pointer;
     padding: 10px 20px;
-    background-color: var(--btn-bg-color);
-    color: var(--btn-text-color);
-    border-radius: var(--btn-border-radius);
 }
 
-.button:hover,
-input[type="submit"]:hover,
-.btn:hover {
-    background-color: var(--btn-hover-bg-color);
-    color: var(--btn-hover-text-color);
+#hero .btn {
+    background-color: var(--coachpress-hero-button-bg-color);
+    color: var(--coachpress-hero-button-text-color);
+    border-radius: var(--coachpress-hero-button-border-radius);
+}
+#hero .btn:hover {
+    background-color: var(--coachpress-hero-button-hover-bg-color);
+    color: var(--coachpress-hero-button-hover-text-color);
+}
+
+#about-preview .btn {
+    background-color: var(--coachpress-about-preview-button-bg-color);
+    color: var(--coachpress-about-preview-button-text-color);
+    border-radius: var(--coachpress-about-preview-button-border-radius);
+}
+#about-preview .btn:hover {
+    background-color: var(--coachpress-about-preview-button-hover-bg-color);
+    color: var(--coachpress-about-preview-button-hover-text-color);
+}
+
+#cta .btn {
+    background-color: var(--coachpress-cta-button-bg-color);
+    color: var(--coachpress-cta-button-text-color);
+    border-radius: var(--coachpress-cta-button-border-radius);
+}
+#cta .btn:hover {
+    background-color: var(--coachpress-cta-button-hover-bg-color);
+    color: var(--coachpress-cta-button-hover-text-color);
 }
 
 .wpcf7-submit {

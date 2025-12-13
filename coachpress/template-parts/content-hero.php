@@ -17,9 +17,9 @@ $left_col_align = get_theme_mod('coachpress_hero_left_col_align', 'left');
             <?php echo wp_kses_post(get_theme_mod('coachpress_hero_subheading', __('Partner with a dedicated coach to achieve your personal and professional goals.', 'coachpress'))); ?>
         </div>
         <div class="hero-cta">
-            <a href="<?php echo esc_url(get_theme_mod('coachpress_hero_cta_url', '#contact')); ?>" class="btn btn-primary"><?php echo esc_html(get_theme_mod('coachpress_hero_cta_text', 'Book a Free Call')); ?></a>
+            <a href="<?php echo esc_url(get_theme_mod('coachpress_hero_cta_url', '#contact')); ?>" class="btn"><?php echo esc_html(get_theme_mod('coachpress_hero_cta_text', 'Book a Free Call')); ?></a>
             <?php if (get_theme_mod('coachpress_hero_cta_2_visibility', false)) : ?>
-                <a href="<?php echo esc_url(get_theme_mod('coachpress_hero_cta_2_url', '#')); ?>" class="btn btn-secondary"><?php echo esc_html(get_theme_mod('coachpress_hero_cta_2_text', 'Learn More')); ?></a>
+                <a href="<?php echo esc_url(get_theme_mod('coachpress_hero_cta_2_url', '#')); ?>" class="btn"><?php echo esc_html(get_theme_mod('coachpress_hero_cta_2_text', 'Learn More')); ?></a>
             <?php endif; ?>
         </div>
     </div>
