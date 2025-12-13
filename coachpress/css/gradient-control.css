@@ -1,0 +1,35 @@
+.customize-control-coachpress-gradient .gradient-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.customize-control-coachpress-gradient .gradient-tab {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background: #f0f0f0;
+    margin-right: 5px;
+}
+
+.customize-control-coachpress-gradient .gradient-tab.active {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.customize-control-coachpress-gradient .gradient-tab-content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.customize-control-coachpress-gradient .gradient-tab-content.active {
+    display: block;
+}
+
+.customize-control-coachpress-gradient .gradient-colors {
+    display: flex;
+    justify-content: space-between;
+}

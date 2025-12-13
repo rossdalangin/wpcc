@@ -1,0 +1,21 @@
+/**
+ * File section-order.css.
+ *
+ * Handles the styling for the section order control.
+ */
+
+.section-order-list {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.section-order-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: move;
+}
+
+.section-order-item:last-child {
+    border-bottom: none;
+}

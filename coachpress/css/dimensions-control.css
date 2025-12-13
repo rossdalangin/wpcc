@@ -1,0 +1,19 @@
+.customize-control-coachpress-dimensions .dimensions-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.customize-control-coachpress-dimensions .dimensions-inputs > div {
+    width: 22%;
+}
+
+.customize-control-coachpress-dimensions .dimensions-inputs label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.customize-control-coachpress-dimensions .dimensions-inputs input {
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,17 @@
+.customize-control-coachpress-responsive-font-size .responsive-font-size-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.customize-control-coachpress-responsive-font-size .responsive-font-size-inputs > div {
+    width: 30%;
+}
+
+.customize-control-coachpress-responsive-font-size .responsive-font-size-inputs label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.customize-control-coachpress-responsive-font-size .responsive-font-size-inputs input {
+    width: 100%;
+}
