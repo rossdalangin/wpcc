@@ -22,10 +22,10 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     // -- Content Controls moved into sections --
     $sections_with_content = array(
         'services' => ['title' => 'Our Services', 'description' => 'We offer a range of services to help you achieve your goals.'],
-        'testimonials' => ['title' => 'What Our Clients Say', 'description' => ''],
-        'case-studies' => ['title' => 'Case Studies', 'description' => ''],
+        'testimonials' => ['title' => 'What Our Clients Say', 'description' => 'Hear from our satisfied clients.'],
+        'case-studies' => ['title' => 'Case Studies', 'description' => 'See our work in action.'],
         'processes' => ['title' => 'Our Process', 'description' => 'A clear path to success.'],
-        'faqs' => ['title' => 'Frequently Asked Questions', 'description' => ''],
+        'faqs' => ['title' => 'Frequently Asked Questions', 'description' => 'Find answers to common questions.'],
         'contact' => ['title' => 'Get in Touch', 'description' => 'We\'d love to hear from you.'],
         'problem' => ['title' => 'The Problem', 'description' => ''],
         'about-preview' => ['title' => 'About Us', 'description' => ''],
@@ -193,13 +193,13 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         $wp_customize->add_setting( "coachpress_{$section_id}_padding", array( 'default' => json_encode($default_padding), 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_dimensions' ) );
         $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, "coachpress_{$section_id}_padding", array( 'label' => __( 'Section Padding', 'coachpress' ), 'section' => $section_handle, 'priority' => 51  ) ) );
 
-        if ( 'hero' !== $section_id ) {
             // Background Type
             $wp_customize->add_setting( "coachpress_{$section_id}_bg_type", array( 'default' => 'color', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
             $wp_customize->add_control( "coachpress_{$section_id}_bg_type", array( 'label' => __( 'Background Type', 'coachpress' ), 'section' => $section_handle, 'type' => 'select', 'choices' => array( 'color' => __( 'Color', 'coachpress' ), 'image' => __( 'Image', 'coachpress' ), 'video' => __( 'Video', 'coachpress' ) ), 'priority' => 60 ) );
 
             // BG Color
             $default_bg_color = '';
+            if ($section_id === 'hero') { $default_bg_color = '#F5F5F5'; }
             if (in_array($section_id, ['services', 'case-studies', 'contact'])) { $default_bg_color = '#F5F5F5'; }
             if ($section_id === 'cta') { $default_bg_color = '#0D2F4F'; }
             $wp_customize->add_setting( "coachpress_{$section_id}_bg_color", array( 'default' => $default_bg_color, 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
@@ -218,14 +218,17 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_overlay_color", array( 'label' => __( 'Image/Video Overlay Color', 'coachpress' ), 'description' => __('Set an overlay to make text more readable over images/videos.', 'coachpress'), 'section' => $section_handle, 'active_callback' => function($control) use ($section_id) { return in_array($control->manager->get_setting("coachpress_{$section_id}_bg_type")->value(), ['image', 'video']); }, 'priority' => 64 ) ) );
 
             // Heading Color
-            $default_heading_color = ($section_id === 'cta') ? '#FFFFFF' : '';
+            $default_heading_color = '';
+            if ($section_id === 'hero') { $default_heading_color = '#0D2F4F'; }
+            if ($section_id === 'cta') { $default_heading_color = '#FFFFFF'; }
             $wp_customize->add_setting( "coachpress_{$section_id}_heading_color", array( 'default' => $default_heading_color, 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
             $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_heading_color", array( 'label' => __( 'Heading Color', 'coachpress' ), 'section' => $section_handle, 'priority' => 70 ) ) );
 
             // Text Color
-            $default_text_color = ($section_id === 'cta') ? '#FFFFFF' : '';
+            $default_text_color = '';
+            if ($section_id === 'hero') { $default_text_color = '#333333'; }
+            if ($section_id === 'cta') { $default_text_color = '#FFFFFF'; }
             $wp_customize->add_setting( "coachpress_{$section_id}_text_color", array( 'default' => $default_text_color, 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
             $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_text_color", array( 'label' => __( 'Text Color', 'coachpress' ), 'section' => $section_handle, 'priority' => 71 ) ) );
-        }
     }
 }

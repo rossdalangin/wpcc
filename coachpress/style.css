@@ -104,6 +104,8 @@ a:hover {
     transition: all 0.3s ease;
     background-color: var(--coachpress-header-bg-color);
     color: var(--coachpress-header-text-color);
+    position: relative;
+    z-index: 1000;
 }
 
 .site-branding {
@@ -125,6 +127,10 @@ a:hover {
     align-items: center;
 }
 
+.menu-container {
+    display: flex;
+    align-items: center;
+}
 .main-navigation ul li {
     margin: 0 15px;
 }

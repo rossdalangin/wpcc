@@ -195,4 +195,4 @@ function coachpress_dynamic_css() {
     $css = ob_get_clean();
     wp_add_inline_style('coachpress-style', $css);
 }
-add_action('wp_enqueue_scripts', 'coachpress_dynamic_css', 20);
+add_action('wp_head', 'coachpress_dynamic_css');
