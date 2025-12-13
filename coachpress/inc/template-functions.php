@@ -32,14 +32,16 @@ function coachpress_display_section($section_id) {
 
         <div class="section-inner container">
             <?php
-            $title = get_theme_mod("coachpress_{$section_id}_section_title");
-            if (!empty($title)) {
-                echo '<h2 class="section-title">' . esc_html($title) . '</h2>';
-            }
+            if ($section_id !== 'hero') {
+                $title = get_theme_mod("coachpress_{$section_id}_section_title");
+                if (!empty($title)) {
+                    echo '<h2 class="section-title">' . esc_html($title) . '</h2>';
+                }
 
-            $description = get_theme_mod("coachpress_{$section_id}_section_description");
-            if (!empty($description)) {
-                echo '<div class="section-description">' . wp_kses_post($description) . '</div>';
+                $description = get_theme_mod("coachpress_{$section_id}_section_description");
+                if (!empty($description)) {
+                    echo '<div class="section-description">' . wp_kses_post($description) . '</div>';
+                }
             }
 
             get_template_part('template-parts/content', $section_id);
