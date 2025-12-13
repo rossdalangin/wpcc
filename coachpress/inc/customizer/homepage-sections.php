@@ -51,6 +51,18 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_cta_button_url', array( 'default' => '#', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_cta_button_url', array( 'label' => __( 'Button URL', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'url', 'priority' => 5 ) );
 
+    // CTA Button Styles
+    $wp_customize->add_setting( 'coachpress_cta_button_bg_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_cta_button_bg_color', array( 'label' => __( 'Button Background Color', 'coachpress' ), 'section' => 'coachpress_cta_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_text_color', array( 'default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_cta_button_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_cta_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_hover_bg_color', array( 'default' => '#FFC107', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_cta_button_hover_bg_color', array( 'label' => __( 'Button Hover Background Color', 'coachpress' ), 'section' => 'coachpress_cta_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_hover_text_color', array( 'default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_cta_button_hover_text_color', array( 'label' => __( 'Button Hover Text Color', 'coachpress' ), 'section' => 'coachpress_cta_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_border_radius', array( 'default' => '4px', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_cta_button_border_radius', array( 'label' => __( 'Button Border Radius', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'text' ) );
+
     // -- Services Section --
     $services = get_posts( array( 'post_type' => 'services', 'numberposts' => -1 ) );
     $service_choices = array();
@@ -100,6 +112,18 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_hero_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_url', array( 'label' => __( 'CTA URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url' ) );
 
+    // Hero Button Styles
+    $wp_customize->add_setting( 'coachpress_hero_button_bg_color', array( 'default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_bg_color', array( 'label' => __( 'Button Background Color', 'coachpress' ), 'section' => 'coachpress_hero_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_hero_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_hero_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_hero_button_hover_bg_color', array( 'default' => '#FFC107', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_hover_bg_color', array( 'label' => __( 'Button Hover Background Color', 'coachpress' ), 'section' => 'coachpress_hero_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_hero_button_hover_text_color', array( 'default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_hover_text_color', array( 'label' => __( 'Button Hover Text Color', 'coachpress' ), 'section' => 'coachpress_hero_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_hero_button_border_radius', array( 'default' => '4px', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_hero_button_border_radius', array( 'label' => __( 'Button Border Radius', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text' ) );
+
     $wp_customize->add_setting( 'coachpress_hero_cta_2_visibility', array( 'default' => false, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_2_visibility', array( 'label' => __( 'Show Second CTA Button', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'checkbox' ) );
     $wp_customize->add_setting( 'coachpress_hero_cta_2_text', array( 'default' => 'Learn More', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
@@ -143,6 +167,18 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_control( 'coachpress_about-preview_button_text', array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'text', 'priority' => 4 ) );
     $wp_customize->add_setting( 'coachpress_about-preview_button_url', array( 'default' => '#', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_about-preview_button_url', array( 'label' => __( 'Button URL', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'url', 'priority' => 5 ) );
+
+    // About Button Styles
+    $wp_customize->add_setting( 'coachpress_about-preview_button_bg_color', array( 'default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_about-preview_button_bg_color', array( 'label' => __( 'Button Background Color', 'coachpress' ), 'section' => 'coachpress_about-preview_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_about-preview_button_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_about-preview_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_button_hover_bg_color', array( 'default' => '#FFC107', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_about-preview_button_hover_bg_color', array( 'label' => __( 'Button Hover Background Color', 'coachpress' ), 'section' => 'coachpress_about-preview_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_button_hover_text_color', array( 'default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_about-preview_button_hover_text_color', array( 'label' => __( 'Button Hover Text Color', 'coachpress' ), 'section' => 'coachpress_about-preview_section' ) ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_button_border_radius', array( 'default' => '4px', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_about-preview_button_border_radius', array( 'label' => __( 'Button Border Radius', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'text' ) );
 
     // -- Per-Section Layout & Background --
     foreach ( $sections as $section_id => $section_name ) {

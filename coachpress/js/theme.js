@@ -44,11 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const siteNavigation = document.getElementById('site-navigation');
-    if (menuToggle && siteNavigation) {
+    const menuContainer = document.querySelector('.menu-container');
+    if (menuToggle && menuContainer) {
         menuToggle.addEventListener('click', () => {
-            siteNavigation.classList.toggle('toggled');
-            const isExpanded = siteNavigation.classList.contains('toggled');
+            menuContainer.classList.toggle('toggled');
+            menuToggle.classList.toggle('toggled');
+            const isExpanded = menuContainer.classList.contains('toggled');
             menuToggle.setAttribute('aria-expanded', isExpanded);
         });
     }

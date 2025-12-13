@@ -52,28 +52,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <?php
-                wp_nav_menu(
-                    array(
-                        'theme_location' => 'menu-1',
-                        'menu_id'        => 'primary-menu',
-                    )
-                );
-                ?>
-                <div class="header-cta">
+                <div class="menu-container">
                     <?php
-                    if (get_theme_mod('coachpress_header_cta_visibility', true)) {
-                        $cta_type = get_theme_mod( 'coachpress_header_cta_type', 'url' );
-                        $cta_text = get_theme_mod( 'coachpress_header_cta_text', __( 'Contact Us', 'coachpress' ) );
-
-                        if ( 'url' === $cta_type ) {
-                            $cta_url = get_theme_mod( 'coachpress_header_cta_url', '#' );
-                            echo '<a href="' . esc_url( $cta_url ) . '" class="button">' . esc_html( $cta_text ) . '</a>';
-                        } else {
-                            echo '<button id="header-cta-button" class="button">' . esc_html( $cta_text ) . '</button>';
-                        }
-                    }
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'menu-1',
+                            'menu_id'        => 'primary-menu',
+                        )
+                    );
                     ?>
+                    <div class="header-cta">
+                        <?php
+                        if (get_theme_mod('coachpress_header_cta_visibility', true)) {
+                            $cta_type = get_theme_mod( 'coachpress_header_cta_type', 'url' );
+                            $cta_text = get_theme_mod( 'coachpress_header_cta_text', __( 'Contact Us', 'coachpress' ) );
+
+                            if ( 'url' === $cta_type ) {
+                                $cta_url = get_theme_mod( 'coachpress_header_cta_url', '#' );
+                                echo '<a href="' . esc_url( $cta_url ) . '" class="button">' . esc_html( $cta_text ) . '</a>';
+                            } else {
+                                echo '<button id="header-cta-button" class="button">' . esc_html( $cta_text ) . '</button>';
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             </nav><!-- #site-navigation -->
         </div>

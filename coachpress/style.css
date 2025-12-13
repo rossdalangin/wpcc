@@ -59,7 +59,25 @@ input[type="submit"],
     border: 2px solid transparent;
     cursor: pointer;
     padding: 10px 20px;
-    border-radius: 4px;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    border-radius: var(--btn-border-radius);
+}
+
+.button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+    background-color: var(--btn-hover-bg-color);
+    color: var(--btn-hover-text-color);
+}
+
+.wpcf7-submit {
+    background-color: var(--coachpress-primary-color) !important;
+    color: #fff !important;
+}
+
+.wpcf7-submit:hover {
+    background-color: var(--coachpress-accent-color) !important;
 }
 
 a {
@@ -195,24 +213,28 @@ a:hover {
     .menu-toggle {
         display: block;
     }
-    .main-navigation ul {
+    .menu-container {
         display: none;
-    }
-    .main-navigation.toggled > ul {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--coachpress-mobile-menu-bg-color);
         position: absolute;
         top: 100%;
         left: 0;
+        width: 100%;
+        background-color: var(--coachpress-mobile-menu-bg-color);
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         padding: 10px 0;
     }
-    .main-navigation.toggled ul li {
+    .menu-container.toggled {
+        display: block;
+    }
+    .main-navigation ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .main-navigation .menu-container ul li {
         margin: 0;
     }
-    .main-navigation.toggled ul li a {
+    .main-navigation .menu-container ul li a {
         display: block;
         padding: 10px 20px;
         border-bottom: 1px solid var(--coachpress-secondary-color);
