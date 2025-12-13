@@ -1,39 +1,15 @@
 <?php
 /**
- * Template part for displaying the cta section content
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Template part for displaying the CTA section content
  *
  * @package CoachPress
  */
 
-$query_args = [
-    'post_type' => 'cta',
-    'posts_per_page' => -1,
-];
+$button_text = get_theme_mod('coachpress_cta_button_text', 'Get Started');
+$button_url = get_theme_mod('coachpress_cta_button_url', '#');
 
-$selected_posts = get_theme_mod('coachpress_cta_posts');
-if (!empty($selected_posts)) {
-    $query_args['post__in'] = $selected_posts;
-    $query_args['orderby'] = 'post__in';
-}
-
-$query = new WP_Query($query_args);
-
-if ($query->have_posts()): ?>
-    <div class="cta-grid">
-    <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="grid-item" data-aos="fade-up">
-            <?php if(has_post_thumbnail()): ?>
-                <div class="item-image">
-                    <?php the_post_thumbnail('medium'); ?>
-                </div>
-            <?php endif; ?>
-            <div class="item-content">
-                <h3><?php the_title(); ?></h3>
-                <?php the_content(); ?>
-            </div>
-        </div>
-    <?php endwhile; wp_reset_postdata(); ?>
+if (!empty($button_text) && !empty($button_url)) : ?>
+    <div class="cta-button-wrapper">
+        <a href="<?php echo esc_url($button_url); ?>" class="btn btn-primary"><?php echo esc_html($button_text); ?></a>
     </div>
 <?php endif; ?>

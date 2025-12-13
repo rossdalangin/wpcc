@@ -45,6 +45,12 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_cta_alignment', array( 'default' => 'center', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
     $wp_customize->add_control( 'coachpress_cta_alignment', array( 'label' => __( 'Alignment', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'select', 'choices' => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) ), 'priority' => 3 ) );
 
+    // CTA Button
+    $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Get Started', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_cta_button_text', array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'text', 'priority' => 4 ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_url', array( 'default' => '#', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_cta_button_url', array( 'label' => __( 'Button URL', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'url', 'priority' => 5 ) );
+
     // -- Services Section --
     $services = get_posts( array( 'post_type' => 'services', 'numberposts' => -1 ) );
     $service_choices = array();
