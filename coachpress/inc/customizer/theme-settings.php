@@ -25,6 +25,8 @@ function coachpress_customize_theme_settings( $wp_customize ) {
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'coachpress_header_hamburger_color', array('label' => __('Mobile Hamburger Color', 'coachpress'), 'section' => 'coachpress_header_settings')));
     $wp_customize->add_setting('coachpress_mobile_menu_bg_color', array('default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color'));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'coachpress_mobile_menu_bg_color', array('label' => __('Mobile Menu Background', 'coachpress'), 'section' => 'coachpress_header_settings')));
+    $wp_customize->add_setting('coachpress_mobile_menu_link_color', array('default' => '#0D2F4F', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'coachpress_mobile_menu_link_color', array('label' => __('Mobile Menu Link Color', 'coachpress'), 'section' => 'coachpress_header_settings')));
     $wp_customize->add_setting('coachpress_mobile_menu_hover_bg_color', array('default' => '#F5F5F5', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color'));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'coachpress_mobile_menu_hover_bg_color', array('label' => __('Mobile Menu Item Hover BG', 'coachpress'), 'section' => 'coachpress_header_settings')));
 

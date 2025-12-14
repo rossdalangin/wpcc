@@ -63,6 +63,7 @@ function coachpress_dynamic_css() {
         --coachpress-header-padding-y: <?php echo esc_html( get_theme_mod('coachpress_header_padding_y', '15px') ); ?>;
         --coachpress-header-hamburger-color: <?php echo esc_html( get_theme_mod('coachpress_header_hamburger_color', '#333333') ); ?>;
         --coachpress-mobile-menu-bg-color: <?php echo esc_html( get_theme_mod('coachpress_mobile_menu_bg_color', '#FFFFFF') ); ?>;
+        --coachpress-mobile-menu-link-color: <?php echo esc_html( get_theme_mod('coachpress_mobile_menu_link_color', '#0D2F4F') ); ?>;
         --coachpress-mobile-menu-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_mobile_menu_hover_bg_color', '#F5F5F5') ); ?>;
 
         /* Header CTA */

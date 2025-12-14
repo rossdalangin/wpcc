@@ -23,25 +23,29 @@ if (!empty($selected_posts)) {
 $query = new WP_Query($query_args);
 
 if ($query->have_posts()): ?>
-    <div class="testimonials-grid">
-    <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="testimonial-item" data-aos="fade-up">
-            <?php if(has_post_thumbnail()): ?>
-                <div class="testimonial-image">
-                    <?php the_post_thumbnail('thumbnail'); ?>
+    <div class="testimonial-slider swiper-container">
+        <div class="swiper-wrapper">
+            <?php while($query->have_posts()): $query->the_post(); ?>
+                <div class="swiper-slide testimonial-item" data-aos="fade-up">
+                    <?php if(has_post_thumbnail()): ?>
+                        <div class="testimonial-image">
+                            <?php the_post_thumbnail('thumbnail'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="testimonial-content">
+                        <?php the_content(); ?>
+                    </div>
+                    <div class="testimonial-author">
+                        <?php the_title(); ?>
+                        <?php $title = get_post_meta(get_the_ID(), 'title', true); ?>
+                        <?php if ($title) : ?>
+                            <span><?php echo esc_html($title); ?></span>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            <?php endif; ?>
-            <div class="testimonial-content">
-                <?php the_content(); ?>
-            </div>
-            <div class="testimonial-author">
-                <?php the_title(); ?>
-                <?php $title = get_post_meta(get_the_ID(), 'title', true); ?>
-                <?php if ($title) : ?>
-                    <span><?php echo esc_html($title); ?></span>
-                <?php endif; ?>
-            </div>
+            <?php endwhile; wp_reset_postdata(); ?>
         </div>
-    <?php endwhile; wp_reset_postdata(); ?>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
     </div>
 <?php endif; ?>

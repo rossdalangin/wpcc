@@ -44,12 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const menuContainer = document.querySelector('.menu-container');
-    if (menuToggle && menuContainer) {
+    if (menuToggle) {
         menuToggle.addEventListener('click', () => {
-            menuContainer.classList.toggle('toggled');
+            document.body.classList.toggle('mobile-menu-open');
             menuToggle.classList.toggle('toggled');
-            const isExpanded = menuContainer.classList.contains('toggled');
+            const isExpanded = document.body.classList.contains('mobile-menu-open');
             menuToggle.setAttribute('aria-expanded', isExpanded);
         });
     }

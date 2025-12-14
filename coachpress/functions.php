@@ -156,7 +156,6 @@ function coachpress_scripts() {
     $font_url = "https://fonts.googleapis.com/css2?family={$body_font}:wght@300;400;700&family={$heading_font}:wght@400;700&display=swap";
     wp_enqueue_style( 'coachpress-fonts', $font_url, array(), null );
 
-	wp_enqueue_script( 'coachpress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), COACHPRESS_VERSION, true );
 
 	wp_enqueue_script( 'coachpress-modal', get_template_directory_uri() . '/js/modal.js', array(), COACHPRESS_VERSION, true );
 
