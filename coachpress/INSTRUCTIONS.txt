@@ -50,6 +50,14 @@ Located in **Theme Settings > Theme Maintenance**, these tools allow you to:
 - **Recreate Necessary Pages**: Re-runs the automated page creation logic if pages were accidentally deleted.
 - **Remove Necessary Pages**: Quickly cleans up the pages created by the theme.
 
+## Marketing & Promotion
+
+To help you launch and sell your services faster, we've included high-converting marketing assets:
+- **Sales Letter & Prompts**: Copywriting templates for your sales pages.
+- **Video Scripts**: Scripts for a full tutorial and a high-converting Video Sales Letter (VSL).
+
+You can find these in the `PROMOTIONAL_ASSETS.md` file in the theme root.
+
 ## Support & Development
 
 CoachPress is built for performance. It uses AOS (Animate on Scroll) for smooth transitions and Swiper.js for testimonial carousels. All presentational styles are managed via CSS Variables for maximum flexibility.
