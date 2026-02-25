@@ -5,8 +5,8 @@
  * @package CoachPress
  */
 
-function coachpress_display_section($section_id) {
-    if ( ! get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
+function coachpress_display_section($section_id, $force_display = false) {
+    if ( !$force_display && ! get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
         return;
     }
 

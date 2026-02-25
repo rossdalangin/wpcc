@@ -258,6 +258,21 @@ function coachpress_get_sections() {
 }
 
 /**
+ * Display sections for a specific page template.
+ */
+function coachpress_display_page_sections($setting_id, $default) {
+    $sections_str = get_theme_mod($setting_id, $default);
+    if (empty($sections_str)) return;
+
+    $sections = explode(',', $sections_str);
+    foreach ($sections as $section_id) {
+        if (!empty($section_id)) {
+            coachpress_display_section($section_id, true);
+        }
+    }
+}
+
+/**
  * Programmatically create necessary pages on theme activation.
  */
 function coachpress_create_pages() {

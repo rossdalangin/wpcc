@@ -131,6 +131,9 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     }
 
     // -- CTA Section Specific --
+    $wp_customize->add_setting( 'coachpress_cta_subheading', array( 'default' => 'Limited availability for Q3/Q4. Secure your strategy session today.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_cta_subheading', array( 'label' => __( 'CTA Subheading', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'text', 'priority' => 9 ) );
+
     $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Apply For Consultation', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_cta_button_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'text', 'priority' => 10 ) );
     $wp_customize->add_setting( 'coachpress_cta_button_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
@@ -228,11 +231,21 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'priority' => 60
         ) );
 
+        // Best background color defaults for a professional alternating flow
         $default_bg_color = '#FFFFFF';
         if ($section_id === 'hero') { $default_bg_color = 'linear-gradient(135deg, #1a365d 0%, #2d3748 100%)'; }
-        if (in_array($section_id, ['services', 'case-studies', 'contact'])) { $default_bg_color = '#f7fafc'; }
-        if ($section_id === 'cta') { $default_bg_color = 'linear-gradient(135deg, #2d3748 0%, #1a365d 100%)'; }
-        if ($section_id === 'trust') { $default_bg_color = '#FFFFFF'; }
+        elseif ($section_id === 'trust') { $default_bg_color = '#FFFFFF'; }
+        elseif ($section_id === 'problem') { $default_bg_color = '#f7fafc'; }
+        elseif ($section_id === 'about-preview') { $default_bg_color = '#FFFFFF'; }
+        elseif ($section_id === 'services') { $default_bg_color = '#f7fafc'; }
+        elseif ($section_id === 'processes') { $default_bg_color = '#FFFFFF'; }
+        elseif ($section_id === 'testimonials') { $default_bg_color = '#f7fafc'; }
+        elseif ($section_id === 'portfolio') { $default_bg_color = '#FFFFFF'; }
+        elseif ($section_id === 'case-studies') { $default_bg_color = '#f7fafc'; }
+        elseif ($section_id === 'faqs') { $default_bg_color = '#FFFFFF'; }
+        elseif ($section_id === 'cta') { $default_bg_color = 'linear-gradient(135deg, #2d3748 0%, #1a365d 100%)'; }
+        elseif ($section_id === 'contact') { $default_bg_color = '#f7fafc'; }
+        elseif ($section_id === 'team') { $default_bg_color = '#FFFFFF'; }
 
         $wp_customize->add_setting( "coachpress_{$section_id}_bg_color", array(
             'default'           => $default_bg_color,

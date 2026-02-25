@@ -18,9 +18,7 @@ get_header();
 
         endwhile; // End of the loop.
 
-        coachpress_display_section( 'portfolio' );
-        coachpress_display_section( 'case-studies' );
-        coachpress_display_section( 'cta' );
+        coachpress_display_page_sections( 'coachpress_portfolio_page_sections', 'portfolio,case-studies,cta' );
 		?>
 
 	</main><!-- #main -->
