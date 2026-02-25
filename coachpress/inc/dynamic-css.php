@@ -96,15 +96,25 @@ function coachpress_generate_dynamic_css() {
     <?php
     $sections_data = coachpress_get_sections_data();
     foreach ($sections_data as $section_id => $data) :
+        $default_bg = $data['bg'] ?? '#FFFFFF';
         $alignment = get_theme_mod("coachpress_{$section_id}_text_alignment", ($section_id === 'cta' || $section_id === 'testimonials' || $section_id === 'trust' ? 'center' : 'left'));
         $padding_json = get_theme_mod("coachpress_{$section_id}_padding");
         $padding = $padding_json ? json_decode($padding_json, true) : null;
+        $bg_type = get_theme_mod("coachpress_{$section_id}_bg_type", 'color');
+        $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color", $default_bg);
         $heading_color = get_theme_mod("coachpress_{$section_id}_heading_color");
         $text_color = get_theme_mod("coachpress_{$section_id}_text_color");
         $overlay_color = get_theme_mod("coachpress_{$section_id}_bg_overlay_color", 'rgba(26,54,93,0.85)');
         ?>
         .section-<?php echo esc_attr($section_id); ?> {
             text-align: <?php echo esc_html($alignment); ?>;
+            <?php if ($bg_type === 'color' && !empty($bg_color)) : ?>
+                <?php if (strpos($bg_color, 'gradient') !== false) : ?>
+                    background: <?php echo esc_attr($bg_color); ?> !important;
+                <?php else : ?>
+                    background-color: <?php echo esc_attr($bg_color); ?> !important;
+                <?php endif; ?>
+            <?php endif; ?>
             <?php if ($padding) : ?>
                 padding-top: <?php echo esc_html($padding['top']); ?> !important;
                 padding-bottom: <?php echo esc_html($padding['bottom']); ?> !important;

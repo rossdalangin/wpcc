@@ -10,11 +10,14 @@ function coachpress_display_section($section_id, $force_display = false) {
         return;
     }
 
+    $sections_data = coachpress_get_sections_data();
+    $default_bg = $sections_data[$section_id]['bg'] ?? '#FFFFFF';
+
     $bg_type = get_theme_mod("coachpress_{$section_id}_bg_type", 'color');
     $bg_image_id = get_theme_mod("coachpress_{$section_id}_bg_image");
     $bg_image = $bg_image_id ? wp_get_attachment_image_url($bg_image_id, 'full') : '';
     $bg_video = get_theme_mod("coachpress_{$section_id}_bg_video");
-    $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color");
+    $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color", $default_bg);
 
     $section_style = '';
     if ($bg_type === 'color' && !empty($bg_color)) {
@@ -29,7 +32,6 @@ function coachpress_display_section($section_id, $force_display = false) {
 
     $section_classes = array('homepage-section', 'section-' . $section_id);
 
-    $sections_data = coachpress_get_sections_data();
     $default_title = $sections_data[$section_id]['title'] ?? '';
     $default_desc = $sections_data[$section_id]['description'] ?? '';
 

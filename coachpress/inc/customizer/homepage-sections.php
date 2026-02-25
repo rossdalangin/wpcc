@@ -231,21 +231,8 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'priority' => 60
         ) );
 
-        // Best background color defaults for a professional alternating flow
-        $default_bg_color = '#FFFFFF';
-        if ($section_id === 'hero') { $default_bg_color = 'linear-gradient(135deg, #1a365d 0%, #2d3748 100%)'; }
-        elseif ($section_id === 'trust') { $default_bg_color = '#FFFFFF'; }
-        elseif ($section_id === 'problem') { $default_bg_color = '#f7fafc'; }
-        elseif ($section_id === 'about-preview') { $default_bg_color = '#FFFFFF'; }
-        elseif ($section_id === 'services') { $default_bg_color = '#f7fafc'; }
-        elseif ($section_id === 'processes') { $default_bg_color = '#FFFFFF'; }
-        elseif ($section_id === 'testimonials') { $default_bg_color = '#f7fafc'; }
-        elseif ($section_id === 'portfolio') { $default_bg_color = '#FFFFFF'; }
-        elseif ($section_id === 'case-studies') { $default_bg_color = '#f7fafc'; }
-        elseif ($section_id === 'faqs') { $default_bg_color = '#FFFFFF'; }
-        elseif ($section_id === 'cta') { $default_bg_color = 'linear-gradient(135deg, #2d3748 0%, #1a365d 100%)'; }
-        elseif ($section_id === 'contact') { $default_bg_color = '#f7fafc'; }
-        elseif ($section_id === 'team') { $default_bg_color = '#FFFFFF'; }
+        // Pull best background defaults from centralized sections data
+        $default_bg_color = $sections_data[$section_id]['bg'] ?? '#FFFFFF';
 
         $wp_customize->add_setting( "coachpress_{$section_id}_bg_color", array(
             'default'           => $default_bg_color,

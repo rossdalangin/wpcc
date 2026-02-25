@@ -217,19 +217,19 @@ require get_template_directory() . '/inc/theme-maintenance.php';
 
 function coachpress_get_sections_data() {
     return array(
-        'hero'          => ['label' => __( 'Hero', 'coachpress' ), 'title' => 'Accelerate Your Impact. Scale Your Vision.', 'description' => ''],
-        'trust'         => ['label' => __( 'Trust', 'coachpress' ), 'title' => 'Trusted By Visionaries', 'description' => ''],
-        'problem'       => ['label' => __( 'Problem', 'coachpress' ), 'title' => 'Struggling to Scale?', 'description' => ''],
-        'about-preview' => ['label' => __( 'About Preview', 'coachpress' ), 'title' => 'Strategic Guidance', 'description' => ''],
-        'services'      => ['label' => __( 'Services', 'coachpress' ), 'title' => 'Core Services', 'description' => 'Scalable solutions designed for modern leaders and consultants.'],
-        'processes'     => ['label' => __( 'Processes', 'coachpress' ), 'title' => 'The Framework', 'description' => 'A rigorous, result-oriented approach to solving your most complex challenges.'],
-        'testimonials'  => ['label' => __( 'Testimonials', 'coachpress' ), 'title' => 'Client Success', 'description' => 'Real impact, real results. Hear from those who have walked the path.'],
-        'portfolio'     => ['label' => __( 'Portfolio', 'coachpress' ), 'title' => 'Strategic Portfolio', 'description' => 'A curated selection of high-impact projects.'],
-        'case-studies'  => ['label' => __( 'Case Studies', 'coachpress' ), 'title' => 'Success Stories', 'description' => 'Deep dives into strategic transformations and measurable outcomes.'],
-        'faqs'          => ['label' => __( 'FAQs', 'coachpress' ), 'title' => 'Common Questions', 'description' => 'Insights into how we work and what you can expect.'],
-        'cta'           => ['label' => __( 'CTA', 'coachpress' ), 'title' => 'Ready for the Next Level?', 'description' => 'Join an exclusive group of high-performers today.'],
-        'contact'       => ['label' => __( 'Contact', 'coachpress' ), 'title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.'],
-        'team'          => ['label' => __( 'Team', 'coachpress' ), 'title' => 'The Collective', 'description' => 'Expert minds coming together for your success.'],
+        'hero'          => ['label' => __( 'Hero', 'coachpress' ), 'title' => 'Accelerate Your Impact. Scale Your Vision.', 'description' => '', 'bg' => 'linear-gradient(135deg, #1a365d 0%, #2d3748 100%)'],
+        'trust'         => ['label' => __( 'Trust', 'coachpress' ), 'title' => 'Trusted By Visionaries', 'description' => '', 'bg' => '#FFFFFF'],
+        'problem'       => ['label' => __( 'Problem', 'coachpress' ), 'title' => 'Struggling to Scale?', 'description' => '', 'bg' => '#f7fafc'],
+        'about-preview' => ['label' => __( 'About Preview', 'coachpress' ), 'title' => 'Strategic Guidance', 'description' => '', 'bg' => '#FFFFFF'],
+        'services'      => ['label' => __( 'Services', 'coachpress' ), 'title' => 'Core Services', 'description' => 'Scalable solutions designed for modern leaders and consultants.', 'bg' => '#f7fafc'],
+        'processes'     => ['label' => __( 'Processes', 'coachpress' ), 'title' => 'The Framework', 'description' => 'A rigorous, result-oriented approach to solving your most complex challenges.', 'bg' => '#FFFFFF'],
+        'testimonials'  => ['label' => __( 'Testimonials', 'coachpress' ), 'title' => 'Client Success', 'description' => 'Real impact, real results. Hear from those who have walked the path.', 'bg' => '#f7fafc'],
+        'portfolio'     => ['label' => __( 'Portfolio', 'coachpress' ), 'title' => 'Strategic Portfolio', 'description' => 'A curated selection of high-impact projects.', 'bg' => '#FFFFFF'],
+        'case-studies'  => ['label' => __( 'Case Studies', 'coachpress' ), 'title' => 'Success Stories', 'description' => 'Deep dives into strategic transformations and measurable outcomes.', 'bg' => '#f7fafc'],
+        'faqs'          => ['label' => __( 'FAQs', 'coachpress' ), 'title' => 'Common Questions', 'description' => 'Insights into how we work and what you can expect.', 'bg' => '#FFFFFF'],
+        'cta'           => ['label' => __( 'CTA', 'coachpress' ), 'title' => 'Ready for the Next Level?', 'description' => 'Join an exclusive group of high-performers today.', 'bg' => 'linear-gradient(135deg, #2d3748 0%, #1a365d 100%)'],
+        'contact'       => ['label' => __( 'Contact', 'coachpress' ), 'title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.', 'bg' => '#f7fafc'],
+        'team'          => ['label' => __( 'Team', 'coachpress' ), 'title' => 'The Collective', 'description' => 'Expert minds coming together for your success.', 'bg' => '#FFFFFF'],
     );
 }
 
