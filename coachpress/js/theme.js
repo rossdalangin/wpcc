@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -20,16 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     slidesPerView: 2,
                     spaceBetween: 40,
                 },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                }
             },
         });
     }
 
-    // Animate on Scroll
+    // Animate on Scroll (AOS)
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
+            duration: 1000,
+            easing: 'ease-out-cubic',
             once: true,
+            offset: 120,
         });
     }
 
@@ -38,7 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
     faqItems.forEach(item => {
         item.addEventListener('click', () => {
             const parent = item.parentElement;
-            parent.classList.toggle('active');
+            const wasActive = parent.classList.contains('active');
+
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+            if (!wasActive) {
+                parent.classList.add('active');
+            }
         });
     });
 
@@ -52,4 +68,26 @@ document.addEventListener('DOMContentLoaded', function() {
             menuToggle.setAttribute('aria-expanded', isExpanded);
         });
     }
+
+    // Smooth Scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                if (document.body.classList.contains('mobile-menu-open')) {
+                    document.body.classList.remove('mobile-menu-open');
+                    menuToggle.classList.remove('toggled');
+                }
+            }
+        });
+    });
 });
