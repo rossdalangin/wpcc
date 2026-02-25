@@ -17,6 +17,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <?php if ( is_singular() ) : ?>
         <meta name="description" content="<?php echo esc_attr( wp_strip_all_tags( get_the_excerpt() ) ); ?>">
+        <?php
+        $tags = wp_get_post_tags( get_the_ID(), array( 'fields' => 'names' ) );
+        $keywords = !empty($tags) ? implode( ',', $tags ) : get_theme_mod('coachpress_seo_keywords', '');
+        ?>
+        <meta name="keywords" content="<?php echo esc_attr( $keywords ); ?>">
         <meta property="og:title" content="<?php the_title(); ?>">
         <meta property="og:description" content="<?php echo esc_attr( wp_strip_all_tags( get_the_excerpt() ) ); ?>">
         <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
@@ -26,6 +31,7 @@
         <?php endif; ?>
     <?php else : ?>
         <meta name="description" content="<?php bloginfo( 'description' ); ?>">
+        <meta name="keywords" content="<?php echo esc_attr( get_theme_mod('coachpress_seo_keywords', '') ); ?>">
         <meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
         <meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
         <meta property="og:type" content="website">

@@ -35,18 +35,18 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
 
     // -- Content Controls --
     $sections_with_content = array(
-        'services'      => ['title' => 'Specialized Coaching Solutions', 'description' => 'Tailored strategies designed to help you break through plateaus and achieve sustainable growth.'],
-        'testimonials'  => ['title' => 'Client Impact Stories', 'description' => 'Hear from the leaders and visionaries who have transformed their careers.'],
-        'case-studies'  => ['title' => 'Proven Results', 'description' => 'A closer look at how my methodology delivers measurable ROI.'],
-        'processes'     => ['title' => 'My Strategic Framework', 'description' => 'A structured, four-phase approach to modern consulting and leadership.'],
-        'faqs'          => ['title' => 'Questions? I Have Answers.', 'description' => 'Everything you need to know about embarking on this partnership.'],
-        'contact'       => ['title' => 'Ready to Level Up?', 'description' => 'Submit your application for a discovery session today.'],
-        'problem'       => ['title' => 'Feeling The Growth Gap?', 'description' => ''],
-        'about-preview' => ['title' => 'Your Strategic Partner', 'description' => ''],
-        'trust'         => ['title' => 'Trusted By Global Leaders', 'description' => ''],
-        'cta'           => ['title' => 'Secure Your Future Growth', 'description' => 'Join the elite ranks of high-performing consultants and executives.'],
-        'portfolio'     => ['title' => 'Strategic Portfolio', 'description' => 'Highlighting the key initiatives and successful outcomes.'],
-        'team'          => ['title' => 'The Collaborative Network', 'description' => 'Access a multidisciplinary team of experts dedicated to your success.'],
+        'services'      => ['title' => 'Core Services', 'description' => 'Scalable solutions designed for modern leaders and consultants.'],
+        'testimonials'  => ['title' => 'Client Success', 'description' => 'Real impact, real results. Hear from those who have walked the path.'],
+        'case-studies'  => ['title' => 'Success Stories', 'description' => 'Deep dives into strategic transformations and measurable outcomes.'],
+        'processes'     => ['title' => 'The Framework', 'description' => 'A rigorous, result-oriented approach to solving your most complex challenges.'],
+        'faqs'          => ['title' => 'Common Questions', 'description' => 'Insights into how we work and what you can expect.'],
+        'contact'       => ['title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.'],
+        'problem'       => ['title' => 'Struggling to Scale?', 'description' => ''],
+        'about-preview' => ['title' => 'Strategic Guidance', 'description' => ''],
+        'trust'         => ['title' => 'Trusted By Visionaries', 'description' => ''],
+        'cta'           => ['title' => 'Ready for the Next Level?', 'description' => 'Join an exclusive group of high-performers today.'],
+        'portfolio'     => ['title' => 'Strategic Portfolio', 'description' => 'A curated selection of high-impact projects.'],
+        'team'          => ['title' => 'The Collective', 'description' => 'Expert minds coming together for your success.'],
     );
 
     foreach ( $sections_with_content as $section_id => $content ) {
@@ -78,11 +78,11 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     }
 
     // -- Hero Section Specific --
-    $wp_customize->add_setting( 'coachpress_hero_heading', array( 'default' => 'Lead With Authority. Scale With Precision.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_hero_heading', array( 'default' => 'Accelerate Your Impact. Scale Your Vision.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_hero_heading', array( 'label' => __( 'Hero Heading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 10 ) );
-    $wp_customize->add_setting( 'coachpress_hero_subheading', array( 'default' => 'Bespoke coaching and strategic consulting for high-performing professionals ready to dominate their market.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_setting( 'coachpress_hero_subheading', array( 'default' => 'Elite coaching for consultants and executives who refuse to settle for the status quo.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_hero_subheading', array( 'label' => __( 'Hero Subheading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'textarea', 'priority' => 11 ) );
-    $wp_customize->add_setting( 'coachpress_hero_cta_text', array( 'default' => 'Book Discovery Session', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_hero_cta_text', array( 'default' => 'Schedule Discovery Call', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 12 ) );
     $wp_customize->add_setting( 'coachpress_hero_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url', 'priority' => 13 ) );
@@ -99,7 +99,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_hero_right_col_image', array( 'label' => __( 'Hero Image', 'coachpress' ), 'section' => 'coachpress_hero_section', 'mime_type' => 'image', 'active_callback' => function( $control ) { return 'image' === $control->manager->get_setting('coachpress_hero_right_col_type')->value(); }, 'priority' => 21 ) ) );
 
     // -- CTA Section Specific --
-    $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Apply To Work With Me', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Apply For Consultation', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_cta_button_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'text', 'priority' => 10 ) );
     $wp_customize->add_setting( 'coachpress_cta_button_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_cta_button_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'url', 'priority' => 11 ) );
@@ -120,7 +120,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     ) ) );
 
     // -- Problem Section Specific --
-    $wp_customize->add_setting( 'coachpress_problem_content', array( 'default' => 'You have mastered your craft, yet you feel like your growth has hit a ceiling. The traditional strategies that got you here are no longer enough to propel you forward. You are working harder, but the impact and income remain stagnant.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_setting( 'coachpress_problem_content', array( 'default' => 'You’ve reached the limit of what hard work alone can achieve. Your current systems are straining, and your time is being consumed by operations rather than strategy. It’s time for a new approach.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_problem_content', array( 'label' => __( 'Problem Content', 'coachpress' ), 'section' => 'coachpress_problem_section', 'type' => 'textarea', 'priority' => 5 ) );
     $wp_customize->add_setting( 'coachpress_problem_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_problem_image', array(
@@ -131,7 +131,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     ) ) );
 
     // -- About Preview Section Specific --
-    $wp_customize->add_setting( 'coachpress_about-preview_content', array( 'default' => 'I partner with highly-motivated professionals to dismantle internal barriers and architect high-impact businesses. Through a combination of strategic foresight and personalized leadership coaching, we don’t just reach your goals—we redefine them.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_content', array( 'default' => 'With decades of experience in organizational strategy and leadership development, I provide the outside perspective and proven frameworks you need to break through internal plateaus.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_about-preview_content', array( 'label' => __( 'About Content', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'textarea', 'priority' => 5 ) );
     $wp_customize->add_setting( 'coachpress_about-preview_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_about-preview_image', array(
@@ -140,7 +140,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         'mime_type'=> 'image',
         'priority' => 6
     ) ) );
-    $wp_customize->add_setting( 'coachpress_about-preview_button_text', array( 'default' => 'Explore My Methodology', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_button_text', array( 'default' => 'My Approach', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_about-preview_button_text', array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'text', 'priority' => 10 ) );
     $wp_customize->add_setting( 'coachpress_about-preview_button_url', array( 'default' => '#about', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_about-preview_button_url', array( 'label' => __( 'Button URL', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'url', 'priority' => 11 ) );

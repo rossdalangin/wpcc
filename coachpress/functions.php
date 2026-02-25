@@ -212,26 +212,27 @@ require get_template_directory() . '/inc/cpt.php';
 
 function coachpress_get_section_choices() {
     return array(
-        'hero' => __( 'Hero', 'coachpress' ),
-        'services' => __( 'Services', 'coachpress' ),
-        'testimonials' => __( 'Testimonials', 'coachpress' ),
-        'case-studies' => __( 'Case Studies', 'coachpress' ),
-        'processes' => __( 'Processes', 'coachpress' ),
-        'faqs' => __( 'FAQs', 'coachpress' ),
-        'contact' => __( 'Contact', 'coachpress' ),
-        'cta' => __( 'CTA', 'coachpress' ),
-        'trust' => __( 'Trust', 'coachpress' ),
-        'problem' => __( 'Problem', 'coachpress' ),
+        'hero'          => __( 'Hero', 'coachpress' ),
+        'trust'         => __( 'Trust', 'coachpress' ),
+        'problem'       => __( 'Problem', 'coachpress' ),
         'about-preview' => __( 'About Preview', 'coachpress' ),
-        'portfolio' => __( 'Portfolio', 'coachpress' ),
-        'team' => __( 'Team', 'coachpress' ),
+        'services'      => __( 'Services', 'coachpress' ),
+        'processes'     => __( 'Processes', 'coachpress' ),
+        'testimonials'  => __( 'Testimonials', 'coachpress' ),
+        'portfolio'     => __( 'Portfolio', 'coachpress' ),
+        'case-studies'  => __( 'Case Studies', 'coachpress' ),
+        'faqs'          => __( 'FAQs', 'coachpress' ),
+        'cta'           => __( 'CTA', 'coachpress' ),
+        'contact'       => __( 'Contact', 'coachpress' ),
+        'team'          => __( 'Team', 'coachpress' ),
     );
 }
 
 
 function coachpress_get_sections() {
     $sections = array();
-    $order = explode( ',', get_theme_mod( 'coachpress_section_order', 'hero,services,testimonials,case-studies,processes,faqs,cta,contact' ) );
+    $default_order = 'hero,trust,problem,about-preview,services,processes,testimonials,portfolio,case-studies,faqs,cta,contact';
+    $order = explode( ',', get_theme_mod( 'coachpress_section_order', $default_order ) );
 
     foreach ( $order as $section_id ) {
         if ( get_theme_mod( "coachpress_section_visibility[$section_id]", true ) ) {

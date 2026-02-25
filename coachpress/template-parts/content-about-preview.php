@@ -19,16 +19,13 @@ $button_url = get_theme_mod('coachpress_about-preview_button_url', '#');
         </div>
     <?php endif; ?>
     <div class="about-preview-text-content" data-aos="fade-left">
-        <?php if (!empty($heading)): ?>
-            <h3 class="about-preview-heading"><?php echo esc_html($heading); ?></h3>
-        <?php endif; ?>
         <?php if (!empty($content)): ?>
             <div class="about-preview-description">
                 <?php echo wp_kses_post($content); ?>
             </div>
         <?php endif; ?>
         <?php if (!empty($button_text) && !empty($button_url)): ?>
-            <a href="<?php echo esc_url($button_url); ?>" class="btn btn-primary"><?php echo esc_html($button_text); ?></a>
+            <a href="<?php echo esc_url($button_url); ?>" class="btn"><?php echo esc_html($button_text); ?></a>
         <?php endif; ?>
     </div>
 </div>

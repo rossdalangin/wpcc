@@ -11,7 +11,7 @@ $left_col_align = get_theme_mod('coachpress_hero_left_col_align', 'left');
 
 ?>
 <div class="<?php echo esc_attr($container_class); ?>">
-    <div class="hero-left">
+    <div class="hero-left" data-aos="fade-right">
         <h1><?php echo esc_html(get_theme_mod('coachpress_hero_heading', __('Unlock Your Potential', 'coachpress'))); ?></h1>
         <div class="section-description">
             <?php echo wp_kses_post(get_theme_mod('coachpress_hero_subheading', __('Partner with a dedicated coach to achieve your personal and professional goals.', 'coachpress'))); ?>
@@ -25,7 +25,7 @@ $left_col_align = get_theme_mod('coachpress_hero_left_col_align', 'left');
     </div>
 
     <?php if ($right_col_type !== 'none') : ?>
-        <div class="hero-right">
+        <div class="hero-right" data-aos="fade-left">
             <?php
             switch ($right_col_type) {
                 case 'image':

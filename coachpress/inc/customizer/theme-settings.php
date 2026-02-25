@@ -68,6 +68,11 @@ function coachpress_customize_theme_settings( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_footer_copyright_text', array( 'default' => '© ' . date('Y') . ' CoachPress. All Rights Reserved.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_footer_copyright_text', array( 'label' => __( 'Copyright Text', 'coachpress' ), 'section' => 'coachpress_footer_settings', 'type' => 'textarea' ) );
 
+    // -- SEO Settings --
+    $wp_customize->add_section( 'coachpress_seo_settings', array( 'title' => __( 'SEO Settings', 'coachpress' ), 'panel' => 'coachpress_theme_settings_panel' ) );
+    $wp_customize->add_setting( 'coachpress_seo_keywords', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_seo_keywords', array( 'label' => __( 'Global Keywords', 'coachpress' ), 'description' => __('Enter keywords separated by commas.', 'coachpress'), 'section' => 'coachpress_seo_settings', 'type' => 'text' ) );
+
     // -- Social Media --
     $social_networks = array( 'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'pinterest' );
     foreach ( $social_networks as $network ) {
