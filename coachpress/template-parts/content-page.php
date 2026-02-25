@@ -46,7 +46,12 @@
 
 	<div class="entry-content <?php echo ! is_front_page() ? 'container' : ''; ?>">
 		<?php
-		the_content();
+        $content_override = get_theme_mod( "coachpress_{$post_slug}_page_content" );
+        if ( !empty($content_override) ) {
+            echo wp_kses_post($content_override);
+        } else {
+            the_content();
+        }
 
 		wp_link_pages(
 			array(

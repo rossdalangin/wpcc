@@ -64,6 +64,9 @@ function coachpress_customize_page_templates( $wp_customize ) {
         $wp_customize->add_setting( "coachpress_{$slug}_banner_subtitle", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
         $wp_customize->add_control( "coachpress_{$slug}_banner_subtitle", array( 'label' => __( 'Banner Subtitle', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
 
+        $wp_customize->add_setting( "coachpress_{$slug}_page_content", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+        $wp_customize->add_control( "coachpress_{$slug}_page_content", array( 'label' => __( 'Page Main Content Override', 'coachpress' ), 'description' => __('Modify the core content of this page directly from here.', 'coachpress'), 'section' => $section_id, 'type' => 'textarea' ) );
+
         $wp_customize->add_setting( "coachpress_{$slug}_page_banner_image", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'absint' ) );
         $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, "coachpress_{$slug}_page_banner_image", array( 'label' => __( 'Banner Image', 'coachpress' ), 'section' => $section_id, 'mime_type' => 'image' ) ) );
 
