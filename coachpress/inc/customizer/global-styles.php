@@ -19,6 +19,16 @@ function coachpress_customize_global_styles( $wp_customize ) {
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_accent_color', array( 'label' => __( 'Accent Color', 'coachpress' ), 'description' => __('A premium accent color for highlights and calls to action.', 'coachpress'), 'section'  => 'coachpress_global_colors' ) ) );
 	$wp_customize->add_setting( 'coachpress_text_color', array( 'default'   => '#2d3748', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_text_color', array( 'label' => __( 'Body Text Color', 'coachpress' ), 'section'  => 'coachpress_global_colors' ) ) );
+    $wp_customize->add_setting( 'coachpress_muted_text_color', array( 'default'   => '#718096', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_muted_text_color', array( 'label' => __( 'Muted Text Color', 'coachpress' ), 'section'  => 'coachpress_global_colors' ) ) );
+    $wp_customize->add_setting( 'coachpress_link_color', array( 'default'   => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_link_color', array( 'label' => __( 'Link Color', 'coachpress' ), 'section'  => 'coachpress_global_colors' ) ) );
+    $wp_customize->add_setting( 'coachpress_link_hover_color', array( 'default'   => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_link_hover_color', array( 'label' => __( 'Link Hover Color', 'coachpress' ), 'section'  => 'coachpress_global_colors' ) ) );
+    $wp_customize->add_setting( 'coachpress_button_hover_bg_color', array( 'default'   => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_button_hover_bg_color', array( 'label' => __( 'Global Button Hover BG', 'coachpress' ), 'section'  => 'coachpress_global_colors' ) ) );
+    $wp_customize->add_setting( 'coachpress_button_hover_text_color', array( 'default'   => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_button_hover_text_color', array( 'label' => __( 'Global Button Hover Text', 'coachpress' ), 'section'  => 'coachpress_global_colors' ) ) );
 
     // -- Typography --
 	$wp_customize->add_setting( 'coachpress_body_font', array( 'default'   => 'Inter', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );

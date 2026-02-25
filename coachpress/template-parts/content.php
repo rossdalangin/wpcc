@@ -9,55 +9,62 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+<article id="post-<?php the_ID(); ?>" <?php post_class( is_singular() ? 'post-single-article' : 'post-card card' ); ?> data-aos="fade-up">
+	<?php if ( ! is_singular() ) : ?>
+        <?php if ( has_post_thumbnail() ) : ?>
+            <div class="post-thumbnail">
+                <a href="<?php the_permalink(); ?>">
+                    <?php the_post_thumbnail('large'); ?>
+                </a>
+            </div>
+        <?php endif; ?>
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				coachpress_posted_on();
-				coachpress_posted_by();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+        <div class="post-card-content">
+            <header class="entry-header">
+                <div class="entry-meta muted-text">
+                    <?php coachpress_posted_on(); ?>
+                </div>
+                <?php the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' ); ?>
+            </header>
 
-	<?php coachpress_post_thumbnail(); ?>
+            <div class="entry-excerpt">
+                <?php the_excerpt(); ?>
+            </div>
 
-	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'coachpress' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
+            <footer class="entry-footer">
+                <a href="<?php the_permalink(); ?>" class="read-more-link"><?php _e('Read Article', 'coachpress'); ?> <i class="fa fa-long-arrow-right"></i></a>
+            </footer>
+        </div>
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'coachpress' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
+    <?php else : ?>
+        <div class="entry-content">
+            <?php
+            the_content(
+                sprintf(
+                    wp_kses(
+                        /* translators: %s: Name of current post. Only visible to screen readers */
+                        __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'coachpress' ),
+                        array(
+                            'span' => array(
+                                'class' => array(),
+                            ),
+                        )
+                    ),
+                    wp_kses_post( get_the_title() )
+                )
+            );
 
-	<footer class="entry-footer">
-		<?php coachpress_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+            wp_link_pages(
+                array(
+                    'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'coachpress' ),
+                    'after'  => '</div>',
+                )
+            );
+            ?>
+        </div><!-- .entry-content -->
+
+        <footer class="entry-footer container">
+            <?php coachpress_entry_footer(); ?>
+        </footer><!-- .entry-footer -->
+    <?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->

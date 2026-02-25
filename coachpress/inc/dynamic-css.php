@@ -14,7 +14,14 @@ function coachpress_generate_dynamic_css() {
         --coachpress-secondary-color: <?php echo esc_html( get_theme_mod('coachpress_secondary_color', '#f7fafc') ); ?>;
         --coachpress-accent-color: <?php echo esc_html( get_theme_mod('coachpress_accent_color', '#c0a080') ); ?>;
         --coachpress-text-color: <?php echo esc_html( get_theme_mod('coachpress_text_color', '#2d3748') ); ?>;
+        --coachpress-muted-text-color: <?php echo esc_html( get_theme_mod('coachpress_muted_text_color', '#718096') ); ?>;
+        --coachpress-link-color: <?php echo esc_html( get_theme_mod('coachpress_link_color', '#1a365d') ); ?>;
+        --coachpress-link-hover-color: <?php echo esc_html( get_theme_mod('coachpress_link_hover_color', '#c0a080') ); ?>;
         --coachpress-dark-bg-color: #1a202c;
+
+        /* Global Button Hover */
+        --coachpress-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_button_hover_bg_color', '#1a365d') ); ?>;
+        --coachpress-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_button_hover_text_color', '#FFFFFF') ); ?>;
 
         /* Global Typography */
         --coachpress-body-font: '<?php echo esc_html( get_theme_mod('coachpress_body_font', 'Inter') ); ?>', sans-serif;
@@ -211,6 +218,19 @@ function coachpress_generate_dynamic_css() {
     .page-banner.has-banner-image .entry-title,
     .page-banner.has-banner-image .entry-subtitle {
         color: #FFFFFF !important;
+    }
+
+    /* Global Link Colors */
+    a { color: var(--coachpress-link-color); text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: var(--coachpress-link-hover-color); }
+
+    /* Muted Text */
+    .muted-text, .entry-meta, .portfolio-item-excerpt, .team-member-bio { color: var(--coachpress-muted-text-color) !important; }
+
+    /* Button Hovers */
+    .btn:hover, .button:hover, input[type="submit"]:hover {
+        background-color: var(--coachpress-button-hover-bg-color) !important;
+        color: var(--coachpress-button-hover-text-color) !important;
     }
 
     <?php
