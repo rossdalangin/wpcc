@@ -6,7 +6,7 @@
  */
 
 function coachpress_display_section($section_id) {
-    if ( ! get_theme_mod( "coachpress_section_visibility[{$section_id}]", true ) ) {
+    if ( ! get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
         return;
     }
 
@@ -24,7 +24,7 @@ function coachpress_display_section($section_id) {
             $section_style = "background-color: {$bg_color};";
         }
     } elseif ($bg_type === 'image' && !empty($bg_image)) {
-        $section_style = "background-image: url('{$bg_image}');";
+        $section_style = "background-image: url('" . esc_url($bg_image) . "');";
     }
 
     $section_classes = array('homepage-section', 'section-' . $section_id);

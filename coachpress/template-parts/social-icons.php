@@ -16,7 +16,7 @@ $social_networks = array(
 );
 ?>
 
-<div class="social-media-icons">
+<div class="social-icons">
     <?php foreach ( $social_networks as $network => $label ) : ?>
         <?php $url = get_theme_mod( "coachpress_social_{$network}" ); ?>
         <?php if ( ! empty( $url ) ) : ?>

@@ -244,7 +244,7 @@ function coachpress_get_sections() {
     $order = explode( ',', get_theme_mod( 'coachpress_section_order', $default_order ) );
 
     foreach ( $order as $section_id ) {
-        if ( get_theme_mod( "coachpress_section_visibility[$section_id]", true ) ) {
+        if ( get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
             $sections[] = $section_id;
         }
     }
