@@ -10,6 +10,14 @@ $query_args = [
     'posts_per_page' => -1,
 ];
 
+$selected_posts = get_theme_mod('coachpress_portfolio_posts');
+if (!empty($selected_posts)) {
+    $query_args['post__in'] = (array)$selected_posts;
+    $query_args['orderby'] = 'post__in';
+} else {
+    $query_args['posts_per_page'] = 3;
+}
+
 $query = new WP_Query($query_args);
 
 if ($query->have_posts()): ?>
@@ -17,7 +25,7 @@ if ($query->have_posts()): ?>
     <?php while($query->have_posts()): $query->the_post(); ?>
         <div class="portfolio-item card" data-aos="fade-up">
             <?php if(has_post_thumbnail()): ?>
-                <div class="portfolio-image">
+                <div class="item-image">
                     <?php the_post_thumbnail('large'); ?>
                 </div>
             <?php endif; ?>

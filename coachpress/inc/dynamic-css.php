@@ -70,8 +70,8 @@ function coachpress_generate_dynamic_css() {
     }
 
     <?php
-    $sections = coachpress_get_section_choices();
-    foreach ($sections as $section_id => $name) :
+    $sections_data = coachpress_get_sections_data();
+    foreach ($sections_data as $section_id => $data) :
         $alignment = get_theme_mod("coachpress_{$section_id}_text_alignment", ($section_id === 'cta' || $section_id === 'testimonials' || $section_id === 'trust' ? 'center' : 'left'));
         $padding_json = get_theme_mod("coachpress_{$section_id}_padding");
         $padding = $padding_json ? json_decode($padding_json, true) : null;
@@ -82,8 +82,10 @@ function coachpress_generate_dynamic_css() {
         .section-<?php echo esc_attr($section_id); ?> {
             text-align: <?php echo esc_html($alignment); ?>;
             <?php if ($padding) : ?>
-                padding-top: <?php echo esc_html($padding['top']); ?>;
-                padding-bottom: <?php echo esc_html($padding['bottom']); ?>;
+                padding-top: <?php echo esc_html($padding['top'] ?? '100px'); ?>;
+                padding-bottom: <?php echo esc_html($padding['bottom'] ?? '100px'); ?>;
+                padding-left: <?php echo esc_html($padding['left'] ?? '0'); ?>;
+                padding-right: <?php echo esc_html($padding['right'] ?? '0'); ?>;
             <?php else : ?>
                 padding-top: 100px;
                 padding-bottom: 100px;

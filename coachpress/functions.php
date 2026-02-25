@@ -210,28 +210,37 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require get_template_directory() . '/inc/cpt.php';
 
 
-function coachpress_get_section_choices() {
+function coachpress_get_sections_data() {
     return array(
-        'hero'          => __( 'Hero', 'coachpress' ),
-        'trust'         => __( 'Trust', 'coachpress' ),
-        'problem'       => __( 'Problem', 'coachpress' ),
-        'about-preview' => __( 'About Preview', 'coachpress' ),
-        'services'      => __( 'Services', 'coachpress' ),
-        'processes'     => __( 'Processes', 'coachpress' ),
-        'testimonials'  => __( 'Testimonials', 'coachpress' ),
-        'portfolio'     => __( 'Portfolio', 'coachpress' ),
-        'case-studies'  => __( 'Case Studies', 'coachpress' ),
-        'faqs'          => __( 'FAQs', 'coachpress' ),
-        'cta'           => __( 'CTA', 'coachpress' ),
-        'contact'       => __( 'Contact', 'coachpress' ),
-        'team'          => __( 'Team', 'coachpress' ),
+        'hero'          => ['label' => __( 'Hero', 'coachpress' ), 'title' => 'Accelerate Your Impact. Scale Your Vision.', 'description' => ''],
+        'trust'         => ['label' => __( 'Trust', 'coachpress' ), 'title' => 'Trusted By Visionaries', 'description' => ''],
+        'problem'       => ['label' => __( 'Problem', 'coachpress' ), 'title' => 'Struggling to Scale?', 'description' => ''],
+        'about-preview' => ['label' => __( 'About Preview', 'coachpress' ), 'title' => 'Strategic Guidance', 'description' => ''],
+        'services'      => ['label' => __( 'Services', 'coachpress' ), 'title' => 'Core Services', 'description' => 'Scalable solutions designed for modern leaders and consultants.'],
+        'processes'     => ['label' => __( 'Processes', 'coachpress' ), 'title' => 'The Framework', 'description' => 'A rigorous, result-oriented approach to solving your most complex challenges.'],
+        'testimonials'  => ['label' => __( 'Testimonials', 'coachpress' ), 'title' => 'Client Success', 'description' => 'Real impact, real results. Hear from those who have walked the path.'],
+        'portfolio'     => ['label' => __( 'Portfolio', 'coachpress' ), 'title' => 'Strategic Portfolio', 'description' => 'A curated selection of high-impact projects.'],
+        'case-studies'  => ['label' => __( 'Case Studies', 'coachpress' ), 'title' => 'Success Stories', 'description' => 'Deep dives into strategic transformations and measurable outcomes.'],
+        'faqs'          => ['label' => __( 'FAQs', 'coachpress' ), 'title' => 'Common Questions', 'description' => 'Insights into how we work and what you can expect.'],
+        'cta'           => ['label' => __( 'CTA', 'coachpress' ), 'title' => 'Ready for the Next Level?', 'description' => 'Join an exclusive group of high-performers today.'],
+        'contact'       => ['label' => __( 'Contact', 'coachpress' ), 'title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.'],
+        'team'          => ['label' => __( 'Team', 'coachpress' ), 'title' => 'The Collective', 'description' => 'Expert minds coming together for your success.'],
     );
+}
+
+function coachpress_get_section_choices() {
+    $data = coachpress_get_sections_data();
+    $choices = array();
+    foreach ($data as $id => $val) {
+        $choices[$id] = $val['label'];
+    }
+    return $choices;
 }
 
 
 function coachpress_get_sections() {
     $sections = array();
-    $default_order = 'hero,trust,problem,about-preview,services,processes,testimonials,portfolio,case-studies,faqs,cta,contact';
+    $default_order = 'hero,trust,problem,about-preview,services,processes,testimonials,portfolio,case-studies,faqs,cta,contact,team';
     $order = explode( ',', get_theme_mod( 'coachpress_section_order', $default_order ) );
 
     foreach ( $order as $section_id ) {

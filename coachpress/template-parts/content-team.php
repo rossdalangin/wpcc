@@ -10,6 +10,14 @@ $query_args = [
     'posts_per_page' => -1,
 ];
 
+$selected_posts = get_theme_mod('coachpress_team_posts');
+if (!empty($selected_posts)) {
+    $query_args['post__in'] = (array)$selected_posts;
+    $query_args['orderby'] = 'post__in';
+} else {
+    $query_args['posts_per_page'] = 4;
+}
+
 $query = new WP_Query($query_args);
 
 if ($query->have_posts()): ?>

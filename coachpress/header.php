@@ -19,7 +19,7 @@
         <meta name="description" content="<?php echo esc_attr( wp_strip_all_tags( get_the_excerpt() ) ); ?>">
         <?php
         $tags = wp_get_post_tags( get_the_ID(), array( 'fields' => 'names' ) );
-        $keywords = !empty($tags) ? implode( ',', $tags ) : get_theme_mod('coachpress_seo_keywords', '');
+        $keywords = !empty($tags) ? implode( ',', $tags ) : get_theme_mod('coachpress_seo_keywords', 'business coaching, strategic consulting, leadership development, executive coaching');
         ?>
         <meta name="keywords" content="<?php echo esc_attr( $keywords ); ?>">
         <meta property="og:title" content="<?php the_title(); ?>">
@@ -31,7 +31,7 @@
         <?php endif; ?>
     <?php else : ?>
         <meta name="description" content="<?php bloginfo( 'description' ); ?>">
-        <meta name="keywords" content="<?php echo esc_attr( get_theme_mod('coachpress_seo_keywords', '') ); ?>">
+        <meta name="keywords" content="<?php echo esc_attr( get_theme_mod('coachpress_seo_keywords', 'business coaching, strategic consulting, leadership development, executive coaching') ); ?>">
         <meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
         <meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
         <meta property="og:type" content="website">
@@ -88,10 +88,10 @@
                         <?php
                         if (get_theme_mod('coachpress_header_cta_visibility', true)) {
                             $cta_type = get_theme_mod( 'coachpress_header_cta_type', 'url' );
-                            $cta_text = get_theme_mod( 'coachpress_header_cta_text', __( 'Contact Us', 'coachpress' ) );
+                            $cta_text = get_theme_mod( 'coachpress_header_cta_text', __( 'Get Started', 'coachpress' ) );
 
                             if ( 'url' === $cta_type ) {
-                                $cta_url = get_theme_mod( 'coachpress_header_cta_url', '#' );
+                                $cta_url = get_theme_mod( 'coachpress_header_cta_url', '#contact' );
                                 echo '<a href="' . esc_url( $cta_url ) . '" class="button">' . esc_html( $cta_text ) . '</a>';
                             } else {
                                 echo '<button id="header-cta-button" class="button">' . esc_html( $cta_text ) . '</button>';

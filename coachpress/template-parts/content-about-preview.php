@@ -5,11 +5,10 @@
  * @package CoachPress
  */
 
-$heading = get_theme_mod('coachpress_about-preview_heading', 'Your Coach & Partner');
-$content = get_theme_mod('coachpress_about-preview_content', 'With over a decade of experience in the industry, I am dedicated to helping professionals like you navigate challenges, unlock opportunities, and achieve sustainable growth. My mission is to empower you with the strategies and mindset needed to thrive.');
+$content = get_theme_mod('coachpress_about-preview_content', 'I partner with highly-motivated professionals to dismantle internal barriers and architect high-impact businesses. Through a combination of strategic foresight and personalized leadership coaching, we don’t just reach your goals—we redefine them.');
 $image_id = get_theme_mod('coachpress_about-preview_image');
-$button_text = get_theme_mod('coachpress_about-preview_button_text', 'Learn More About Me');
-$button_url = get_theme_mod('coachpress_about-preview_button_url', '#');
+$button_text = get_theme_mod('coachpress_about-preview_button_text', 'Explore My Methodology');
+$button_url = get_theme_mod('coachpress_about-preview_button_url', '#about');
 
 ?>
 <div class="about-preview-section-layout">

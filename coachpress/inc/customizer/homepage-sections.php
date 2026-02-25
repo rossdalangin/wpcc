@@ -34,25 +34,13 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     }
 
     // -- Content Controls --
-    $sections_with_content = array(
-        'services'      => ['title' => 'Core Services', 'description' => 'Scalable solutions designed for modern leaders and consultants.'],
-        'testimonials'  => ['title' => 'Client Success', 'description' => 'Real impact, real results. Hear from those who have walked the path.'],
-        'case-studies'  => ['title' => 'Success Stories', 'description' => 'Deep dives into strategic transformations and measurable outcomes.'],
-        'processes'     => ['title' => 'The Framework', 'description' => 'A rigorous, result-oriented approach to solving your most complex challenges.'],
-        'faqs'          => ['title' => 'Common Questions', 'description' => 'Insights into how we work and what you can expect.'],
-        'contact'       => ['title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.'],
-        'problem'       => ['title' => 'Struggling to Scale?', 'description' => ''],
-        'about-preview' => ['title' => 'Strategic Guidance', 'description' => ''],
-        'trust'         => ['title' => 'Trusted By Visionaries', 'description' => ''],
-        'cta'           => ['title' => 'Ready for the Next Level?', 'description' => 'Join an exclusive group of high-performers today.'],
-        'portfolio'     => ['title' => 'Strategic Portfolio', 'description' => 'A curated selection of high-impact projects.'],
-        'team'          => ['title' => 'The Collective', 'description' => 'Expert minds coming together for your success.'],
-    );
+    $sections_data = coachpress_get_sections_data();
 
-    foreach ( $sections_with_content as $section_id => $content ) {
+    foreach ( $sections_data as $section_id => $data ) {
         $section_handle = "coachpress_{$section_id}_section";
+
         $wp_customize->add_setting( "coachpress_{$section_id}_section_title", array(
-            'default'           => $content['title'],
+            'default'           => $data['title'],
             'transport'         => 'refresh',
             'sanitize_callback' => 'sanitize_text_field'
         ) );
@@ -62,9 +50,10 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'type'     => 'text',
             'priority' => 1
         ) );
-        if ($section_id !== 'problem' && $section_id !== 'about-preview' && $section_id !== 'trust') {
+
+        if (!empty($data['description']) || (!in_array($section_id, ['hero', 'problem', 'about-preview', 'trust']))) {
             $wp_customize->add_setting( "coachpress_{$section_id}_section_description", array(
-                'default'           => $content['description'],
+                'default'           => $data['description'],
                 'transport'         => 'refresh',
                 'sanitize_callback' => 'wp_kses_post'
             ) );
@@ -78,28 +67,71 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     }
 
     // -- Hero Section Specific --
-    $wp_customize->add_setting( 'coachpress_hero_heading', array( 'default' => 'Accelerate Your Impact. Scale Your Vision.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_hero_heading', array( 'default' => 'Lead With Authority. Scale With Precision.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_hero_heading', array( 'label' => __( 'Hero Heading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 10 ) );
-    $wp_customize->add_setting( 'coachpress_hero_subheading', array( 'default' => 'Elite coaching for consultants and executives who refuse to settle for the status quo.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_setting( 'coachpress_hero_subheading', array( 'default' => 'Bespoke coaching and strategic consulting for high-performing professionals ready to dominate their market.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_hero_subheading', array( 'label' => __( 'Hero Subheading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'textarea', 'priority' => 11 ) );
-    $wp_customize->add_setting( 'coachpress_hero_cta_text', array( 'default' => 'Schedule Discovery Call', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_hero_cta_text', array( 'default' => 'Book Discovery Session', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 12 ) );
     $wp_customize->add_setting( 'coachpress_hero_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_hero_cta_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url', 'priority' => 13 ) );
 
-    // Hero Button Colors
-    $wp_customize->add_setting( 'coachpress_hero_button_bg_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_bg_color', array( 'label' => __( 'Button Background Color', 'coachpress' ), 'section' => 'coachpress_hero_section', 'priority' => 14 ) ) );
-    $wp_customize->add_setting( 'coachpress_hero_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_hero_section', 'priority' => 15 ) ) );
+    // Hero CTA 2
+    $wp_customize->add_setting( 'coachpress_hero_cta_2_visibility', array( 'default' => false, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_2_visibility', array( 'label' => __( 'Show Second CTA Button', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'checkbox', 'priority' => 14 ) );
+    $wp_customize->add_setting( 'coachpress_hero_cta_2_text', array( 'default' => 'Learn More', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_2_text', array( 'label' => __( 'Second CTA Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 15, 'active_callback' => function($control) { return $control->manager->get_setting('coachpress_hero_cta_2_visibility')->value(); } ) );
+    $wp_customize->add_setting( 'coachpress_hero_cta_2_url', array( 'default' => '#', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_2_url', array( 'label' => __( 'Second CTA URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url', 'priority' => 16, 'active_callback' => function($control) { return $control->manager->get_setting('coachpress_hero_cta_2_visibility')->value(); } ) );
+
+    // Hero Alignment & Column 2
+    $wp_customize->add_setting( 'coachpress_hero_left_col_align', array( 'default' => 'left', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
+    $wp_customize->add_control( 'coachpress_hero_left_col_align', array( 'label' => __( 'Left Column Alignment', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'select', 'choices' => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) ), 'priority' => 17 ) );
 
     $wp_customize->add_setting( 'coachpress_hero_right_col_type', array( 'default' => 'image', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
     $wp_customize->add_control( 'coachpress_hero_right_col_type', array( 'label' => __( 'Hero Right Content Type', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'select', 'choices' => array( 'none' => __( 'Disabled', 'coachpress' ), 'image' => __( 'Image', 'coachpress' ), 'video' => __( 'Video', 'coachpress' ), 'html' => __( 'HTML', 'coachpress' ), 'shortcode' => __( 'Shortcode', 'coachpress' ) ), 'priority' => 20 ) );
+
     $wp_customize->add_setting( 'coachpress_hero_right_col_image', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'absint' ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_hero_right_col_image', array( 'label' => __( 'Hero Image', 'coachpress' ), 'section' => 'coachpress_hero_section', 'mime_type' => 'image', 'active_callback' => function( $control ) { return 'image' === $control->manager->get_setting('coachpress_hero_right_col_type')->value(); }, 'priority' => 21 ) ) );
 
+    $wp_customize->add_setting( 'coachpress_hero_right_col_video', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_hero_right_col_video', array( 'label' => __( 'Hero Video URL (YouTube/Vimeo)', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url', 'priority' => 22, 'active_callback' => function($control) { return 'video' === $control->manager->get_setting('coachpress_hero_right_col_type')->value(); } ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_right_col_html', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_control( 'coachpress_hero_right_col_html', array( 'label' => __( 'Hero HTML Content', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'textarea', 'priority' => 23, 'active_callback' => function($control) { return 'html' === $control->manager->get_setting('coachpress_hero_right_col_type')->value(); } ) );
+
+    $wp_customize->add_setting( 'coachpress_hero_right_col_shortcode', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_hero_right_col_shortcode', array( 'label' => __( 'Hero Shortcode', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 24, 'active_callback' => function($control) { return 'shortcode' === $control->manager->get_setting('coachpress_hero_right_col_type')->value(); } ) );
+
+    // Hero Button Colors
+    $wp_customize->add_setting( 'coachpress_hero_button_bg_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_bg_color', array( 'label' => __( 'Hero Button BG Color', 'coachpress' ), 'section' => 'coachpress_hero_section', 'priority' => 30 ) ) );
+    $wp_customize->add_setting( 'coachpress_hero_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_hero_button_text_color', array( 'label' => __( 'Hero Button Text Color', 'coachpress' ), 'section' => 'coachpress_hero_section', 'priority' => 31 ) ) );
+
+    // -- Post Selectors for CPT Sections --
+    $cpts = array('services', 'testimonials', 'case-studies', 'processes', 'faqs', 'portfolio', 'team');
+    foreach ($cpts as $cpt) {
+        $posts = get_posts( array( 'post_type' => $cpt, 'numberposts' => -1 ) );
+        $choices = array();
+        foreach ( $posts as $p ) {
+            $choices[ $p->ID ] = $p->post_title;
+        }
+        $wp_customize->add_setting( "coachpress_{$cpt}_posts", array(
+            'default'           => '',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'coachpress_sanitize_multi_select'
+        ) );
+        $wp_customize->add_control( new CoachPress_Multi_Select_Control( $wp_customize, "coachpress_{$cpt}_posts", array(
+            'label'    => sprintf( __( 'Select %s Items', 'coachpress' ), ucfirst(str_replace('-', ' ', $cpt)) ),
+            'section'  => "coachpress_{$cpt}_section",
+            'choices'  => $choices,
+            'priority' => 3
+        ) ) );
+    }
+
     // -- CTA Section Specific --
-    $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Apply For Consultation', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Apply To Work With Me', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_cta_button_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'text', 'priority' => 10 ) );
     $wp_customize->add_setting( 'coachpress_cta_button_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_cta_button_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => 'coachpress_cta_section', 'type' => 'url', 'priority' => 11 ) );
@@ -120,7 +152,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     ) ) );
 
     // -- Problem Section Specific --
-    $wp_customize->add_setting( 'coachpress_problem_content', array( 'default' => 'You’ve reached the limit of what hard work alone can achieve. Your current systems are straining, and your time is being consumed by operations rather than strategy. It’s time for a new approach.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_setting( 'coachpress_problem_content', array( 'default' => 'You have mastered your craft, yet you feel like your growth has hit a ceiling. The traditional strategies that got you here are no longer enough to propel you forward. You are working harder, but the impact and income remain stagnant.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_problem_content', array( 'label' => __( 'Problem Content', 'coachpress' ), 'section' => 'coachpress_problem_section', 'type' => 'textarea', 'priority' => 5 ) );
     $wp_customize->add_setting( 'coachpress_problem_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_problem_image', array(
@@ -131,7 +163,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     ) ) );
 
     // -- About Preview Section Specific --
-    $wp_customize->add_setting( 'coachpress_about-preview_content', array( 'default' => 'With decades of experience in organizational strategy and leadership development, I provide the outside perspective and proven frameworks you need to break through internal plateaus.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_content', array( 'default' => 'I partner with highly-motivated professionals to dismantle internal barriers and architect high-impact businesses. Through a combination of strategic foresight and personalized leadership coaching, we don’t just reach your goals—we redefine them.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_about-preview_content', array( 'label' => __( 'About Content', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'textarea', 'priority' => 5 ) );
     $wp_customize->add_setting( 'coachpress_about-preview_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_about-preview_image', array(
@@ -140,7 +172,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         'mime_type'=> 'image',
         'priority' => 6
     ) ) );
-    $wp_customize->add_setting( 'coachpress_about-preview_button_text', array( 'default' => 'My Approach', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_setting( 'coachpress_about-preview_button_text', array( 'default' => 'Explore My Methodology', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_about-preview_button_text', array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'text', 'priority' => 10 ) );
     $wp_customize->add_setting( 'coachpress_about-preview_button_url', array( 'default' => '#about', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_about-preview_button_url', array( 'label' => __( 'Button URL', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'type' => 'url', 'priority' => 11 ) );

@@ -2,8 +2,6 @@
 /**
  * Template part for displaying the faqs section content
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package CoachPress
  */
 
@@ -14,7 +12,7 @@ $query_args = [
 
 $selected_posts = get_theme_mod('coachpress_faqs_posts');
 if (!empty($selected_posts)) {
-    $query_args['post__in'] = $selected_posts;
+    $query_args['post__in'] = (array)$selected_posts;
     $query_args['orderby'] = 'post__in';
 } else {
     $query_args['posts_per_page'] = 5;
@@ -23,7 +21,7 @@ if (!empty($selected_posts)) {
 $query = new WP_Query($query_args);
 
 if ($query->have_posts()): ?>
-    <div class="faq-accordion">
+    <div class="faq-accordion faq-container">
     <?php while($query->have_posts()): $query->the_post(); ?>
         <div class="faq-item" data-aos="fade-up">
             <h3><?php the_title(); ?></h3>

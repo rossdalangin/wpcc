@@ -5,8 +5,7 @@
  * @package CoachPress
  */
 
-$heading = get_theme_mod('coachpress_problem_heading', 'Are You Facing These Challenges?');
-$content = get_theme_mod('coachpress_problem_content', 'You\'re working hard but not seeing the results you want. You feel stuck, overwhelmed, and unsure of the next steps to grow your business and achieve your goals.');
+$content = get_theme_mod('coachpress_problem_content', 'You have mastered your craft, yet you feel like your growth has hit a ceiling. The traditional strategies that got you here are no longer enough to propel you forward. You are working harder, but the impact and income remain stagnant.');
 $image_id = get_theme_mod('coachpress_problem_image');
 
 ?>
