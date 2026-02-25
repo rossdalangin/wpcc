@@ -23,16 +23,20 @@ $query = new WP_Query($query_args);
 if ($query->have_posts()): ?>
     <div class="portfolio-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="portfolio-item card" data-aos="fade-up">
-            <?php if(has_post_thumbnail()): ?>
-                <div class="item-image">
-                    <?php the_post_thumbnail('large'); ?>
+        <div class="portfolio-item-wrap" data-aos="fade-up">
+            <div class="portfolio-item-card">
+                <?php if(has_post_thumbnail()): ?>
+                    <div class="portfolio-thumbnail">
+                        <?php the_post_thumbnail('large'); ?>
+                        <div class="portfolio-overlay">
+                            <a href="<?php the_permalink(); ?>" class="btn-project"><?php _e('View Case Study', 'coachpress'); ?></a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="portfolio-info">
+                    <span class="portfolio-category"><?php echo esc_html( get_post_meta( get_the_ID(), '_portfolio_category', true ) ?: 'Strategy' ); ?></span>
+                    <h3 class="portfolio-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                 </div>
-            <?php endif; ?>
-            <div class="portfolio-content">
-                <h3><?php the_title(); ?></h3>
-                <div class="portfolio-excerpt"><?php the_excerpt(); ?></div>
-                <a href="<?php the_permalink(); ?>" class="read-more"><?php _e('View Project', 'coachpress'); ?></a>
             </div>
         </div>
     <?php endwhile; wp_reset_postdata(); ?>

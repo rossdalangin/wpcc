@@ -29,6 +29,11 @@ function coachpress_customize_theme_settings( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_header_cta_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );
 
+    $wp_customize->add_setting( 'coachpress_header_cta_hover_bg_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_hover_bg_color', array( 'label' => __( 'Button Hover BG Color', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );
+    $wp_customize->add_setting( 'coachpress_header_cta_hover_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_hover_text_color', array( 'label' => __( 'Button Hover Text Color', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );
+
     $wp_customize->add_setting( 'coachpress_header_cta_border_radius', array( 'default' => '6px', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_header_cta_border_radius', array( 'label' => __( 'Border Radius (px)', 'coachpress' ), 'section' => 'coachpress_header_cta', 'type' => 'text' ) );
 

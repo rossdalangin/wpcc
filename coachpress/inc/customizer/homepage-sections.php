@@ -186,6 +186,19 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_about-preview_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_about-preview_button_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_about-preview_section', 'priority' => 13 ) ) );
 
+    // -- Contact Section Specific --
+    $wp_customize->add_setting( 'coachpress_contact_details_title', array( 'default' => 'Get In Touch', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_contact_details_title', array( 'label' => __( 'Contact Details Title', 'coachpress' ), 'section' => 'coachpress_contact_section', 'type' => 'text', 'priority' => 10 ) );
+    $wp_customize->add_setting( 'coachpress_contact_email', array( 'default' => 'hello@coachpress.com', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_email' ) );
+    $wp_customize->add_control( 'coachpress_contact_email', array( 'label' => __( 'Contact Email', 'coachpress' ), 'section' => 'coachpress_contact_section', 'type' => 'email', 'priority' => 11 ) );
+    $wp_customize->add_setting( 'coachpress_contact_phone', array( 'default' => '+1 (555) 000-0000', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_contact_phone', array( 'label' => __( 'Contact Phone', 'coachpress' ), 'section' => 'coachpress_contact_section', 'type' => 'text', 'priority' => 12 ) );
+    $wp_customize->add_setting( 'coachpress_contact_address', array( 'default' => '123 Strategy Ave, Suite 100, New York, NY', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_control( 'coachpress_contact_address', array( 'label' => __( 'Contact Address', 'coachpress' ), 'section' => 'coachpress_contact_section', 'type' => 'textarea', 'priority' => 13 ) );
+
+    $wp_customize->add_setting( 'coachpress_contact_form_title', array( 'default' => 'Send Us A Message', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_contact_form_title', array( 'label' => __( 'Contact Form Title', 'coachpress' ), 'section' => 'coachpress_contact_section', 'type' => 'text', 'priority' => 20 ) );
+
     // -- Per-Section Layout & Background --
     foreach ( $sections as $section_id => $section_name ) {
         $section_handle = "coachpress_{$section_id}_section";

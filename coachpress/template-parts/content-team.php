@@ -30,8 +30,14 @@ if ($query->have_posts()): ?>
                 </div>
             <?php endif; ?>
             <div class="team-content">
-                <h3><?php the_title(); ?></h3>
+                <h3 class="team-member-name"><?php the_title(); ?></h3>
+                <p class="team-member-role"><?php echo esc_html( get_post_meta( get_the_ID(), '_team_member_role', true ) ?: 'Consultant' ); ?></p>
                 <div class="team-member-bio"><?php the_excerpt(); ?></div>
+
+                <div class="team-member-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                </div>
             </div>
         </div>
     <?php endwhile; wp_reset_postdata(); ?>

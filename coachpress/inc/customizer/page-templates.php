@@ -39,6 +39,28 @@ function coachpress_customize_page_templates( $wp_customize ) {
         'section'  => 'coachpress_global_page_header'
     ) ) );
 
+    $pages_for_banners = array(
+        'about'     => __( 'About Page', 'coachpress' ),
+        'services'  => __( 'Services Page', 'coachpress' ),
+        'process'   => __( 'Process Page', 'coachpress' ),
+        'portfolio' => __( 'Portfolio Page', 'coachpress' ),
+        'team'      => __( 'Team Page', 'coachpress' ),
+        'contact'   => __( 'Contact Page', 'coachpress' )
+    );
+
+    foreach ( $pages_for_banners as $slug => $name ) {
+        $wp_customize->add_setting( "coachpress_{$slug}_page_banner_image", array(
+            'default'           => '',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'absint'
+        ) );
+        $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, "coachpress_{$slug}_page_banner_image", array(
+            'label'    => sprintf( __( '%s Banner Image', 'coachpress' ), $name ),
+            'section'  => 'coachpress_global_page_header',
+            'mime_type'=> 'image'
+        ) ) );
+    }
+
     // -- About Page --
     $wp_customize->add_section( 'coachpress_about_page', array(
         'title'    => __( 'About Page Settings', 'coachpress' ),

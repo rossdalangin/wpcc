@@ -10,17 +10,32 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php if ( ! is_front_page() ) : ?>
-        <header class="entry-header page-banner">
+    <?php if ( ! is_front_page() ) :
+        $post_slug = get_post_field( 'post_name', get_the_ID() );
+        $banner_img_id = get_theme_mod( "coachpress_{$post_slug}_page_banner_image" );
+        $banner_style = '';
+        if ( $banner_img_id ) {
+            $banner_url = wp_get_attachment_image_url( $banner_img_id, 'full' );
+            $banner_style = 'style="background-image: url(' . esc_url( $banner_url ) . '); background-size: cover; background-position: center;"';
+        }
+        ?>
+        <header class="entry-header page-banner <?php echo $banner_img_id ? 'has-banner-image' : ''; ?>" <?php echo $banner_style; ?>>
+            <?php if ( $banner_img_id ) : ?>
+                <div class="page-banner-overlay"></div>
+            <?php endif; ?>
             <div class="container">
                 <?php the_title( '<h1 class="entry-title" data-aos="fade-up">', '</h1>' ); ?>
             </div>
         </header><!-- .entry-header -->
     <?php endif; ?>
 
+	<?php if ( ! has_post_thumbnail() || is_front_page() ) : ?>
+        <div class="entry-content-container container">
+    <?php endif; ?>
+
 	<?php coachpress_post_thumbnail(); ?>
 
-	<div class="entry-content">
+	<div class="entry-content <?php echo ! is_front_page() ? 'container' : ''; ?>">
 		<?php
 		the_content();
 
@@ -33,8 +48,12 @@
 		?>
 	</div><!-- .entry-content -->
 
+    <?php if ( ! has_post_thumbnail() || is_front_page() ) : ?>
+        </div>
+    <?php endif; ?>
+
 	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
+		<footer class="entry-footer container">
 			<?php
 			edit_post_link(
 				sprintf(

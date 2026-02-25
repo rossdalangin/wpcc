@@ -189,7 +189,10 @@ img {
 .section-inner { position: relative; z-index: 1; }
 
 /* Grid Layouts */
-.grid-3-col, .grid-4-col { display: grid; gap: 40px; }
+.grid-2-col, .grid-3-col, .grid-4-col { display: grid; gap: 40px; }
+.grid-2-col { grid-template-columns: repeat(1, 1fr); }
+@media (min-width: 768px) { .grid-2-col { grid-template-columns: repeat(2, 1fr); } }
+
 .grid-3-col { grid-template-columns: repeat(1, 1fr); }
 @media (min-width: 768px) { .grid-3-col { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .grid-3-col { grid-template-columns: repeat(3, 1fr); } }
@@ -207,13 +210,13 @@ img {
 .hero-container-full .hero-left { text-align: center; max-width: 1000px; margin: 0 auto; }
 
 /* About Preview & Problem */
-.about-preview-section-layout, .problem-section-layout { display: flex; flex-wrap: wrap; align-items: center; gap: 80px; }
+.about-preview-section-layout, .problem-section-layout { display: flex; flex-wrap: wrap; align-items: center; gap: 80px; margin-bottom: 2rem; }
 .about-preview-image-content, .problem-image-content { flex: 1 1 450px; }
 .about-preview-text-content, .problem-text-content { flex: 1 1 500px; }
 .about-preview-image-content img, .problem-image-content img { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
 /* Testimonials */
-.testimonial-slider { padding-bottom: 50px; }
+.testimonial-slider { padding-bottom: 50px; margin: 0 auto; }
 .testimonial-item { text-align: left; }
 .testimonial-image img { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 25px; object-fit: cover; border: 3px solid var(--coachpress-accent-color); }
 .testimonial-content { font-style: normal; font-size: 1.2rem; margin-bottom: 30px; line-height: 1.6; color: var(--coachpress-text-color); }
@@ -221,7 +224,7 @@ img {
 .testimonial-author span { display: block; font-weight: 500; font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
 
 /* Trust Section */
-.trust-image-wrapper { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 50px; }
+.trust-image-wrapper { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 50px; padding: 20px 0; }
 .trust-image-wrapper img { max-height: 45px; width: auto; filter: grayscale(100%); opacity: 0.5; transition: all 0.4s ease; border-radius: 0; }
 .trust-image-wrapper img:hover { filter: grayscale(0); opacity: 0.9; transform: scale(1.05); }
 
@@ -235,10 +238,56 @@ img {
 .faq-item.active .faq-content { max-height: 1000px; padding-top: 20px; opacity: 1; transition: all 0.4s cubic-bezier(1, 0, 1, 0); }
 
 /* Services & Case Studies */
-.service-item h3, .case-study-item h3 { font-size: 1.5rem; margin-top: 20px; }
-.item-image { overflow: hidden; border-radius: 8px; margin-bottom: 20px; }
-.item-image img { transition: transform 0.5s ease; width: 100%; }
+.service-item h3, .case-study-item h3 { font-size: 1.5rem; margin-top: 20px; color: var(--coachpress-primary-color); }
+.item-image { overflow: hidden; border-radius: 8px; margin-bottom: 20px; position: relative; }
+.item-image img { transition: transform 0.5s ease; width: 100%; height: 250px; object-fit: cover; }
 .card:hover .item-image img { transform: scale(1.1); }
+
+/* Portfolio Redesign */
+.portfolio-item-wrap { margin-bottom: 30px; }
+.portfolio-item-card { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+.portfolio-item-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.portfolio-thumbnail { position: relative; overflow: hidden; }
+.portfolio-thumbnail img { width: 100%; height: 300px; object-fit: cover; transition: all 0.5s ease; border-radius: 0; }
+.portfolio-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,54,93,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: all 0.4s ease; }
+.portfolio-item-card:hover .portfolio-overlay { opacity: 1; }
+.portfolio-item-card:hover .portfolio-thumbnail img { transform: scale(1.1); }
+.btn-project { color: #fff; border: 2px solid #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+.btn-project:hover { background: #fff; color: var(--coachpress-primary-color); }
+.portfolio-info { padding: 25px; }
+.portfolio-category { font-size: 0.8rem; text-transform: uppercase; color: var(--coachpress-accent-color); font-weight: 700; letter-spacing: 1px; }
+.portfolio-item-title { margin: 10px 0 0; font-size: 1.4rem; }
+.portfolio-item-title a { text-decoration: none; color: var(--coachpress-primary-color); }
+
+/* Team Redesign */
+.team-item { text-align: center; padding: 40px 30px; }
+.team-image { margin-bottom: 25px; }
+.team-image img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto; border: 4px solid var(--coachpress-secondary-color); }
+.team-member-name { font-size: 1.5rem; margin-bottom: 5px; }
+.team-member-role { color: var(--coachpress-accent-color); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 20px; }
+.team-member-bio { font-size: 0.95rem; line-height: 1.6; opacity: 0.8; margin-bottom: 25px; }
+.team-member-social { display: flex; justify-content: center; gap: 15px; }
+.team-member-social a { color: var(--coachpress-primary-color); font-size: 1.2rem; transition: color 0.3s ease; }
+.team-member-social a:hover { color: var(--coachpress-accent-color); }
+
+/* Contact Redesign */
+.contact-section-container { align-items: start; }
+.contact-details-title, .contact-form-title { font-size: 1.8rem; margin-bottom: 30px; color: var(--coachpress-primary-color); }
+.contact-info-list { margin-bottom: 40px; }
+.contact-info-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.contact-info-item i { color: var(--coachpress-accent-color); font-size: 1.2rem; width: 25px; }
+.contact-info-item span { font-size: 1.1rem; }
+.contact-social { display: flex; gap: 15px; }
+.contact-social a { width: 45px; height: 45px; border-radius: 50%; background: var(--coachpress-secondary-color); display: flex; align-items: center; justify-content: center; color: var(--coachpress-primary-color); transition: all 0.3s ease; text-decoration: none; }
+.contact-social a:hover { background: var(--coachpress-primary-color); color: #fff; transform: translateY(-3px); }
+.form-placeholder { background: var(--coachpress-secondary-color); padding: 40px; border-radius: 8px; border: 2px dashed rgba(0,0,0,0.1); text-align: center; font-style: italic; }
+
+/* Entry & Content Spacing */
+.site-main { padding-bottom: 0; }
+.entry-content { padding: 80px 0; }
+.entry-content-container { padding-top: 80px; }
+.page-banner { display: flex; align-items: center; min-height: 250px; }
+.has-banner-image .entry-title { text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 
 /*--------------------------------------------------------------
 # Forms

@@ -87,6 +87,8 @@ function coachpress_generate_dynamic_css() {
         /* Header CTA Button */
         --coachpress-header-cta-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_bg_color', '#1a365d') ); ?>;
         --coachpress-header-cta-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_text_color', '#FFFFFF') ); ?>;
+        --coachpress-header-cta-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_hover_bg_color', '#c0a080') ); ?>;
+        --coachpress-header-cta-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_hover_text_color', '#FFFFFF') ); ?>;
         --coachpress-header-cta-border-radius: <?php echo esc_html( get_theme_mod('coachpress_header_cta_border_radius', '6px') ); ?>;
         <?php
         $cta_padding = json_decode(get_theme_mod('coachpress_header_cta_padding', json_encode(array('top' => '12px', 'right' => '28px', 'bottom' => '12px', 'left' => '28px'))), true);
@@ -172,6 +174,13 @@ function coachpress_generate_dynamic_css() {
         padding-left: var(--coachpress-header-cta-padding-left) !important;
         padding-right: var(--coachpress-header-cta-padding-right) !important;
         border-radius: var(--coachpress-header-cta-border-radius) !important;
+        background-color: var(--coachpress-header-cta-bg-color) !important;
+        color: var(--coachpress-header-cta-text-color) !important;
+        transition: all 0.3s ease !important;
+    }
+    .header-cta .button:hover {
+        background-color: var(--coachpress-header-cta-hover-bg-color) !important;
+        color: var(--coachpress-header-cta-hover-text-color) !important;
     }
 
     .page-banner {
@@ -181,7 +190,21 @@ function coachpress_generate_dynamic_css() {
         padding-left: var(--coachpress-page-header-padding-left) !important;
         padding-right: var(--coachpress-page-header-padding-right) !important;
         text-align: <?php echo esc_html( get_theme_mod('coachpress_page_header_alignment', 'center') ); ?> !important;
+        position: relative;
     }
+    .page-banner.has-banner-image {
+        color: #FFFFFF !important;
+    }
+    .page-banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4);
+        z-index: 0;
+    }
+    .page-banner .container { position: relative; z-index: 1; }
     .page-banner .entry-title {
         color: var(--coachpress-page-header-text-color) !important;
         margin: 0;

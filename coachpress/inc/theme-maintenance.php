@@ -94,20 +94,22 @@ function coachpress_add_sample_data() {
 
     // Portfolio
     $portfolio = array(
-        array( 'title' => 'The Sovereign Executive Program', 'content' => 'A curated 12-month mastermind for high-performing CEOs.' ),
-        array( 'title' => 'Operations Overhaul: Retail Giant', 'content' => 'Redesigning the supply chain logic for a national retail chain.' ),
+        array( 'title' => 'The Sovereign Executive Program', 'content' => 'A curated 12-month mastermind for high-performing CEOs.', 'cat' => 'High-Ticket Strategy' ),
+        array( 'title' => 'Operations Overhaul: Retail Giant', 'content' => 'Redesigning the supply chain logic for a national retail chain.', 'cat' => 'Operations' ),
     );
     foreach ( $portfolio as $item ) {
-        wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'portfolio', 'post_status' => 'publish' ) );
+        $pid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'portfolio', 'post_status' => 'publish' ) );
+        if ($pid) update_post_meta($pid, '_portfolio_category', $item['cat']);
     }
 
     // Team
     $team = array(
-        array( 'title' => 'Jonathan Vance', 'content' => 'Founder & Principal Consultant with 20 years of experience in organizational psychology.' ),
-        array( 'title' => 'Elena Rodriguez', 'content' => 'Head of Strategic Operations and former COO of a Silicon Valley unicorn.' ),
+        array( 'title' => 'Jonathan Vance', 'content' => 'Founder & Principal Consultant with 20 years of experience in organizational psychology.', 'role' => 'Principal Strategist' ),
+        array( 'title' => 'Elena Rodriguez', 'content' => 'Head of Strategic Operations and former COO of a Silicon Valley unicorn.', 'role' => 'Operations Director' ),
     );
     foreach ( $team as $item ) {
-        wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'team', 'post_status' => 'publish' ) );
+        $tid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'team', 'post_status' => 'publish' ) );
+        if ($tid) update_post_meta($tid, '_team_member_role', $item['role']);
     }
 }
 
