@@ -8,6 +8,37 @@
 function coachpress_customize_page_templates( $wp_customize ) {
     $sections = coachpress_get_section_choices();
 
+    // -- Global Page Header (Internal Pages) --
+    $wp_customize->add_section( 'coachpress_global_page_header', array(
+        'title'    => __( 'Global Page Header', 'coachpress' ),
+        'priority' => 5,
+        'panel'    => 'coachpress_page_templates_panel',
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_page_header_bg_color', array( 'default' => '#f7fafc', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_page_header_bg_color', array( 'label' => __( 'Header BG Color', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+
+    $wp_customize->add_setting( 'coachpress_page_header_text_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_page_header_text_color', array( 'label' => __( 'Header Text Color', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+
+    $wp_customize->add_setting( 'coachpress_page_header_alignment', array( 'default' => 'center', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
+    $wp_customize->add_control( 'coachpress_page_header_alignment', array(
+        'label'    => __( 'Text Alignment', 'coachpress' ),
+        'section'  => 'coachpress_global_page_header',
+        'type'     => 'select',
+        'choices'  => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) )
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_page_header_padding', array(
+        'default'           => json_encode(array('top' => '80px', 'right' => '0', 'bottom' => '80px', 'left' => '0')),
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'coachpress_sanitize_dimensions'
+    ) );
+    $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, 'coachpress_page_header_padding', array(
+        'label'    => __( 'Header Padding', 'coachpress' ),
+        'section'  => 'coachpress_global_page_header'
+    ) ) );
+
     // -- About Page --
     $wp_customize->add_section( 'coachpress_about_page', array(
         'title'    => __( 'About Page Settings', 'coachpress' ),

@@ -84,6 +84,29 @@ function coachpress_generate_dynamic_css() {
         /* Header & Footer */
         --coachpress-header-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_bg_color', '#FFFFFF') ); ?>;
 
+        /* Header CTA Button */
+        --coachpress-header-cta-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_bg_color', '#1a365d') ); ?>;
+        --coachpress-header-cta-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_text_color', '#FFFFFF') ); ?>;
+        --coachpress-header-cta-border-radius: <?php echo esc_html( get_theme_mod('coachpress_header_cta_border_radius', '6px') ); ?>;
+        <?php
+        $cta_padding = json_decode(get_theme_mod('coachpress_header_cta_padding', json_encode(array('top' => '12px', 'right' => '28px', 'bottom' => '12px', 'left' => '28px'))), true);
+        echo "--coachpress-header-cta-padding-top: " . esc_html($cta_padding['top'] ?? '12px') . ";";
+        echo "--coachpress-header-cta-padding-right: " . esc_html($cta_padding['right'] ?? '28px') . ";";
+        echo "--coachpress-header-cta-padding-bottom: " . esc_html($cta_padding['bottom'] ?? '12px') . ";";
+        echo "--coachpress-header-cta-padding-left: " . esc_html($cta_padding['left'] ?? '28px') . ";";
+        ?>
+
+        /* Page Header */
+        --coachpress-page-header-bg-color: <?php echo esc_html( get_theme_mod('coachpress_page_header_bg_color', '#f7fafc') ); ?>;
+        --coachpress-page-header-text-color: <?php echo esc_html( get_theme_mod('coachpress_page_header_text_color', '#1a365d') ); ?>;
+        <?php
+        $page_header_padding = json_decode(get_theme_mod('coachpress_page_header_padding', json_encode(array('top' => '80px', 'right' => '0', 'bottom' => '80px', 'left' => '0'))), true);
+        echo "--coachpress-page-header-padding-top: " . esc_html($page_header_padding['top'] ?? '80px') . ";";
+        echo "--coachpress-page-header-padding-right: " . esc_html($page_header_padding['right'] ?? '0') . ";";
+        echo "--coachpress-page-header-padding-bottom: " . esc_html($page_header_padding['bottom'] ?? '80px') . ";";
+        echo "--coachpress-page-header-padding-left: " . esc_html($page_header_padding['left'] ?? '0') . ";";
+        ?>
+
         /* Buttons */
         --coachpress-hero-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_bg_color', '#c0a080') ); ?>;
         --coachpress-hero-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_text_color', '#FFFFFF') ); ?>;
@@ -142,6 +165,27 @@ function coachpress_generate_dynamic_css() {
             background-color: <?php echo esc_html($overlay_color); ?> !important;
         }
     <?php endforeach; ?>
+
+    .header-cta .button {
+        padding-top: var(--coachpress-header-cta-padding-top) !important;
+        padding-bottom: var(--coachpress-header-cta-padding-bottom) !important;
+        padding-left: var(--coachpress-header-cta-padding-left) !important;
+        padding-right: var(--coachpress-header-cta-padding-right) !important;
+        border-radius: var(--coachpress-header-cta-border-radius) !important;
+    }
+
+    .page-banner {
+        background-color: var(--coachpress-page-header-bg-color) !important;
+        padding-top: var(--coachpress-page-header-padding-top) !important;
+        padding-bottom: var(--coachpress-page-header-padding-bottom) !important;
+        padding-left: var(--coachpress-page-header-padding-left) !important;
+        padding-right: var(--coachpress-page-header-padding-right) !important;
+        text-align: <?php echo esc_html( get_theme_mod('coachpress_page_header_alignment', 'center') ); ?> !important;
+    }
+    .page-banner .entry-title {
+        color: var(--coachpress-page-header-text-color) !important;
+        margin: 0;
+    }
 
     <?php
     return ob_get_clean();
