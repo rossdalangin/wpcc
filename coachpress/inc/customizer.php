@@ -12,6 +12,7 @@ require_once get_template_directory() . '/inc/border-radius-control.php';
 require_once get_template_directory() . '/inc/dimensions-control.php';
 require_once get_template_directory() . '/inc/google-font-control.php';
 require_once get_template_directory() . '/inc/section-order-control.php';
+require_once get_template_directory() . '/inc/maintenance-control.php';
 
 // Load Customizer Sections
 require_once get_template_directory() . '/inc/customizer/panels.php';
@@ -20,6 +21,7 @@ require_once get_template_directory() . '/inc/customizer/global-styles.php';
 require_once get_template_directory() . '/inc/customizer/theme-settings.php';
 require_once get_template_directory() . '/inc/customizer/homepage-sections.php';
 require_once get_template_directory() . '/inc/customizer/page-templates.php';
+require_once get_template_directory() . '/inc/customizer/maintenance.php';
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
@@ -48,6 +50,7 @@ function coachpress_customize_register( $wp_customize ) {
     coachpress_customize_theme_settings( $wp_customize );
     coachpress_customize_homepage_sections( $wp_customize );
     coachpress_customize_page_templates( $wp_customize );
+    coachpress_customize_maintenance( $wp_customize );
 }
 add_action( 'customize_register', 'coachpress_customize_register' );
 
@@ -83,6 +86,7 @@ function coachpress_customize_controls_scripts() {
     wp_enqueue_style( 'coachpress-border-radius-control', get_template_directory_uri() . '/css/border-radius-control.css' );
     wp_enqueue_script( 'coachpress-dimensions-control', get_template_directory_uri() . '/js/dimensions-control.js', array( 'jquery', 'customize-controls' ), COACHPRESS_VERSION, true );
     wp_enqueue_style( 'coachpress-dimensions-control', get_template_directory_uri() . '/css/dimensions-control.css' );
+    wp_enqueue_script( 'coachpress-maintenance-control', get_template_directory_uri() . '/js/maintenance-control.js', array( 'jquery', 'customize-controls' ), COACHPRESS_VERSION, true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'coachpress_customize_controls_scripts' );
 

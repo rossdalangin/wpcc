@@ -209,6 +209,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 require get_template_directory() . '/inc/cpt.php';
 
+/**
+ * Maintenance logic.
+ */
+require get_template_directory() . '/inc/theme-maintenance.php';
+
 
 function coachpress_get_sections_data() {
     return array(
