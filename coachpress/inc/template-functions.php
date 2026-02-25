@@ -6,7 +6,7 @@
  */
 
 function coachpress_display_section($section_id) {
-    if ( ! get_theme_mod( "coachpress_section_visibility[$section_id]", true ) ) {
+    if ( ! get_theme_mod( "coachpress_section_visibility[{$section_id}]", true ) ) {
         return;
     }
 
@@ -18,14 +18,16 @@ function coachpress_display_section($section_id) {
 
     $section_style = '';
     if ($bg_type === 'color' && !empty($bg_color)) {
-        $section_style = "background-color: {$bg_color};";
+        if (strpos($bg_color, 'gradient') !== false) {
+            $section_style = "background: {$bg_color};";
+        } else {
+            $section_style = "background-color: {$bg_color};";
+        }
     } elseif ($bg_type === 'image' && !empty($bg_image)) {
-        $section_style = "background-image: url({$bg_image});";
+        $section_style = "background-image: url('{$bg_image}');";
     }
 
-    $alignment = get_theme_mod("coachpress_{$section_id}_text_alignment", ($section_id === 'cta' || $section_id === 'testimonials' ? 'center' : 'left'));
     $section_classes = array('homepage-section', 'section-' . $section_id);
-    $section_classes[] = 'text-align-' . $alignment;
 
     ?>
     <section id="<?php echo esc_attr($section_id); ?>" class="<?php echo esc_attr(implode(' ', $section_classes)); ?>" style="<?php echo esc_attr($section_style); ?>">

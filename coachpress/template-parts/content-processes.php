@@ -2,8 +2,6 @@
 /**
  * Template part for displaying the processes section content
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package CoachPress
  */
 
@@ -12,18 +10,12 @@ $query_args = [
     'posts_per_page' => -1,
 ];
 
-$selected_posts = get_theme_mod('coachpress_processes_posts');
-if (!empty($selected_posts)) {
-    $query_args['post__in'] = $selected_posts;
-    $query_args['orderby'] = 'post__in';
-}
-
 $query = new WP_Query($query_args);
 
 if ($query->have_posts()): ?>
-    <div class="processes-grid">
+    <div class="processes-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="grid-item" data-aos="fade-up">
+        <div class="process-item card" data-aos="fade-up">
             <?php if(has_post_thumbnail()): ?>
                 <div class="item-image">
                     <?php the_post_thumbnail('medium'); ?>

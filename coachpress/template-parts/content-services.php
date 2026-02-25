@@ -2,8 +2,6 @@
 /**
  * Template part for displaying the services section content
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package CoachPress
  */
 
@@ -21,9 +19,9 @@ if (!empty($selected_posts)) {
 $query = new WP_Query($query_args);
 
 if ($query->have_posts()): ?>
-    <div class="services-grid">
+    <div class="services-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="grid-item" data-aos="fade-up">
+        <div class="service-item card" data-aos="fade-up">
             <?php if(has_post_thumbnail()): ?>
                 <div class="item-image">
                     <?php the_post_thumbnail('medium'); ?>

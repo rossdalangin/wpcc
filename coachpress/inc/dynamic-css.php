@@ -5,7 +5,7 @@
  * @package CoachPress
  */
 
-function coachpress_dynamic_css() {
+function coachpress_generate_dynamic_css() {
     ob_start();
     ?>
     :root {
@@ -18,11 +18,11 @@ function coachpress_dynamic_css() {
 
         /* Global Typography */
         --coachpress-body-font: '<?php echo esc_html( get_theme_mod('coachpress_body_font', 'Lato') ); ?>', sans-serif;
-        --coachpress-body-font-weight: <?php echo esc_html( get_theme_mod('coachpress_body_font_weight', '400') ); ?>;
-        --coachpress-body-line-height: <?php echo esc_html( get_theme_mod('coachpress_body_line_height', '1.6') ); ?>;
+        --coachpress-body-font-weight: 400;
+        --coachpress-body-line-height: 1.6;
         --coachpress-heading-font: '<?php echo esc_html( get_theme_mod('coachpress_heading_font', 'Lora') ); ?>', serif;
-        --coachpress-heading-font-weight: <?php echo esc_html( get_theme_mod('coachpress_heading_font_weight', '700') ); ?>;
-        --coachpress-heading-letter-spacing: <?php echo esc_html( get_theme_mod('coachpress_heading_letter_spacing', '1px') ); ?>;
+        --coachpress-heading-font-weight: 700;
+        --coachpress-heading-letter-spacing: 1px;
 
         <?php
         // Responsive Font Sizes
@@ -42,86 +42,71 @@ function coachpress_dynamic_css() {
 
         /* Cards */
         --coachpress-card-bg-color: <?php echo esc_html( get_theme_mod('coachpress_card_bg_color', '#FFFFFF') ); ?>;
-        --coachpress-card-border-radius: <?php echo esc_html( get_theme_mod('coachpress_card_border_radius', '4px') ); ?>;
-        --coachpress-card-box-shadow: <?php echo esc_html( get_theme_mod('coachpress_card_box_shadow', '0 0 25px rgba(0,0,0,0.07)') ); ?>;
-        --coachpress-card-hover-box-shadow: <?php echo esc_html( get_theme_mod('coachpress_card_hover_box_shadow', '0 12px 25px rgba(0,0,0,0.1)') ); ?>;
+        --coachpress-card-border-radius: <?php echo esc_html( get_theme_mod('coachpress_card_border_radius', '8px') ); ?>;
+        --coachpress-card-box-shadow: 0 0 25px rgba(0,0,0,0.07);
+        --coachpress-card-hover-box-shadow: 0 12px 25px rgba(0,0,0,0.1);
         <?php
-        $card_padding = json_decode(get_theme_mod('coachpress_card_padding', json_encode(array('top' => '20px', 'right' => '20px', 'bottom' => '20px', 'left' => '20px'))), true);
-        echo "--coachpress-card-padding-top: " . esc_html($card_padding['top'] ?? '20px') . ";";
-        echo "--coachpress-card-padding-right: " . esc_html($card_padding['right'] ?? '20px') . ";";
-        echo "--coachpress-card-padding-bottom: " . esc_html($card_padding['bottom'] ?? '20px') . ";";
-        echo "--coachpress-card-padding-left: " . esc_html($card_padding['left'] ?? '20px') . ";";
+        $card_padding = json_decode(get_theme_mod('coachpress_card_padding', json_encode(array('top' => '30px', 'right' => '30px', 'bottom' => '30px', 'left' => '30px'))), true);
+        echo "--coachpress-card-padding-top: " . esc_html($card_padding['top'] ?? '30px') . ";";
+        echo "--coachpress-card-padding-right: " . esc_html($card_padding['right'] ?? '30px') . ";";
+        echo "--coachpress-card-padding-bottom: " . esc_html($card_padding['bottom'] ?? '30px') . ";";
+        echo "--coachpress-card-padding-left: " . esc_html($card_padding['left'] ?? '30px') . ";";
 
-        $card_margin = json_decode(get_theme_mod('coachpress_card_margin', json_encode(array('top' => '0', 'right' => '0', 'bottom' => '20px', 'left' => '0'))), true);
+        $card_margin = json_decode(get_theme_mod('coachpress_card_margin', json_encode(array('top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0'))), true);
         echo "--coachpress-card-margin-top: " . esc_html($card_margin['top'] ?? '0') . ";";
         echo "--coachpress-card-margin-right: " . esc_html($card_margin['right'] ?? '0') . ";";
-        echo "--coachpress-card-margin-bottom: " . esc_html($card_margin['bottom'] ?? '20px') . ";";
+        echo "--coachpress-card-margin-bottom: " . esc_html($card_margin['bottom'] ?? '0') . ";";
         echo "--coachpress-card-margin-left: " . esc_html($card_margin['left'] ?? '0') . ";";
         ?>
 
         /* Forms */
-        --coachpress-form-field-bg-color: <?php echo esc_html( get_theme_mod('coachpress_form_field_bg_color', '#FFFFFF') ); ?>;
-        --coachpress-form-field-text-color: <?php echo esc_html( get_theme_mod('coachpress_form_field_text_color', '#333333') ); ?>;
-        --coachpress-form-field-border-color: <?php echo esc_html( get_theme_mod('coachpress_form_field_border_color', '#CCCCCC') ); ?>;
-        --coachpress-form-field-border-radius: <?php echo esc_html( get_theme_mod('coachpress_form_field_border_radius', '4px') ); ?>;
-        --coachpress-form-width: <?php echo esc_html( get_theme_mod('coachpress_form_width', '100%') ); ?>;
+        --coachpress-form-field-bg-color: #FFFFFF;
+        --coachpress-form-field-text-color: #333333;
+        --coachpress-form-field-border-color: #DDDDDD;
+        --coachpress-form-field-border-radius: 4px;
+        --coachpress-form-width: 100%;
 
         /* Images */
         <?php
-        $img_radius = json_decode(get_theme_mod('coachpress_image_border_radius', json_encode(array('top-left' => '0px', 'top-right' => '0px', 'bottom-right' => '0px', 'bottom-left' => '0px'))), true);
-        echo "--coachpress-image-border-radius-top-left: " . esc_html($img_radius['top-left'] ?? '0px') . ";";
-        echo "--coachpress-image-border-radius-top-right: " . esc_html($img_radius['top-right'] ?? '0px') . ";";
-        echo "--coachpress-image-border-radius-bottom-right: " . esc_html($img_radius['bottom-right'] ?? '0px') . ";";
-        echo "--coachpress-image-border-radius-bottom-left: " . esc_html($img_radius['bottom-left'] ?? '0px') . ";";
+        $img_radius = json_decode(get_theme_mod('coachpress_image_border_radius', json_encode(array('top-left' => '8px', 'top-right' => '8px', 'bottom-right' => '8px', 'bottom-left' => '8px'))), true);
+        echo "--coachpress-image-border-radius-top-left: " . esc_html($img_radius['top-left'] ?? '8px') . ";";
+        echo "--coachpress-image-border-radius-top-right: " . esc_html($img_radius['top-right'] ?? '8px') . ";";
+        echo "--coachpress-image-border-radius-bottom-right: " . esc_html($img_radius['bottom-right'] ?? '8px') . ";";
+        echo "--coachpress-image-border-radius-bottom-left: " . esc_html($img_radius['bottom-left'] ?? '8px') . ";";
         ?>
-        --coachpress-image-width: <?php echo esc_html( get_theme_mod('coachpress_image_width', '100%') ); ?>;
+        --coachpress-image-width: 100%;
 
         /* Layout */
-        --coachpress-container-width: <?php echo esc_html( get_theme_mod('coachpress_container_width', '1140px') ); ?>;
+        --coachpress-container-width: <?php echo esc_html( get_theme_mod('coachpress_container_width', '1200px') ); ?>;
 
         /* Header */
         --coachpress-header-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_bg_color', '#FFFFFF') ); ?>;
-        --coachpress-header-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_text_color', '#333333') ); ?>;
-        --coachpress-header-link-color: <?php echo esc_html( get_theme_mod('coachpress_header_link_color', '#0D2F4F') ); ?>;
-        --coachpress-header-link-hover-color: <?php echo esc_html( get_theme_mod('coachpress_header_link_hover_color', '#FFC107') ); ?>;
-        --coachpress-header-padding-y: <?php echo esc_html( get_theme_mod('coachpress_header_padding_y', '15px') ); ?>;
-        --coachpress-header-hamburger-color: <?php echo esc_html( get_theme_mod('coachpress_header_hamburger_color', '#333333') ); ?>;
-        --coachpress-mobile-menu-bg-color: <?php echo esc_html( get_theme_mod('coachpress_mobile_menu_bg_color', '#FFFFFF') ); ?>;
-        --coachpress-mobile-menu-link-color: <?php echo esc_html( get_theme_mod('coachpress_mobile_menu_link_color', '#0D2F4F') ); ?>;
-        --coachpress-mobile-menu-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_mobile_menu_hover_bg_color', '#F5F5F5') ); ?>;
+        --coachpress-header-text-color: #333333;
+        --coachpress-header-link-color: #0D2F4F;
+        --coachpress-header-link-hover-color: #FFC107;
+        --coachpress-header-padding-y: 15px;
+        --coachpress-header-hamburger-color: #333333;
+        --coachpress-mobile-menu-bg-color: #FFFFFF;
+        --coachpress-mobile-menu-link-color: #0D2F4F;
+        --coachpress-mobile-menu-hover-bg-color: #F5F5F5;
 
         /* Header CTA */
         --coachpress-header-cta-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_bg_color', '#0D2F4F') ); ?>;
-        --coachpress-header-cta-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_text_color', '#FFFFFF') ); ?>;
-        --coachpress-header-cta-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_hover_bg_color', '#FFC107') ); ?>;
-        --coachpress-header-cta-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_hover_text_color', '#0D2F4F') ); ?>;
-        --coachpress-header-cta-border-radius: <?php echo esc_html( get_theme_mod('coachpress_header_cta_border_radius', '4px') ); ?>;
+        --coachpress-header-cta-text-color: #FFFFFF;
+        --coachpress-header-cta-hover-bg-color: #FFC107;
+        --coachpress-header-cta-hover-text-color: #0D2F4F;
+        --coachpress-header-cta-border-radius: 4px;
 
         /* Footer */
-        --coachpress-footer-bg-color: <?php echo esc_html( get_theme_mod('coachpress_footer_bg_color', '#1A1A1A') ); ?>;
-        --coachpress-footer-text-color: <?php echo esc_html( get_theme_mod('coachpress_footer_text_color', '#FFFFFF') ); ?>;
-        --coachpress-footer-link-color: <?php echo esc_html( get_theme_mod('coachpress_footer_link_color', '#FFFFFF') ); ?>;
-        --coachpress-footer-link-hover-color: <?php echo esc_html( get_theme_mod('coachpress_footer_link_hover_color', '#FFC107') ); ?>;
-        --coachpress-footer-padding-y: <?php echo esc_html( get_theme_mod('coachpress_footer_padding_y', '60px') ); ?>;
+        --coachpress-footer-bg-color: #1A1A1A;
+        --coachpress-footer-text-color: #FFFFFF;
+        --coachpress-footer-link-color: #FFFFFF;
+        --coachpress-footer-link-hover-color: #FFC107;
+        --coachpress-footer-padding-y: 60px;
 
-        /* Buttons (Section Specific Overrides are handled below in loop) */
-        --coachpress-hero-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_bg_color', '#0D2F4F') ); ?>;
-        --coachpress-hero-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_text_color', '#FFFFFF') ); ?>;
-        --coachpress-hero-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_hover_bg_color', '#FFC107') ); ?>;
-        --coachpress-hero-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_hover_text_color', '#0D2F4F') ); ?>;
-        --coachpress-hero-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_hero_button_border_radius', '4px') ); ?>;
-
-        --coachpress-about-preview-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_bg_color', '#0D2F4F') ); ?>;
-        --coachpress-about-preview-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_text_color', '#FFFFFF') ); ?>;
-        --coachpress-about-preview-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_hover_bg_color', '#FFC107') ); ?>;
-        --coachpress-about-preview-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_hover_text_color', '#0D2F4F') ); ?>;
-        --coachpress-about-preview-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_border_radius', '4px') ); ?>;
-
-        --coachpress-cta-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_bg_color', '#FFFFFF') ); ?>;
-        --coachpress-cta-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_text_color', '#0D2F4F') ); ?>;
-        --coachpress-cta-button-hover-bg-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_hover_bg_color', '#FFC107') ); ?>;
-        --coachpress-cta-button-hover-text-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_hover_text_color', '#0D2F4F') ); ?>;
-        --coachpress-cta-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_cta_button_border_radius', '4px') ); ?>;
+        /* Default Section Values */
+        --coachpress-section-padding-top: 80px;
+        --coachpress-section-padding-bottom: 80px;
     }
 
     <?php
@@ -129,46 +114,52 @@ function coachpress_dynamic_css() {
     $sections = coachpress_get_section_choices();
     foreach ($sections as $section_id => $name) :
         $alignment = get_theme_mod("coachpress_{$section_id}_text_alignment", ($section_id === 'cta' || $section_id === 'testimonials' ? 'center' : 'left'));
-        $padding = json_decode(get_theme_mod("coachpress_{$section_id}_padding"), true);
+        $padding_json = get_theme_mod("coachpress_{$section_id}_padding");
+        $padding = $padding_json ? json_decode($padding_json, true) : null;
         $heading_color = get_theme_mod("coachpress_{$section_id}_heading_color");
         $text_color = get_theme_mod("coachpress_{$section_id}_text_color");
         $overlay_color = get_theme_mod("coachpress_{$section_id}_bg_overlay_color", 'rgba(0,0,0,0.5)');
         ?>
-        #<?php echo esc_attr($section_id); ?> {
+        .section-<?php echo esc_attr($section_id); ?> {
             text-align: <?php echo esc_html($alignment); ?>;
             <?php if ($padding) : ?>
-                padding-top: <?php echo esc_html($padding['top'] ?? '60px'); ?>;
-                padding-bottom: <?php echo esc_html($padding['bottom'] ?? '60px'); ?>;
+                padding-top: <?php echo esc_html($padding['top'] ?? '80px'); ?>;
+                padding-bottom: <?php echo esc_html($padding['bottom'] ?? '80px'); ?>;
                 padding-left: <?php echo esc_html($padding['left'] ?? '0'); ?>;
                 padding-right: <?php echo esc_html($padding['right'] ?? '0'); ?>;
+            <?php else: ?>
+                padding-top: var(--coachpress-section-padding-top);
+                padding-bottom: var(--coachpress-section-padding-bottom);
             <?php endif; ?>
         }
         <?php if ($heading_color) : ?>
-            #<?php echo esc_attr($section_id); ?> h1,
-            #<?php echo esc_attr($section_id); ?> h2,
-            #<?php echo esc_attr($section_id); ?> h3,
-            #<?php echo esc_attr($section_id); ?> h4,
-            #<?php echo esc_attr($section_id); ?> h5,
-            #<?php echo esc_attr($section_id); ?> h6 { color: <?php echo esc_html($heading_color); ?>; }
+            .section-<?php echo esc_attr($section_id); ?> h1,
+            .section-<?php echo esc_attr($section_id); ?> h2,
+            .section-<?php echo esc_attr($section_id); ?> h3,
+            .section-<?php echo esc_attr($section_id); ?> h4,
+            .section-<?php echo esc_attr($section_id); ?> h5,
+            .section-<?php echo esc_attr($section_id); ?> h6 { color: <?php echo esc_html($heading_color); ?> !important; }
         <?php endif; ?>
         <?php if ($text_color) : ?>
-            #<?php echo esc_attr($section_id); ?>,
-            #<?php echo esc_attr($section_id); ?> p,
-            #<?php echo esc_attr($section_id); ?> .section-description { color: <?php echo esc_html($text_color); ?>; }
+            .section-<?php echo esc_attr($section_id); ?>,
+            .section-<?php echo esc_attr($section_id); ?> p,
+            .section-<?php echo esc_attr($section_id); ?> .section-description { color: <?php echo esc_html($text_color); ?> !important; }
         <?php endif; ?>
-        #<?php echo esc_attr($section_id); ?> .section-background-overlay {
+        .section-<?php echo esc_attr($section_id); ?> .section-background-overlay {
             background-color: <?php echo esc_html($overlay_color); ?>;
         }
     <?php endforeach; ?>
 
     img {
         border-radius: var(--coachpress-image-border-radius-top-left) var(--coachpress-image-border-radius-top-right) var(--coachpress-image-border-radius-bottom-right) var(--coachpress-image-border-radius-bottom-left);
-        width: var(--coachpress-image-width);
     }
-    form { width: var(--coachpress-form-width); }
 
     <?php
-    $css = ob_get_clean();
-    wp_add_inline_style('coachpress-style', $css);
+    return ob_get_clean();
 }
-add_action('wp_head', 'coachpress_dynamic_css');
+
+function coachpress_enqueue_dynamic_css() {
+    $dynamic_css = coachpress_generate_dynamic_css();
+    wp_add_inline_style('coachpress-style', $dynamic_css);
+}
+add_action('wp_enqueue_scripts', 'coachpress_enqueue_dynamic_css', 20);
