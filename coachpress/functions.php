@@ -159,7 +159,7 @@ function coachpress_scripts() {
 
 	wp_enqueue_script( 'coachpress-modal', get_template_directory_uri() . '/js/modal.js', array(), COACHPRESS_VERSION, true );
 
-    wp_enqueue_script( 'coachpress-theme', get_template_directory_uri() . '/js/theme.js', array( 'swiper-js' ), COACHPRESS_VERSION, true );
+    wp_enqueue_script( 'coachpress-theme', get_template_directory_uri() . '/js/theme.js', array( 'swiper-js', 'aos-js' ), COACHPRESS_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -186,6 +186,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Shortcodes.
+ */
+require get_template_directory() . '/inc/shortcodes.php';
 
 /**
  * Dynamic CSS.
@@ -218,6 +223,8 @@ function coachpress_get_section_choices() {
         'trust' => __( 'Trust', 'coachpress' ),
         'problem' => __( 'Problem', 'coachpress' ),
         'about-preview' => __( 'About Preview', 'coachpress' ),
+        'portfolio' => __( 'Portfolio', 'coachpress' ),
+        'team' => __( 'Team', 'coachpress' ),
     );
 }
 
@@ -234,3 +241,63 @@ function coachpress_get_sections() {
 
     return $sections;
 }
+
+/**
+ * Programmatically create necessary pages on theme activation.
+ */
+function coachpress_create_pages() {
+    $pages = array(
+        'Home' => array(
+            'template' => 'page-home.php',
+            'content'  => '',
+        ),
+        'About' => array(
+            'template' => 'page-about.php',
+            'content'  => 'Welcome to the About page.',
+        ),
+        'Services' => array(
+            'template' => 'page-services.php',
+            'content'  => 'Our professional services.',
+        ),
+        'Portfolio' => array(
+            'template' => 'page-portfolio.php',
+            'content'  => 'Check out our work.',
+        ),
+        'Process' => array(
+            'template' => 'page-process.php',
+            'content'  => 'How we work.',
+        ),
+        'Team' => array(
+            'template' => 'page-team.php',
+            'content'  => 'Meet our amazing team.',
+        ),
+        'Contact' => array(
+            'template' => 'page-contact.php',
+            'content'  => 'Get in touch with us.',
+        ),
+    );
+
+    foreach ( $pages as $title => $data ) {
+        $slug = sanitize_title($title);
+        $page_check = get_page_by_path($slug);
+        if ( ! isset( $page_check->ID ) ) {
+            $page_id = wp_insert_post( array(
+                'post_title'   => $title,
+                'post_name'    => $slug,
+                'post_content' => $data['content'],
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+            ) );
+
+            if ( $page_id && ! empty( $data['template'] ) ) {
+                update_post_meta( $page_id, '_wp_page_template', $data['template'] );
+            }
+
+            if ( 'Home' === $title ) {
+                update_option( 'show_on_front', 'page' );
+                update_option( 'page_on_front', $page_id );
+            }
+        }
+    }
+}
+add_action( 'after_switch_theme', 'coachpress_create_pages' );

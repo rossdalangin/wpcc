@@ -6,6 +6,10 @@
  */
 
 function coachpress_display_section($section_id) {
+    if ( ! get_theme_mod( "coachpress_section_visibility[$section_id]", true ) ) {
+        return;
+    }
+
     $bg_type = get_theme_mod("coachpress_{$section_id}_bg_type", 'color');
     $bg_image_id = get_theme_mod("coachpress_{$section_id}_bg_image");
     $bg_image = $bg_image_id ? wp_get_attachment_image_url($bg_image_id, 'full') : '';
@@ -19,8 +23,12 @@ function coachpress_display_section($section_id) {
         $section_style = "background-image: url({$bg_image});";
     }
 
+    $alignment = get_theme_mod("coachpress_{$section_id}_text_alignment", ($section_id === 'cta' || $section_id === 'testimonials' ? 'center' : 'left'));
+    $section_classes = array('homepage-section', 'section-' . $section_id);
+    $section_classes[] = 'text-align-' . $alignment;
+
     ?>
-    <section id="<?php echo esc_attr($section_id); ?>" class="homepage-section" style="<?php echo esc_attr($section_style); ?>">
+    <section id="<?php echo esc_attr($section_id); ?>" class="<?php echo esc_attr(implode(' ', $section_classes)); ?>" style="<?php echo esc_attr($section_style); ?>">
         <?php if ($bg_type === 'video' && !empty($bg_video)) : ?>
             <video class="section-background-video" autoplay muted loop playsinline>
                 <source src="<?php echo esc_url($bg_video); ?>" type="video/mp4">
@@ -35,16 +43,18 @@ function coachpress_display_section($section_id) {
             if ($section_id !== 'hero') {
                 $title = get_theme_mod("coachpress_{$section_id}_section_title");
                 if (!empty($title)) {
-                    echo '<h2 class="section-title">' . esc_html($title) . '</h2>';
+                    echo '<h2 class="section-title" data-aos="fade-up">' . esc_html($title) . '</h2>';
                 }
 
                 $description = get_theme_mod("coachpress_{$section_id}_section_description");
                 if (!empty($description)) {
-                    echo '<div class="section-description">' . wp_kses_post($description) . '</div>';
+                    echo '<div class="section-description" data-aos="fade-up" data-aos-delay="100">' . wp_kses_post($description) . '</div>';
                 }
             }
 
+            echo '<div class="section-content-wrapper" data-aos="fade-up" data-aos-delay="200">';
             get_template_part('template-parts/content', $section_id);
+            echo '</div>';
             ?>
         </div>
     </section>

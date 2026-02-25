@@ -18,7 +18,8 @@ get_header();
 
         endwhile; // End of the loop.
 
-        get_template_part( 'template-parts/section-processes' );
+        coachpress_display_section( 'processes' );
+        coachpress_display_section( 'cta' );
 		?>
 
 	</main><!-- #main -->
