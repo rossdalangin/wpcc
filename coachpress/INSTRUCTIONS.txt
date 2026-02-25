@@ -52,11 +52,22 @@ Located in **Theme Settings > Theme Maintenance**, these tools allow you to:
 
 ## Marketing & Promotion
 
-To help you launch and sell your services faster, we've included high-converting marketing assets:
-- **Sales Letter & Prompts**: Copywriting templates for your sales pages.
-- **Video Scripts**: Scripts for a full tutorial and a high-converting Video Sales Letter (VSL).
+To help you launch and sell your services faster, we've included two sets of high-converting marketing assets:
 
-You can find these in the `PROMOTIONAL_ASSETS.md` file in the theme root.
+1. **Promotional Assets (`PROMOTIONAL_ASSETS.md`)**:
+   - Master Sales Letter Prompt.
+   - Long-form Sales Letter Sample.
+   - 15-Minute Masterclass Tutorial Script.
+   - 7-Minute VSL Script.
+
+2. **Ultimate Marketing Kit (`MARKETING_KIT.md`)**:
+   - **7-Day Email Nurture Sequence**: High-converting emails to launch your site.
+   - **Comprehensive Marketing Strategy**: SEO, Content, and Lead Magnet plans.
+   - **Outreach Scripts**: Cold email and LinkedIn templates for B2B targeting.
+   - **30-Day Social Media Content Calendar**: Daily hooks and post ideas.
+   - **Landing Page Blueprints**: Copy frameworks for your service pages.
+
+Both files are located in the theme root directory.
 
 ## Support & Development
 
