@@ -30,7 +30,7 @@ function coachpress_customize_page_templates( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'coachpress_page_header_padding', array(
-        'default'           => json_encode(array('top' => '80px', 'right' => '0', 'bottom' => '80px', 'left' => '0')),
+        'default'           => json_encode(array('top' => '100px', 'right' => '0', 'bottom' => '100px', 'left' => '0')),
         'transport'         => 'refresh',
         'sanitize_callback' => 'coachpress_sanitize_dimensions'
     ) );
@@ -40,31 +40,61 @@ function coachpress_customize_page_templates( $wp_customize ) {
     ) ) );
 
     $pages = array(
-        'about'     => __( 'About Page', 'coachpress' ),
-        'services'  => __( 'Services Page', 'coachpress' ),
-        'process'   => __( 'Process Page', 'coachpress' ),
-        'portfolio' => __( 'Portfolio Page', 'coachpress' ),
-        'team'      => __( 'Team Page', 'coachpress' ),
-        'contact'   => __( 'Contact Page', 'coachpress' )
+        'about'     => array(
+            'name' => __( 'About Page', 'coachpress' ),
+            'title' => 'Decades of Strategy. One Mission: Your Growth.',
+            'subtitle' => 'Meet the minds behind the most successful market transformations.',
+            'content' => 'We don\'t just consult; we partner. Our approach is rooted in organizational psychology and data-driven execution. Over the last 20 years, we have helped over 500 high-performers find their edge and dominate their markets.'
+        ),
+        'services'  => array(
+            'name' => __( 'Services Page', 'coachpress' ),
+            'title' => 'High-Impact Solutions for Modern Leaders.',
+            'subtitle' => 'Precision-engineered frameworks designed to scale your impact and income.',
+            'content' => 'Explore our range of bespoke consulting and coaching services. Whether you are looking for executive leadership development or a total operational overhaul, we have the systems to get you there.'
+        ),
+        'process'   => array(
+            'name' => __( 'Process Page', 'coachpress' ),
+            'title' => 'The Scientific Approach to Success.',
+            'subtitle' => 'Transparency at every step. See how we turn chaos into a scalable blueprint.',
+            'content' => 'Our 4-step framework is rigorous, iterative, and results-oriented. We leave nothing to chance, ensuring every strategic move is backed by data and aligned with your long-term vision.'
+        ),
+        'portfolio' => array(
+            'name' => __( 'Portfolio Page', 'coachpress' ),
+            'title' => 'A Track Record of Radical Transformation.',
+            'subtitle' => 'Real stories of scale, efficiency, and market domination.',
+            'content' => 'Browse our curated selection of high-impact projects. From global SaaS scaling to leadership turnarounds, these case studies demonstrate the power of modular strategy.'
+        ),
+        'team'      => array(
+            'name' => __( 'Team Page', 'coachpress' ),
+            'title' => 'The Collective: Elite Minds, Unified Vision.',
+            'subtitle' => 'Meet the consultants who have built, scaled, and exited multi-million dollar firms.',
+            'content' => 'Our team is composed of seasoned operators and visionary strategists. We don\'t just teach; we\'ve done it. Join an exclusive circle of experts dedicated to your success.'
+        ),
+        'contact'   => array(
+            'name' => __( 'Contact Page', 'coachpress' ),
+            'title' => 'Start Your Transformation Today.',
+            'subtitle' => 'Ready to find your edge? Let\'s have a high-stakes conversation.',
+            'content' => 'Fill out the form below or reach out via our direct channels. We respond to qualified inquiries within 24 hours.'
+        )
     );
 
     $i = 10;
-    foreach ($pages as $slug => $name) {
+    foreach ($pages as $slug => $data) {
         $section_id = "coachpress_{$slug}_page";
         $wp_customize->add_section( $section_id, array(
-            'title'    => sprintf( __( '%s Settings', 'coachpress' ), $name ),
+            'title'    => sprintf( __( '%s Settings', 'coachpress' ), $data['name'] ),
             'priority' => $i,
             'panel'    => 'coachpress_page_templates_panel',
         ) );
 
         // Banner Content
-        $wp_customize->add_setting( "coachpress_{$slug}_banner_title", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_setting( "coachpress_{$slug}_banner_title", array( 'default' => $data['title'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
         $wp_customize->add_control( "coachpress_{$slug}_banner_title", array( 'label' => __( 'Banner Title Override', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
 
-        $wp_customize->add_setting( "coachpress_{$slug}_banner_subtitle", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_setting( "coachpress_{$slug}_banner_subtitle", array( 'default' => $data['subtitle'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
         $wp_customize->add_control( "coachpress_{$slug}_banner_subtitle", array( 'label' => __( 'Banner Subtitle', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
 
-        $wp_customize->add_setting( "coachpress_{$slug}_page_content", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+        $wp_customize->add_setting( "coachpress_{$slug}_page_content", array( 'default' => $data['content'], 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
         $wp_customize->add_control( "coachpress_{$slug}_page_content", array( 'label' => __( 'Page Main Content Override', 'coachpress' ), 'description' => __('Modify the core content of this page directly from here.', 'coachpress'), 'section' => $section_id, 'type' => 'textarea' ) );
 
         $wp_customize->add_setting( "coachpress_{$slug}_page_banner_image", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'absint' ) );
@@ -85,8 +115,8 @@ function coachpress_customize_page_templates( $wp_customize ) {
             'sanitize_callback' => 'sanitize_text_field'
         ) );
         $wp_customize->add_control( new CoachPress_Section_Order_Control( $wp_customize, "coachpress_{$slug}_page_sections", array(
-            'label'       => __( 'Page Sections Order', 'coachpress' ),
-            'description' => __('Select and reorder sections for this page.', 'coachpress'),
+            'label'       => __( 'Page Sections Layout (Builder)', 'coachpress' ),
+            'description' => __('This tool allows you to build a custom landing page by stacking modular sections. Drag and drop to reorder.', 'coachpress'),
             'section'     => $section_id,
             'choices'     => $sections
         ) ) );

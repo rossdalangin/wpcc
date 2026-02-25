@@ -60,14 +60,44 @@ $form_title = get_theme_mod('coachpress_contact_form_title', 'Send Us A Message'
             if (!empty($html_content)) {
                 echo '<div class="contact-form-wrapper">' . wp_kses_post($html_content) . '</div>';
             } else {
-                echo '<p class="form-placeholder">' . __('Form HTML will appear here. Configure it in the Customizer.', 'coachpress') . '</p>';
+                ?>
+                <div class="contact-form-wrapper fallback-form">
+                    <form action="#" method="post" class="coachpress-form">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="<?php _e('Your Name', 'coachpress'); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="<?php _e('Email Address', 'coachpress'); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="5" placeholder="<?php _e('How can we help you?', 'coachpress'); ?>" required></textarea>
+                        </div>
+                        <button type="submit" class="btn"><?php _e('Send Message', 'coachpress'); ?></button>
+                    </form>
+                </div>
+                <?php
             }
         } else {
             $shortcode = get_theme_mod('coachpress_contact_page_shortcode');
             if (!empty($shortcode)) {
                 echo '<div class="contact-form-wrapper">' . do_shortcode($shortcode) . '</div>';
             } else {
-                echo '<p class="form-placeholder">' . __('Form shortcode will appear here. Configure it in the Customizer.', 'coachpress') . '</p>';
+                ?>
+                <div class="contact-form-wrapper fallback-form">
+                    <form action="#" method="post" class="coachpress-form">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="<?php _e('Your Name', 'coachpress'); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="<?php _e('Email Address', 'coachpress'); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="5" placeholder="<?php _e('How can we help you?', 'coachpress'); ?>" required></textarea>
+                        </div>
+                        <button type="submit" class="btn"><?php _e('Send Message', 'coachpress'); ?></button>
+                    </form>
+                </div>
+                <?php
             }
         }
         ?>
