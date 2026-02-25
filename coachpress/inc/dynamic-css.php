@@ -134,9 +134,21 @@ function coachpress_generate_dynamic_css() {
         $padding = $padding_json ? json_decode($padding_json, true) : null;
         $bg_type = get_theme_mod("coachpress_{$section_id}_bg_type", 'color');
         $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color", $default_bg);
-        $heading_color = get_theme_mod("coachpress_{$section_id}_heading_color");
-        $text_color = get_theme_mod("coachpress_{$section_id}_text_color");
+        $heading_color = get_theme_mod("coachpress_{$section_id}_heading_color", $data['heading_color'] ?? '#1a365d');
+        $text_color = get_theme_mod("coachpress_{$section_id}_text_color", $data['text_color'] ?? '#2d3748');
         $overlay_color = get_theme_mod("coachpress_{$section_id}_bg_overlay_color", 'rgba(26,54,93,0.85)');
+
+        $heading_font = get_theme_mod("coachpress_{$section_id}_heading_font");
+        $body_font = get_theme_mod("coachpress_{$section_id}_body_font");
+
+        $heading_size_json = get_theme_mod("coachpress_{$section_id}_heading_font_size");
+        $heading_size = $heading_size_json ? json_decode($heading_size_json, true) : null;
+
+        $body_size_json = get_theme_mod("coachpress_{$section_id}_body_font_size");
+        $body_size = $body_size_json ? json_decode($body_size_json, true) : null;
+
+        $margin_json = get_theme_mod("coachpress_{$section_id}_margin");
+        $margin = $margin_json ? json_decode($margin_json, true) : null;
         ?>
         .section-<?php echo esc_attr($section_id); ?> {
             text-align: <?php echo esc_html($alignment); ?>;
@@ -156,6 +168,10 @@ function coachpress_generate_dynamic_css() {
                 padding-top: 100px !important;
                 padding-bottom: 100px !important;
             <?php endif; ?>
+            <?php if ($margin) : ?>
+                margin-top: <?php echo esc_html($margin['top']); ?> !important;
+                margin-bottom: <?php echo esc_html($margin['bottom']); ?> !important;
+            <?php endif; ?>
         }
         <?php if ($heading_color) : ?>
             .section-<?php echo esc_attr($section_id); ?> h1,
@@ -169,6 +185,25 @@ function coachpress_generate_dynamic_css() {
             .section-<?php echo esc_attr($section_id); ?>,
             .section-<?php echo esc_attr($section_id); ?> p,
             .section-<?php echo esc_attr($section_id); ?> .section-description { color: <?php echo esc_html($text_color); ?> !important; }
+        <?php endif; ?>
+
+        <?php if ($heading_font) : ?>
+            .section-<?php echo esc_attr($section_id); ?> h1, .section-<?php echo esc_attr($section_id); ?> h2, .section-<?php echo esc_attr($section_id); ?> h3, .section-<?php echo esc_attr($section_id); ?> h4, .section-<?php echo esc_attr($section_id); ?> h5, .section-<?php echo esc_attr($section_id); ?> h6 { font-family: '<?php echo esc_html($heading_font); ?>', serif !important; }
+        <?php endif; ?>
+        <?php if ($body_font) : ?>
+            .section-<?php echo esc_attr($section_id); ?>, .section-<?php echo esc_attr($section_id); ?> p, .section-<?php echo esc_attr($section_id); ?> .section-description { font-family: '<?php echo esc_html($body_font); ?>', sans-serif !important; }
+        <?php endif; ?>
+
+        <?php if ($heading_size) : ?>
+            @media (min-width: 1024px) { .section-<?php echo esc_attr($section_id); ?> h2 { font-size: <?php echo esc_html($heading_size['desktop'] ?? '3rem'); ?> !important; } }
+            @media (max-width: 1023px) { .section-<?php echo esc_attr($section_id); ?> h2 { font-size: <?php echo esc_html($heading_size['tablet'] ?? '2.5rem'); ?> !important; } }
+            @media (max-width: 767px) { .section-<?php echo esc_attr($section_id); ?> h2 { font-size: <?php echo esc_html($heading_size['mobile'] ?? '2.2rem'); ?> !important; } }
+        <?php endif; ?>
+
+        <?php if ($body_size) : ?>
+            @media (min-width: 1024px) { .section-<?php echo esc_attr($section_id); ?> p, .section-<?php echo esc_attr($section_id); ?> .section-description { font-size: <?php echo esc_html($body_size['desktop'] ?? '17px'); ?> !important; } }
+            @media (max-width: 1023px) { .section-<?php echo esc_attr($section_id); ?> p, .section-<?php echo esc_attr($section_id); ?> .section-description { font-size: <?php echo esc_html($body_size['tablet'] ?? '16px'); ?> !important; } }
+            @media (max-width: 767px) { .section-<?php echo esc_attr($section_id); ?> p, .section-<?php echo esc_attr($section_id); ?> .section-description { font-size: <?php echo esc_html($body_size['mobile'] ?? '15px'); ?> !important; } }
         <?php endif; ?>
         .section-<?php echo esc_attr($section_id); ?> .section-background-overlay {
             background-color: <?php echo esc_html($overlay_color); ?> !important;
@@ -214,11 +249,33 @@ function coachpress_generate_dynamic_css() {
     .page-banner .container { position: relative; z-index: 1; }
     .page-banner .entry-title {
         color: var(--coachpress-page-header-text-color) !important;
+        <?php
+        $header_font = get_theme_mod('coachpress_page_header_font');
+        if ($header_font) echo "font-family: '{$header_font}', serif !important;";
+        ?>
     }
     .page-banner.has-banner-image .entry-title,
     .page-banner.has-banner-image .entry-subtitle {
         color: #FFFFFF !important;
     }
+
+    <?php
+    $header_title_size_json = get_theme_mod('coachpress_page_header_title_size');
+    $header_title_size = $header_title_size_json ? json_decode($header_title_size_json, true) : null;
+    if ($header_title_size) : ?>
+        @media (min-width: 1024px) { .page-banner .entry-title { font-size: <?php echo esc_html($header_title_size['desktop'] ?? '4rem'); ?> !important; } }
+        @media (max-width: 1023px) { .page-banner .entry-title { font-size: <?php echo esc_html($header_title_size['tablet'] ?? '3rem'); ?> !important; } }
+        @media (max-width: 767px) { .page-banner .entry-title { font-size: <?php echo esc_html($header_title_size['mobile'] ?? '2.5rem'); ?> !important; } }
+    <?php endif; ?>
+
+    <?php
+    $header_subtitle_size_json = get_theme_mod('coachpress_page_header_subtitle_size');
+    $header_subtitle_size = $header_subtitle_size_json ? json_decode($header_subtitle_size_json, true) : null;
+    if ($header_subtitle_size) : ?>
+        @media (min-width: 1024px) { .page-banner .entry-subtitle { font-size: <?php echo esc_html($header_subtitle_size['desktop'] ?? '1.5rem'); ?> !important; } }
+        @media (max-width: 1023px) { .page-banner .entry-subtitle { font-size: <?php echo esc_html($header_subtitle_size['tablet'] ?? '1.3rem'); ?> !important; } }
+        @media (max-width: 767px) { .page-banner .entry-subtitle { font-size: <?php echo esc_html($header_subtitle_size['mobile'] ?? '1.1rem'); ?> !important; } }
+    <?php endif; ?>
 
     /* Global Link Colors */
     a { color: var(--coachpress-link-color); text-decoration: none; transition: color 0.3s ease; }

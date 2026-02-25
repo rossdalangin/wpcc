@@ -216,7 +216,7 @@ require get_template_directory() . '/inc/theme-maintenance.php';
 
 
 function coachpress_get_sections_data() {
-    return array(
+    $data = array(
         'hero'          => ['label' => __( 'Hero', 'coachpress' ), 'title' => 'Accelerate Your Impact. Scale Your Vision.', 'description' => '', 'bg' => 'linear-gradient(135deg, #1a365d 0%, #2d3748 100%)'],
         'trust'         => ['label' => __( 'Trust', 'coachpress' ), 'title' => 'Trusted By Visionaries', 'description' => '', 'bg' => '#FFFFFF'],
         'problem'       => ['label' => __( 'Problem', 'coachpress' ), 'title' => 'Struggling to Scale?', 'description' => '', 'bg' => '#f7fafc'],
@@ -231,6 +231,14 @@ function coachpress_get_sections_data() {
         'contact'       => ['label' => __( 'Contact', 'coachpress' ), 'title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.', 'bg' => '#f7fafc'],
         'team'          => ['label' => __( 'Team', 'coachpress' ), 'title' => 'The Collective', 'description' => 'Expert minds coming together for your success.', 'bg' => '#FFFFFF'],
     );
+
+    foreach ($data as $id => &$section) {
+        $is_dark = coachpress_is_dark($section['bg']);
+        $section['heading_color'] = $is_dark ? '#FFFFFF' : '#1a365d';
+        $section['text_color'] = $is_dark ? '#e2e8f0' : '#2d3748';
+    }
+
+    return $data;
 }
 
 function coachpress_get_section_choices() {
@@ -290,6 +298,7 @@ function coachpress_get_template_slug() {
         'page-portfolio.php' => 'portfolio',
         'page-team.php'      => 'team',
         'page-contact.php'   => 'contact',
+        'page-blog.php'      => 'blog',
     );
 
     if (isset($mapping[$template])) {
@@ -297,6 +306,29 @@ function coachpress_get_template_slug() {
     }
 
     return get_post_field( 'post_name', get_the_ID() );
+}
+
+/**
+ * Check if a color is dark.
+ */
+function coachpress_is_dark( $color ) {
+    $color = str_replace( '#', '', $color );
+    if ( strlen( $color ) === 3 ) {
+        $color = $color[0] . $color[0] . $color[1] . $color[1] . $color[2] . $color[2];
+    }
+    if ( strlen( $color ) !== 6 ) {
+        // If it's a gradient or something else, assume dark for our specific navy defaults
+        if ( strpos( $color, 'gradient' ) !== false && strpos( $color, '#1a365d' ) !== false ) return true;
+        return false;
+    }
+
+    $r = hexdec( substr( $color, 0, 2 ) );
+    $g = hexdec( substr( $color, 2, 2 ) );
+    $b = hexdec( substr( $color, 4, 2 ) );
+
+    $brightness = ( ( $r * 299 ) + ( $g * 587 ) + ( $b * 114 ) ) / 1000;
+
+    return $brightness < 155;
 }
 
 /**
@@ -331,6 +363,10 @@ function coachpress_create_pages() {
         'Contact' => array(
             'template' => 'page-contact.php',
             'content'  => 'Get in touch with us.',
+        ),
+        'Blog' => array(
+            'template' => 'page-blog.php',
+            'content'  => 'Our latest insights.',
         ),
     );
 

@@ -39,6 +39,15 @@ function coachpress_customize_page_templates( $wp_customize ) {
         'section'  => 'coachpress_global_page_header'
     ) ) );
 
+    $wp_customize->add_setting( 'coachpress_page_header_font', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, 'coachpress_page_header_font', array( 'label' => __( 'Header Font Family', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+
+    $wp_customize->add_setting( 'coachpress_page_header_title_size', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_responsive_font_size' ) );
+    $wp_customize->add_control( new CoachPress_Responsive_Font_Size_Control( $wp_customize, 'coachpress_page_header_title_size', array( 'label' => __( 'Title Font Size', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+
+    $wp_customize->add_setting( 'coachpress_page_header_subtitle_size', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_responsive_font_size' ) );
+    $wp_customize->add_control( new CoachPress_Responsive_Font_Size_Control( $wp_customize, 'coachpress_page_header_subtitle_size', array( 'label' => __( 'Subtitle Font Size', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+
     $pages = array(
         'about'     => array(
             'name' => __( 'About Page', 'coachpress' ),
@@ -63,6 +72,12 @@ function coachpress_customize_page_templates( $wp_customize ) {
             'title' => 'A Track Record of Radical Transformation.',
             'subtitle' => 'Real stories of scale, efficiency, and market domination.',
             'content' => 'Browse our curated selection of high-impact projects. From global SaaS scaling to leadership turnarounds, these case studies demonstrate the power of modular strategy.'
+        ),
+        'blog'      => array(
+            'name' => __( 'Blog Page', 'coachpress' ),
+            'title' => 'Insights & Strategy',
+            'subtitle' => 'Deep dives into the worlds of high-performance leadership and market domination.',
+            'content' => ''
         ),
         'team'      => array(
             'name' => __( 'Team Page', 'coachpress' ),

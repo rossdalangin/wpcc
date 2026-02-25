@@ -5,6 +5,55 @@
  * @package CoachPress
  */
 
+//======================================================================
+// Sanitization Functions
+//======================================================================
+function coachpress_sanitize_background( $value ) {
+    if ( strpos( $value, 'linear-gradient' ) !== false ) { return esc_attr( $value ); }
+    return sanitize_hex_color( $value );
+}
+function coachpress_sanitize_responsive_font_size( $value ) {
+    $value_decoded = json_decode( $value, true );
+    if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
+    foreach ( $value_decoded as $device => $size ) { $value_decoded[$device] = sanitize_text_field( $size ); }
+    return json_encode( $value_decoded );
+}
+function coachpress_sanitize_dimensions( $value ) {
+    $value_decoded = json_decode( $value, true );
+    if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
+    foreach ( $value_decoded as $side => $dimension ) { $value_decoded[$side] = sanitize_text_field( $dimension ); }
+    return json_encode( $value_decoded );
+}
+function coachpress_sanitize_border_radius( $value ) {
+    $value_decoded = json_decode( $value, true );
+    if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
+    foreach ( $value_decoded as $corner => $radius ) { $value_decoded[$corner] = sanitize_text_field( $radius ); }
+    return json_encode( $value_decoded );
+}
+
+function coachpress_sanitize_rgba_color( $color ) {
+    if ( empty( $color ) || is_array( $color ) ) {
+        return 'rgba(0,0,0,0)';
+    }
+    if ( false === strpos( $color, 'rgba' ) ) {
+        return sanitize_hex_color( $color );
+    }
+    $color = str_replace( ' ', '', $color );
+    sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+    $red   = ($red < 0 || $red > 255) ? 0 : $red;
+    $green = ($green < 0 || $green > 255) ? 0 : $green;
+    $blue  = ($blue < 0 || $blue > 255) ? 0 : $blue;
+    $alpha = ($alpha < 0 || $alpha > 1) ? 0.5 : $alpha;
+    return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
+}
+
+function coachpress_sanitize_multi_select( $value ) {
+    if ( ! is_array( $value ) ) {
+        return array();
+    }
+    return array_map( 'absint', $value );
+}
+
 // Load Custom Controls
 require_once get_template_directory() . '/inc/gradient-control.php';
 require_once get_template_directory() . '/inc/responsive-font-size-control.php';
@@ -91,59 +140,6 @@ function coachpress_customize_controls_scripts() {
 add_action( 'customize_controls_enqueue_scripts', 'coachpress_customize_controls_scripts' );
 
 
-//======================================================================
-// Sanitization Functions
-//======================================================================
-function coachpress_sanitize_background( $value ) {
-    if ( strpos( $value, 'linear-gradient' ) !== false ) { return esc_attr( $value ); }
-    return sanitize_hex_color( $value );
-}
-function coachpress_sanitize_responsive_font_size( $value ) {
-    $value_decoded = json_decode( $value, true );
-    if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
-    foreach ( $value_decoded as $device => $size ) { $value_decoded[$device] = sanitize_text_field( $size ); }
-    return json_encode( $value_decoded );
-}
-function coachpress_sanitize_dimensions( $value ) {
-    $value_decoded = json_decode( $value, true );
-    if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
-    foreach ( $value_decoded as $side => $dimension ) { $value_decoded[$side] = sanitize_text_field( $dimension ); }
-    return json_encode( $value_decoded );
-}
-function coachpress_sanitize_border_radius( $value ) {
-    $value_decoded = json_decode( $value, true );
-    if ( ! is_array( $value_decoded ) ) { return json_encode( array() ); }
-    foreach ( $value_decoded as $corner => $radius ) { $value_decoded[$corner] = sanitize_text_field( $radius ); }
-    return json_encode( $value_decoded );
-}
-
-function coachpress_sanitize_rgba_color( $color ) {
-    if ( empty( $color ) || is_array( $color ) ) {
-        return 'rgba(0,0,0,0)';
-    }
-
-    // If string does not start with 'rgba', then treat as hex
-    // sanitize the hex color and finally convert hex to rgba
-    if ( false === strpos( $color, 'rgba' ) ) {
-        return sanitize_hex_color( $color );
-    }
-
-    // By now we know the string is formatted as an rgba color so we need to further sanitize it.
-    $color = str_replace( ' ', '', $color );
-    sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
-    $red   = ($red < 0 || $red > 255) ? 0 : $red;
-    $green = ($green < 0 || $green > 255) ? 0 : $green;
-    $blue  = ($blue < 0 || $blue > 255) ? 0 : $blue;
-    $alpha = ($alpha < 0 || $alpha > 1) ? 0.5 : $alpha;
-    return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
-}
-
-function coachpress_sanitize_multi_select( $value ) {
-    if ( ! is_array( $value ) ) {
-        return array();
-    }
-    return array_map( 'absint', $value );
-}
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
     class CoachPress_Multi_Select_Control extends WP_Customize_Control {

@@ -208,6 +208,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     // -- Per-Section Layout & Background --
     foreach ( $sections as $section_id => $section_name ) {
         $section_handle = "coachpress_{$section_id}_section";
+        $default_data = $sections_data[$section_id] ?? [];
 
         $wp_customize->add_setting( "coachpress_{$section_id}_text_alignment", array(
             'default'           => ($section_id === 'cta' || $section_id === 'testimonials' || $section_id === 'trust' ? 'center' : 'left'),
@@ -289,7 +290,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         ) ) );
 
         $wp_customize->add_setting( "coachpress_{$section_id}_heading_color", array(
-            'default'           => (in_array($section_id, ['hero', 'cta']) ? '#FFFFFF' : '#1a365d'),
+            'default'           => $default_data['heading_color'] ?? '#1a365d',
             'transport'         => 'refresh',
             'sanitize_callback' => 'sanitize_hex_color'
         ) );
@@ -300,7 +301,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         ) ) );
 
         $wp_customize->add_setting( "coachpress_{$section_id}_text_color", array(
-            'default'           => (in_array($section_id, ['hero', 'cta']) ? '#e2e8f0' : '#2d3748'),
+            'default'           => $default_data['text_color'] ?? '#2d3748',
             'transport'         => 'refresh',
             'sanitize_callback' => 'sanitize_hex_color'
         ) );
@@ -308,6 +309,31 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'label'    => __( 'Text Color Override', 'coachpress' ),
             'section'  => $section_handle,
             'priority' => 71
+        ) ) );
+
+        // -- Typography Overrides per Section --
+        $wp_customize->add_setting( "coachpress_{$section_id}_heading_font", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, "coachpress_{$section_id}_heading_font", array( 'label' => __( 'Section Heading Font', 'coachpress' ), 'section' => $section_handle, 'priority' => 80 ) ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_body_font", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, "coachpress_{$section_id}_body_font", array( 'label' => __( 'Section Body Font', 'coachpress' ), 'section' => $section_handle, 'priority' => 81 ) ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_heading_font_size", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_responsive_font_size' ) );
+        $wp_customize->add_control( new CoachPress_Responsive_Font_Size_Control( $wp_customize, "coachpress_{$section_id}_heading_font_size", array( 'label' => __( 'Section Heading Size', 'coachpress' ), 'section' => $section_handle, 'priority' => 82 ) ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_body_font_size", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_responsive_font_size' ) );
+        $wp_customize->add_control( new CoachPress_Responsive_Font_Size_Control( $wp_customize, "coachpress_{$section_id}_body_font_size", array( 'label' => __( 'Section Body Size', 'coachpress' ), 'section' => $section_handle, 'priority' => 83 ) ) );
+
+        // -- Margin Override per Section --
+        $wp_customize->add_setting( "coachpress_{$section_id}_margin", array(
+            'default'           => json_encode(array('top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0')),
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'coachpress_sanitize_dimensions'
+        ) );
+        $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, "coachpress_{$section_id}_margin", array(
+            'label'    => __( 'Section Margin', 'coachpress' ),
+            'section'  => $section_handle,
+            'priority' => 85
         ) ) );
     }
 }
