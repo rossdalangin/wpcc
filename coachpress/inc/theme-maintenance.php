@@ -94,8 +94,9 @@ function coachpress_add_sample_data() {
 
     // Portfolio
     $portfolio = array(
-        array( 'title' => 'The Sovereign Executive Program', 'content' => 'A curated 12-month mastermind for high-performing CEOs.', 'cat' => 'High-Ticket Strategy' ),
-        array( 'title' => 'Operations Overhaul: Retail Giant', 'content' => 'Redesigning the supply chain logic for a national retail chain.', 'cat' => 'Operations' ),
+        array( 'title' => 'The Sovereign Executive Program', 'content' => 'A curated 12-month mastermind for high-performing CEOs. This program focused on sustainable leadership and rapid expansion into new markets.', 'cat' => 'High-Ticket Strategy' ),
+        array( 'title' => 'Operations Overhaul: Retail Giant', 'content' => 'Redesigning the supply chain logic for a national retail chain, resulting in a 20% reduction in operational costs.', 'cat' => 'Operations' ),
+        array( 'title' => 'Brand Authority Audit', 'content' => 'A deep dive into the digital presence of a top-tier consultancy, resulting in a complete brand refresh and 50% increase in lead conversion.', 'cat' => 'Branding' ),
     );
     foreach ( $portfolio as $item ) {
         $pid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'portfolio', 'post_status' => 'publish' ) );

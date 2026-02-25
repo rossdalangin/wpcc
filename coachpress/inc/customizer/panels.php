@@ -24,4 +24,9 @@ function coachpress_customize_panels( $wp_customize ) {
         'priority' => 22,
         'description' => __( 'Manage the content, order, and appearance of each section on your homepage.', 'coachpress' ),
     ) );
+    $wp_customize->add_panel( 'coachpress_page_templates_panel', array(
+        'title'    => __( 'Page Templates', 'coachpress' ),
+        'priority' => 23,
+        'description' => __( 'Configure the layout and content of your main pages (About, Services, Portfolio, etc.).', 'coachpress' ),
+    ) );
 }

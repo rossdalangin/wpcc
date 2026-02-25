@@ -246,8 +246,9 @@ img {
 /* Portfolio Improved Design */
 .portfolio-item-wrap { margin-bottom: 30px; }
 .portfolio-item-inner { border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-.portfolio-featured-image { position: relative; overflow: hidden; height: 400px; }
+.portfolio-featured-image { position: relative; overflow: hidden; height: 400px; background-color: var(--coachpress-primary-color); }
 .portfolio-featured-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.portfolio-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--coachpress-primary-color) 0%, var(--coachpress-accent-color) 100%); opacity: 0.2; }
 .portfolio-item-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 0%, rgba(26,54,93,0.95) 100%); display: flex; align-items: flex-end; padding: 40px; opacity: 0; transition: opacity 0.4s ease; }
 .portfolio-item-wrap:hover .portfolio-item-overlay { opacity: 1; }
 .portfolio-item-wrap:hover .portfolio-featured-image img { transform: scale(1.1); }
@@ -352,6 +353,11 @@ input:focus, textarea:focus {
 # Mobile
 --------------------------------------------------------------*/
 @media (max-width: 768px) {
+    .portfolio-item-overlay { opacity: 1; background: rgba(26,54,93,0.9); padding: 20px; }
+    .portfolio-item-details { transform: translateY(0); }
+    .portfolio-featured-image { height: 300px; }
+    .portfolio-item-title { font-size: 1.2rem; }
+
     .menu-toggle { display: block; background: none; border: none; cursor: pointer; padding: 10px; z-index: 1001; }
     .icon-bar { display: block; width: 25px; height: 2px; background-color: var(--coachpress-primary-color); margin: 6px 0; transition: 0.3s; }
     .toggled .icon-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
@@ -371,4 +377,13 @@ input:focus, textarea:focus {
     .section-title { font-size: 2.2rem; }
     .hero-container { gap: 40px; }
     .btn { width: 100%; }
+}
+
+.no-posts-found {
+    text-align: center;
+    padding: 60px 0;
+    background: var(--coachpress-secondary-color);
+    border-radius: 12px;
+    border: 2px dashed rgba(0,0,0,0.1);
+    font-style: italic;
 }

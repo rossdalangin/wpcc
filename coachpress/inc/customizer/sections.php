@@ -39,8 +39,4 @@ function coachpress_customize_sections( $wp_customize ) {
         ) );
 	}
 
-    //======================================================================
-    // Page Template Sections
-    //======================================================================
-    $wp_customize->add_section( 'coachpress_contact_page', array( 'title' => __( 'Contact Page Template', 'coachpress' ), 'priority' => 50 ) );
 }

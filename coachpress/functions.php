@@ -260,7 +260,12 @@ function coachpress_get_sections() {
 /**
  * Display sections for a specific page template.
  */
-function coachpress_display_page_sections($setting_id, $default) {
+function coachpress_display_page_sections($setting_id = '', $default = '') {
+    if (empty($setting_id)) {
+        $slug = coachpress_get_template_slug();
+        $setting_id = "coachpress_{$slug}_page_sections";
+    }
+
     $sections_str = get_theme_mod($setting_id, $default);
     if (empty($sections_str)) return;
 
@@ -270,6 +275,28 @@ function coachpress_display_page_sections($setting_id, $default) {
             coachpress_display_section($section_id, true);
         }
     }
+}
+
+/**
+ * Get the Customizer slug for the current page template.
+ */
+function coachpress_get_template_slug() {
+    $template = get_page_template_slug();
+
+    $mapping = array(
+        'page-about.php'     => 'about',
+        'page-services.php'  => 'services',
+        'page-process.php'   => 'process',
+        'page-portfolio.php' => 'portfolio',
+        'page-team.php'      => 'team',
+        'page-contact.php'   => 'contact',
+    );
+
+    if (isset($mapping[$template])) {
+        return $mapping[$template];
+    }
+
+    return get_post_field( 'post_name', get_the_ID() );
 }
 
 /**
