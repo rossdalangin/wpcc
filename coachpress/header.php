@@ -15,6 +15,23 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php if ( is_singular() ) : ?>
+        <meta name="description" content="<?php echo esc_attr( wp_strip_all_tags( get_the_excerpt() ) ); ?>">
+        <meta property="og:title" content="<?php the_title(); ?>">
+        <meta property="og:description" content="<?php echo esc_attr( wp_strip_all_tags( get_the_excerpt() ) ); ?>">
+        <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
+        <meta property="og:url" content="<?php the_permalink(); ?>">
+        <?php if ( has_post_thumbnail() ) : ?>
+            <meta property="og:image" content="<?php the_post_thumbnail_url('large'); ?>">
+        <?php endif; ?>
+    <?php else : ?>
+        <meta name="description" content="<?php bloginfo( 'description' ); ?>">
+        <meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
+        <meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
+    <?php endif; ?>
+    <meta name="twitter:card" content="summary_large_image">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
@@ -46,8 +63,8 @@
                 <?php endif; ?>
             </div><!-- .site-branding -->
 
-            <nav id="site-navigation" class="main-navigation">
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+            <nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'coachpress' ); ?>">
+                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'coachpress' ); ?>">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

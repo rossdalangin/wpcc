@@ -18,7 +18,8 @@ get_header();
 
         endwhile; // End of the loop.
 
-        get_template_part( 'template-parts/section-contact' );
+        coachpress_display_section( 'contact' );
+        coachpress_display_section( 'faqs' );
 		?>
 
 	</main><!-- #main -->

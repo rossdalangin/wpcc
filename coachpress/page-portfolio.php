@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Services Page
+ * Template Name: Portfolio Page
  *
  * @package CoachPress
  */
@@ -18,7 +18,8 @@ get_header();
 
         endwhile; // End of the loop.
 
-        coachpress_display_section( 'services' );
+        coachpress_display_section( 'portfolio' );
+        coachpress_display_section( 'case-studies' );
         coachpress_display_section( 'cta' );
 		?>
 

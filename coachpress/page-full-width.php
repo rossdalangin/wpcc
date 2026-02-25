@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Services Page
+ * Template Name: Full-Width Page
  *
  * @package CoachPress
  */
@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main container-full">
 
 		<?php
         while ( have_posts() ) :
@@ -17,9 +17,6 @@ get_header();
             get_template_part( 'template-parts/content', 'page' );
 
         endwhile; // End of the loop.
-
-        coachpress_display_section( 'services' );
-        coachpress_display_section( 'cta' );
 		?>
 
 	</main><!-- #main -->
