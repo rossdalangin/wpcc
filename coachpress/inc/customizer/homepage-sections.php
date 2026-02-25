@@ -199,6 +199,12 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_contact_form_title', array( 'default' => 'Send Us A Message', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_contact_form_title', array( 'label' => __( 'Contact Form Title', 'coachpress' ), 'section' => 'coachpress_contact_section', 'type' => 'text', 'priority' => 20 ) );
 
+    // -- Team Section Specific --
+    $wp_customize->add_setting( 'coachpress_team_cta_text', array( 'default' => 'Join Our Elite Network', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_text', array( 'label' => __( 'Team Section CTA Text', 'coachpress' ), 'section' => 'coachpress_team_section', 'type' => 'text', 'priority' => 10 ) );
+    $wp_customize->add_setting( 'coachpress_team_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_url', array( 'label' => __( 'Team Section CTA URL', 'coachpress' ), 'section' => 'coachpress_team_section', 'type' => 'url', 'priority' => 11 ) );
+
     // -- Per-Section Layout & Background --
     foreach ( $sections as $section_id => $section_name ) {
         $section_handle = "coachpress_{$section_id}_section";

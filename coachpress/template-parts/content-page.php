@@ -12,19 +12,28 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ( ! is_front_page() ) :
         $post_slug = get_post_field( 'post_name', get_the_ID() );
+
+        $banner_title_override = get_theme_mod( "coachpress_{$post_slug}_banner_title" );
+        $banner_subtitle = get_theme_mod( "coachpress_{$post_slug}_banner_subtitle" );
         $banner_img_id = get_theme_mod( "coachpress_{$post_slug}_page_banner_image" );
+
         $banner_style = '';
         if ( $banner_img_id ) {
             $banner_url = wp_get_attachment_image_url( $banner_img_id, 'full' );
             $banner_style = 'style="background-image: url(' . esc_url( $banner_url ) . '); background-size: cover; background-position: center;"';
         }
+
+        $display_title = !empty($banner_title_override) ? $banner_title_override : get_the_title();
         ?>
         <header class="entry-header page-banner <?php echo $banner_img_id ? 'has-banner-image' : ''; ?>" <?php echo $banner_style; ?>>
             <?php if ( $banner_img_id ) : ?>
                 <div class="page-banner-overlay"></div>
             <?php endif; ?>
             <div class="container">
-                <?php the_title( '<h1 class="entry-title" data-aos="fade-up">', '</h1>' ); ?>
+                <h1 class="entry-title" data-aos="fade-up"><?php echo esc_html($display_title); ?></h1>
+                <?php if (!empty($banner_subtitle)) : ?>
+                    <p class="entry-subtitle" data-aos="fade-up" data-aos-delay="100"><?php echo esc_html($banner_subtitle); ?></p>
+                <?php endif; ?>
             </div>
         </header><!-- .entry-header -->
     <?php endif; ?>

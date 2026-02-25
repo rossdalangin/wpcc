@@ -207,7 +207,10 @@ function coachpress_generate_dynamic_css() {
     .page-banner .container { position: relative; z-index: 1; }
     .page-banner .entry-title {
         color: var(--coachpress-page-header-text-color) !important;
-        margin: 0;
+    }
+    .page-banner.has-banner-image .entry-title,
+    .page-banner.has-banner-image .entry-subtitle {
+        color: #FFFFFF !important;
     }
 
     <?php
