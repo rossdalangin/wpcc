@@ -51,7 +51,15 @@ function coachpress_generate_dynamic_css() {
         ?>
 
         /* Cards */
-        --coachpress-card-bg-color: <?php echo esc_html( get_theme_mod('coachpress_card_bg_color', '#FFFFFF') ); ?>;
+        <?php
+        $card_bg = get_theme_mod('coachpress_card_bg_color', '#FFFFFF');
+        $is_card_dark = coachpress_is_dark($card_bg);
+        $card_text_color = $is_card_dark ? '#e2e8f0' : '#2d3748';
+        $card_heading_color = $is_card_dark ? '#FFFFFF' : '#1a365d';
+        ?>
+        --coachpress-card-bg-color: <?php echo esc_html( $card_bg ); ?>;
+        --coachpress-card-text-color: <?php echo esc_html( $card_text_color ); ?>;
+        --coachpress-card-heading-color: <?php echo esc_html( $card_heading_color ); ?>;
         --coachpress-card-border-radius: <?php echo esc_html( get_theme_mod('coachpress_card_border_radius', '12px') ); ?>;
         --coachpress-card-border-color: <?php echo esc_html( get_theme_mod('coachpress_card_border_color', 'transparent') ); ?>;
         --coachpress-card-border-width: <?php echo esc_html( get_theme_mod('coachpress_card_border_width', '0px') ); ?>;
@@ -289,6 +297,23 @@ function coachpress_generate_dynamic_css() {
         background-color: var(--coachpress-button-hover-bg-color) !important;
         color: var(--coachpress-button-hover-text-color) !important;
     }
+
+    /* Card Text Color Overrides */
+    .card, .card p, .card .team-member-bio, .card .testimonial-content { color: var(--coachpress-card-text-color) !important; }
+    .card h1, .card h2, .card h3, .card h4, .card h5, .card h6, .card .team-member-name, .card .testimonial-author { color: var(--coachpress-card-heading-color) !important; }
+    .card .team-member-role { color: var(--coachpress-accent-color) !important; }
+    .card .team-member-social a { color: var(--coachpress-card-text-color) !important; }
+    .card .team-member-social a:hover { color: var(--coachpress-accent-color) !important; }
+
+    /* Team CTA Card Overrides */
+    .team-cta-card, .team-cta-card h3, .team-cta-card p { color: #fff !important; }
+    .team-cta-card .team-cta-icon { color: var(--coachpress-accent-color) !important; }
+
+    /* Portfolio Specific Overrides to protect them from section-wide !important colors */
+    .portfolio-item-details { color: #fff !important; }
+    .portfolio-item-title { color: #fff !important; }
+    .portfolio-item-cat { color: var(--coachpress-accent-color) !important; }
+    .portfolio-item-link { color: #fff !important; border-bottom-color: var(--coachpress-accent-color) !important; }
 
     <?php
     return ob_get_clean();
