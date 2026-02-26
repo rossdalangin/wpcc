@@ -23,20 +23,26 @@ $query = new WP_Query($query_args);
 if ($query->have_posts()): ?>
     <div class="services-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="service-item card" data-aos="fade-up">
-            <?php if(has_post_thumbnail()): ?>
-                <div class="item-image">
-                    <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium'); ?></a>
+        <article class="service-item-wrap" data-aos="fade-up">
+            <div class="service-item-inner card <?php echo !has_post_thumbnail() ? 'no-thumbnail' : ''; ?>">
+                <div class="service-featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php if(has_post_thumbnail()): ?>
+                            <?php the_post_thumbnail('large'); ?>
+                        <?php else: ?>
+                            <div class="service-placeholder"></div>
+                        <?php endif; ?>
+                    </a>
                 </div>
-            <?php endif; ?>
-            <div class="item-content">
-                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                <div class="item-excerpt">
-                    <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
+
+                <div class="service-item-content">
+                    <span class="service-item-cat"><?php _e('Service', 'coachpress'); ?></span>
+                    <h3 class="service-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    <div class="service-item-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></div>
+                    <a href="<?php the_permalink(); ?>" class="service-item-link"><?php _e('Learn More', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
                 </div>
-                <a href="<?php the_permalink(); ?>" class="btn-link"><?php _e('Learn More', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
             </div>
-        </div>
+        </article>
     <?php endwhile; wp_reset_postdata(); ?>
     </div>
 <?php endif; ?>

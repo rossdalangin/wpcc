@@ -23,20 +23,26 @@ $query = new WP_Query($query_args);
 if ($query->have_posts()): ?>
     <div class="case-studies-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="case-study-item card" data-aos="fade-up">
-            <?php if(has_post_thumbnail()): ?>
-                <div class="item-image">
-                    <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium'); ?></a>
+        <article class="case-study-item-wrap" data-aos="fade-up">
+            <div class="case-study-item-inner card <?php echo !has_post_thumbnail() ? 'no-thumbnail' : ''; ?>">
+                <div class="case-study-featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php if(has_post_thumbnail()): ?>
+                            <?php the_post_thumbnail('large'); ?>
+                        <?php else: ?>
+                            <div class="case-study-placeholder"></div>
+                        <?php endif; ?>
+                    </a>
                 </div>
-            <?php endif; ?>
-            <div class="item-content">
-                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                <div class="item-excerpt">
-                    <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
+
+                <div class="case-study-item-content">
+                    <span class="case-study-item-cat"><?php _e('Case Study', 'coachpress'); ?></span>
+                    <h3 class="case-study-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    <div class="case-study-item-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></div>
+                    <a href="<?php the_permalink(); ?>" class="case-study-item-link"><?php _e('Read Case Study', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
                 </div>
-                <a href="<?php the_permalink(); ?>" class="btn-link"><?php _e('Read Case Study', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
             </div>
-        </div>
+        </article>
     <?php endwhile; wp_reset_postdata(); ?>
     </div>
 <?php endif; ?>
