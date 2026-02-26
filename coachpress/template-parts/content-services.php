@@ -26,12 +26,15 @@ if ($query->have_posts()): ?>
         <div class="service-item card" data-aos="fade-up">
             <?php if(has_post_thumbnail()): ?>
                 <div class="item-image">
-                    <?php the_post_thumbnail('medium'); ?>
+                    <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium'); ?></a>
                 </div>
             <?php endif; ?>
             <div class="item-content">
-                <h3><?php the_title(); ?></h3>
-                <?php the_content(); ?>
+                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                <div class="item-excerpt">
+                    <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
+                </div>
+                <a href="<?php the_permalink(); ?>" class="btn-link"><?php _e('Learn More', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     <?php endwhile; wp_reset_postdata(); ?>

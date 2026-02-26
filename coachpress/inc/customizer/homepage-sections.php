@@ -14,8 +14,8 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         'sanitize_callback' => 'sanitize_text_field'
     ) );
     $wp_customize->add_control( new CoachPress_Section_Order_Control( $wp_customize, 'coachpress_section_order', array(
-        'label'       => __( 'Homepage Section Order', 'coachpress' ),
-        'description' => __('Drag and drop sections to reorder them on the homepage.', 'coachpress'),
+        'label'       => __( 'Homepage Section Layout (Builder)', 'coachpress' ),
+        'description' => __('This is your visual landing page builder. Drag and drop the boxes to change the order of sections on your home page. Move the "Hero" to the top for a standard layout, or experiment with different flows.', 'coachpress'),
         'section'     => 'coachpress_section_ordering',
         'choices'     => $sections
     ) ) );
@@ -27,7 +27,8 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'sanitize_callback' => 'wp_validate_boolean'
         ) );
         $wp_customize->add_control( "coachpress_show_{$section_id}", array(
-            'label'   => sprintf( __( 'Show %s Section', 'coachpress' ), $section_name ),
+            'label'   => sprintf( __( 'Enable %s', 'coachpress' ), $section_name ),
+            'description' => sprintf( __('Toggle this to show or hide the %s section on your homepage.', 'coachpress'), $section_name ),
             'section' => 'coachpress_section_ordering',
             'type'    => 'checkbox'
         ) );
@@ -68,13 +69,16 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
 
     // -- Hero Section Specific --
     $wp_customize->add_setting( 'coachpress_hero_heading', array( 'default' => 'Lead With Authority. Scale With Precision.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'coachpress_hero_heading', array( 'label' => __( 'Hero Heading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 10 ) );
+    $wp_customize->add_control( 'coachpress_hero_heading', array( 'label' => __( 'Hero Main Headline', 'coachpress' ), 'description' => __('The big, bold text at the very top of your site. State your primary value proposition here.', 'coachpress'), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 10 ) );
+
     $wp_customize->add_setting( 'coachpress_hero_subheading', array( 'default' => 'Bespoke coaching and strategic consulting for high-performing professionals ready to dominate their market.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
-    $wp_customize->add_control( 'coachpress_hero_subheading', array( 'label' => __( 'Hero Subheading', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'textarea', 'priority' => 11 ) );
+    $wp_customize->add_control( 'coachpress_hero_subheading', array( 'label' => __( 'Hero Description', 'coachpress' ), 'description' => __('A few sentences elaborating on what you do and who you serve.', 'coachpress'), 'section' => 'coachpress_hero_section', 'type' => 'textarea', 'priority' => 11 ) );
+
     $wp_customize->add_setting( 'coachpress_hero_cta_text', array( 'default' => 'Book Discovery Session', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'coachpress_hero_cta_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 12 ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_text', array( 'label' => __( 'Main Button Text', 'coachpress' ), 'description' => __('The text inside your primary action button (e.g., "Start Here").', 'coachpress'), 'section' => 'coachpress_hero_section', 'type' => 'text', 'priority' => 12 ) );
+
     $wp_customize->add_setting( 'coachpress_hero_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( 'coachpress_hero_cta_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => 'coachpress_hero_section', 'type' => 'url', 'priority' => 13 ) );
+    $wp_customize->add_control( 'coachpress_hero_cta_url', array( 'label' => __( 'Main Button Link', 'coachpress' ), 'description' => __('Where the button should take the visitor. Use a full URL or an ID link like "#contact".', 'coachpress'), 'section' => 'coachpress_hero_section', 'type' => 'url', 'priority' => 13 ) );
 
     // Hero CTA 2
     $wp_customize->add_setting( 'coachpress_hero_cta_2_visibility', array( 'default' => false, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
@@ -123,7 +127,8 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'sanitize_callback' => 'coachpress_sanitize_multi_select'
         ) );
         $wp_customize->add_control( new CoachPress_Multi_Select_Control( $wp_customize, "coachpress_{$cpt}_posts", array(
-            'label'    => sprintf( __( 'Select %s Items', 'coachpress' ), ucfirst(str_replace('-', ' ', $cpt)) ),
+            'label'    => sprintf( __( 'Pick Specific %s', 'coachpress' ), ucfirst(str_replace('-', ' ', $cpt)) ),
+            'description' => sprintf( __('Hold Ctrl/Cmd to select multiple items. If none are selected, the latest %s will be shown automatically.', 'coachpress'), str_replace('-', ' ', $cpt) ),
             'section'  => "coachpress_{$cpt}_section",
             'choices'  => $choices,
             'priority' => 3
@@ -217,6 +222,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         ) );
         $wp_customize->add_control( "coachpress_{$section_id}_text_alignment", array(
             'label'    => __( 'Text Alignment', 'coachpress' ),
+            'description' => __('Choose how text is aligned in this section (e.g., "Center" for impact, "Left" for readability).', 'coachpress'),
             'section'  => $section_handle,
             'type'     => 'select',
             'choices'  => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) ),
@@ -244,10 +250,11 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'sanitize_callback' => 'sanitize_key'
         ) );
         $wp_customize->add_control( "coachpress_{$section_id}_bg_type", array(
-            'label'    => __( 'Background Type', 'coachpress' ),
+            'label'    => __( 'Section Background Type', 'coachpress' ),
+            'description' => __('Decide what goes behind the content of this section.', 'coachpress'),
             'section'  => $section_handle,
             'type'     => 'select',
-            'choices'  => array( 'color' => __( 'Color/Gradient', 'coachpress' ), 'image' => __( 'Image', 'coachpress' ), 'video' => __( 'Video', 'coachpress' ) ),
+            'choices'  => array( 'color' => __( 'Color or Gradient', 'coachpress' ), 'image' => __( 'Custom Image', 'coachpress' ), 'video' => __( 'Video Background', 'coachpress' ) ),
             'priority' => 60
         ) );
 

@@ -76,6 +76,23 @@ p { margin-bottom: 1.5rem; }
     box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--coachpress-accent-color);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+.btn-link:hover {
+    gap: 15px;
+    color: var(--coachpress-primary-color);
+}
+
 .section-hero .btn {
     background-color: var(--coachpress-hero-button-bg-color);
     color: var(--coachpress-hero-button-text-color);
@@ -169,6 +186,7 @@ img {
 .main-navigation a:hover { color: var(--coachpress-primary-color); }
 .main-navigation a:hover::after { width: 100%; }
 
+.header-cta { margin-left: 50px; }
 .header-cta .button {
     background-color: var(--coachpress-header-cta-bg-color);
     color: var(--coachpress-header-cta-text-color);
@@ -275,10 +293,26 @@ img {
 /* Portfolio Single Template */
 .portfolio-single-cat { color: var(--coachpress-accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
 .portfolio-single-content { padding: 100px 0; }
-.portfolio-meta-card { position: sticky; top: 120px; }
-.portfolio-meta-item { margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; }
-.portfolio-meta-item strong { color: var(--coachpress-primary-color); margin-right: 10px; }
-.portfolio-cta { margin-top: 30px; }
+.portfolio-single-content .grid-2-col { grid-template-columns: 2fr 1fr; gap: 80px; align-items: start; }
+@media (max-width: 1024px) { .portfolio-single-content .grid-2-col { grid-template-columns: 1fr; gap: 40px; } }
+
+.portfolio-main-text .entry-content { padding: 0; }
+.portfolio-main-text .entry-content p { font-size: 1.15rem; line-height: 1.8; margin-bottom: 2rem; }
+
+.portfolio-meta-card { position: sticky; top: 120px; padding: 50px !important; }
+.portfolio-meta-card h3 { font-size: 1.5rem; margin-bottom: 30px; }
+.portfolio-meta-item { margin-bottom: 20px; font-size: 1.05rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; display: flex; justify-content: space-between; }
+.portfolio-meta-item strong { color: var(--coachpress-primary-color); font-weight: 700; }
+.portfolio-meta-item span { color: var(--coachpress-muted-text-color); }
+.portfolio-cta { margin-top: 40px; }
+.portfolio-cta .btn { width: 100%; }
+
+.post-navigation { border-top: 1px solid rgba(0,0,0,0.08); padding: 60px 0; margin-top: 60px; background: var(--coachpress-secondary-color); }
+.post-navigation .nav-links { display: flex; justify-content: space-between; max-width: var(--coachpress-container-width); margin: 0 auto; padding: 0 24px; }
+.post-navigation .nav-previous, .post-navigation .nav-next { flex: 1; }
+.post-navigation .nav-next { text-align: right; }
+.post-navigation .nav-subtitle { display: block; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--coachpress-muted-text-color); margin-bottom: 5px; }
+.post-navigation .nav-title { font-family: var(--coachpress-heading-font); font-size: 1.2rem; font-weight: 700; color: var(--coachpress-primary-color); }
 
 /* Portfolio Improved Design */
 .portfolio-item-wrap { margin-bottom: 30px; }
@@ -299,7 +333,7 @@ img {
 .team-cta-card { background: var(--coachpress-primary-color); color: #fff; justify-content: center; }
 .team-cta-card h3 { color: #fff; margin-bottom: 15px; }
 .team-cta-card p { opacity: 0.8; font-size: 0.9rem; }
-.team-cta-card .btn-link { color: var(--coachpress-accent-color); font-weight: 700; text-decoration: none; margin-top: 10px; border-bottom: 2px solid; }
+.team-cta-card .btn-link { margin-top: 10px; border-bottom: 2px solid; }
 .team-cta-icon { font-size: 2.5rem; color: var(--coachpress-accent-color); margin-bottom: 20px; }
 
 .team-image { margin-bottom: 25px; }
@@ -308,8 +342,19 @@ img {
 .team-member-role { color: var(--coachpress-accent-color); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 20px; }
 .team-member-bio { font-size: 0.95rem; line-height: 1.6; opacity: 0.8; margin-bottom: 25px; }
 .team-member-social { display: flex; justify-content: center; gap: 15px; }
-.team-member-social a { color: var(--coachpress-primary-color); font-size: 1.2rem; transition: color 0.3s ease; }
+.team-member-social a { color: var(--coachpress-primary-color); font-size: 1.2rem; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
 .team-member-social a:hover { color: var(--coachpress-accent-color); }
+
+/* Team Single Page */
+.team-single-intro { display: flex; align-items: center; gap: 40px; }
+.team-single-image img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.team-single-titles { text-align: left; }
+.team-single-titles .team-member-role { margin-bottom: 10px; display: block; }
+.team-single-titles .entry-title { margin-bottom: 0; }
+.team-single-content { padding: 80px 0; }
+.team-contact-card { padding: 50px !important; }
+.team-contact-card .team-member-social { justify-content: flex-start; flex-direction: column; margin-top: 20px; }
+.team-contact-card .team-member-social a { font-size: 1rem; }
 
 /* Contact Redesign */
 .contact-section-container { align-items: start; }

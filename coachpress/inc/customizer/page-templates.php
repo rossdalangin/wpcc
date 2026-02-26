@@ -16,14 +16,15 @@ function coachpress_customize_page_templates( $wp_customize ) {
     ) );
 
     $wp_customize->add_setting( 'coachpress_page_header_bg_color', array( 'default' => '#f7fafc', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_page_header_bg_color', array( 'label' => __( 'Header BG Color', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_page_header_bg_color', array( 'label' => __( 'Banner Background Color', 'coachpress' ), 'description' => __('The background color for the top banner of all internal pages.', 'coachpress'), 'section' => 'coachpress_global_page_header' ) ) );
 
     $wp_customize->add_setting( 'coachpress_page_header_text_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_page_header_text_color', array( 'label' => __( 'Header Text Color', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_page_header_text_color', array( 'label' => __( 'Banner Text Color', 'coachpress' ), 'description' => __('The color of the page title and subtitle in the banner.', 'coachpress'), 'section' => 'coachpress_global_page_header' ) ) );
 
     $wp_customize->add_setting( 'coachpress_page_header_alignment', array( 'default' => 'center', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
     $wp_customize->add_control( 'coachpress_page_header_alignment', array(
-        'label'    => __( 'Text Alignment', 'coachpress' ),
+        'label'    => __( 'Banner Alignment', 'coachpress' ),
+        'description' => __('Choose if you want your page titles to be centered, left, or right aligned.', 'coachpress'),
         'section'  => 'coachpress_global_page_header',
         'type'     => 'select',
         'choices'  => array( 'left' => __( 'Left', 'coachpress' ), 'center' => __( 'Center', 'coachpress' ), 'right' => __( 'Right', 'coachpress' ) )
@@ -35,12 +36,13 @@ function coachpress_customize_page_templates( $wp_customize ) {
         'sanitize_callback' => 'coachpress_sanitize_dimensions'
     ) );
     $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, 'coachpress_page_header_padding', array(
-        'label'    => __( 'Header Padding', 'coachpress' ),
+        'label'    => __( 'Banner Internal Spacing', 'coachpress' ),
+        'description' => __('Control the height of the banner by adjusting the Top and Bottom padding.', 'coachpress'),
         'section'  => 'coachpress_global_page_header'
     ) ) );
 
     $wp_customize->add_setting( 'coachpress_page_header_font', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, 'coachpress_page_header_font', array( 'label' => __( 'Header Font Family', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
+    $wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, 'coachpress_page_header_font', array( 'label' => __( 'Banner Heading Font', 'coachpress' ), 'description' => __('A font specifically for the main page titles.', 'coachpress'), 'section' => 'coachpress_global_page_header' ) ) );
 
     $wp_customize->add_setting( 'coachpress_page_header_title_size', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_responsive_font_size' ) );
     $wp_customize->add_control( new CoachPress_Responsive_Font_Size_Control( $wp_customize, 'coachpress_page_header_title_size', array( 'label' => __( 'Title Font Size', 'coachpress' ), 'section' => 'coachpress_global_page_header' ) ) );
@@ -104,16 +106,16 @@ function coachpress_customize_page_templates( $wp_customize ) {
 
         // Banner Content
         $wp_customize->add_setting( "coachpress_{$slug}_banner_title", array( 'default' => $data['title'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-        $wp_customize->add_control( "coachpress_{$slug}_banner_title", array( 'label' => __( 'Banner Title Override', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+        $wp_customize->add_control( "coachpress_{$slug}_banner_title", array( 'label' => __( 'Page Main Heading', 'coachpress' ), 'description' => __('This replaces the standard page title in the banner area.', 'coachpress'), 'section' => $section_id, 'type' => 'text' ) );
 
         $wp_customize->add_setting( "coachpress_{$slug}_banner_subtitle", array( 'default' => $data['subtitle'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-        $wp_customize->add_control( "coachpress_{$slug}_banner_subtitle", array( 'label' => __( 'Banner Subtitle', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+        $wp_customize->add_control( "coachpress_{$slug}_banner_subtitle", array( 'label' => __( 'Page Sub-Heading', 'coachpress' ), 'description' => __('A short explanation shown beneath the main heading.', 'coachpress'), 'section' => $section_id, 'type' => 'textarea' ) );
 
         $wp_customize->add_setting( "coachpress_{$slug}_page_content", array( 'default' => $data['content'], 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
-        $wp_customize->add_control( "coachpress_{$slug}_page_content", array( 'label' => __( 'Page Main Content Override', 'coachpress' ), 'description' => __('Modify the core content of this page directly from here.', 'coachpress'), 'section' => $section_id, 'type' => 'textarea' ) );
+        $wp_customize->add_control( "coachpress_{$slug}_page_content", array( 'label' => __( 'Main Narrative Content', 'coachpress' ), 'description' => __('The primary text area of this page. Use this to tell your story or describe your services in detail.', 'coachpress'), 'section' => $section_id, 'type' => 'textarea' ) );
 
         $wp_customize->add_setting( "coachpress_{$slug}_page_banner_image", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'absint' ) );
-        $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, "coachpress_{$slug}_page_banner_image", array( 'label' => __( 'Banner Image', 'coachpress' ), 'section' => $section_id, 'mime_type' => 'image' ) ) );
+        $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, "coachpress_{$slug}_page_banner_image", array( 'label' => __( 'Specific Banner Image', 'coachpress' ), 'description' => __('Upload a high-quality background image specifically for this page header. It will override the global color.', 'coachpress'), 'section' => $section_id, 'mime_type' => 'image' ) ) );
 
         // Section Order
         $default_sections = '';

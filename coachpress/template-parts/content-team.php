@@ -29,13 +29,14 @@ if ($query->have_posts()): ?>
             <div class="team-item card" data-aos="fade-up">
                 <?php if(has_post_thumbnail()): ?>
                     <div class="team-image">
-                        <?php the_post_thumbnail('medium'); ?>
+                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium'); ?></a>
                     </div>
                 <?php endif; ?>
                 <div class="team-content">
-                    <h3 class="team-member-name"><?php the_title(); ?></h3>
+                    <h3 class="team-member-name"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     <p class="team-member-role"><?php echo esc_html( get_post_meta( get_the_ID(), '_team_member_role', true ) ?: 'Consultant' ); ?></p>
                     <div class="team-member-bio"><?php the_excerpt(); ?></div>
+                    <a href="<?php the_permalink(); ?>" class="btn-link" style="margin-bottom: 20px;"><?php _e('View Profile', 'coachpress'); ?></a>
 
                     <div class="team-member-social">
                         <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>

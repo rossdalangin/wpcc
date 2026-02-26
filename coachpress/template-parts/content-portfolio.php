@@ -26,16 +26,18 @@ if ($query->have_posts()): ?>
         <article class="portfolio-item-wrap" data-aos="fade-up">
             <div class="portfolio-item-inner card <?php echo !has_post_thumbnail() ? 'no-thumbnail' : ''; ?>">
                 <div class="portfolio-featured-image">
-                    <?php if(has_post_thumbnail()): ?>
-                        <?php the_post_thumbnail('large'); ?>
-                    <?php else: ?>
-                        <div class="portfolio-placeholder"></div>
-                    <?php endif; ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php if(has_post_thumbnail()): ?>
+                            <?php the_post_thumbnail('large'); ?>
+                        <?php else: ?>
+                            <div class="portfolio-placeholder"></div>
+                        <?php endif; ?>
+                    </a>
                 </div>
 
                 <div class="portfolio-item-content">
                     <span class="portfolio-item-cat"><?php echo esc_html( get_post_meta( get_the_ID(), '_portfolio_category', true ) ?: 'Strategy' ); ?></span>
-                    <h3 class="portfolio-item-title"><?php the_title(); ?></h3>
+                    <h3 class="portfolio-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     <div class="portfolio-item-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></div>
                     <a href="<?php the_permalink(); ?>" class="portfolio-item-link"><?php _e('Explore Project', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
                 </div>

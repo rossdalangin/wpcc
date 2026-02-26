@@ -12,15 +12,17 @@ function coachpress_customize_theme_settings( $wp_customize ) {
 
     // -- Header --
     $wp_customize->add_setting('coachpress_header_bg_color', array('default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'coachpress_header_bg_color', array('label' => __('Background Color', 'coachpress'), 'section' => 'coachpress_header_settings')));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'coachpress_header_bg_color', array('label' => __('Header Background Color', 'coachpress'), 'description' => __('The background color for the sticky menu bar.', 'coachpress'), 'section' => 'coachpress_header_settings')));
 
     // -- Header CTA --
     $wp_customize->add_setting( 'coachpress_header_cta_visibility', array( 'default' => true, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
-    $wp_customize->add_control( 'coachpress_header_cta_visibility', array( 'label' => __( 'Show CTA Button', 'coachpress' ), 'section' => 'coachpress_header_cta', 'type' => 'checkbox' ) );
+    $wp_customize->add_control( 'coachpress_header_cta_visibility', array( 'label' => __( 'Enable Header Button', 'coachpress' ), 'description' => __('Toggle the high-visibility button in your navigation menu.', 'coachpress'), 'section' => 'coachpress_header_cta', 'type' => 'checkbox' ) );
+
     $wp_customize->add_setting( 'coachpress_header_cta_text', array( 'default' => __( 'Get Started', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'coachpress_header_cta_text', array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_header_cta', 'type' => 'text' ) );
+    $wp_customize->add_control( 'coachpress_header_cta_text', array( 'label' => __( 'Button Label', 'coachpress' ), 'description' => __('The text displayed on the button (e.g., "Book Now").', 'coachpress'), 'section' => 'coachpress_header_cta', 'type' => 'text' ) );
+
     $wp_customize->add_setting( 'coachpress_header_cta_type', array( 'default' => 'url', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
-    $wp_customize->add_control( 'coachpress_header_cta_type', array( 'label' => __( 'CTA Type', 'coachpress' ), 'section' => 'coachpress_header_cta', 'type' => 'select', 'choices' => array( 'url' => __( 'URL', 'coachpress' ), 'html' => __( 'HTML', 'coachpress' ), 'shortcode' => __( 'Shortcode', 'coachpress' ) ) ) );
+    $wp_customize->add_control( 'coachpress_header_cta_type', array( 'label' => __( 'Button Action Type', 'coachpress' ), 'description' => __('Choose if the button links to a page, or opens a popup modal with custom content.', 'coachpress'), 'section' => 'coachpress_header_cta', 'type' => 'select', 'choices' => array( 'url' => __( 'Link to URL', 'coachpress' ), 'html' => __( 'Open Modal (HTML)', 'coachpress' ), 'shortcode' => __( 'Open Modal (Shortcode)', 'coachpress' ) ) ) );
     $wp_customize->add_setting( 'coachpress_header_cta_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( 'coachpress_header_cta_url', array( 'label' => __( 'Button URL', 'coachpress' ), 'section' => 'coachpress_header_cta', 'type' => 'url', 'active_callback' => function() use ($wp_customize) { return 'url' === $wp_customize->get_setting('coachpress_header_cta_type')->value(); } ) );
 
@@ -52,14 +54,14 @@ function coachpress_customize_theme_settings( $wp_customize ) {
     $wp_customize->add_control( 'coachpress_footer_copyright_text', array( 'label' => __( 'Copyright Text', 'coachpress' ), 'section' => 'coachpress_footer_settings', 'type' => 'textarea' ) );
 
     // -- SEO Settings --
-    $wp_customize->add_section( 'coachpress_seo_settings', array( 'title' => __( 'SEO Settings', 'coachpress' ), 'panel' => 'coachpress_theme_settings_panel' ) );
+    $wp_customize->add_section( 'coachpress_seo_settings', array( 'title' => __( 'SEO & Social Metadata', 'coachpress' ), 'panel' => 'coachpress_theme_settings_panel', 'description' => __('Improve your search engine ranking and social sharing appearance.', 'coachpress') ) );
     $wp_customize->add_setting( 'coachpress_seo_keywords', array( 'default' => 'business coaching, strategic consulting, leadership development, executive coaching', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'coachpress_seo_keywords', array( 'label' => __( 'Global Keywords', 'coachpress' ), 'description' => __('Enter keywords separated by commas.', 'coachpress'), 'section' => 'coachpress_seo_settings', 'type' => 'text' ) );
+    $wp_customize->add_control( 'coachpress_seo_keywords', array( 'label' => __( 'Global Meta Keywords', 'coachpress' ), 'description' => __('A comma-separated list of terms that describe your business (e.g., business coaching, consultant, NYC strategy).', 'coachpress'), 'section' => 'coachpress_seo_settings', 'type' => 'text' ) );
 
     // -- Social Media --
     $social_networks = array( 'linkedin', 'twitter', 'facebook', 'instagram', 'youtube' );
     foreach ( $social_networks as $network ) {
         $wp_customize->add_setting( "coachpress_social_{$network}", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
-        $wp_customize->add_control( "coachpress_social_{$network}", array( 'label' => sprintf( __( '%s URL', 'coachpress' ), ucfirst( $network ) ), 'section' => 'coachpress_social_media', 'type' => 'url' ) );
+        $wp_customize->add_control( "coachpress_social_{$network}", array( 'label' => sprintf( __( '%s Profile Link', 'coachpress' ), ucfirst( $network ) ), 'description' => sprintf( __('Enter the full URL to your %s profile.', 'coachpress'), ucfirst($network) ), 'section' => 'coachpress_social_media', 'type' => 'url' ) );
     }
 }
