@@ -38,6 +38,18 @@ function coachpress_customize_global_styles( $wp_customize ) {
     $wp_customize->add_setting( 'coachpress_button_hover_text_color', array( 'default'   => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_button_hover_text_color', array( 'label' => __( 'Button Hover Text Color', 'coachpress' ), 'description' => __('The color of the text on a button when hovered.', 'coachpress'), 'section'  => 'coachpress_global_colors' ) ) );
 
+    // -- Buttons --
+    $wp_customize->add_section( 'coachpress_buttons_styles', array( 'title' => __( 'Global Button Styles', 'coachpress' ), 'panel' => 'coachpress_global_styles_panel', 'description' => __('Default settings for all buttons. These can be overridden in individual sections.', 'coachpress') ) );
+
+    $wp_customize->add_setting( 'coachpress_button_bg_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_button_bg_color', array( 'label' => __( 'Default Button Background', 'coachpress' ), 'section' => 'coachpress_buttons_styles' ) ) );
+
+    $wp_customize->add_setting( 'coachpress_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_button_text_color', array( 'label' => __( 'Default Button Text', 'coachpress' ), 'section' => 'coachpress_buttons_styles' ) ) );
+
+    $wp_customize->add_setting( 'coachpress_button_border_radius', array( 'default' => '6px', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_button_border_radius', array( 'label' => __( 'Button Corner Roundness', 'coachpress' ), 'section' => 'coachpress_buttons_styles' ) );
+
     // -- Typography --
 	$wp_customize->add_setting( 'coachpress_body_font', array( 'default'   => 'Inter', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$wp_customize->add_control( new CoachPress_Google_Font_Control( $wp_customize, 'coachpress_body_font', array( 'label' => __( 'Body Font Family', 'coachpress' ), 'description' => __('The main font used for all paragraphs and general reading. Clean fonts like "Inter" or "Lato" are recommended.', 'coachpress'), 'section'  => 'coachpress_global_typography' ) ) );

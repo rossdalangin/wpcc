@@ -423,5 +423,28 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'section'  => $section_handle,
             'priority' => 85
         ) ) );
+
+        // -- Button Overrides per Section --
+        $wp_customize->add_setting( "coachpress_{$section_id}_button_bg_color", array(
+            'default'           => '',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'sanitize_hex_color'
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_button_bg_color", array(
+            'label'    => __( 'Button Background Override', 'coachpress' ),
+            'section'  => $section_handle,
+            'priority' => 90
+        ) ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_button_text_color", array(
+            'default'           => '',
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'sanitize_hex_color'
+        ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_button_text_color", array(
+            'label'    => __( 'Button Text Override', 'coachpress' ),
+            'section'  => $section_handle,
+            'priority' => 91
+        ) ) );
     }
 }

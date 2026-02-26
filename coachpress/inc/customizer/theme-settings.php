@@ -117,6 +117,41 @@ function coachpress_customize_theme_settings( $wp_customize ) {
     ) ) );
 
     // -- Footer --
+    $wp_customize->add_setting( 'coachpress_footer_bg_color', array( 'default' => '#1a202c', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_footer_bg_color', array(
+        'label' => __( 'Footer Background Color', 'coachpress' ),
+        'section' => 'coachpress_footer_settings'
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_footer_text_color', array( 'default' => '#e2e8f0', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_footer_text_color', array(
+        'label' => __( 'Footer Text Color', 'coachpress' ),
+        'section' => 'coachpress_footer_settings'
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_footer_link_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_footer_link_color', array(
+        'label' => __( 'Footer Link Color', 'coachpress' ),
+        'section' => 'coachpress_footer_settings'
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_footer_link_hover_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_footer_link_hover_color', array(
+        'label' => __( 'Footer Link Hover Color', 'coachpress' ),
+        'section' => 'coachpress_footer_settings'
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_footer_padding', array(
+        'default'           => json_encode(array('top' => '100px', 'right' => '0', 'bottom' => '50px', 'left' => '0')),
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'coachpress_sanitize_dimensions'
+    ) );
+    $wp_customize->add_control( new CoachPress_Dimensions_Control( $wp_customize, 'coachpress_footer_padding', array(
+        'label'    => __( 'Footer Padding', 'coachpress' ),
+        'description' => __('Adjust the vertical spacing of the footer.', 'coachpress'),
+        'section'  => 'coachpress_footer_settings'
+    ) ) );
+
     $wp_customize->add_setting( 'coachpress_footer_copyright_text', array( 'default' => '© ' . date('Y') . ' CoachPress. Strategic Excellence in Coaching.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
     $wp_customize->add_control( 'coachpress_footer_copyright_text', array(
         'label' => __( 'Copyright Message', 'coachpress' ),

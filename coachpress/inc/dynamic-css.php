@@ -128,12 +128,20 @@ function coachpress_generate_dynamic_css() {
         ?>
 
         /* Buttons */
-        --coachpress-hero-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_bg_color', '#c0a080') ); ?>;
-        --coachpress-hero-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_hero_button_text_color', '#FFFFFF') ); ?>;
-        --coachpress-about-preview-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_bg_color', '#1a365d') ); ?>;
-        --coachpress-about-preview-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_about-preview_button_text_color', '#FFFFFF') ); ?>;
-        --coachpress-cta-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_bg_color', '#c0a080') ); ?>;
-        --coachpress-cta-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_cta_button_text_color', '#FFFFFF') ); ?>;
+        --coachpress-button-bg-color: <?php echo esc_html( get_theme_mod('coachpress_button_bg_color', '#1a365d') ); ?>;
+        --coachpress-button-text-color: <?php echo esc_html( get_theme_mod('coachpress_button_text_color', '#FFFFFF') ); ?>;
+        --coachpress-button-border-radius: <?php echo esc_html( get_theme_mod('coachpress_button_border_radius', '6px') ); ?>;
+
+        /* Footer */
+        --coachpress-footer-bg-color: <?php echo esc_html( get_theme_mod('coachpress_footer_bg_color', '#1a202c') ); ?>;
+        --coachpress-footer-text-color: <?php echo esc_html( get_theme_mod('coachpress_footer_text_color', '#e2e8f0') ); ?>;
+        --coachpress-footer-link-color: <?php echo esc_html( get_theme_mod('coachpress_footer_link_color', '#FFFFFF') ); ?>;
+        --coachpress-footer-link-hover-color: <?php echo esc_html( get_theme_mod('coachpress_footer_link_hover_color', '#c0a080') ); ?>;
+        <?php
+        $footer_padding = json_decode(get_theme_mod('coachpress_footer_padding', json_encode(array('top' => '100px', 'right' => '0', 'bottom' => '50px', 'left' => '0'))), true);
+        echo "--coachpress-footer-padding-top: " . esc_html($footer_padding['top'] ?? '100px') . ";";
+        echo "--coachpress-footer-padding-bottom: " . esc_html($footer_padding['bottom'] ?? '50px') . ";";
+        ?>
     }
 
     <?php
@@ -160,6 +168,9 @@ function coachpress_generate_dynamic_css() {
 
         $margin_json = get_theme_mod("coachpress_{$section_id}_margin");
         $margin = $margin_json ? json_decode($margin_json, true) : null;
+
+        $section_btn_bg = get_theme_mod("coachpress_{$section_id}_button_bg_color");
+        $section_btn_text = get_theme_mod("coachpress_{$section_id}_button_text_color");
         ?>
         .section-<?php echo esc_attr($section_id); ?> {
             text-align: <?php echo esc_html($alignment); ?>;
@@ -219,6 +230,16 @@ function coachpress_generate_dynamic_css() {
         .section-<?php echo esc_attr($section_id); ?> .section-background-overlay {
             background-color: <?php echo esc_html($overlay_color); ?> !important;
         }
+        <?php if (!empty($section_btn_bg)) : ?>
+            .section-<?php echo esc_attr($section_id); ?> .btn,
+            .section-<?php echo esc_attr($section_id); ?> .button,
+            .section-<?php echo esc_attr($section_id); ?> input[type="submit"] { background-color: <?php echo esc_attr($section_btn_bg); ?> !important; }
+        <?php endif; ?>
+        <?php if (!empty($section_btn_text)) : ?>
+            .section-<?php echo esc_attr($section_id); ?> .btn,
+            .section-<?php echo esc_attr($section_id); ?> .button,
+            .section-<?php echo esc_attr($section_id); ?> input[type="submit"] { color: <?php echo esc_attr($section_btn_text); ?> !important; }
+        <?php endif; ?>
     <?php endforeach; ?>
 
     .header-cta .button {
@@ -327,6 +348,16 @@ function coachpress_generate_dynamic_css() {
 
     /* Muted Text */
     .muted-text, .entry-meta, .portfolio-item-excerpt, .team-member-bio { color: var(--coachpress-muted-text-color) !important; }
+
+    /* Footer Overrides */
+    .site-footer {
+        background-color: var(--coachpress-footer-bg-color) !important;
+        color: var(--coachpress-footer-text-color) !important;
+        padding-top: var(--coachpress-footer-padding-top) !important;
+        padding-bottom: var(--coachpress-footer-padding-bottom) !important;
+    }
+    .site-footer a { color: var(--coachpress-footer-link-color) !important; }
+    .site-footer a:hover { color: var(--coachpress-footer-link-hover-color) !important; }
 
     /* Button Hovers */
     .btn:hover, .button:hover, input[type="submit"]:hover {
