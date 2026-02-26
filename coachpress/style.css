@@ -186,7 +186,8 @@ img {
 .main-navigation a:hover { color: var(--coachpress-primary-color); }
 .main-navigation a:hover::after { width: 100%; }
 
-.header-cta { margin-left: 50px; }
+.header-cta { margin-left: 60px; }
+@media (max-width: 1200px) { .header-cta { margin-left: 30px; } }
 .header-cta .button {
     background-color: var(--coachpress-header-cta-bg-color);
     color: var(--coachpress-header-cta-text-color);
@@ -291,15 +292,15 @@ img {
 .card:hover .item-image img { transform: scale(1.1); }
 
 /* Portfolio Single Template */
-.portfolio-single-cat { color: var(--coachpress-accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-.portfolio-single-content { padding: 100px 0; }
-.portfolio-single-content .grid-2-col { grid-template-columns: 2fr 1fr; gap: 80px; align-items: start; }
-@media (max-width: 1024px) { .portfolio-single-content .grid-2-col { grid-template-columns: 1fr; gap: 40px; } }
+.portfolio-single-cat { color: var(--coachpress-accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+.portfolio-single-content { padding: 120px 0; }
+.portfolio-single-content .grid-2-col { grid-template-columns: 2fr 1fr; gap: 100px; align-items: start; }
+@media (max-width: 1024px) { .portfolio-single-content .grid-2-col { grid-template-columns: 1fr; gap: 60px; } }
 
 .portfolio-main-text .entry-content { padding: 0; }
-.portfolio-main-text .entry-content p { font-size: 1.15rem; line-height: 1.8; margin-bottom: 2rem; }
+.portfolio-main-text .entry-content p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 2.5rem; }
 
-.portfolio-meta-card { position: sticky; top: 120px; padding: 50px !important; }
+.portfolio-meta-card { position: sticky; top: 120px; padding: 60px !important; box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
 .portfolio-meta-card h3 { font-size: 1.5rem; margin-bottom: 30px; }
 .portfolio-meta-item { margin-bottom: 20px; font-size: 1.05rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; display: flex; justify-content: space-between; }
 .portfolio-meta-item strong { color: var(--coachpress-primary-color); font-weight: 700; }
@@ -346,13 +347,17 @@ img {
 .team-member-social a:hover { color: var(--coachpress-accent-color); }
 
 /* Team Single Page */
-.team-single-intro { display: flex; align-items: center; gap: 40px; }
-.team-single-image img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 6px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.team-single-header { padding: 100px 0; }
+.team-single-intro { display: flex; align-items: center; gap: 60px; }
+@media (max-width: 768px) { .team-single-intro { flex-direction: column; text-align: center; } .team-single-titles { text-align: center; } }
+.team-single-image img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 8px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 .team-single-titles { text-align: left; }
-.team-single-titles .team-member-role { margin-bottom: 10px; display: block; }
-.team-single-titles .entry-title { margin-bottom: 0; }
-.team-single-content { padding: 80px 0; }
-.team-contact-card { padding: 50px !important; }
+.team-single-titles .team-member-role { margin-bottom: 15px; display: block; font-size: 1rem; }
+.team-single-titles .entry-title { margin-bottom: 0; font-size: 3.5rem; }
+.team-single-content { padding: 120px 0; }
+.team-single-content .grid-2-col { grid-template-columns: 2fr 1fr; gap: 100px; align-items: start; }
+@media (max-width: 1024px) { .team-single-content .grid-2-col { grid-template-columns: 1fr; gap: 60px; } }
+.team-contact-card { padding: 60px !important; }
 .team-contact-card .team-member-social { justify-content: flex-start; flex-direction: column; margin-top: 20px; }
 .team-contact-card .team-member-social a { font-size: 1rem; }
 
