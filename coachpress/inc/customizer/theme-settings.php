@@ -18,6 +18,39 @@ function coachpress_customize_theme_settings( $wp_customize ) {
         'section' => 'coachpress_header_settings'
     )));
 
+    // -- Transparent Header Option --
+    $wp_customize->add_setting( 'coachpress_header_transparent', array( 'default' => false, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
+    $wp_customize->add_control( 'coachpress_header_transparent', array(
+        'label' => __( 'Enable Transparent Header', 'coachpress' ),
+        'description' => __('The header will be transparent over the first section and will become solid upon scrolling.', 'coachpress'),
+        'section' => 'coachpress_header_settings',
+        'type' => 'checkbox'
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_header_transparent_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_transparent_text_color', array(
+        'label' => __( 'Transparent State Text Color', 'coachpress' ),
+        'description' => __('The color of menu links and branding when the header is transparent (e.g., White for dark backgrounds).', 'coachpress'),
+        'section' => 'coachpress_header_settings',
+        'active_callback' => function($control) { return $control->manager->get_setting('coachpress_header_transparent')->value(); }
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_header_scrolled_bg_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_scrolled_bg_color', array(
+        'label' => __( 'Scrolled State Background Color', 'coachpress' ),
+        'description' => __('The color the header transitions to when you scroll down.', 'coachpress'),
+        'section' => 'coachpress_header_settings',
+        'active_callback' => function($control) { return $control->manager->get_setting('coachpress_header_transparent')->value(); }
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_header_scrolled_text_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_scrolled_text_color', array(
+        'label' => __( 'Scrolled State Text Color', 'coachpress' ),
+        'description' => __('The color of menu links when scrolled.', 'coachpress'),
+        'section' => 'coachpress_header_settings',
+        'active_callback' => function($control) { return $control->manager->get_setting('coachpress_header_transparent')->value(); }
+    ) ) );
+
     // -- Header CTA --
     $wp_customize->add_setting( 'coachpress_header_cta_visibility', array( 'default' => true, 'transport' => 'refresh', 'sanitize_callback' => 'wp_validate_boolean' ) );
     $wp_customize->add_control( 'coachpress_header_cta_visibility', array(

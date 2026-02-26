@@ -146,18 +146,18 @@ img {
 --------------------------------------------------------------*/
 .site-header {
     background-color: var(--coachpress-header-bg-color);
-    padding: 15px 0;
+    padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .site-header .container { display: flex; justify-content: space-between; align-items: center; }
 
 .site-branding { display: flex; align-items: center; }
 .site-title { font-size: 1.6rem; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: -0.5px; }
-.site-title a { color: var(--coachpress-primary-color); text-decoration: none; }
+.site-title a { color: var(--coachpress-primary-color); text-decoration: none; transition: color 0.4s ease; }
 
 .menu-toggle { display: none; }
 
@@ -170,7 +170,7 @@ img {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: color 0.4s ease;
     position: relative;
 }
 .main-navigation a::after {

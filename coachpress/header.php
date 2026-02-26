@@ -48,7 +48,13 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'coachpress' ); ?></a>
 
-	<header id="masthead" class="site-header">
+    <?php
+    $header_class = 'site-header';
+    if ( get_theme_mod( 'coachpress_header_transparent', false ) ) {
+        $header_class .= ' is-transparent';
+    }
+    ?>
+	<header id="masthead" class="<?php echo esc_attr( $header_class ); ?>">
         <div class="container">
             <div class="site-branding">
                 <?php

@@ -98,6 +98,9 @@ function coachpress_generate_dynamic_css() {
 
         /* Header & Footer */
         --coachpress-header-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_bg_color', '#FFFFFF') ); ?>;
+        --coachpress-header-transparent-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_transparent_text_color', '#FFFFFF') ); ?>;
+        --coachpress-header-scrolled-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_scrolled_bg_color', '#FFFFFF') ); ?>;
+        --coachpress-header-scrolled-text-color: <?php echo esc_html( get_theme_mod('coachpress_header_scrolled_text_color', '#1a365d') ); ?>;
 
         /* Header CTA Button */
         --coachpress-header-cta-bg-color: <?php echo esc_html( get_theme_mod('coachpress_header_cta_bg_color', '#1a365d') ); ?>;
@@ -231,6 +234,39 @@ function coachpress_generate_dynamic_css() {
     .header-cta .button:hover {
         background-color: var(--coachpress-header-cta-hover-bg-color) !important;
         color: var(--coachpress-header-cta-hover-text-color) !important;
+    }
+
+    /* Transparent Header Styles */
+    .site-header.is-transparent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+    .site-header.is-transparent:not(.is-scrolled) .site-title a,
+    .site-header.is-transparent:not(.is-scrolled) .main-navigation a,
+    .site-header.is-transparent:not(.is-scrolled) .site-description {
+        color: var(--coachpress-header-transparent-text-color) !important;
+    }
+    .site-header.is-transparent:not(.is-scrolled) .icon-bar {
+        background-color: var(--coachpress-header-transparent-text-color) !important;
+    }
+
+    .site-header.is-scrolled {
+        position: fixed;
+        background-color: var(--coachpress-header-scrolled-bg-color) !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+        padding: 10px 0 !important;
+    }
+    .site-header.is-scrolled .site-title a,
+    .site-header.is-scrolled .main-navigation a,
+    .site-header.is-scrolled .site-description {
+        color: var(--coachpress-header-scrolled-text-color) !important;
+    }
+    .site-header.is-scrolled .icon-bar {
+        background-color: var(--coachpress-header-scrolled-text-color) !important;
     }
 
     .page-banner {

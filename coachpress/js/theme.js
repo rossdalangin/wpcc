@@ -69,6 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Header Scroll State
+    const siteHeader = document.querySelector('.site-header');
+    if (siteHeader) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                siteHeader.classList.add('is-scrolled');
+            } else {
+                siteHeader.classList.remove('is-scrolled');
+            }
+        });
+
+        // Initial check on load
+        if (window.scrollY > 50) {
+            siteHeader.classList.add('is-scrolled');
+        }
+    }
+
     // Smooth Scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
