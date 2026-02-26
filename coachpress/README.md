@@ -1,34 +1,52 @@
-# CoachPress - Elite WordPress Theme for Consultants & Coaches
+# 🏆 CoachPress - Premium Authority Theme for Consultants
 
-CoachPress is a premium, conversion-focused WordPress theme designed specifically for high-ticket Consultants and Coaches. Built with a modular architecture, it allows you to build high-authority landing pages and multi-page platforms without touching a single line of code.
-
-## 🚀 Key Features
-
-*   **Modular Section Builder:** A unique, drag-and-drop system in the WordPress Customizer to reorder, enable, or disable homepage and internal page sections.
-*   **Built-in Authority Engines:** Native support for Services, Team members, Portfolio projects, Case Studies, and Testimonials.
-*   **One-Click Professional Setup:** Integrated "Theme Power Tools" to populate your site with expert consulting copy and layouts in seconds.
-*   **Dynamic Styling System:** Intelligent color contrast logic and global CSS variables for a consistent, professional brand identity.
-*   **Premium Page Templates:** Professionally designed templates for About, Services, Process, Portfolio, Blog, and Contact pages.
-*   **SEO & Mobile Optimized:** Lightweight, performance-first code with native meta-tags and responsive layouts for all devices.
-*   **Marketing Mastery Kit:** Includes a 7-day email sequence, 30-day social media calendar, and VSL scripts to jumpstart your business growth.
-
-## 🛠 Installation
-
-1.  Upload the `coachpress` folder to your `/wp-content/themes/` directory.
-2.  Activate the theme through the 'Appearance > Themes' menu in WordPress.
-3.  Go to **Appearance > Customize > Theme Settings > Theme Power Tools** and click **Add Sample Data** to populate the site instantly.
-4.  Configure your brand colors and typography in **Global Styles**.
-
-## 📖 Documentation
-
-Detailed setup instructions and marketing strategies can be found in:
-*   `INSTRUCTIONS.txt` - Technical setup guide.
-*   `MARKETING_KIT.md` - Sales scripts and outreach strategies.
-*   `PROMOTIONAL_ASSETS.md` - Video scripts and promotional prompts.
-
-## ⚖️ License
-
-CoachPress is released under the GPL v2 or later.
+CoachPress is an elite, conversion-optimized WordPress theme designed for high-ticket **Consultants, Coaches, and Strategic Advisors**. It transforms a standard WordPress site into a professional "Authority Infrastructure" that builds trust and closes deals.
 
 ---
-*Crafted for experts, by experts.*
+
+## 🚀 Why CoachPress?
+
+Most WordPress themes are built for everyone, which usually means they work for no one. CoachPress is different. It’s built with one goal: **To make you look like the expert you already are.**
+
+### ✨ Key Features at a Glance:
+*   **🧩 Modular Builder:** Don't fight with heavy page builders. Reorder your strategic flow with a simple drag-and-drop system in the Customizer.
+*   **🛠 Theme Power Tools:** Launch a finished, professional site in **60 seconds** using our one-click sample data tool.
+*   **📈 Built-in Authority Engines:** Native support for high-stakes Case Studies, Portfolio grids, Team bios, and Services.
+*   **📱 Performance-First Design:** Lightning fast, mobile-optimized, and SEO-ready right out of the box.
+*   **🧠 Strategic Marketing Kit:** We don't just give you a theme; we give you the sales scripts, email sequences, and strategy to grow your business.
+
+---
+
+## 📖 Essential Documentation
+
+*   **[Setup Guide (GUIDE.md)](GUIDE.md)** - Layman's instructions to get your site looking perfect.
+*   **[Marketing Kit (MARKETING_KIT.md)](MARKETING_KIT.md)** - High-converting email series, LinkedIn outreach scripts, and social media calendars.
+*   **[Promotional Assets (PROMOTIONAL_ASSETS.md)](PROMOTIONAL_ASSETS.md)** - VSL scripts, sales letter prompts, and video tutorial templates.
+
+---
+
+## 🛠 Quick Start (The 60-Second Setup)
+
+1.  **Install:** Upload the `coachpress` folder to `/wp-content/themes/`.
+2.  **Activate:** Go to **Appearance > Themes** and click **Activate**.
+3.  **Populate:** Navigate to **Appearance > Customize > Theme Settings > Theme Power Tools**.
+4.  **Click:** Hit the **"Add Sample Data"** button.
+5.  **Refine:** Your site is now fully populated with professional copy. Simply swap the text for your own and launch!
+
+---
+
+## 🎨 Global Styles (Layman's Guide)
+
+*   **Primary Color:** Your main brand identity (e.g., a deep Navy).
+*   **Accent Color:** Used for buttons and highlights to catch the eye (e.g., Gold).
+*   **Typography:** We use **Playfair Display** for authoritative titles and **Inter** for clean, readable body text.
+
+---
+
+## ⚖️ License & Credits
+
+*   **License:** GPL v2 or later.
+*   **Credits:** Powered by WordPress, Swiper.js, and AOS Animations.
+
+---
+*Crafted for experts who value precision over bloat.*
