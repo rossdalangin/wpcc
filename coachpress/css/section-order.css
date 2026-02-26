@@ -8,12 +8,36 @@
     margin-top: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
+    padding: 0;
+    list-style: none;
 }
 
 .section-order-item {
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+
+.section-order-item.inactive {
+    background-color: #f9f9f9;
+    opacity: 0.7;
+}
+
+.section-order-item .dashicons-sort {
     cursor: move;
+    margin-right: 10px;
+    color: #aaa;
+}
+
+.section-order-item .section-visibility-toggle {
+    margin-right: 10px;
+    margin-top: 0;
+}
+
+.section-order-item .section-name {
+    flex-grow: 1;
 }
 
 .section-order-item:last-child {
