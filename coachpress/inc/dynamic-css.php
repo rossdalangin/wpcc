@@ -155,7 +155,8 @@ function coachpress_generate_dynamic_css() {
         $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color", $default_bg);
         $heading_color = get_theme_mod("coachpress_{$section_id}_heading_color", $data['heading_color'] ?? '#1a365d');
         $text_color = get_theme_mod("coachpress_{$section_id}_text_color", $data['text_color'] ?? '#2d3748');
-        $overlay_color = get_theme_mod("coachpress_{$section_id}_bg_overlay_color", 'rgba(26,54,93,0.85)');
+        $overlay_color = get_theme_mod("coachpress_{$section_id}_bg_overlay_color", '#1a365d');
+        $overlay_opacity = get_theme_mod("coachpress_{$section_id}_bg_overlay_opacity", 0.85);
 
         $heading_font = get_theme_mod("coachpress_{$section_id}_heading_font");
         $body_font = get_theme_mod("coachpress_{$section_id}_body_font");
@@ -229,6 +230,7 @@ function coachpress_generate_dynamic_css() {
         <?php endif; ?>
         .section-<?php echo esc_attr($section_id); ?> .section-background-overlay {
             background-color: <?php echo esc_html($overlay_color); ?> !important;
+            opacity: <?php echo esc_html($overlay_opacity); ?> !important;
         }
         <?php if (!empty($section_btn_bg)) : ?>
             .section-<?php echo esc_attr($section_id); ?> .btn,

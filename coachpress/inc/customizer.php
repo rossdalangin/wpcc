@@ -54,6 +54,11 @@ function coachpress_sanitize_multi_select( $value ) {
     return array_map( 'absint', $value );
 }
 
+function coachpress_sanitize_opacity( $value ) {
+    $value = floatval( $value );
+    return ( $value >= 0 && $value <= 1 ) ? $value : 0.85;
+}
+
 // Load Custom Controls
 require_once get_template_directory() . '/inc/gradient-control.php';
 require_once get_template_directory() . '/inc/responsive-font-size-control.php';

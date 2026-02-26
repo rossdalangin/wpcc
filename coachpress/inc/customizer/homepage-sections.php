@@ -362,7 +362,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'priority'        => 62
         ) ) );
 
-        $wp_customize->add_setting( "coachpress_{$section_id}_bg_overlay_color", array( 'default' => 'rgba(26,54,93,0.85)', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_rgba_color' ) );
+        $wp_customize->add_setting( "coachpress_{$section_id}_bg_overlay_color", array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'coachpress_sanitize_rgba_color' ) );
         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_{$section_id}_bg_overlay_color", array(
             'label'           => __( 'Background Overlay Color', 'coachpress' ),
             'description'     => __('Adds a color tint over your image or video to make the text easier to read.', 'coachpress'),
@@ -372,6 +372,27 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             },
             'priority'        => 64
         ) ) );
+
+        $wp_customize->add_setting( "coachpress_{$section_id}_bg_overlay_opacity", array(
+            'default'           => 0.85,
+            'transport'         => 'refresh',
+            'sanitize_callback' => 'coachpress_sanitize_opacity'
+        ) );
+        $wp_customize->add_control( "coachpress_{$section_id}_bg_overlay_opacity", array(
+            'label'           => __( 'Background Overlay Opacity', 'coachpress' ),
+            'description'     => __('Control the transparency of the overlay (0 is fully transparent, 1 is fully solid).', 'coachpress'),
+            'section'         => $section_handle,
+            'type'            => 'range',
+            'input_attrs'     => array(
+                'min'  => 0,
+                'max'  => 1,
+                'step' => 0.01,
+            ),
+            'active_callback' => function($control) use ($section_id) {
+                return in_array($control->manager->get_setting("coachpress_{$section_id}_bg_type")->value(), ['image', 'video']);
+            },
+            'priority'        => 65
+        ) );
 
         $wp_customize->add_setting( "coachpress_{$section_id}_heading_color", array(
             'default'           => $default_data['heading_color'] ?? '#1a365d',
