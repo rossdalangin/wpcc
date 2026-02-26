@@ -189,7 +189,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     ) );
 
     // -- Post Selectors for CPT Sections --
-    $cpts = array('services', 'testimonials', 'case-studies', 'processes', 'faqs', 'portfolio', 'team');
+    $cpts = array('services', 'testimonials', 'case-studies', 'processes', 'faqs', 'portfolio', 'team', 'partners');
     foreach ($cpts as $cpt) {
         $posts = get_posts( array( 'post_type' => $cpt, 'numberposts' => -1 ) );
         $choices = array();
@@ -241,11 +241,11 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
     // -- Trust Section Specific --
     $wp_customize->add_setting( 'coachpress_trust_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
     $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_trust_image', array(
-        'label'       => __( 'Trust Logos Image', 'coachpress' ),
-        'description' => __('Upload a single image containing logos of companies you have worked with. This builds instant authority.', 'coachpress'),
+        'label'       => __( 'Trust Logos Image (Legacy)', 'coachpress' ),
+        'description' => __('Alternative: Upload a single image containing all logos. For better control, use the "Partners" Custom Post Type instead.', 'coachpress'),
         'section'     => 'coachpress_trust_section',
         'mime_type'   => 'image',
-        'priority'    => 5
+        'priority'    => 10
     ) ) );
 
     // -- Problem Section Specific --

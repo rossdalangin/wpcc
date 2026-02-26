@@ -234,9 +234,10 @@ img {
 .testimonial-author span { display: block; font-weight: 500; font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
 
 /* Trust Section */
-.trust-image-wrapper { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 50px; padding: 20px 0; }
-.trust-image-wrapper img { max-height: 45px; width: auto; filter: grayscale(100%); opacity: 0.5; transition: all 0.4s ease; border-radius: 0; }
-.trust-image-wrapper img:hover { filter: grayscale(0); opacity: 0.9; transform: scale(1.05); }
+.trust-image-wrapper, .partners-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 50px; padding: 20px 0; }
+.trust-image-wrapper img, .partner-logo img { max-height: 45px; width: auto; filter: grayscale(100%); opacity: 0.5; transition: all 0.4s ease; border-radius: 0; }
+.trust-image-wrapper img:hover, .partner-logo:hover img { filter: grayscale(0); opacity: 0.9; transform: scale(1.05); }
+.partner-name { font-weight: 700; font-size: 1.2rem; opacity: 0.5; }
 
 /* FAQ Section */
 .faq-container { max-width: 800px; margin: 0 auto; }

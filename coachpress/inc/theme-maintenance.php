@@ -9,7 +9,7 @@
  * Reset Theme Data (CPTs and Theme Mods)
  */
 function coachpress_reset_theme_data() {
-    $cpts = array('services', 'testimonials', 'case-studies', 'processes', 'faqs', 'portfolio', 'team');
+    $cpts = array('services', 'testimonials', 'case-studies', 'processes', 'faqs', 'portfolio', 'team', 'partners');
     foreach ( $cpts as $cpt ) {
         $posts = get_posts( array( 'post_type' => $cpt, 'numberposts' => -1, 'post_status' => 'any' ) );
         foreach ( $posts as $post ) {
@@ -111,6 +111,18 @@ function coachpress_add_sample_data() {
     foreach ( $team as $item ) {
         $tid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'team', 'post_status' => 'publish' ) );
         if ($tid) update_post_meta($tid, '_team_member_role', $item['role']);
+    }
+
+    // Partners
+    $partners = array(
+        array( 'title' => 'Global Finance Corp' ),
+        array( 'title' => 'Innovate AI' ),
+        array( 'title' => 'Nexus Logistics' ),
+        array( 'title' => 'Summit Healthcare' ),
+        array( 'title' => 'Vertex Media' ),
+    );
+    foreach ( $partners as $item ) {
+        wp_insert_post( array( 'post_title' => $item['title'], 'post_type' => 'partners', 'post_status' => 'publish' ) );
     }
 }
 
