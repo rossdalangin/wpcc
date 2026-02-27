@@ -279,6 +279,9 @@ function coachpress_generate_dynamic_css() {
 
     .site-header.is-scrolled {
         position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         background-color: var(--coachpress-header-scrolled-bg-color) !important;
         box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
         padding: 10px 0 !important;
