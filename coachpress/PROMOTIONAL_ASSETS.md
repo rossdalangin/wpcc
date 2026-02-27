@@ -1,49 +1,60 @@
-# 📣 CoachPress Promotional Assets
+# 🎥 CoachPress Promotional Assets
 
-High-converting scripts and prompts to help you market your theme (if you're a developer) or your consulting services (if you're the user).
-
----
-
-## 📽 1. Video Sales Letter (VSL) Script
-*Target: Clients who want to hire you for consulting.*
-
-**[0:00-0:45] The Hook**
-"If you are a high-performing leader, your website is either a client-attracting machine or a silent killer of your reputation. Most consultants are fighting with generic, bloated sites that don't reflect the level of expertise they bring to the table. Today, that changes."
-
-**[0:45-2:00] The Agitation**
-"Think about the last time you tried to update your services or move a case study on your site. You probably spent hours fighting with complicated builders, only to end up with a layout that looks 'okay' but doesn't convert. This is 'Builder Fatigue', and it’s costing you authority."
-
-**[2:00-4:00] The Solution**
-"Introducing my new Authority Infrastructure. Built on the CoachPress framework, this site is designed for precision. We've stripped the bloat and replaced it with native modules for high-stakes Case Studies, Strategic Processes, and results-driven Portfolio grids. It’s not just a website; it’s a conversion engine."
-
-**[4:00-Close] The CTA**
-"Stop fighting your website and start building your authority. Click the button below to book a discovery session and see the framework in action."
+Use these scripts and templates to announce your new professional presence to the world.
 
 ---
 
-## ✍️ 2. Long-Form Sales Letter Prompt
-*Paste this into ChatGPT or Claude to generate your homepage copy.*
+## 📽 1. Website Launch Video Script (VSL)
 
-> "Act as a world-class direct response copywriter. I am building a website using the CoachPress theme for my [Consulting/Coaching] business. My target audience is [e.g., SaaS Founders doing $1M+ ARR]. My primary framework is [e.g., The 4-Step Operational Overhaul]. Write a compelling headline and 3-paragraph problem statement that agitates their current struggle with [e.g., scaling without systems] and positions my framework as the elite solution."
+**Goal:** A 2-minute video for your LinkedIn or Hero section.
 
----
-
-## 🎓 3. Tutorial Walkthrough Script
-*Use this if you are showing a client how their new site works.*
-
-1.  **Dashboard:** "Welcome to your new HQ. Notice the dedicated menus for Services and Portfolio—this keeps your business data separate and organized."
-2.  **Customizer:** "To change your layout, we go to 'Manage All Sections'. It’s a simple drag-and-drop. No code, no complexity."
-3.  **Power Tools:** "If you ever want a fresh start, the Power Tools can reset your content in one click. It’s ultimate flexibility."
+1.  **The Hook (0:00-0:15):** "Are you working harder than ever but feeling like your growth has hit a ceiling? Most consultants reach a point where their current systems can't sustain their vision."
+2.  **The Problem (0:15-0:45):** "The chaos of daily operations, the uncertainty of lead gen, and the weight of being the bottleneck in your own business."
+3.  **The Reveal (0:45-1:15):** "That’s why I’ve launched my new digital platform. It’s built on the [Name of Your System]—the same framework we use to help our clients achieve [Specific Result]."
+4.  **The Call to Action (1:15-2:00):** "Head over to [Your Website] today. Read our latest case studies and book a discovery session. Let's find your edge."
 
 ---
 
-## 💡 Recording Tips for Best Results
--   **Lighting:** Sit facing a window for natural light on your face.
--   **Audio:** Use a dedicated USB microphone (like a Blue Yeti or Rode NT-USB) if possible.
--   **Energy:** Stand up while recording—it naturally increases your vocal energy and authority.
+## ✍️ 2. Sales Letter Prompt (For AI)
+
+Paste this into ChatGPT to generate your "About" or "Services" page content:
+
+> "I am a [Your Niche] consultant for [Your Target Audience]. My unique framework is called [Framework Name] and it focuses on [Benefit A], [Benefit B], and [Benefit C]. I want to write a professional sales page for my new CoachPress website. The tone should be authoritative, sophisticated, and results-driven. Write 800 words that agitate the current struggle of my clients and present my services as the only logical next step."
 
 ---
 
-### 📖 References
--   **[Setup Guide (GUIDE.md)](GUIDE.md)**
--   **[Marketing Kits (MARKETING_KIT.md)](MARKETING_KIT.md)**
+## 📱 3. Social Media Launch Posts
+
+### LinkedIn Post (Text-based):
+> **BIG NEWS: The Next Chapter.**
+>
+> Over the last [Number] years, I've seen firsthand how [Problem] destroys potential.
+>
+> Today, I'm excited to launch our new modular authority platform: [Your Link]
+>
+> We've rebuilt our presence from the ground up to better serve the leaders and visionaries ready to scale.
+>
+> **What's New?**
+> ✅ Deep-dive case studies on [Result].
+> ✅ Transparent look at our [Framework Name] framework.
+> ✅ Direct booking for Q3 strategy sessions.
+>
+> Check it out here: [Link]
+>
+> #Consulting #Leadership #Scaling #CoachPress
+
+---
+
+## 🎨 4. Branding Quick-Start
+
+If you don't have a logo yet, use these high-authority color palettes in the Customizer:
+
+-   **The "Blue Chip" (Default):**
+    - Primary: #1a365d (Navy)
+    - Accent: #c0a080 (Gold)
+-   **The "Innovator":**
+    - Primary: #2d3748 (Charcoal)
+    - Accent: #48bb78 (Emerald)
+-   **The "Modernist":**
+    - Primary: #000000 (Black)
+    - Accent: #ed8936 (Deep Orange)

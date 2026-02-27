@@ -87,12 +87,12 @@ function coachpress_customize_theme_settings( $wp_customize ) {
         }
     ) );
 
-    $wp_customize->add_setting( 'coachpress_header_cta_bg_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_setting( 'coachpress_header_cta_bg_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_bg_color', array( 'label' => __( 'Button Background Color', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );
     $wp_customize->add_setting( 'coachpress_header_cta_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_text_color', array( 'label' => __( 'Button Text Color', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );
 
-    $wp_customize->add_setting( 'coachpress_header_cta_hover_bg_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_setting( 'coachpress_header_cta_hover_bg_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_hover_bg_color', array( 'label' => __( 'Button Hover Background', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );
     $wp_customize->add_setting( 'coachpress_header_cta_hover_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_header_cta_hover_text_color', array( 'label' => __( 'Button Hover Text', 'coachpress' ), 'section' => 'coachpress_header_cta' ) ) );

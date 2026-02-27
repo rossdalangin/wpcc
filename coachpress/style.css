@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--coachpress-heading-font);
     font-weight: 700;
     letter-spacing: var(--coachpress-heading-letter-spacing);
-    line-height: 1.1;
+    line-height: 1.2;
     margin: 0 0 1.5rem 0;
     color: var(--coachpress-primary-color);
 }
@@ -55,7 +55,7 @@ h4 { font-size: var(--coachpress-h4-font-size-desktop); }
 h5 { font-size: var(--coachpress-h5-font-size-desktop); }
 h6 { font-size: var(--coachpress-h6-font-size-desktop); }
 
-p { margin-bottom: 1.5rem; }
+p { margin-bottom: 1.8rem; }
 
 /*--------------------------------------------------------------
 # Components
@@ -64,8 +64,8 @@ p { margin-bottom: 1.5rem; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 18px 36px;
-    font-weight: 700;
+    padding: 18px 42px;
+    font-weight: 800;
     text-decoration: none;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     background-color: var(--coachpress-button-bg-color);
@@ -73,9 +73,10 @@ p { margin-bottom: 1.5rem; }
     border-radius: var(--coachpress-button-border-radius);
     cursor: pointer;
     border: none;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     text-align: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    letter-spacing: 0.5px;
 }
 
 .btn-link {
@@ -108,10 +109,10 @@ p { margin-bottom: 1.5rem; }
     background-color: var(--coachpress-card-bg-color);
     border-radius: var(--coachpress-card-border-radius);
     border: var(--coachpress-card-border-width) solid var(--coachpress-card-border-color);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.03);
     padding: var(--coachpress-card-padding-top) var(--coachpress-card-padding-right) var(--coachpress-card-padding-bottom) var(--coachpress-card-padding-left);
     margin: var(--coachpress-card-margin-top) var(--coachpress-card-margin-right) var(--coachpress-card-margin-bottom) var(--coachpress-card-margin-left);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -186,8 +187,8 @@ img {
 /*--------------------------------------------------------------
 # Sections
 --------------------------------------------------------------*/
-.section-title { font-size: 3rem; margin-bottom: 1.5rem; text-align: inherit; line-height: 1.1; }
-.section-description { font-size: 1.25rem; max-width: 800px; line-height: 1.6; opacity: 0.8; margin-bottom: 4rem; text-align: inherit; }
+.section-title { font-size: 3.5rem; margin-bottom: 2rem; text-align: inherit; line-height: 1.2; font-weight: 800; }
+.section-description { font-size: 1.35rem; max-width: 850px; line-height: 1.7; opacity: 0.85; margin-bottom: 5rem; text-align: inherit; }
 .text-align-center { text-align: center; }
 .text-align-left { text-align: left; }
 .text-align-right { text-align: right; }
@@ -364,8 +365,8 @@ img {
 
 /* Entry & Content Spacing */
 .site-main { padding-bottom: 0; }
-.entry-content { padding: 100px 0; }
-.entry-content-container { padding-top: 100px; }
+.entry-content { padding: 80px 0; }
+.entry-content-container { padding-top: 60px; }
 .page-banner { display: flex; flex-direction: column; justify-content: center; min-height: 350px; position: relative; background-size: cover; background-position: center; }
 .page-banner .entry-title { font-size: 4rem; margin-bottom: 1rem; }
 .page-banner .entry-subtitle { font-size: 1.5rem; max-width: 700px; margin: 0 auto; opacity: 0.9; font-weight: 400; line-height: 1.4; }

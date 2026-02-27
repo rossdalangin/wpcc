@@ -41,7 +41,7 @@ function coachpress_customize_global_styles( $wp_customize ) {
     // -- Buttons --
     $wp_customize->add_section( 'coachpress_buttons_styles', array( 'title' => __( 'Global Button Styles', 'coachpress' ), 'panel' => 'coachpress_global_styles_panel', 'description' => __('Default settings for all buttons. These can be overridden in individual sections.', 'coachpress') ) );
 
-    $wp_customize->add_setting( 'coachpress_button_bg_color', array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+    $wp_customize->add_setting( 'coachpress_button_bg_color', array( 'default' => '#c0a080', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'coachpress_button_bg_color', array( 'label' => __( 'Default Button Background', 'coachpress' ), 'section' => 'coachpress_buttons_styles' ) ) );
 
     $wp_customize->add_setting( 'coachpress_button_text_color', array( 'default' => '#FFFFFF', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );

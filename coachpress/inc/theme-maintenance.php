@@ -26,16 +26,16 @@ function coachpress_add_sample_data() {
     // Services
     $services = array(
         array(
-            'title'   => 'Executive Leadership Coaching',
-            'content' => 'High-impact coaching for C-suite executives and founders focusing on strategic decision-making and sustainable growth.',
+            'title'   => 'The Executive Edge System',
+            'content' => 'A rigorous, outcomes-based framework for high-performing CEOs. We specialize in eliminating decision fatigue and optimizing leadership dynamics for rapid, sustainable expansion.',
         ),
         array(
-            'title'   => 'Operational Excellence Consulting',
-            'content' => 'Streamline your business processes and maximize efficiency with our data-driven operational strategies.',
+            'title'   => 'Operational Infrastructure Audit',
+            'content' => 'Stop being the bottleneck in your own business. We rebuild your backend systems from the ground up, automating the mundane so you can focus on high-stakes strategy.',
         ),
         array(
-            'title'   => 'Scalable Growth Strategy',
-            'content' => 'Bespoke roadmaps designed to help established businesses break through plateaus and achieve exponential scale.',
+            'title'   => 'Authority Branding & Positioning',
+            'content' => 'Transform from "one of many" to the "only logical choice." We refine your market positioning and messaging to command premium fees and attract ideal clients.',
         ),
     );
     foreach ( $services as $item ) {
@@ -60,12 +60,12 @@ function coachpress_add_sample_data() {
     // Case Studies
     $case_studies = array(
         array(
-            'title'   => 'Scaling a Global SaaS to $10M ARR',
-            'content' => 'How we restructured the sales process and customer success team to achieve 3x growth in 18 months.',
+            'title'   => '300% Revenue Growth in 14 Months',
+            'content' => 'A deep dive into how we helped a boutique consultancy transition from manual outreach to an automated authority engine, leading to a record-breaking $5M exit.',
         ),
         array(
-            'title'   => 'Leadership Turnaround at a Fortune 500 Firm',
-            'content' => 'Rebuilding trust and alignment within a fractured executive team to drive a successful merger.',
+            'title'   => 'Turnaround: From Deficit to $2M Profit',
+            'content' => 'Restructuring the operational logic of a struggling logistics firm. By identifying hidden bottlenecks, we reclaimed 40 hours a week for the leadership team.',
         ),
     );
     foreach ( $case_studies as $item ) {
