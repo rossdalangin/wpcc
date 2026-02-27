@@ -13,6 +13,7 @@ class CoachPress_Section_Order_Control extends WP_Customize_Control {
     public $type = 'section-order';
 
     public function enqueue() {
+        wp_enqueue_style( 'dashicons' );
         wp_enqueue_script( 'coachpress-section-order', get_template_directory_uri() . '/js/section-order.js', array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ), COACHPRESS_VERSION, true );
         wp_enqueue_style( 'coachpress-section-order', get_template_directory_uri() . '/css/section-order.css', array(), COACHPRESS_VERSION );
     }

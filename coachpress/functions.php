@@ -9,7 +9,7 @@
 
 if ( ! defined( 'COACHPRESS_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'COACHPRESS_VERSION', '1.0.0' );
+	define( 'COACHPRESS_VERSION', '1.4.0' );
 }
 
 if ( ! function_exists( 'coachpress_setup' ) ) :
