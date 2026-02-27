@@ -446,6 +446,13 @@ input:focus, textarea:focus {
 .site-info { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-size: 0.85rem; opacity: 0.5; }
 .footer-copyright { margin-bottom: 10px; }
 
+/* Pagination */
+.pagination-wrapper { margin-top: 60px; text-align: center; }
+.pagination-wrapper ul { list-style: none; padding: 0; display: inline-flex; gap: 10px; }
+.pagination-wrapper li span, .pagination-wrapper li a { display: flex; align-items: center; justify-content: center; min-width: 45px; height: 45px; padding: 0 15px; border: 1px solid rgba(0,0,0,0.08); border-radius: 6px; text-decoration: none; font-weight: 700; transition: all 0.3s ease; color: var(--coachpress-primary-color); }
+.pagination-wrapper li span.current { background: var(--coachpress-primary-color); color: #fff; border-color: var(--coachpress-primary-color); }
+.pagination-wrapper li a:hover { background: var(--coachpress-secondary-color); border-color: var(--coachpress-primary-color); }
+
 /*--------------------------------------------------------------
 # Mobile
 --------------------------------------------------------------*/

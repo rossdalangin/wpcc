@@ -162,6 +162,54 @@ function coachpress_add_sample_data() {
         $tid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'team', 'post_status' => 'publish' ) );
         if ($tid) update_post_meta($tid, '_team_member_role', $item['role']);
     }
+
+    // Blog Posts & Categories
+    $categories = array(
+        'Strategy'   => 'Strategic insights for business growth and market positioning.',
+        'Leadership' => 'Developing the mindset and skills of world-class executives.',
+        'Operations' => 'Streamlining systems and processes for maximum efficiency.',
+    );
+
+    $cat_ids = array();
+    foreach ( $categories as $name => $desc ) {
+        $term = wp_insert_term( $name, 'category', array( 'description' => $desc ) );
+        if ( ! is_wp_error( $term ) ) {
+            $cat_ids[$name] = $term['term_id'];
+        } elseif ( isset($term->error_data['term_exists']) ) {
+            $cat_ids[$name] = $term->error_data['term_exists'];
+        }
+    }
+
+    $posts = array(
+        array(
+            'title'    => 'The Architecture of Authority: How to Position Your Firm',
+            'content'  => 'In today\'s crowded marketplace, being a "generalist" is a death sentence. To command premium fees, you must architect your authority and become the only logical choice for your ideal clients.',
+            'category' => 'Strategy'
+        ),
+        array(
+            'title'    => 'The CEO Bottleneck: Reclaiming Your Strategic Time',
+            'content'  => 'Most consultants hit a ceiling because they are too involved in the day-to-day operations. Learn how to build systems that allow you to step back and focus on high-stakes vision.',
+            'category' => 'Operations'
+        ),
+        array(
+            'title'    => 'High-Stakes Leadership: Decision Making Under Pressure',
+            'content'  => 'Decision fatigue is the silent killer of growth. We explore the mental frameworks used by elite founders to maintain clarity and precision when the stakes are highest.',
+            'category' => 'Leadership'
+        ),
+    );
+
+    foreach ( $posts as $p ) {
+        $post_id = wp_insert_post( array(
+            'post_title'   => $p['title'],
+            'post_content' => $p['content'],
+            'post_status'  => 'publish',
+            'post_type'    => 'post',
+        ) );
+
+        if ( $post_id && isset( $cat_ids[$p['category']] ) ) {
+            wp_set_post_categories( $post_id, array( $cat_ids[$p['category']] ) );
+        }
+    }
 }
 
 /**
