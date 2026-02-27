@@ -133,6 +133,35 @@ function coachpress_add_sample_data() {
     foreach ( $processes as $item ) {
         wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'processes', 'post_status' => 'publish' ) );
     }
+
+    // FAQs
+    $faqs = array(
+        array( 'title' => 'What is the typical duration of an engagement?', 'content' => 'Our core consulting engagements typically last between 3 to 9 months, depending on complexity.' ),
+        array( 'title' => 'Do you work with startups?', 'content' => 'We primarily work with established businesses doing $2M+ in revenue, but we have selective slots for high-potential startups.' ),
+    );
+    foreach ( $faqs as $item ) {
+        wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'faqs', 'post_status' => 'publish' ) );
+    }
+
+    // Portfolio
+    $portfolio = array(
+        array( 'title' => 'The Sovereign Executive Program', 'content' => 'A curated 12-month mastermind for high-performing CEOs. This program focused on sustainable leadership and rapid expansion.', 'cat' => 'High-Ticket Strategy' ),
+        array( 'title' => 'Operations Overhaul: Retail Giant', 'content' => 'Redesigning the supply chain logic for a national retail chain, resulting in a 20% reduction in operational costs.', 'cat' => 'Operations' ),
+    );
+    foreach ( $portfolio as $item ) {
+        $pid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'portfolio', 'post_status' => 'publish' ) );
+        if ($pid) update_post_meta($pid, '_portfolio_category', $item['cat']);
+    }
+
+    // Team
+    $team = array(
+        array( 'title' => 'Jonathan Vance', 'content' => 'Founder & Principal Consultant with 20 years of experience in organizational psychology.', 'role' => 'Principal Strategist' ),
+        array( 'title' => 'Elena Rodriguez', 'content' => 'Head of Strategic Operations and former COO of a Silicon Valley unicorn.', 'role' => 'Operations Director' ),
+    );
+    foreach ( $team as $item ) {
+        $tid = wp_insert_post( array( 'post_title' => $item['title'], 'post_content' => $item['content'], 'post_type' => 'team', 'post_status' => 'publish' ) );
+        if ($tid) update_post_meta($tid, '_team_member_role', $item['role']);
+    }
 }
 
 /**
