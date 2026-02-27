@@ -207,7 +207,8 @@ function coachpress_generate_dynamic_css() {
         <?php if ($text_color) : ?>
             .section-<?php echo esc_attr($section_id); ?>,
             .section-<?php echo esc_attr($section_id); ?> p,
-            .section-<?php echo esc_attr($section_id); ?> .section-description { color: <?php echo esc_html($text_color); ?> !important; }
+            .section-<?php echo esc_attr($section_id); ?> .section-description,
+            .section-<?php echo esc_attr($section_id); ?> .partner-name { color: <?php echo esc_html($text_color); ?> !important; }
         <?php endif; ?>
 
         <?php if ($heading_font) : ?>

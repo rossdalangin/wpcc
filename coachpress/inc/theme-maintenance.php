@@ -91,8 +91,13 @@ function coachpress_add_sample_data() {
         )
     );
 
-    // Randomly select one dataset
-    $data = $datasets[array_rand($datasets)];
+    // Randomly select one dataset and style set
+    $keys = array_keys($datasets);
+    $rand_key = array_rand($keys);
+    $data = $datasets[$rand_key];
+
+    $style_sets = array('blue-chip', 'innovator', 'modernist', 'luxury', 'tech');
+    coachpress_set_theme_styles($style_sets[$rand_key]);
 
     // Services
     foreach ( $data['services'] as $item ) {
@@ -184,3 +189,46 @@ function coachpress_handle_maintenance_action() {
     }
 }
 add_action( 'wp_ajax_coachpress_maintenance_action', 'coachpress_handle_maintenance_action' );
+
+/**
+ * Set Professional Theme Styles
+ */
+function coachpress_set_theme_styles($style_set) {
+    $styles = array(
+        'blue-chip' => array(
+            'coachpress_primary_color'   => '#1a365d',
+            'coachpress_accent_color'    => '#c0a080',
+            'coachpress_heading_font'    => 'Playfair Display',
+            'coachpress_body_font'       => 'Inter',
+        ),
+        'innovator' => array(
+            'coachpress_primary_color'   => '#2d3748',
+            'coachpress_accent_color'    => '#48bb78',
+            'coachpress_heading_font'    => 'Montserrat',
+            'coachpress_body_font'       => 'Lato',
+        ),
+        'modernist' => array(
+            'coachpress_primary_color'   => '#000000',
+            'coachpress_accent_color'    => '#ed8936',
+            'coachpress_heading_font'    => 'Oswald',
+            'coachpress_body_font'       => 'Open Sans',
+        ),
+        'luxury' => array(
+            'coachpress_primary_color'   => '#2c1e1a',
+            'coachpress_accent_color'    => '#d4af37',
+            'coachpress_heading_font'    => 'Cinzel',
+            'coachpress_body_font'       => 'Lora',
+        ),
+        'tech' => array(
+            'coachpress_primary_color'   => '#0f172a',
+            'coachpress_accent_color'    => '#38bdf8',
+            'coachpress_heading_font'    => 'Space Grotesk',
+            'coachpress_body_font'       => 'Fira Code',
+        )
+    );
+
+    $set = $styles[$style_set] ?? $styles['blue-chip'];
+    foreach ($set as $key => $val) {
+        set_theme_mod($key, $val);
+    }
+}

@@ -51,6 +51,7 @@ if ( ! function_exists( 'coachpress_setup' ) ) :
 		register_nav_menus(
 			array(
 				'menu-1' => esc_html__( 'Primary', 'coachpress' ),
+				'footer' => esc_html__( 'Footer Menu', 'coachpress' ),
 			)
 		);
 
@@ -153,7 +154,11 @@ function coachpress_scripts() {
 
     $body_font = get_theme_mod( 'coachpress_body_font', 'Lato' );
     $heading_font = get_theme_mod( 'coachpress_heading_font', 'Lora' );
-    $font_url = "https://fonts.googleapis.com/css2?family={$body_font}:wght@300;400;700&family={$heading_font}:wght@400;700&display=swap";
+
+    $body_font_slug = str_replace( ' ', '+', $body_font );
+    $heading_font_slug = str_replace( ' ', '+', $heading_font );
+
+    $font_url = "https://fonts.googleapis.com/css2?family={$body_font_slug}:wght@300;400;700&family={$heading_font_slug}:wght@400;700&display=swap";
     wp_enqueue_style( 'coachpress-fonts', $font_url, array(), null );
 
 

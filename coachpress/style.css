@@ -215,7 +215,7 @@ img {
 @media (min-width: 1200px) { .grid-4-col { grid-template-columns: repeat(4, 1fr); } }
 
 /* Hero Section */
-.section-hero { color: #fff; background-size: cover; background-position: center; }
+.section-hero { background-size: cover; background-position: center; }
 .hero-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 60px; }
 .hero-left { flex: 1 1 550px; }
 .hero-right { flex: 1 1 450px; position: relative; }
@@ -416,12 +416,31 @@ input:focus, textarea:focus {
 # Footer
 --------------------------------------------------------------*/
 .site-footer { background-color: var(--coachpress-footer-bg-color); color: var(--coachpress-footer-text-color); padding: 100px 0 50px; }
-.site-footer a { color: var(--coachpress-footer-link-color); text-decoration: none; font-weight: 600; }
+.site-footer a { color: var(--coachpress-footer-link-color); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
 .site-footer a:hover { color: var(--coachpress-footer-link-hover-color); }
-.social-icons { display: flex; justify-content: center; gap: 25px; margin-bottom: 50px; }
-.social-icons a { font-size: 1.4rem; opacity: 0.7; transition: all 0.3s ease; }
+
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+@media (max-width: 991px) { .footer-top { grid-template-columns: 1fr; text-align: center; gap: 40px; } }
+
+.footer-branding .site-title { font-size: 1.4rem; margin-bottom: 15px; }
+.footer-description { font-size: 0.95rem; opacity: 0.7; line-height: 1.6; max-width: 300px; }
+@media (max-width: 991px) { .footer-description { margin-left: auto; margin-right: auto; } }
+
+.footer-navigation ul { list-style: none; padding: 0; margin: 0; }
+.footer-navigation li { margin-bottom: 12px; }
+.footer-navigation a { font-size: 0.95rem; opacity: 0.8; }
+.footer-navigation a:hover { opacity: 1; padding-left: 5px; }
+
+.footer-social-title { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 25px; }
+.footer-social-wrapper .social-icons { justify-content: flex-start; }
+@media (max-width: 991px) { .footer-social-wrapper .social-icons { justify-content: center; } }
+
+.social-icons { display: flex; gap: 20px; }
+.social-icons a { font-size: 1.2rem; opacity: 0.6; transition: all 0.3s ease; }
 .social-icons a:hover { opacity: 1; transform: translateY(-3px); color: var(--coachpress-accent-color); }
-.site-info { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 50px; font-size: 0.9rem; opacity: 0.6; }
+
+.site-info { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-size: 0.85rem; opacity: 0.5; }
+.footer-copyright { margin-bottom: 10px; }
 
 /*--------------------------------------------------------------
 # Mobile
