@@ -13,6 +13,14 @@ function coachpress_display_section($section_id, $force_display = false) {
     }
 
     $sections_data = coachpress_get_sections_data();
+
+    // Automatically swap text colors for better contrast if section background matches brand colors
+    $data = $sections_data[$section_id] ?? [];
+    $bg_color = get_theme_mod("coachpress_{$section_id}_bg_color", $data['bg'] ?? '#FFFFFF');
+    $is_dark = coachpress_is_dark($bg_color);
+
+    $heading_color_default = $is_dark ? '#FFFFFF' : '#1a365d';
+    $text_color_default = $is_dark ? '#e2e8f0' : '#2d3748';
     $default_bg = $sections_data[$section_id]['bg'] ?? '#FFFFFF';
 
     $bg_type = get_theme_mod("coachpress_{$section_id}_bg_type", 'color');
@@ -53,12 +61,12 @@ function coachpress_display_section($section_id, $force_display = false) {
             if ($section_id !== 'hero') {
                 $title = get_theme_mod("coachpress_{$section_id}_section_title", $default_title);
                 if (!empty($title)) {
-                    echo '<h2 class="section-title" data-aos="fade-up">' . esc_html($title) . '</h2>';
+                    echo '<h2 class="section-title" data-aos="fade-up" style="color: ' . esc_attr(get_theme_mod("coachpress_{$section_id}_heading_color", $heading_color_default)) . ' !important;">' . esc_html($title) . '</h2>';
                 }
 
                 $description = get_theme_mod("coachpress_{$section_id}_section_description", $default_desc);
                 if (!empty($description)) {
-                    echo '<div class="section-description" data-aos="fade-up" data-aos-delay="100">' . wp_kses_post($description) . '</div>';
+                    echo '<div class="section-description" data-aos="fade-up" data-aos-delay="100" style="color: ' . esc_attr(get_theme_mod("coachpress_{$section_id}_text_color", $text_color_default)) . ' !important;">' . wp_kses_post($description) . '</div>';
                 }
             }
 

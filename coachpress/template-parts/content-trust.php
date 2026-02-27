@@ -8,7 +8,6 @@
  */
 
 $selected_partners = get_theme_mod('coachpress_partners_posts');
-$trust_image_id = get_theme_mod('coachpress_trust_image');
 
 $args = array(
     'post_type'      => 'partners',
@@ -36,12 +35,8 @@ if ($partners_query->have_posts()) : ?>
             </div>
         <?php endwhile; wp_reset_postdata(); ?>
     </div>
-<?php elseif ($trust_image_id): ?>
-    <div class="trust-image-wrapper" data-aos="fade-up">
-        <?php echo wp_get_attachment_image($trust_image_id, 'full'); ?>
-    </div>
 <?php else : ?>
     <?php if (is_customize_preview()) : ?>
-        <p class="customize-placeholder"><?php _e('Add Partners or upload a Trust Logos Image in the Customizer.', 'coachpress'); ?></p>
+        <p class="customize-placeholder"><?php _e('Add Partners in the dashboard to build trust with your audience.', 'coachpress'); ?></p>
     <?php endif; ?>
 <?php endif; ?>

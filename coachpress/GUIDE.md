@@ -24,10 +24,10 @@ Welcome to CoachPress! This guide is designed for non-technical users to help yo
 CoachPress doesn't use heavy, complicated plugins. Instead, we use a **Section Builder** built directly into WordPress.
 
 ### How to use the Section Builder:
-1.  Go to **Appearance > Customize > Manage All Sections**.
+1.  Go to **Appearance > Customize > Homepage Sections > Manage All Sections**.
 2.  **Toggle Visibility:** Use the checkboxes to hide or show sections (like "Testimonials" or "FAQs").
 3.  **Drag and Drop:** Click and hold the section boxes to move them up or down.
-    - *Example:* If you want your "Trust Logos" right under the "Hero" section, just drag them to the top.
+    - *Example:* If you want your "Partners" right under the "Hero" section, just drag them to the top.
 
 ### Customizing Section Content:
 Click on any specific section (e.g., **"Hero Section"**) to change:

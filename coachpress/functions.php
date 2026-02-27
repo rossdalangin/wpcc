@@ -227,10 +227,13 @@ function coachpress_get_sections_data() {
         'portfolio'     => ['label' => __( 'Portfolio', 'coachpress' ), 'title' => 'Strategic Portfolio', 'description' => 'A curated selection of high-impact projects.', 'bg' => '#FFFFFF'],
         'case-studies'  => ['label' => __( 'Case Studies', 'coachpress' ), 'title' => 'Success Stories', 'description' => 'Deep dives into strategic transformations and measurable outcomes.', 'bg' => '#f7fafc'],
         'faqs'          => ['label' => __( 'FAQs', 'coachpress' ), 'title' => 'Common Questions', 'description' => 'Insights into how we work and what you can expect.', 'bg' => '#FFFFFF'],
-        'cta'           => ['label' => __( 'CTA', 'coachpress' ), 'title' => 'Ready for the Next Level?', 'description' => 'Join an exclusive group of high-performers today.', 'bg' => 'linear-gradient(135deg, #2d3748 0%, #1a365d 100%)'],
+        'cta'           => ['label' => __( 'CTA', 'coachpress' ), 'title' => 'Ready for the Next Level?', 'description' => 'Limited availability for Q3/Q4. Secure your strategy session today.', 'bg' => 'linear-gradient(135deg, #2d3748 0%, #1a365d 100%)'],
         'contact'       => ['label' => __( 'Contact', 'coachpress' ), 'title' => 'Let’s Connect', 'description' => 'Ready to elevate your impact? Start the conversation today.', 'bg' => '#f7fafc'],
         'team'          => ['label' => __( 'Team', 'coachpress' ), 'title' => 'The Collective', 'description' => 'Expert minds coming together for your success.', 'bg' => '#FFFFFF'],
     );
+
+    // Filter out sections that are not being used in the builder
+    $data = apply_filters('coachpress_sections_data', $data);
 
     foreach ($data as $id => &$section) {
         $is_dark = coachpress_is_dark($section['bg']);

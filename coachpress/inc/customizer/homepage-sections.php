@@ -57,7 +57,7 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
             'priority' => 1
         ) );
 
-        if (!empty($data['description']) || (!in_array($section_id, ['hero', 'problem', 'about-preview', 'trust']))) {
+        if (!empty($data['description']) || (!in_array($section_id, ['hero', 'problem', 'about-preview', 'trust', 'cta']))) {
             $wp_customize->add_setting( "coachpress_{$section_id}_section_description", array(
                 'default'           => $data['description'],
                 'transport'         => 'refresh',
@@ -205,22 +205,13 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
 
         $wp_customize->add_control( new CoachPress_Multi_Select_Control( $wp_customize, "coachpress_{$cpt}_posts", array(
             'label'       => sprintf( __( 'Pick Specific %s', 'coachpress' ), ucfirst(str_replace('-', ' ', $cpt)) ),
-            'description' => sprintf( __('Hold Ctrl/Cmd to select multiple items. If none are selected, the latest %s will be shown automatically.', 'coachpress'), str_replace('-', ' ', $cpt) ),
+            'description' => sprintf( __('Hold Ctrl/Cmd to select multiple items. Note: Only published %s will appear here. If the list is empty, add some items in the dashboard first.', 'coachpress'), str_replace('-', ' ', $cpt) ),
             'section'     => "coachpress_{$cpt}_section",
             'choices'     => $choices,
             'priority'    => 3
         ) ) );
     }
 
-    // -- CTA Section Specific --
-    $wp_customize->add_setting( 'coachpress_cta_subheading', array( 'default' => 'Limited availability for Q3/Q4. Secure your strategy session today.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'coachpress_cta_subheading', array(
-        'label' => __( 'CTA Sub-Heading', 'coachpress' ),
-        'description' => __('Additional text to create urgency or add detail to your final call to action.', 'coachpress'),
-        'section' => 'coachpress_cta_section',
-        'type' => 'text',
-        'priority' => 9
-    ) );
 
     $wp_customize->add_setting( 'coachpress_cta_button_text', array( 'default' => 'Apply For Consultation', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'coachpress_cta_button_text', array(
@@ -238,15 +229,6 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         'priority' => 11
     ) );
 
-    // -- Trust Section Specific --
-    $wp_customize->add_setting( 'coachpress_trust_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
-    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_trust_image', array(
-        'label'       => __( 'Trust Logos Image (Legacy)', 'coachpress' ),
-        'description' => __('Alternative: Upload a single image containing all logos. For better control, use the "Partners" Custom Post Type instead.', 'coachpress'),
-        'section'     => 'coachpress_trust_section',
-        'mime_type'   => 'image',
-        'priority'    => 10
-    ) ) );
 
     // -- Problem Section Specific --
     $wp_customize->add_setting( 'coachpress_problem_content', array( 'default' => 'You’ve reached the limit of what hard work alone can achieve. Your current systems are straining, and your time is being consumed by operations rather than strategy. It’s time for a new approach.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
@@ -265,6 +247,39 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         'mime_type'=> 'image',
         'priority' => 6
     ) ) );
+
+    // -- About Preview Section Specific --
+    $wp_customize->add_setting( 'coachpress_about-preview_content', array( 'default' => 'I partner with highly-motivated professionals to dismantle internal barriers and architect high-impact businesses. Through a combination of strategic foresight and personalized leadership coaching, we don’t just reach your goals—we redefine them.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_control( 'coachpress_about-preview_content', array(
+        'label' => __( 'About Section Content', 'coachpress' ),
+        'section' => 'coachpress_about-preview_section',
+        'type' => 'textarea',
+        'priority' => 5
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_about-preview_image', array( 'default' => '', 'sanitize_callback' => 'absint' ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'coachpress_about-preview_image', array(
+        'label'    => __( 'About Section Image', 'coachpress' ),
+        'section'  => 'coachpress_about-preview_section',
+        'mime_type'=> 'image',
+        'priority' => 6
+    ) ) );
+
+    $wp_customize->add_setting( 'coachpress_about-preview_button_text', array( 'default' => 'Explore My Methodology', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_about-preview_button_text', array(
+        'label' => __( 'About Section Button Text', 'coachpress' ),
+        'section' => 'coachpress_about-preview_section',
+        'type' => 'text',
+        'priority' => 7
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_about-preview_button_url', array( 'default' => '#about', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_about-preview_button_url', array(
+        'label' => __( 'About Section Button URL', 'coachpress' ),
+        'section' => 'coachpress_about-preview_section',
+        'type' => 'url',
+        'priority' => 8
+    ) );
 
     // -- Contact Section Specific --
     $wp_customize->add_setting( 'coachpress_contact_details_title', array( 'default' => 'Get In Touch', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
