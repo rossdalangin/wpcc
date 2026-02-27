@@ -6,6 +6,8 @@
  */
 
 function coachpress_display_section($section_id, $force_display = false) {
+    // If not forced (like on homepage), respect the global toggle.
+    // If forced (like in page builder), we still want to show it because the builder string itself handles selection.
     if ( !$force_display && ! get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
         return;
     }

@@ -16,7 +16,14 @@
                         order.push( $( this ).data( 'section-id' ) );
                     }
                 });
-                control.setting.set( order.join( ',' ) );
+
+                var newValue = order.join( ',' );
+
+                // Set the value on the setting object directly
+                control.setting.set( newValue );
+
+                // Also update the hidden input just in case
+                $( '.section-order-input', control.container ).val( newValue ).trigger( 'change' );
             };
 
             $( '.section-order-list', control.container ).sortable({

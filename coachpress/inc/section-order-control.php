@@ -50,7 +50,7 @@ class CoachPress_Section_Order_Control extends WP_Customize_Control {
                 }
                 ?>
             </ul>
-            <input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
+            <input type="hidden" class="section-order-input" <?php $this->link(); ?> value="<?php echo esc_attr( $this->value() ); ?>" />
         </label>
         <?php
     }
