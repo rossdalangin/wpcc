@@ -32,33 +32,41 @@ get_header();
             </header>
 
             <div class="post-single-container container">
-                <div class="post-single-inner">
-                    <?php get_template_part( 'template-parts/content', get_post_type() ); ?>
+                <div class="post-single-grid">
+                    <div class="post-single-content-area">
+                        <div class="post-single-inner">
+                            <?php get_template_part( 'template-parts/content', get_post_type() ); ?>
 
-                    <div class="author-bio-section card" data-aos="fade-up">
-                        <div class="author-avatar">
-                            <?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
-                        </div>
-                        <div class="author-info">
-                            <h3><?php echo esc_html( get_the_author() ); ?></h3>
-                            <p class="author-description"><?php echo wp_kses_post( get_the_author_meta( 'description' ) ); ?></p>
-                            <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="author-link"><?php _e('View All Posts', 'coachpress'); ?></a>
+                            <div class="author-bio-section card" data-aos="fade-up">
+                                <div class="author-avatar">
+                                    <?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
+                                </div>
+                                <div class="author-info">
+                                    <h3><?php echo esc_html( get_the_author() ); ?></h3>
+                                    <p class="author-description"><?php echo wp_kses_post( get_the_author_meta( 'description' ) ); ?></p>
+                                    <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="author-link"><?php _e('View All Posts', 'coachpress'); ?></a>
+                                </div>
+                            </div>
+
+                            <?php
+                            the_post_navigation(
+                                array(
+                                    'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
+                                    'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
+                                )
+                            );
+
+                            // If comments are open or we have at least one comment, load up the comment template.
+                            if ( comments_open() || get_comments_number() ) :
+                                comments_template();
+                            endif;
+                            ?>
                         </div>
                     </div>
 
-                    <?php
-                    the_post_navigation(
-                        array(
-                            'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
-                            'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
-                        )
-                    );
-
-                    // If comments are open or we have at least one comment, load up the comment template.
-                    if ( comments_open() || get_comments_number() ) :
-                        comments_template();
-                    endif;
-                    ?>
+                    <div class="post-single-sidebar-area">
+                        <?php get_sidebar(); ?>
+                    </div>
                 </div>
             </div>
             <?php
