@@ -12,9 +12,11 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <?php if ( ! is_front_page() ) :
         $template_slug = coachpress_get_template_slug();
+        $defaults = coachpress_get_page_template_defaults();
+        $page_defaults = $defaults[$template_slug] ?? array('title' => '', 'subtitle' => '', 'content' => '');
 
-        $banner_title_override = get_theme_mod( "coachpress_{$template_slug}_banner_title" );
-        $banner_subtitle = get_theme_mod( "coachpress_{$template_slug}_banner_subtitle" );
+        $banner_title_override = get_theme_mod( "coachpress_{$template_slug}_banner_title", $page_defaults['title'] );
+        $banner_subtitle = get_theme_mod( "coachpress_{$template_slug}_banner_subtitle", $page_defaults['subtitle'] );
         $banner_img_id = get_theme_mod( "coachpress_{$template_slug}_page_banner_image" );
 
         $banner_style = '';
@@ -46,7 +48,7 @@
 
 	<div class="entry-content <?php echo ! is_front_page() ? 'container' : ''; ?>">
 		<?php
-        $content_override = get_theme_mod( "coachpress_{$template_slug}_page_content" );
+        $content_override = get_theme_mod( "coachpress_{$template_slug}_page_content", $page_defaults['content'] );
         if ( !empty($content_override) ) {
             echo wp_kses_post($content_override);
         } else {

@@ -30,7 +30,7 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
         </header>
 
         <div class="process-single-content container" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px;">
+            <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px; align-items: start;">
                 <div class="process-main-description" data-aos="fade-right">
                     <div class="entry-content" style="padding: 0;">
                         <?php the_content(); ?>

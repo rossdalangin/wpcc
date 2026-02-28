@@ -312,6 +312,49 @@ function coachpress_get_template_slug() {
 }
 
 /**
+ * Get default content for page templates.
+ */
+function coachpress_get_page_template_defaults() {
+    return array(
+        'about'     => array(
+            'title' => 'Decades of Strategy. One Mission: Your Growth.',
+            'subtitle' => 'Meet the minds behind the most successful market transformations.',
+            'content' => 'We don\'t just consult; we partner. Our approach is rooted in organizational psychology and data-driven execution. Over the last 20 years, we have helped over 500 high-performers find their edge and dominate their markets.'
+        ),
+        'services'  => array(
+            'title' => 'High-Impact Solutions for Modern Leaders.',
+            'subtitle' => 'Precision-engineered frameworks designed to scale your impact and income.',
+            'content' => 'Explore our range of bespoke consulting and coaching services. Whether you are looking for executive leadership development or a total operational overhaul, we have the systems to get you there.'
+        ),
+        'process'   => array(
+            'title' => 'The Scientific Approach to Success.',
+            'subtitle' => 'Transparency at every step. See how we turn chaos into a scalable blueprint.',
+            'content' => 'Our 4-step framework is rigorous, iterative, and results-oriented. We leave nothing to chance, ensuring every strategic move is backed by data and aligned with your long-term vision.'
+        ),
+        'portfolio' => array(
+            'title' => 'A Track Record of Radical Transformation.',
+            'subtitle' => 'Real stories of scale, efficiency, and market domination.',
+            'content' => 'Browse our curated selection of high-impact projects. From global SaaS scaling to leadership turnarounds, these case studies demonstrate the power of modular strategy.'
+        ),
+        'blog'      => array(
+            'title' => 'Insights & Strategy',
+            'subtitle' => 'Deep dives into the worlds of high-performance leadership and market domination.',
+            'content' => ''
+        ),
+        'team'      => array(
+            'title' => 'The Collective: Elite Minds, Unified Vision.',
+            'subtitle' => 'Meet the consultants who have built, scaled, and exited multi-million dollar firms.',
+            'content' => 'Our team is composed of seasoned operators and visionary strategists. We don\'t just teach; we\'ve done it. Join an exclusive circle of experts dedicated to your success.'
+        ),
+        'contact'   => array(
+            'title' => 'Start Your Transformation Today.',
+            'subtitle' => 'Ready to find your edge? Let\'s have a high-stakes conversation.',
+            'content' => 'Fill out the form below or reach out via our direct channels. We respond to qualified inquiries within 24 hours.'
+        )
+    );
+}
+
+/**
  * Check if a color is dark.
  */
 function coachpress_is_dark( $color ) {

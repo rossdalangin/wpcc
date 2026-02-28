@@ -32,7 +32,7 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
         </header>
 
         <div class="portfolio-single-content container" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px;">
+            <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px; align-items: start;">
                 <div class="portfolio-main-text" data-aos="fade-right">
                     <div class="entry-content" style="padding: 0;">
                         <?php the_content(); ?>
@@ -57,7 +57,7 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                             <span style="color: inherit; opacity: 0.8;"><?php echo get_the_date(); ?></span>
                         </div>
 
-                        <div class="portfolio-cta" style="margin-top: 30px;">
+                        <div class="portfolio-cta" style="margin-top: 40px;">
                             <?php if ( 'url' === $btn_type ) : ?>
                                 <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_url", '#contact' ); ?>
                                 <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="width: 100%;"><?php echo esc_html($btn_text); ?></a>

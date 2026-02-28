@@ -214,6 +214,52 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
         'priority' => 11
     ) );
 
+    // -- Team Section CTA Card --
+    $wp_customize->add_setting( 'coachpress_team_cta_title', array( 'default' => __( 'Join Our Elite Network', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_title', array( 'label' => __( 'CTA Card Title', 'coachpress' ), 'section' => 'coachpress_team_section', 'type' => 'text', 'priority' => 10 ) );
+
+    $wp_customize->add_setting( 'coachpress_team_cta_desc', array( 'default' => __( 'We are always looking for visionary leaders to join our growing collective.', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_desc', array( 'label' => __( 'CTA Card Description', 'coachpress' ), 'section' => 'coachpress_team_section', 'type' => 'textarea', 'priority' => 11 ) );
+
+    $wp_customize->add_setting( 'coachpress_team_cta_btn_text', array( 'default' => __( 'Get in Touch', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_btn_text', array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_team_section', 'type' => 'text', 'priority' => 12 ) );
+
+    $wp_customize->add_setting( 'coachpress_team_cta_btn_type', array( 'default' => 'url', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_btn_type', array(
+        'label' => __( 'Button Action', 'coachpress' ),
+        'section' => 'coachpress_team_section',
+        'type' => 'select',
+        'choices' => array( 'url' => __( 'Link to URL', 'coachpress' ), 'html' => __( 'Custom HTML', 'coachpress' ), 'shortcode' => __( 'Shortcode', 'coachpress' ) ),
+        'priority' => 13
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_team_cta_btn_url', array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_btn_url', array(
+        'label' => __( 'Button URL', 'coachpress' ),
+        'section' => 'coachpress_team_section',
+        'type' => 'url',
+        'active_callback' => function($control) { return 'url' === $control->manager->get_setting('coachpress_team_cta_btn_type')->value(); },
+        'priority' => 14
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_team_cta_btn_html', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_btn_html', array(
+        'label' => __( 'Button HTML', 'coachpress' ),
+        'section' => 'coachpress_team_section',
+        'type' => 'textarea',
+        'active_callback' => function($control) { return 'html' === $control->manager->get_setting('coachpress_team_cta_btn_type')->value(); },
+        'priority' => 15
+    ) );
+
+    $wp_customize->add_setting( 'coachpress_team_cta_btn_shortcode', array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+    $wp_customize->add_control( 'coachpress_team_cta_btn_shortcode', array(
+        'label' => __( 'Button Shortcode', 'coachpress' ),
+        'section' => 'coachpress_team_section',
+        'type' => 'text',
+        'active_callback' => function($control) { return 'shortcode' === $control->manager->get_setting('coachpress_team_cta_btn_type')->value(); },
+        'priority' => 16
+    ) );
+
 
     // -- Problem Section Specific --
     $wp_customize->add_setting( 'coachpress_problem_content', array( 'default' => 'You’ve reached the limit of what hard work alone can achieve. Your current systems are straining, and your time is being consumed by operations rather than strategy. It’s time for a new approach.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );

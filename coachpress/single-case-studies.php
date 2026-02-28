@@ -30,7 +30,7 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
         </header>
 
         <div class="case-study-single-content container" style="padding-top: 80px; padding-bottom: 80px;">
-            <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px;">
+            <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px; align-items: start;">
                 <div class="case-study-main-description" data-aos="fade-right">
                     <div class="entry-content" style="padding: 0;">
                         <?php the_content(); ?>
@@ -65,8 +65,8 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                     <div class="case-study-outcome-details card sidebar-card" style="margin-top: 30px;">
                         <h3><?php _e('Key Outcomes', 'coachpress'); ?></h3>
                         <ul style="padding: 0; list-style: none;">
-                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Strategic Alignment', 'coachpress'); ?></li>
-                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Measurable ROI', 'coachpress'); ?></li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Strategic Alignment', 'coachpress'); ?></li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Measurable ROI', 'coachpress'); ?></li>
                             <li style="display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Operational Scalability', 'coachpress'); ?></li>
                         </ul>
                     </div>
