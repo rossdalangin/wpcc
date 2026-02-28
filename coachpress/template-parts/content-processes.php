@@ -23,17 +23,26 @@ $query = new WP_Query($query_args);
 if ($query->have_posts()): ?>
     <div class="processes-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
-        <div class="process-item card" data-aos="fade-up">
-            <?php if(has_post_thumbnail()): ?>
-                <div class="item-image">
-                    <?php the_post_thumbnail('medium'); ?>
+        <article class="process-item-wrap" data-aos="fade-up">
+            <div class="process-item-inner card <?php echo !has_post_thumbnail() ? 'no-thumbnail' : ''; ?>">
+                <div class="process-featured-image service-featured-image">
+                    <a href="<?php the_permalink(); ?>">
+                        <?php if(has_post_thumbnail()): ?>
+                            <?php the_post_thumbnail('large'); ?>
+                        <?php else: ?>
+                            <div class="service-placeholder"></div>
+                        <?php endif; ?>
+                    </a>
                 </div>
-            <?php endif; ?>
-            <div class="item-content">
-                <h3><?php the_title(); ?></h3>
-                <?php the_content(); ?>
+
+                <div class="process-item-content service-item-content">
+                    <span class="service-item-cat"><?php _e('Process', 'coachpress'); ?></span>
+                    <h3 class="service-item-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    <div class="service-item-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 20); ?></div>
+                    <a href="<?php the_permalink(); ?>" class="service-item-link"><?php _e('Learn More', 'coachpress'); ?> <i class="fa fa-arrow-right"></i></a>
+                </div>
             </div>
-        </div>
+        </article>
     <?php endwhile; wp_reset_postdata(); ?>
     </div>
 <?php endif; ?>

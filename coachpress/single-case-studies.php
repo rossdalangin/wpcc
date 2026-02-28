@@ -7,15 +7,15 @@
 
 get_header();
 
-$cpt = 'case_studies';
-$cta_title = get_theme_mod( "coachpress_single_{$cpt}_cta_title", __( 'Ready to Start?', 'coachpress' ) );
-$cta_desc = get_theme_mod( "coachpress_single_{$cpt}_cta_desc", __( 'Take the first step toward transforming your business.', 'coachpress' ) );
-$cta_bg = get_theme_mod( "coachpress_single_{$cpt}_cta_bg_color", '#f7fafc' );
-$cta_text_color = get_theme_mod( "coachpress_single_{$cpt}_cta_text_color", '#1a365d' );
-$btn_text = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_text", __( 'Get Similar Results', 'coachpress' ) );
-$btn_type = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_type", 'url' );
+$cpt_slug = 'case_studies';
+$cta_title = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_title", __( 'Ready to Start?', 'coachpress' ) );
+$cta_desc = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_desc", __( 'Take the first step toward transforming your business.', 'coachpress' ) );
+$cta_bg = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_bg_color", '#f7fafc' );
+$cta_text_color = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_text_color", '#1a365d' );
+$btn_text = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_text", __( 'Get Similar Results', 'coachpress' ) );
+$btn_type = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_type", 'url' );
 
-$card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 50px !important;";
+$card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} !important; padding: 50px !important;";
 ?>
 
 <main id="primary" class="site-main">
@@ -29,34 +29,34 @@ $card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 5
             </div>
         </header>
 
-        <div class="case-study-single-content container">
+        <div class="case-study-single-content container" style="padding-top: 80px; padding-bottom: 80px;">
             <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px;">
                 <div class="case-study-main-description" data-aos="fade-right">
-                    <div class="entry-content">
+                    <div class="entry-content" style="padding: 0;">
                         <?php the_content(); ?>
                     </div>
                 </div>
 
                 <aside class="case-study-sidebar" data-aos="fade-left">
                     <div class="case-study-outcome-card card" style="<?php echo esc_attr($card_style); ?>">
-                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?>;"><?php echo esc_html($cta_title); ?></h3>
+                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important; margin-bottom: 20px;"><?php echo esc_html($cta_title); ?></h3>
 
-                        <div class="cta-card-description" style="margin-bottom: 30px;">
+                        <div class="cta-card-description" style="margin-bottom: 30px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
                             <?php echo wp_kses_post($cta_desc); ?>
                         </div>
 
                         <?php if ( 'url' === $btn_type ) : ?>
-                            <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_url", '#contact' ); ?>
+                            <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_url", '#contact' ); ?>
                             <div class="portfolio-cta">
                                 <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="width: 100%;"><?php echo esc_html($btn_text); ?></a>
                             </div>
                         <?php elseif ( 'html' === $btn_type ) : ?>
                             <div class="cta-custom-html">
-                                <?php echo wp_kses_post( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_html" ) ); ?>
+                                <?php echo wp_kses_post( get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_html" ) ); ?>
                             </div>
                         <?php elseif ( 'shortcode' === $btn_type ) : ?>
                             <div class="cta-shortcode">
-                                <?php echo do_shortcode( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_shortcode" ) ); ?>
+                                <?php echo do_shortcode( get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_shortcode" ) ); ?>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -69,14 +69,16 @@ $card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 5
         coachpress_display_section('cta', true);
         ?>
 
-        <?php
-        the_post_navigation(
-            array(
-                'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous Success Story:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
-                'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next Success Story:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
-            )
-        );
-        ?>
+        <div class="container" style="padding-bottom: 80px;">
+            <?php
+            the_post_navigation(
+                array(
+                    'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous Success Story:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
+                    'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next Success Story:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
+                )
+            );
+            ?>
+        </div>
 
     <?php endwhile; ?>
 </main>
