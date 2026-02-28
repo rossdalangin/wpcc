@@ -42,8 +42,7 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                 <aside class="portfolio-meta-sidebar" data-aos="fade-left">
                     <div class="portfolio-meta-card card sidebar-card" style="<?php echo esc_attr($card_style); ?>">
                         <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important;"><?php echo esc_html($cta_title); ?></h3>
-
-                        <?php if ( !empty($cta_desc) ) : ?>
+                        <?php if (!empty($cta_desc)) : ?>
                             <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
                                 <?php echo wp_kses_post($cta_desc); ?>
                             </div>

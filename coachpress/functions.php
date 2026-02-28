@@ -260,17 +260,12 @@ function coachpress_get_section_choices() {
 
 
 function coachpress_get_sections() {
-    $sections = array();
     $default_order = 'hero,trust,problem,about-preview,services,processes,testimonials,portfolio,case-studies,faqs,cta,contact,team';
-    $order = explode( ',', get_theme_mod( 'coachpress_section_order', $default_order ) );
+    $order_str = get_theme_mod( 'coachpress_section_order', $default_order );
 
-    foreach ( $order as $section_id ) {
-        if ( get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
-            $sections[] = $section_id;
-        }
-    }
+    if (empty($order_str)) return array();
 
-    return $sections;
+    return array_filter( explode( ',', $order_str ) );
 }
 
 /**

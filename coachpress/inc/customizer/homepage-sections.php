@@ -17,25 +17,10 @@ function coachpress_customize_homepage_sections( $wp_customize ) {
 
     $wp_customize->add_control( new CoachPress_Section_Order_Control( $wp_customize, 'coachpress_section_order', array(
         'label'       => __( 'Homepage Section Layout (Builder)', 'coachpress' ),
-        'description' => __('This is your visual landing page builder. Drag and drop the boxes to change the order of sections on your home page. Move the "Hero" to the top for a standard layout, or experiment with different flows to see what converts best.', 'coachpress'),
+        'description' => __('This is your visual landing page builder. Drag and drop the boxes to change the order of sections on your home page. Move the "Hero" to the top for a standard layout, or experiment with different flows to see what converts best. Click the checkboxes to enable/disable sections.', 'coachpress'),
         'section'     => 'coachpress_section_ordering',
         'choices'     => $sections
     ) ) );
-
-    foreach ($sections as $section_id => $section_name) {
-        $wp_customize->add_setting( "coachpress_show_{$section_id}", array(
-            'default'           => true,
-            'transport'         => 'refresh',
-            'sanitize_callback' => 'wp_validate_boolean'
-        ) );
-
-        $wp_customize->add_control( "coachpress_show_{$section_id}", array(
-            'label'       => sprintf( __( 'Enable %s', 'coachpress' ), $section_name ),
-            'description' => sprintf( __('Toggle this to show or hide the %s section on your homepage. Useful for hiding sections you are still working on.', 'coachpress'), $section_name ),
-            'section'     => 'coachpress_section_ordering',
-            'type'        => 'checkbox'
-        ) );
-    }
 
     // -- Content Controls --
     $sections_data = coachpress_get_sections_data();

@@ -40,10 +40,11 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                 <aside class="case-study-sidebar" data-aos="fade-left">
                     <div class="case-study-outcome-card card sidebar-card" style="<?php echo esc_attr($card_style); ?>">
                         <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important;"><?php echo esc_html($cta_title); ?></h3>
-
-                        <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
-                            <?php echo wp_kses_post($cta_desc); ?>
-                        </div>
+                        <?php if (!empty($cta_desc)) : ?>
+                            <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
+                                <?php echo wp_kses_post($cta_desc); ?>
+                            </div>
+                        <?php endif; ?>
 
                         <?php if ( 'url' === $btn_type ) : ?>
                             <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_url", '#contact' ); ?>
@@ -64,8 +65,8 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                     <div class="case-study-outcome-details card sidebar-card" style="margin-top: 30px;">
                         <h3><?php _e('Key Outcomes', 'coachpress'); ?></h3>
                         <ul style="padding: 0; list-style: none;">
-                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Strategic Alignment', 'coachpress'); ?></li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Measurable ROI', 'coachpress'); ?></li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Strategic Alignment', 'coachpress'); ?></li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Measurable ROI', 'coachpress'); ?></li>
                             <li style="display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Operational Scalability', 'coachpress'); ?></li>
                         </ul>
                     </div>

@@ -40,9 +40,11 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                 <aside class="process-cta-sidebar" data-aos="fade-left">
                     <div class="process-cta-card card sidebar-card" style="<?php echo esc_attr($card_style); ?>">
                         <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important;"><?php echo esc_html($cta_title); ?></h3>
-                        <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
-                            <?php echo wp_kses_post($cta_desc); ?>
-                        </div>
+                        <?php if (!empty($cta_desc)) : ?>
+                            <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
+                                <?php echo wp_kses_post($cta_desc); ?>
+                            </div>
+                        <?php endif; ?>
 
                         <?php if ( 'url' === $btn_type ) : ?>
                             <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_url", '#contact' ); ?>

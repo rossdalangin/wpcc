@@ -6,10 +6,12 @@
  */
 
 function coachpress_display_section($section_id, $force_display = false) {
-    // If not forced (like on homepage), respect the global toggle.
-    // If forced (like in page builder), we still want to show it because the builder string itself handles selection.
-    if ( !$force_display && ! get_theme_mod( "coachpress_show_{$section_id}", true ) ) {
-        return;
+    // If not forced (like on homepage), respect the ordering string.
+    if ( !$force_display ) {
+        $active_sections = coachpress_get_sections();
+        if ( ! in_array( $section_id, $active_sections ) ) {
+            return;
+        }
     }
 
     $sections_data = coachpress_get_sections_data();
