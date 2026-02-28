@@ -9,8 +9,11 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( is_singular() ? 'post-single-article' : 'post-card card' ); ?> data-aos="fade-up">
-	<?php if ( ! is_singular() ) : ?>
+<?php
+$is_grid_item = !is_singular('post') || !in_the_loop();
+?>
+<article id="post-<?php the_ID(); ?>" <?php post_class( $is_grid_item ? 'post-card card' : 'post-single-article' ); ?> data-aos="fade-up">
+	<?php if ( $is_grid_item ) : ?>
         <?php if ( has_post_thumbnail() ) : ?>
             <div class="post-thumbnail">
                 <a href="<?php the_permalink(); ?>">
