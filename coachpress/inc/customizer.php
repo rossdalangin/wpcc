@@ -141,6 +141,7 @@ function coachpress_customize_controls_scripts() {
     wp_enqueue_script( 'coachpress-dimensions-control', get_template_directory_uri() . '/js/dimensions-control.js', array( 'jquery', 'customize-controls' ), COACHPRESS_VERSION, true );
     wp_enqueue_style( 'coachpress-dimensions-control', get_template_directory_uri() . '/css/dimensions-control.css' );
     wp_enqueue_script( 'coachpress-maintenance-control', get_template_directory_uri() . '/js/maintenance-control.js', array( 'jquery', 'customize-controls' ), COACHPRESS_VERSION, true );
+    wp_enqueue_script( 'coachpress-customizer-controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'jquery', 'customize-controls' ), COACHPRESS_VERSION, true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'coachpress_customize_controls_scripts' );
 
