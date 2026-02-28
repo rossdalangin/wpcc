@@ -15,7 +15,7 @@ $cta_text_color = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_text_color",
 $btn_text = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_text", __( 'Request a Proposal', 'coachpress' ) );
 $btn_type = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_type", 'url' );
 
-$card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} !important; padding: 50px !important;";
+$card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} !important;";
 ?>
 
 <main id="primary" class="site-main">
@@ -38,9 +38,9 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                 </div>
 
                 <aside class="service-cta-sidebar" data-aos="fade-left">
-                    <div class="service-cta-card card" style="<?php echo esc_attr($card_style); ?>">
-                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important; margin-bottom: 20px;"><?php echo esc_html($cta_title); ?></h3>
-                        <div class="cta-card-description" style="margin-bottom: 30px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
+                    <div class="service-cta-card card sidebar-card" style="<?php echo esc_attr($card_style); ?>">
+                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important;"><?php echo esc_html($cta_title); ?></h3>
+                        <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
                             <?php echo wp_kses_post($cta_desc); ?>
                         </div>
 
@@ -58,12 +58,18 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                         <?php endif; ?>
                     </div>
 
-                    <div class="service-related-meta card" style="margin-top: 30px; padding: 40px !important;">
+                    <div class="service-related-meta card sidebar-card" style="margin-top: 30px;">
                         <h3><?php _e('Service Details', 'coachpress'); ?></h3>
                         <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600;"><?php _e('Duration: Variable', 'coachpress'); ?></li>
-                            <li style="padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600;"><?php _e('Focus: High-Impact ROI', 'coachpress'); ?></li>
-                            <li style="padding: 15px 0; font-weight: 600;"><?php _e('Delivery: Bespoke', 'coachpress'); ?></li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; display: flex; align-items: center; gap: 10px;">
+                                <i class="fa fa-clock-o" style="color: var(--coachpress-accent-color);"></i> <?php _e('Duration: Variable', 'coachpress'); ?>
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; display: flex; align-items: center; gap: 10px;">
+                                <i class="fa fa-bullseye" style="color: var(--coachpress-accent-color);"></i> <?php _e('Focus: High-Impact ROI', 'coachpress'); ?>
+                            </li>
+                            <li style="padding: 12px 0; font-weight: 600; display: flex; align-items: center; gap: 10px;">
+                                <i class="fa fa-rocket" style="color: var(--coachpress-accent-color);"></i> <?php _e('Delivery: Bespoke', 'coachpress'); ?>
+                            </li>
                         </ul>
                     </div>
                 </aside>

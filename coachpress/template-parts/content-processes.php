@@ -24,7 +24,7 @@ if ($query->have_posts()): ?>
     <div class="processes-grid grid-3-col">
     <?php while($query->have_posts()): $query->the_post(); ?>
         <article class="process-item-wrap" data-aos="fade-up">
-            <div class="process-item-inner card <?php echo !has_post_thumbnail() ? 'no-thumbnail' : ''; ?>">
+            <div class="process-item-inner card height-100 <?php echo !has_post_thumbnail() ? 'no-thumbnail' : ''; ?>">
                 <div class="process-featured-image service-featured-image">
                     <a href="<?php the_permalink(); ?>">
                         <?php if(has_post_thumbnail()): ?>

@@ -15,7 +15,7 @@ $cta_text_color = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_text_color",
 $btn_text = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_text", __( 'Get Similar Results', 'coachpress' ) );
 $btn_type = get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_type", 'url' );
 
-$card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} !important; padding: 50px !important;";
+$card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} !important;";
 ?>
 
 <main id="primary" class="site-main">
@@ -38,10 +38,10 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                 </div>
 
                 <aside class="case-study-sidebar" data-aos="fade-left">
-                    <div class="case-study-outcome-card card" style="<?php echo esc_attr($card_style); ?>">
-                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important; margin-bottom: 20px;"><?php echo esc_html($cta_title); ?></h3>
+                    <div class="case-study-outcome-card card sidebar-card" style="<?php echo esc_attr($card_style); ?>">
+                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?> !important;"><?php echo esc_html($cta_title); ?></h3>
 
-                        <div class="cta-card-description" style="margin-bottom: 30px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
+                        <div class="cta-card-description" style="margin-bottom: 25px; color: <?php echo esc_attr($cta_text_color); ?> !important; opacity: 0.9;">
                             <?php echo wp_kses_post($cta_desc); ?>
                         </div>
 
@@ -59,6 +59,15 @@ $card_style = "background-color: {$cta_bg} !important; color: {$cta_text_color} 
                                 <?php echo do_shortcode( get_theme_mod( "coachpress_single_{$cpt_slug}_cta_btn_shortcode" ) ); ?>
                             </div>
                         <?php endif; ?>
+                    </div>
+
+                    <div class="case-study-outcome-details card sidebar-card" style="margin-top: 30px;">
+                        <h3><?php _e('Key Outcomes', 'coachpress'); ?></h3>
+                        <ul style="padding: 0; list-style: none;">
+                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Strategic Alignment', 'coachpress'); ?></li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Measurable ROI', 'coachpress'); ?></li>
+                            <li style="display: flex; align-items: center; gap: 10px;"><i class="fa fa-check-circle" style="color: var(--coachpress-accent-color);"></i> <?php _e('Operational Scalability', 'coachpress'); ?></li>
+                        </ul>
                     </div>
                 </aside>
             </div>
