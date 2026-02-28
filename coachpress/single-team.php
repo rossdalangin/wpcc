@@ -8,6 +8,16 @@
 get_header();
 
 $role = get_post_meta( get_the_ID(), '_team_member_role', true ) ?: 'Consultant';
+
+$cpt = 'team';
+$cta_title = get_theme_mod( "coachpress_single_{$cpt}_cta_title", sprintf( __('Connect with %s', 'coachpress'), get_the_title() ) );
+$cta_desc = get_theme_mod( "coachpress_single_{$cpt}_cta_desc", __( 'Ready to discuss how our expertise can help your business grow?', 'coachpress' ) );
+$cta_bg = get_theme_mod( "coachpress_single_{$cpt}_cta_bg_color", '#ffffff' );
+$cta_text_color = get_theme_mod( "coachpress_single_{$cpt}_cta_text_color", '#1a365d' );
+$btn_text = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_text", __( 'Book a Strategy Session', 'coachpress' ) );
+$btn_type = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_type", 'url' );
+
+$card_style = "background-color: {$cta_bg}; color: {$cta_text_color};";
 ?>
 
 <main id="primary" class="site-main">
@@ -38,15 +48,30 @@ $role = get_post_meta( get_the_ID(), '_team_member_role', true ) ?: 'Consultant'
                 </div>
 
                 <aside class="team-contact-sidebar" data-aos="fade-left">
-                    <div class="team-contact-card card">
-                        <h3><?php printf( __('Connect with %s', 'coachpress'), get_the_title() ); ?></h3>
-                        <p><?php _e('Ready to discuss how our expertise can help your business grow?', 'coachpress'); ?></p>
-                        <div class="team-member-social">
-                            <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i> LinkedIn</a>
-                            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i> Twitter</a>
+                    <div class="team-contact-card card" style="<?php echo esc_attr($card_style); ?> padding: 60px !important;">
+                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?>;"><?php echo esc_html($cta_title); ?></h3>
+                        <div class="cta-card-description" style="margin-bottom: 25px;">
+                            <?php echo wp_kses_post($cta_desc); ?>
                         </div>
+
+                        <div class="team-member-social">
+                            <a href="#" aria-label="LinkedIn" style="color: inherit;"><i class="fa fa-linkedin"></i> LinkedIn</a>
+                            <a href="#" aria-label="Twitter" style="color: inherit;"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+
                         <div class="portfolio-cta" style="margin-top: 30px;">
-                            <a href="#contact" class="btn"><?php _e('Book a Strategy Session', 'coachpress'); ?></a>
+                            <?php if ( 'url' === $btn_type ) : ?>
+                                <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_url", '#contact' ); ?>
+                                <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="width: 100%;"><?php echo esc_html($btn_text); ?></a>
+                            <?php elseif ( 'html' === $btn_type ) : ?>
+                                <div class="cta-custom-html">
+                                    <?php echo wp_kses_post( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_html" ) ); ?>
+                                </div>
+                            <?php elseif ( 'shortcode' === $btn_type ) : ?>
+                                <div class="cta-shortcode">
+                                    <?php echo do_shortcode( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_shortcode" ) ); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </aside>

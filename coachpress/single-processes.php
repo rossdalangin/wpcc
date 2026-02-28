@@ -1,18 +1,18 @@
 <?php
 /**
- * The template for displaying single case studies
+ * The template for displaying single processes
  *
  * @package CoachPress
  */
 
 get_header();
 
-$cpt = 'case_studies';
+$cpt = 'processes';
 $cta_title = get_theme_mod( "coachpress_single_{$cpt}_cta_title", __( 'Ready to Start?', 'coachpress' ) );
-$cta_desc = get_theme_mod( "coachpress_single_{$cpt}_cta_desc", __( 'Take the first step toward transforming your business.', 'coachpress' ) );
-$cta_bg = get_theme_mod( "coachpress_single_{$cpt}_cta_bg_color", '#f7fafc' );
-$cta_text_color = get_theme_mod( "coachpress_single_{$cpt}_cta_text_color", '#1a365d' );
-$btn_text = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_text", __( 'Get Similar Results', 'coachpress' ) );
+$cta_desc = get_theme_mod( "coachpress_single_{$cpt}_cta_desc", __( 'Take the first step toward transforming your business with this process.', 'coachpress' ) );
+$cta_bg = get_theme_mod( "coachpress_single_{$cpt}_cta_bg_color", '#1a365d' );
+$cta_text_color = get_theme_mod( "coachpress_single_{$cpt}_cta_text_color", '#ffffff' );
+$btn_text = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_text", __( 'Apply Our Framework', 'coachpress' ) );
 $btn_type = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_type", 'url' );
 
 $card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 50px !important;";
@@ -21,35 +21,32 @@ $card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 5
 <main id="primary" class="site-main">
     <?php while ( have_posts() ) : the_post(); ?>
 
-        <header class="case-study-single-header page-banner" style="<?php echo has_post_thumbnail() ? 'background-image: url(' . get_the_post_thumbnail_url(null, 'full') . ');' : ''; ?>">
+        <header class="process-single-header page-banner" style="<?php echo has_post_thumbnail() ? 'background-image: url(' . get_the_post_thumbnail_url(null, 'full') . ');' : ''; ?>">
             <?php if ( has_post_thumbnail() ) : ?><div class="page-banner-overlay"></div><?php endif; ?>
             <div class="container">
-                <span class="portfolio-single-cat" data-aos="fade-up"><?php _e('Success Story', 'coachpress'); ?></span>
-                <h1 class="entry-title" data-aos="fade-up" data-aos-delay="100"><?php the_title(); ?></h1>
+                <h1 class="entry-title" data-aos="fade-up"><?php the_title(); ?></h1>
+                <p class="entry-subtitle" data-aos="fade-up" data-aos-delay="100"><?php _e('Our Strategic Framework', 'coachpress'); ?></p>
             </div>
         </header>
 
-        <div class="case-study-single-content container">
+        <div class="process-single-content container">
             <div class="grid-2-col" style="grid-template-columns: 2fr 1fr; gap: 80px;">
-                <div class="case-study-main-description" data-aos="fade-right">
+                <div class="process-main-description" data-aos="fade-right">
                     <div class="entry-content">
                         <?php the_content(); ?>
                     </div>
                 </div>
 
-                <aside class="case-study-sidebar" data-aos="fade-left">
-                    <div class="case-study-outcome-card card" style="<?php echo esc_attr($card_style); ?>">
+                <aside class="process-cta-sidebar" data-aos="fade-left">
+                    <div class="process-cta-card card" style="<?php echo esc_attr($card_style); ?>">
                         <h3 style="color: <?php echo esc_attr($cta_text_color); ?>;"><?php echo esc_html($cta_title); ?></h3>
-
                         <div class="cta-card-description" style="margin-bottom: 30px;">
                             <?php echo wp_kses_post($cta_desc); ?>
                         </div>
 
                         <?php if ( 'url' === $btn_type ) : ?>
                             <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_url", '#contact' ); ?>
-                            <div class="portfolio-cta">
-                                <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="width: 100%;"><?php echo esc_html($btn_text); ?></a>
-                            </div>
+                            <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="background: var(--coachpress-accent-color); color: #fff; width: 100%;"><?php echo esc_html($btn_text); ?></a>
                         <?php elseif ( 'html' === $btn_type ) : ?>
                             <div class="cta-custom-html">
                                 <?php echo wp_kses_post( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_html" ) ); ?>
@@ -65,15 +62,14 @@ $card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 5
         </div>
 
         <?php
-        coachpress_display_section('testimonials', true);
         coachpress_display_section('cta', true);
         ?>
 
         <?php
         the_post_navigation(
             array(
-                'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous Success Story:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
-                'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next Success Story:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
+                'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous Process:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
+                'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next Process:', 'coachpress' ) . '</span> <span class="nav-title">%title</span>',
             )
         );
         ?>

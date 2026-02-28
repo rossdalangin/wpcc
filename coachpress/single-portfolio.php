@@ -8,6 +8,16 @@
 get_header();
 
 $category = get_post_meta( get_the_ID(), '_portfolio_category', true ) ?: 'Strategy';
+
+$cpt = 'portfolio';
+$cta_title = get_theme_mod( "coachpress_single_{$cpt}_cta_title", __( 'Project Overview', 'coachpress' ) );
+$cta_desc = get_theme_mod( "coachpress_single_{$cpt}_cta_desc", '' );
+$cta_bg = get_theme_mod( "coachpress_single_{$cpt}_cta_bg_color", '#ffffff' );
+$cta_text_color = get_theme_mod( "coachpress_single_{$cpt}_cta_text_color", '#1a365d' );
+$btn_text = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_text", __( 'Discuss a Project', 'coachpress' ) );
+$btn_type = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_type", 'url' );
+
+$card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 60px !important;";
 ?>
 
 <main id="primary" class="site-main">
@@ -30,18 +40,37 @@ $category = get_post_meta( get_the_ID(), '_portfolio_category', true ) ?: 'Strat
                 </div>
 
                 <aside class="portfolio-meta-sidebar" data-aos="fade-left">
-                    <div class="portfolio-meta-card card">
-                        <h3><?php _e('Project Overview', 'coachpress'); ?></h3>
-                        <div class="portfolio-meta-item">
+                    <div class="portfolio-meta-card card" style="<?php echo esc_attr($card_style); ?>">
+                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?>;"><?php echo esc_html($cta_title); ?></h3>
+
+                        <?php if ( !empty($cta_desc) ) : ?>
+                            <div class="cta-card-description" style="margin-bottom: 20px;">
+                                <?php echo wp_kses_post($cta_desc); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="portfolio-meta-item" style="border-bottom-color: rgba(0,0,0,0.05);">
                             <strong><?php _e('Category:', 'coachpress'); ?></strong>
-                            <span><?php echo esc_html($category); ?></span>
+                            <span style="color: inherit; opacity: 0.8;"><?php echo esc_html($category); ?></span>
                         </div>
-                        <div class="portfolio-meta-item">
+                        <div class="portfolio-meta-item" style="border-bottom-color: rgba(0,0,0,0.05);">
                             <strong><?php _e('Date:', 'coachpress'); ?></strong>
-                            <span><?php echo get_the_date(); ?></span>
+                            <span style="color: inherit; opacity: 0.8;"><?php echo get_the_date(); ?></span>
                         </div>
-                        <div class="portfolio-cta">
-                            <a href="#contact" class="btn"><?php _e('Discuss a Project', 'coachpress'); ?></a>
+
+                        <div class="portfolio-cta" style="margin-top: 40px;">
+                            <?php if ( 'url' === $btn_type ) : ?>
+                                <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_url", '#contact' ); ?>
+                                <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="width: 100%;"><?php echo esc_html($btn_text); ?></a>
+                            <?php elseif ( 'html' === $btn_type ) : ?>
+                                <div class="cta-custom-html">
+                                    <?php echo wp_kses_post( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_html" ) ); ?>
+                                </div>
+                            <?php elseif ( 'shortcode' === $btn_type ) : ?>
+                                <div class="cta-shortcode">
+                                    <?php echo do_shortcode( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_shortcode" ) ); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </aside>

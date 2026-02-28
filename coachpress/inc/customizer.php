@@ -147,6 +147,17 @@ add_action( 'customize_controls_enqueue_scripts', 'coachpress_customize_controls
 
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
+    class CoachPress_Divider_Control extends WP_Customize_Control {
+        public $type = 'coachpress-divider';
+        public function render_content() {
+            ?>
+            <div style="margin-top: 30px; padding: 10px 0; border-top: 1px solid #ddd; background: #eee; font-weight: 800; text-align: center; color: #1a365d; text-transform: uppercase; letter-spacing: 1px;">
+                <?php echo esc_html( $this->label ); ?>
+            </div>
+            <?php
+        }
+    }
+
     class CoachPress_Multi_Select_Control extends WP_Customize_Control {
         public $type = 'coachpress-multi-select';
 

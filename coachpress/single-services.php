@@ -6,6 +6,16 @@
  */
 
 get_header();
+
+$cpt = 'services';
+$cta_title = get_theme_mod( "coachpress_single_{$cpt}_cta_title", __( 'Ready to Start?', 'coachpress' ) );
+$cta_desc = get_theme_mod( "coachpress_single_{$cpt}_cta_desc", __( 'Take the first step toward transforming your business with this service.', 'coachpress' ) );
+$cta_bg = get_theme_mod( "coachpress_single_{$cpt}_cta_bg_color", '#1a365d' );
+$cta_text_color = get_theme_mod( "coachpress_single_{$cpt}_cta_text_color", '#ffffff' );
+$btn_text = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_text", __( 'Request a Proposal', 'coachpress' ) );
+$btn_type = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_type", 'url' );
+
+$card_style = "background-color: {$cta_bg}; color: {$cta_text_color}; padding: 50px !important;";
 ?>
 
 <main id="primary" class="site-main">
@@ -28,10 +38,24 @@ get_header();
                 </div>
 
                 <aside class="service-cta-sidebar" data-aos="fade-left">
-                    <div class="service-cta-card card" style="background: var(--coachpress-primary-color); color: #fff; padding: 50px !important;">
-                        <h3 style="color: #fff;"><?php _e('Ready to Start?', 'coachpress'); ?></h3>
-                        <p><?php _e('Take the first step toward transforming your business with this service.', 'coachpress'); ?></p>
-                        <a href="#contact" class="btn" style="background: var(--coachpress-accent-color); color: #fff; width: 100%;"><?php _e('Request a Proposal', 'coachpress'); ?></a>
+                    <div class="service-cta-card card" style="<?php echo esc_attr($card_style); ?>">
+                        <h3 style="color: <?php echo esc_attr($cta_text_color); ?>;"><?php echo esc_html($cta_title); ?></h3>
+                        <div class="cta-card-description" style="margin-bottom: 30px;">
+                            <?php echo wp_kses_post($cta_desc); ?>
+                        </div>
+
+                        <?php if ( 'url' === $btn_type ) : ?>
+                            <?php $btn_url = get_theme_mod( "coachpress_single_{$cpt}_cta_btn_url", '#contact' ); ?>
+                            <a href="<?php echo esc_url($btn_url); ?>" class="btn" style="background: var(--coachpress-accent-color); color: #fff; width: 100%;"><?php echo esc_html($btn_text); ?></a>
+                        <?php elseif ( 'html' === $btn_type ) : ?>
+                            <div class="cta-custom-html">
+                                <?php echo wp_kses_post( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_html" ) ); ?>
+                            </div>
+                        <?php elseif ( 'shortcode' === $btn_type ) : ?>
+                            <div class="cta-shortcode">
+                                <?php echo do_shortcode( get_theme_mod( "coachpress_single_{$cpt}_cta_btn_shortcode" ) ); ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="service-related-meta card" style="margin-top: 30px;">

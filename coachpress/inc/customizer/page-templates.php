@@ -193,4 +193,79 @@ function coachpress_customize_page_templates( $wp_customize ) {
 
         $i += 10;
     }
+
+    // -- Single CPT View CTA Settings --
+    $wp_customize->add_section( 'coachpress_single_cpt_cta', array(
+        'title'    => __( 'Single View CTA Settings', 'coachpress' ),
+        'description' => __('Manage the call-to-action cards in the sidebar of individual Service, Portfolio, Team, and Case Study pages.', 'coachpress'),
+        'priority' => 15,
+        'panel'    => 'coachpress_page_templates_panel',
+    ) );
+
+    $cpts = array(
+        'services'      => __( 'Services', 'coachpress' ),
+        'portfolio'     => __( 'Portfolio', 'coachpress' ),
+        'team'          => __( 'Team', 'coachpress' ),
+        'case_studies'  => __( 'Case Studies', 'coachpress' ),
+        'processes'      => __( 'Processes', 'coachpress' ),
+    );
+
+    foreach ( $cpts as $cpt_slug => $cpt_label ) {
+        // Divider
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_divider", array( 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_control( new CoachPress_Divider_Control( $wp_customize, "coachpress_single_{$cpt_slug}_divider", array(
+            'label' => sprintf( __( '%s CTA Card', 'coachpress' ), $cpt_label ),
+            'section' => 'coachpress_single_cpt_cta',
+        ) ) );
+
+        // Content
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_title", array( 'default' => __( 'Ready to Start?', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_title", array( 'label' => __( 'CTA Title', 'coachpress' ), 'section' => 'coachpress_single_cpt_cta', 'type' => 'text' ) );
+
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_desc", array( 'default' => __( 'Take the first step toward transforming your business.', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_desc", array( 'label' => __( 'CTA Description', 'coachpress' ), 'section' => 'coachpress_single_cpt_cta', 'type' => 'textarea' ) );
+
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_btn_text", array( 'default' => __( 'Get Started', 'coachpress' ), 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_btn_text", array( 'label' => __( 'Button Text', 'coachpress' ), 'section' => 'coachpress_single_cpt_cta', 'type' => 'text' ) );
+
+        // Interaction Type
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_btn_type", array( 'default' => 'url', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_key' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_btn_type", array(
+            'label' => __( 'Button Interaction', 'coachpress' ),
+            'section' => 'coachpress_single_cpt_cta',
+            'type' => 'select',
+            'choices' => array( 'url' => __( 'Link to URL', 'coachpress' ), 'html' => __( 'Custom HTML (e.g., Form)', 'coachpress' ), 'shortcode' => __( 'Shortcode', 'coachpress' ) )
+        ) );
+
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_btn_url", array( 'default' => '#contact', 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_btn_url", array(
+            'label' => __( 'Button URL', 'coachpress' ),
+            'section' => 'coachpress_single_cpt_cta',
+            'type' => 'text',
+            'active_callback' => function($control) use ($cpt_slug) { return 'url' === $control->manager->get_setting("coachpress_single_{$cpt_slug}_cta_btn_type")->value(); }
+        ) );
+
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_btn_html", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_btn_html", array(
+            'label' => __( 'Custom HTML', 'coachpress' ),
+            'section' => 'coachpress_single_cpt_cta',
+            'type' => 'textarea',
+            'active_callback' => function($control) use ($cpt_slug) { return 'html' === $control->manager->get_setting("coachpress_single_{$cpt_slug}_cta_btn_type")->value(); }
+        ) );
+
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_btn_shortcode", array( 'default' => '', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+        $wp_customize->add_control( "coachpress_single_{$cpt_slug}_cta_btn_shortcode", array(
+            'label' => __( 'Shortcode', 'coachpress' ),
+            'section' => 'coachpress_single_cpt_cta',
+            'type' => 'text',
+            'active_callback' => function($control) use ($cpt_slug) { return 'shortcode' === $control->manager->get_setting("coachpress_single_{$cpt_slug}_cta_btn_type")->value(); }
+        ) );
+
+        // Styling
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_bg_color", array( 'default' => '#1a365d', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_single_{$cpt_slug}_cta_bg_color", array( 'label' => __( 'Card Background Color', 'coachpress' ), 'section' => 'coachpress_single_cpt_cta' ) ) );
+
+        $wp_customize->add_setting( "coachpress_single_{$cpt_slug}_cta_text_color", array( 'default' => '#ffffff', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_hex_color' ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, "coachpress_single_{$cpt_slug}_cta_text_color", array( 'label' => __( 'Card Text Color', 'coachpress' ), 'section' => 'coachpress_single_cpt_cta' ) ) );
+    }
 }
