@@ -93,6 +93,12 @@ function coachpress_customize_page_templates( $wp_customize ) {
             'title' => 'Start Your Transformation Today.',
             'subtitle' => 'Ready to find your edge? Let\'s have a high-stakes conversation.',
             'content' => 'Fill out the form below or reach out via our direct channels. We respond to qualified inquiries within 24 hours.'
+        ),
+        'sales-letter' => array(
+            'name' => __( 'Sales Letter Page', 'coachpress' ),
+            'title' => 'Stop Being the Best-Kept Secret in Your Industry.',
+            'subtitle' => 'Launch Your High-Ticket Authority Site in 60 Seconds.',
+            'content' => ''
         )
     );
 
@@ -146,6 +152,7 @@ function coachpress_customize_page_templates( $wp_customize ) {
         elseif ($slug === 'portfolio') $default_sections = 'portfolio,case-studies,cta';
         elseif ($slug === 'team') $default_sections = 'team,testimonials,cta';
         elseif ($slug === 'contact') $default_sections = 'contact,faqs';
+        elseif ($slug === 'sales-letter') $default_sections = 'trust,testimonials,cta';
 
         $wp_customize->add_setting( "coachpress_{$slug}_page_sections", array(
             'default'           => $default_sections,
@@ -158,6 +165,40 @@ function coachpress_customize_page_templates( $wp_customize ) {
             'section'     => $section_id,
             'choices'     => $sections
         ) ) );
+
+        // Specifics for Sales Letter Page
+        if ($slug === 'sales-letter') {
+            $sl_defaults = array(
+                'salutation' => 'Dear Consultant, Coach, or Agency Owner,',
+                'problem_headline' => 'You’re elite. You’re an expert. You solve complex problems for high-level people.',
+                'problem_sub'      => 'But does your website reflect that?',
+                'pain_point'       => 'Be honest. When a $50k prospect lands on your homepage, do they see a world-class authority... or do they see a "budget" site that looks like it was pieced together by a hobbyist?',
+                'solution_trigger' => 'The "Frankenstein Theme" era is over. It’s time for the Authority Engine.',
+                'cta_text'         => 'SEE THE DEMO & GET STARTED NOW',
+                'cta_url'          => '#',
+            );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_salutation', array( 'default' => $sl_defaults['salutation'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_salutation', array( 'label' => __( 'Intro Salutation', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_problem_headline', array( 'default' => $sl_defaults['problem_headline'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_problem_headline', array( 'label' => __( 'Problem Headline', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_problem_sub', array( 'default' => $sl_defaults['problem_sub'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_problem_sub', array( 'label' => __( 'Problem Sub-headline', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_pain_point', array( 'default' => $sl_defaults['pain_point'], 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_pain_point', array( 'label' => __( 'Pain Point Paragraph', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_solution_trigger', array( 'default' => $sl_defaults['solution_trigger'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_solution_trigger', array( 'label' => __( 'Solution Trigger Phrase', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_cta_text', array( 'default' => $sl_defaults['cta_text'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_cta_text', array( 'label' => __( 'CTA Button Text', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( 'coachpress_sales_letter_cta_url', array( 'default' => $sl_defaults['cta_url'], 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
+            $wp_customize->add_control( 'coachpress_sales_letter_cta_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => $section_id, 'type' => 'url' ) );
+        }
 
         // Specifics for Contact Page
         if ($slug === 'contact') {

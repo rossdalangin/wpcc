@@ -302,6 +302,7 @@ function coachpress_get_template_slug() {
         'page-team.php'      => 'team',
         'page-contact.php'   => 'contact',
         'page-blog.php'      => 'blog',
+        'page-sales-letter.php' => 'sales-letter',
     );
 
     if (isset($mapping[$template])) {
@@ -316,6 +317,11 @@ function coachpress_get_template_slug() {
  */
 function coachpress_get_page_template_defaults() {
     return array(
+        'sales-letter' => array(
+            'title' => 'Stop Being the Best-Kept Secret in Your Industry.',
+            'subtitle' => 'Launch Your High-Ticket Authority Site in 60 Seconds.',
+            'content' => ''
+        ),
         'about'     => array(
             'title' => 'Decades of Strategy. One Mission: Your Growth.',
             'subtitle' => 'Meet the minds behind the most successful market transformations.',
