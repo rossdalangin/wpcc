@@ -10,6 +10,13 @@ get_header();
 $template_slug = 'sales-letter';
 $banner_title = get_theme_mod( "coachpress_{$template_slug}_banner_title", 'Stop Being the Best-Kept Secret in Your Industry.' );
 $banner_subtitle = get_theme_mod( "coachpress_{$template_slug}_banner_subtitle", 'Launch Your High-Ticket Authority Site in 60 Seconds.' );
+$banner_img_id = get_theme_mod( "coachpress_{$template_slug}_page_banner_image" );
+
+$banner_style = '';
+if ( $banner_img_id ) {
+    $banner_url = wp_get_attachment_image_url( $banner_img_id, 'full' );
+    $banner_style = 'style="background-image: url(' . esc_url( $banner_url ) . '); background-size: cover; background-position: center;"';
+}
 
 $defaults = array(
     'salutation' => 'Dear Consultant, Coach, or Agency Owner,',
@@ -41,7 +48,10 @@ $defaults = array(
 
 <main id="primary" class="site-main sales-letter-page">
 
-    <header class="sales-letter-header page-banner" data-aos="fade">
+    <header class="sales-letter-header page-banner <?php echo $banner_img_id ? 'has-banner-image' : ''; ?>" <?php echo $banner_style; ?> data-aos="fade">
+        <?php if ( $banner_img_id ) : ?>
+            <div class="page-banner-overlay"></div>
+        <?php endif; ?>
         <div class="container text-align-center">
             <h1 class="entry-title" data-aos="fade-up"><?php echo esc_html($banner_title); ?></h1>
             <?php if (!empty($banner_subtitle)) : ?>
@@ -51,6 +61,15 @@ $defaults = array(
     </header>
 
     <div class="sales-letter-content container" style="max-width: 900px; padding: 120px 24px;">
+
+        <?php
+        $content_override = get_theme_mod( "coachpress_{$template_slug}_page_content" );
+        if ( !empty($content_override) ) {
+            echo '<div class="page-main-content-override entry-content" style="margin-bottom: 80px; font-size: 1.25rem;">' . wp_kses_post($content_override) . '</div>';
+            echo '<hr class="premium-divider" />';
+        }
+        ?>
+
         <div class="letter-intro" data-aos="fade-up">
             <p class="salutation"><?php echo esc_html(get_theme_mod('coachpress_sales_letter_salutation', $defaults['salutation'])); ?></p>
             <h2 class="letter-headline"><?php echo esc_html(get_theme_mod('coachpress_sales_letter_problem_headline', $defaults['problem_headline'])); ?></h2>
