@@ -190,6 +190,9 @@ function coachpress_customize_page_templates( $wp_customize ) {
             $wp_customize->add_setting( 'coachpress_sales_letter_pain_point', array( 'default' => $sl_defaults['pain_point'], 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
             $wp_customize->add_control( 'coachpress_sales_letter_pain_point', array( 'label' => __( 'Pain Point Paragraph', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
 
+            $wp_customize->add_setting( 'coachpress_sl_pain_point_sub', array( 'default' => 'In the world of high-ticket consulting, your aesthetics are your "pre-frame." If you look like you’re struggling with your tech, they won’t trust you with their strategy.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_pain_point_sub', array( 'label' => __( 'Pain Point Sub-text', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
             $wp_customize->add_setting( 'coachpress_sales_letter_solution_trigger', array( 'default' => $sl_defaults['solution_trigger'], 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
             $wp_customize->add_control( 'coachpress_sales_letter_solution_trigger', array( 'label' => __( 'Solution Trigger Phrase', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
 
@@ -198,6 +201,55 @@ function coachpress_customize_page_templates( $wp_customize ) {
 
             $wp_customize->add_setting( 'coachpress_sales_letter_cta_url', array( 'default' => $sl_defaults['cta_url'], 'transport' => 'refresh', 'sanitize_callback' => 'esc_url_raw' ) );
             $wp_customize->add_control( 'coachpress_sales_letter_cta_url', array( 'label' => __( 'CTA Button URL', 'coachpress' ), 'section' => $section_id, 'type' => 'url' ) );
+
+            // Point 1
+            $wp_customize->add_setting( 'coachpress_sl_point_1_title', array( 'default' => '1. WHAT EXACTLY AM I SPENDING MY MONEY FOR?', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_1_title', array( 'label' => __( 'Point 1 Title', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+            $wp_customize->add_setting( 'coachpress_sl_point_1_content', array( 'default' => 'You aren\'t buying a theme. You\'re buying a professional infrastructure. CoachPress v2.3.0 is a complete, modular ecosystem designed specifically for the high-ticket expert.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_1_content', array( 'label' => __( 'Point 1 Content', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            $wp_customize->add_setting( 'coachpress_sl_point_1_list', array( 'default' => '<li><strong>The Visual Builder:</strong> A drag-and-drop section builder inside the WordPress Customizer. No complex plugins. No bloat. Just speed.</li><li><strong>The Power Tools:</strong> One-click demo population with professional content for 5 different niches.</li><li><strong>The Authority CPTs:</strong> Dedicated, styled engines for Case Studies, Portfolio, Team, and Services.</li><li><strong>Intelligent Design:</strong> Our built-in logic automatically recommends high-contrast colors based on your backgrounds.</li>', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_1_list', array( 'label' => __( 'Point 1 List Items (HTML)', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            // Point 2
+            $wp_customize->add_setting( 'coachpress_sl_point_2_title', array( 'default' => '2. WHAT\'S IN IT FOR ME?', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_2_title', array( 'label' => __( 'Point 2 Title', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+            $wp_customize->add_setting( 'coachpress_sl_point_2_content', array( 'default' => 'Simple: Time, Authority, and Freedom.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_2_content', array( 'label' => __( 'Point 2 Content', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            $wp_customize->add_setting( 'coachpress_sl_point_2_list', array( 'default' => '<li><strong>Stop Fighting Tech:</strong> Launch a professional site by lunch and spend your afternoon closing deals.</li><li><strong>Look the Part:</strong> Commands higher fees by having a site that matches the caliber of your advice.</li><li><strong>Passive Trust-Building:</strong> Let your site do the selling. The narrative flow of CoachPress is a psychological funnel that qualifies leads for you.</li>', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_2_list', array( 'label' => __( 'Point 2 List Items (HTML)', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            // Point 3
+            $wp_customize->add_setting( 'coachpress_sl_point_3_title', array( 'default' => '3. WILL IT BE REALLY WORTH IT?', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_3_title', array( 'label' => __( 'Point 3 Title', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+            $wp_customize->add_setting( 'coachpress_sl_point_3_content', array( 'default' => '<p>Ask yourself: What is the lifetime value of just ONE new high-ticket client?</p><p>Most consultants spend $10k-$20k with agencies to get a site this functional and professional. CoachPress gives you that same "Elite Agency" infrastructure for a fraction of the cost.</p><p>It’s not just worth it—it’s the highest-ROI investment you can make in your brand this year. If this theme helps you close just one discovery call, it has paid for itself a hundred times over.</p>', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_3_content', array( 'label' => __( 'Point 3 Full Content (HTML)', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            // Point 4
+            $wp_customize->add_setting( 'coachpress_sl_point_4_title', array( 'default' => '4. CAN I TRUST YOU?', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_4_title', array( 'label' => __( 'Point 4 Title', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+            $wp_customize->add_setting( 'coachpress_sl_point_4_content', array( 'default' => '<p>We built CoachPress because we were tired of seeing brilliant experts fail because of bad tech.</p><p>We are agency owners. We’ve spent 10 years looking at heatmaps, conversion data, and high-ticket sales flows. Every modular block in this theme was designed based on real-world results. We didn\'t build this for "bloggers"—we built this for people who sell expertise for a living.</p>', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_point_4_content', array( 'label' => __( 'Point 4 Full Content (HTML)', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            // Conclusion
+            $wp_customize->add_setting( 'coachpress_sl_conclusion_headline', array( 'default' => 'THE CHOICE IS YOURS.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_conclusion_headline', array( 'label' => __( 'Conclusion Headline', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            $wp_customize->add_setting( 'coachpress_sl_conclusion_text', array( 'default' => '<p>You can keep fighting with plugins, looking at a "coming soon" page, and losing leads to competitors who look more professional.</p><p class="emphasis" style="margin-bottom: 50px;">Or, you can launch your Authority Engine today.</p>', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_conclusion_text', array( 'label' => __( 'Conclusion Body (HTML)', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
+
+            // Signature
+            $wp_customize->add_setting( 'coachpress_sl_signature_intro', array( 'default' => 'To your success,', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_signature_intro', array( 'label' => __( 'Signature Salutation', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+            $wp_customize->add_setting( 'coachpress_sl_signature_name', array( 'default' => 'The CoachPress Team', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_signature_name', array( 'label' => __( 'Signature Name', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+            $wp_customize->add_setting( 'coachpress_sl_signature_title', array( 'default' => 'Strategic Excellence in WordPress.', 'transport' => 'refresh', 'sanitize_callback' => 'sanitize_text_field' ) );
+            $wp_customize->add_control( 'coachpress_sl_signature_title', array( 'label' => __( 'Signature Title', 'coachpress' ), 'section' => $section_id, 'type' => 'text' ) );
+
+            // PS
+            $wp_customize->add_setting( 'coachpress_sl_ps_text', array( 'default' => 'For a limited time, when you grab CoachPress, you get the "Ultimate Marketing Kit" included in the root directory—with 90+ conversational captions, content ideas, and scripts to help you scale immediately.', 'transport' => 'refresh', 'sanitize_callback' => 'wp_kses_post' ) );
+            $wp_customize->add_control( 'coachpress_sl_ps_text', array( 'label' => __( 'P.S. Note', 'coachpress' ), 'section' => $section_id, 'type' => 'textarea' ) );
         }
 
         // Specifics for Contact Page
