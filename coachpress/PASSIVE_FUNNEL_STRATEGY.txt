@@ -1,0 +1,31 @@
+PASSIVE FUNNEL STRATEGY FOR COACHPRESS
+--------------------------------------
+
+1. TOP OF FUNNEL (TRAFFIC)
+Content strategy: LinkedIn and Pinterest.
+- Share 'Authority Hacks' (e.g., '3 ways to fix a low-converting homepage') on LinkedIn.
+- Pin 'Beautiful Coaching Website Inspiration' on Pinterest using the CoachPress demo screenshots.
+- Use the 30-day authority content calendar to drive traffic to the 'Blog' section of the demo site.
+
+2. MIDDLE OF FUNNEL (LEAD MAGNET)
+Concept: The 'Authority Site Audit' or 'Authority Engine Checklist.'
+- A free 5-page PDF that guides them through checking their current site for conversion gaps.
+- CTA at the end: 'Want a site that already has all this built-in? See the CoachPress demo.'
+- Host the lead magnet on a dedicated landing page built with the CoachPress 'About' or 'Services' template.
+
+3. CALL-TO-ACTION STRATEGY
+- Use the 'Header CTA' for the main 'Shop CoachPress' link.
+- Use the 'Section CTA' (the 'Elite Network' card) in the Team and Service sections to lead directly to the purchase page.
+- Add 'In-Article' CTAs in the blog posts using the `[coachpress_section id="cta"]` shortcode.
+
+4. AUTOMATED SALES FLOW
+- Step 1: Opt-in for the Checklist.
+- Step 2: Confirmation email with the PDF + a 'P.S. Have you seen the new CoachPress 1.5.0 demo yet?' link.
+- Step 3: Day 2 Email—Educational. 'The tech bottleneck is costing you clients. Here's why.'
+- Step 4: Day 4 Email—Case Study. 'How a boutique consultancy launched their site in 60 seconds.'
+- Step 5: Day 7 Email—The Offer. 'Limited time bonus (e.g., free setup guide) if you buy CoachPress this week.'
+
+5. NO-ADS TRAFFIC
+- Consistent posting using the 30-day calendar.
+- Guest blogging on sites that cater to coaches.
+- Active engagement in 'CoachTech' Facebook groups or Reddit communities without hard-selling—just answering technical questions and showing 'what's possible.'
